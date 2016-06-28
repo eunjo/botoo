@@ -10,6 +10,11 @@ import UIKit
 
 class RegisterPageViewController: UIViewController {
 
+    @IBOutlet weak var userEmailTextField: UITextField!
+    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var userPWTextField: UITextField!
+    @IBOutlet weak var PWrepeatTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +25,68 @@ class RegisterPageViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    @IBAction func registerButtonTapped(sender: AnyObject) {
+        
+        let userEmail = userEmailTextField.text
+        let userName = userNameTextField.text
+        let userPW = userPWTextField.text
+        let PWrepeat = PWrepeatTextField.text
+        
+        // Check for Empty Fields
+    
+        if (userEmail!.isEmpty || userName!.isEmpty || userPW!.isEmpty || PWrepeat!.isEmpty ){
+            
+            // Display alert message
+            displayRegisterAlert("All fields are required")
+            return
+        }
+        
+        // Check if password match
+        
+        if (userPW != PWrepeat) {
+            
+            // Display alert message
+            displayRegisterAlert("Passwords do not match")
+            return
+        }
+        
+        
+        
+        // Store data
+        
+        NSUserDefaults.standardUserDefaults().setObject(userEmail, forKey: "userEmail")
+        NSUserDefaults.standardUserDefaults().setObject(userName, forKey: "userName")
+        NSUserDefaults.standardUserDefaults().setObject(userPW, forKey: "userPW")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+        
+        // Display alert message with confirmation
+        var myAlert = UIAlertController(title:"Alert", message: "Registration is successful", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.Default){ action in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        myAlert.addAction(okAction)
+        self.presentViewController(myAlert, animated: true, completion: nil)
+        
+    }
+    
+    
+    func displayRegisterAlert(userMessage: String){
+        
+        var myAlert = UIAlertController(title:"Alert", message: userMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.Default, handler:nil)
+        
+        myAlert.addAction(okAction)
+        
+        self.presentViewController(myAlert, animated: true, completion: nil)
+        
+        
+    }
+    
     
 
     /*

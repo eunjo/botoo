@@ -10,6 +10,8 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var userEmailTextField: UITextField!
+    @IBOutlet weak var userPWTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +22,30 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    @IBAction func loginButtonTapped(sender: AnyObject) {
+        
+        let userEmail = userEmailTextField.text
+        let userPW = userPWTextField.text
+        
+        let userEmailStored = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+        
+        let userPWStored = NSUserDefaults.standardUserDefaults().stringForKey("userPW")
+        
+        if (userEmailStored == userEmail){
+            
+            if (userPWStored == userPW){
+                
+                // Log in is successful
+                
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isUserLoggedIn")
+                NSUserDefaults.standardUserDefaults().synchronize()
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
+    }
+    
     
 
     /*
