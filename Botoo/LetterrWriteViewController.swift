@@ -13,12 +13,11 @@ class LetterrWriteViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var letterText: UITextView!
     
-    let writerGender = NSUserDefaults.standardUserDefaults().integerForKey("gender")
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        letterText!.layer.cornerRadius = 8.0
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,6 +29,9 @@ class LetterrWriteViewController: UIViewController {
         
         let title = titleTextField.text
         let letter = letterText.text
+        let writerGender = NSUserDefaults.standardUserDefaults().integerForKey("gender")
+        
+        // 서버 구축 후 데이터 저장
         
         navigationController?.popViewControllerAnimated(true)
         

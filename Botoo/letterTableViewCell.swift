@@ -13,6 +13,8 @@ class letterTableViewCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var writerImage: UIImageView!
+    
+    var gender:Int = 0
 
     override func awakeFromNib() {
         super.awakeFromNib()
