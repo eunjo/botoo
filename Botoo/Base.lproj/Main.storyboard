@@ -28,7 +28,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="627.5" y="123.5"/>
+            <point key="canvasLocation" x="569.5" y="123.5"/>
         </scene>
         <!--채팅-->
         <scene sceneID="uCG-u9-ff0">
@@ -620,7 +620,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yrl-r5-OMI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="181.5" y="123.5"/>
+            <point key="canvasLocation" x="97.5" y="123.5"/>
         </scene>
         <!--Chat Nav View Controller-->
         <scene sceneID="Bkh-EI-FEB">
@@ -684,6 +684,6 @@
         <image name="Icon-60.png" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="inY-Zf-Fx1"/>
+        <segue reference="4a1-F2-BdS"/>
     </inferredMetricsTieBreakers>
 </document>
