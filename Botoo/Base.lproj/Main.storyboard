@@ -93,7 +93,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ml7-Kj-9Cp">
-                                                    <rect key="frame" x="8" y="2" width="233" height="30"/>
+                                                    <rect key="frame" x="8" y="1" width="233" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -125,6 +125,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="chatInputTextField" destination="Ml7-Kj-9Cp" id="hkL-Bk-jhh"/>
                         <outlet property="toolbarBottomConstraint" destination="PAh-8n-5Us" id="mtY-UI-MHm"/>
                     </connections>
                 </viewController>
@@ -328,7 +329,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I89-PI-Jbg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1562.5" y="-606.5"/>
+            <point key="canvasLocation" x="1562.5" y="-870.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Nk3-v4-lFS">
