@@ -44,18 +44,25 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var viewController: UIViewController?
+        
         switch indexPath.row {
         case 0:
-            if let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") {
-                profileViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-                //navigationController 의 하위 뷰로 전환
-                self.navigationController?.pushViewController(profileViewController, animated: true)
-            }
+            viewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController")
             break
         case 1:
             break
+        case 2:
+            viewController = self.storyboard?.instantiateViewControllerWithIdentifier("LockSetViewController")
+            break
         default:
             break
+        }
+        
+        if(viewController != nil) {
+            viewController!.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+            //navigationController 의 하위 뷰로 전환
+            self.navigationController?.pushViewController(viewController!, animated: true)
         }
         
     }

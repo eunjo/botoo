@@ -18,8 +18,10 @@ class UserInfo {
     var msg: String?
     var image: String?
     var lover: String?
+    var lock: Bool?
+    var lockPw: String?
     
-    init(memberId: String, ver: String, email: String, name: String, gender: Int, regId: String, msg: String, image: String, lover: String) {
+    init(memberId: String, ver: String, email: String, name: String, gender: Int, regId: String, msg: String, image: String, lover: String, lock: Bool) {
         self.ver = ver
         self.email = email
         self.regId = regId
@@ -29,6 +31,7 @@ class UserInfo {
         self.lover = lover
         self.name = name
         self.gender = gender
+        self.lock = lock
     }
     
     init() {}

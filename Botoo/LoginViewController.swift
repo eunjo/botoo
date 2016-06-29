@@ -31,7 +31,6 @@ class LoginViewController: UIViewController {
         let userPW = userPWTextField.text
         
         let userEmailStored = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
-        
         let userPWStored = NSUserDefaults.standardUserDefaults().stringForKey("userPW")
         
         if (userEmailStored == userEmail){

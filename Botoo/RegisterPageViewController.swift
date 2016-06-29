@@ -66,7 +66,8 @@ class RegisterPageViewController: UIViewController {
         
         
         
-        // Store data for 자동로그인
+        // Store data 
+        // 지울 것.
         
         NSUserDefaults.standardUserDefaults().setObject(gender, forKey: "gender")
         NSUserDefaults.standardUserDefaults().setObject(userEmail, forKey: "userEmail")
@@ -100,6 +101,11 @@ class RegisterPageViewController: UIViewController {
         
     }
     
+    
+    //빈 공간 클릭 시 키보드 하이드
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
 
     /*

@@ -22,6 +22,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     private var lineViews = [UIView]()
     private let tapGesture = UITapGestureRecognizer()
+    private var userGender: Int?
     
     override func viewDidLoad(){
         setViewBorder()
@@ -29,15 +30,31 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.profile_iv_profile.layer.cornerRadius = self.profile_iv_profile.frame.size.width / 2
         self.profile_iv_profile.clipsToBounds = true
         
-        profile_lb_name.text = HomeViewController.getUserInfo.userInfo.name
-        profile_lb_email.text = HomeViewController.getUserInfo.userInfo.email
-        if (HomeViewController.getUserInfo.userInfo.msg != "") {
-            profile_lb_msg.text = HomeViewController.getUserInfo.userInfo.msg
-        }
+        initProfile()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func initProfile() {
+        profile_lb_name.text = HomeViewController.getUserInfo.userInfo.name
+        profile_lb_email.text = HomeViewController.getUserInfo.userInfo.email
+        userGender = HomeViewController.getUserInfo.userInfo.gender
+        
+        if (HomeViewController.getUserInfo.userInfo.msg != "") {
+            profile_lb_msg.text = HomeViewController.getUserInfo.userInfo.msg
+        }
+        
+        initProfileImage()
+    }
+    
+    func initProfileImage() {
+        if (userGender == 0) {
+            self.profile_iv_profile.image = UIImage(named: "default_male")
+        } else if (userGender == 1) {
+            self.profile_iv_profile.image = UIImage(named: "default_female")
+        }
     }
     
     func setViewBorder() {
@@ -76,7 +93,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         
         let secondAction = UIAlertAction(title: "기본 이미지로 변경", style: .Default) { (alert: UIAlertAction!) -> Void in
-            self.profile_iv_profile.image = UIImage(named: "Icon-60@2x")
+            self.initProfileImage()
         }
         
         let thirdAction = UIAlertAction(title: "취소", style: .Cancel) { (alert: UIAlertAction!) -> Void in
@@ -88,6 +105,22 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         alert.addAction(thirdAction)
         
         presentViewController(alert, animated: true, completion:nil)
+    }
+    
+    @IBAction func onClickLogout(sender: UIButton) {
+        //Logout 구현
+        HomeViewController.getUserInfo.userInfo = UserInfo()
+        
+        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "gender")
+        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userEmail")
+        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userName")
+        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userPW")
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: "isUserLoggedIn")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+        let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController")
+        homeViewController!.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+        self.parentViewController!.presentViewController(homeViewController!, animated: true, completion: nil)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
