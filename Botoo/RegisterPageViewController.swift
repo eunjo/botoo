@@ -14,6 +14,9 @@ class RegisterPageViewController: UIViewController {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var userPWTextField: UITextField!
     @IBOutlet weak var PWrepeatTextField: UITextField!
+    @IBOutlet weak var genderSegment: UISegmentedControl!
+    
+    var gender:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +28,16 @@ class RegisterPageViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+    @IBAction func genderSelect(sender: AnyObject) {
+        
+        if (genderSegment.selectedSegmentIndex == 0){
+            gender = 0
+        }
+        if (genderSegment.selectedSegmentIndex == 1){
+            gender = 1
+        }
+    }
     
     @IBAction func registerButtonTapped(sender: AnyObject) {
         
@@ -36,7 +48,7 @@ class RegisterPageViewController: UIViewController {
         
         // Check for Empty Fields
     
-        if (userEmail!.isEmpty || userName!.isEmpty || userPW!.isEmpty || PWrepeat!.isEmpty ){
+        if (userEmail!.isEmpty || userName!.isEmpty || userPW!.isEmpty || PWrepeat!.isEmpty){
             
             // Display alert message
             displayRegisterAlert("All fields are required")
@@ -56,6 +68,7 @@ class RegisterPageViewController: UIViewController {
         
         // Store data
         
+        NSUserDefaults.standardUserDefaults().setObject(gender, forKey: "gender")
         NSUserDefaults.standardUserDefaults().setObject(userEmail, forKey: "userEmail")
         NSUserDefaults.standardUserDefaults().setObject(userName, forKey: "userName")
         NSUserDefaults.standardUserDefaults().setObject(userPW, forKey: "userPW")
