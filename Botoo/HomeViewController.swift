@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    let isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn")
+    
     let isLock = NSUserDefaults.standardUserDefaults().boolForKey("lock")
     
     struct getUserInfo {
@@ -32,6 +32,8 @@ class HomeViewController: UIViewController {
     }
 
     override func viewDidAppear(animated: Bool) {
+        
+        let isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn")
         
         if (!isUserLoggedIn) {
             self.performSegueWithIdentifier("toLoginView", sender: self)
