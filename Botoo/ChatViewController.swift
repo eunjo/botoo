@@ -11,6 +11,7 @@ import UIKit
 class ChatViewController: UIViewController {
     
     @IBOutlet var toolbarBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var chatInputTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,7 @@ class ChatViewController: UIViewController {
     func keyboardWillHide(notification:NSNotification) {
         adjustingHeight(false, notification: notification)
     }
+
     
     func adjustingHeight(show:Bool, notification:NSNotification) {
         /** 
@@ -57,6 +59,7 @@ class ChatViewController: UIViewController {
             self.toolbarBottomConstraint.constant += changeInHeight
         })
     }
+    
     
     //빈 공간 클릭 시 키보드 하이드
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

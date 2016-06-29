@@ -28,7 +28,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="601.5" y="123.5"/>
+            <point key="canvasLocation" x="627.5" y="123.5"/>
         </scene>
         <!--채팅-->
         <scene sceneID="uCG-u9-ff0">
@@ -48,7 +48,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PqW-Or-fpz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1087.5" y="123.5"/>
+            <point key="canvasLocation" x="1124.5" y="123.5"/>
         </scene>
         <!--칭구이름-->
         <scene sceneID="NpV-tA-8Pb">
@@ -70,7 +70,7 @@
                                     </barButtonItem>
                                     <barButtonItem style="plain" id="MjI-2j-dR7">
                                         <view key="customView" contentMode="scaleToFill" id="nWO-Qg-OEG">
-                                            <rect key="frame" x="43" y="6" width="325" height="33"/>
+                                            <rect key="frame" x="44" y="5.5" width="325" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="rgZ-gr-5sK">
@@ -93,7 +93,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ml7-Kj-9Cp">
-                                                    <rect key="frame" x="8" y="2" width="233" height="30"/>
+                                                    <rect key="frame" x="8" y="1" width="233" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -125,6 +125,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="chatInputTextField" destination="Ml7-Kj-9Cp" id="hkL-Bk-jhh"/>
                         <outlet property="toolbarBottomConstraint" destination="PAh-8n-5Us" id="mtY-UI-MHm"/>
                     </connections>
                 </viewController>
@@ -135,7 +136,7 @@
         <!--편지-->
         <scene sceneID="Z3W-bp-EJf">
             <objects>
-                <viewController id="Dyn-mD-alR" sceneMemberID="viewController">
+                <viewController id="Dyn-mD-alR" customClass="LetterViewController" customModule="Botoo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PUh-as-w6i"/>
                         <viewControllerLayoutGuide type="bottom" id="8CL-MQ-nfc"/>
@@ -143,7 +144,20 @@
                     <view key="view" contentMode="scaleToFill" id="CU3-pm-ELW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="coI-rB-Gun">
+                                <rect key="frame" x="20" y="20" width="335" height="598"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="coI-rB-Gun" firstAttribute="top" secondItem="PUh-as-w6i" secondAttribute="bottom" id="BQy-w7-PmL"/>
+                            <constraint firstItem="coI-rB-Gun" firstAttribute="leading" secondItem="CU3-pm-ELW" secondAttribute="leadingMargin" id="DZ6-ir-Hh3"/>
+                            <constraint firstItem="coI-rB-Gun" firstAttribute="top" secondItem="PUh-as-w6i" secondAttribute="bottom" id="IBM-Fj-wO7"/>
+                            <constraint firstItem="8CL-MQ-nfc" firstAttribute="top" secondItem="coI-rB-Gun" secondAttribute="bottom" id="XAx-Sa-wfI"/>
+                            <constraint firstItem="coI-rB-Gun" firstAttribute="trailing" secondItem="CU3-pm-ELW" secondAttribute="trailingMargin" id="d7t-Md-lgm"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="편지" badgeValue="0" id="yaI-tb-dKj"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -394,6 +408,25 @@
             </objects>
             <point key="canvasLocation" x="1087.5" y="-606.5"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="5DP-Uo-5jX">
+            <objects>
+                <viewController id="YZ8-zt-rFT" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Na3-R8-nkW"/>
+                        <viewControllerLayoutGuide type="bottom" id="kZt-FH-reC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wax-56-dc8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qaJ-J2-oVA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1562.5" y="-622.5"/>
+        </scene>
         <!--Register Page View Controller-->
         <scene sceneID="uK6-ba-Ubt">
             <objects>
@@ -452,14 +485,14 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mkm-Ui-C0S">
-                                <rect key="frame" x="158" y="468" width="59" height="30"/>
+                                <rect key="frame" x="158" y="522" width="59" height="30"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="registerButtonTapped:" destination="cT2-x4-Baa" eventType="touchUpInside" id="3m4-BV-7nc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3x-pK-E0Q">
-                                <rect key="frame" x="90" y="536" width="194" height="30"/>
+                                <rect key="frame" x="90" y="576" width="194" height="30"/>
                                 <state key="normal" title="Already have an account"/>
                                 <connections>
                                     <segue destination="tMY-cB-YnR" kind="presentation" identifier="fromRegisterToLoginView" id="inY-Zf-Fx1"/>
@@ -470,12 +503,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gpm-hU-X9E">
+                                <rect key="frame" x="127" y="455" width="121" height="29"/>
+                                <segments>
+                                    <segment title="남자"/>
+                                    <segment title="여자"/>
+                                </segments>
+                                <connections>
+                                    <action selector="genderSelect:" destination="cT2-x4-Baa" eventType="valueChanged" id="P0M-Mv-SgV"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="PWrepeatTextField" destination="xRg-9w-WDj" id="Yce-Je-LPR"/>
+                        <outlet property="genderSegment" destination="gpm-hU-X9E" id="s0P-oe-YVO"/>
                         <outlet property="userEmailTextField" destination="Vko-yo-XnT" id="lA0-hJ-py7"/>
                         <outlet property="userNameTextField" destination="fl0-c1-Cjm" id="qNg-al-Pte"/>
                         <outlet property="userPWTextField" destination="P2N-ql-Qs6" id="fUI-qh-HSw"/>
@@ -483,7 +527,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I89-PI-Jbg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1562.5" y="-606.5"/>
+            <point key="canvasLocation" x="1094.5" y="-1476.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Nk3-v4-lFS">
@@ -550,6 +594,6 @@
         <image name="Icon-60.png" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4a1-F2-BdS"/>
+        <segue reference="inY-Zf-Fx1"/>
     </inferredMetricsTieBreakers>
 </document>
