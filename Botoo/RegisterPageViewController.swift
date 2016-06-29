@@ -66,7 +66,7 @@ class RegisterPageViewController: UIViewController {
         
         
         
-        // Store data
+        // Store data for 자동로그인
         
         NSUserDefaults.standardUserDefaults().setObject(gender, forKey: "gender")
         NSUserDefaults.standardUserDefaults().setObject(userEmail, forKey: "userEmail")
@@ -76,7 +76,7 @@ class RegisterPageViewController: UIViewController {
         
         
         // Display alert message with confirmation
-        var myAlert = UIAlertController(title:"Alert", message: "Registration is successful", preferredStyle: UIAlertControllerStyle.Alert)
+        let myAlert = UIAlertController(title:"Alert", message: "Registration is successful", preferredStyle: UIAlertControllerStyle.Alert)
         
         let okAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.Default){ action in
             self.dismissViewControllerAnimated(true, completion: nil)
