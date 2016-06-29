@@ -73,6 +73,11 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        if let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("letterDetail") {
+            profileViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+            //navigationController 의 하위 뷰로 전환
+            self.navigationController?.pushViewController(profileViewController, animated: true)
+        }
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
