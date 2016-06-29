@@ -109,13 +109,10 @@
 				C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */,
 				C0D47AEF1D22A3CC00637EAB /* ChatNavViewController.swift */,
 				C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */,
-<<<<<<< HEAD
 				C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */,
 				C0D47AF51D237CAC00637EAB /* SettingViewController.swift */,
 				C0D47AF91D23840900637EAB /* ProfileViewController.swift */,
-=======
 				D600A96F1D237D24005F9130 /* LetterViewController.swift */,
->>>>>>> a05d8cdec30603a1268413d92a07e3db49076292
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -347,11 +344,8 @@
 				D69322AA1D20FB6A003E9147 /* AppDelegate.swift in Sources */,
 				C0D47AF41D237C8A00637EAB /* SettingNavViewController.swift in Sources */,
 				C0D47AF21D22AEFB00637EAB /* ChatViewController.swift in Sources */,
-<<<<<<< HEAD
 				C0D47AF61D237CAC00637EAB /* SettingViewController.swift in Sources */,
-=======
 				D600A9701D237D24005F9130 /* LetterViewController.swift in Sources */,
->>>>>>> a05d8cdec30603a1268413d92a07e3db49076292
 				C0D47AEE1D22A25500637EAB /* ChatTabViewController.swift in Sources */,
 				C0D47AF01D22A3CC00637EAB /* ChatNavViewController.swift in Sources */,
 				C0D47AFD1D23863F00637EAB /* UserInfo.swift in Sources */,
