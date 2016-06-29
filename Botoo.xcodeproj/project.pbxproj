@@ -7,8 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C0D47AEE1D22A25500637EAB /* ChatTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */; };
+		C0D47AF01D22A3CC00637EAB /* ChatNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AEF1D22A3CC00637EAB /* ChatNavViewController.swift */; };
+		C0D47AF21D22AEFB00637EAB /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */; };
+		C0D47AF41D237C8A00637EAB /* SettingNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */; };
+		C0D47AF61D237CAC00637EAB /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF51D237CAC00637EAB /* SettingViewController.swift */; };
+		C0D47AFA1D23840900637EAB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF91D23840900637EAB /* ProfileViewController.swift */; };
+		C0D47AFD1D23863F00637EAB /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AFC1D23863F00637EAB /* UserInfo.swift */; };
+		D600A9661D226F06005F9130 /* RegisterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A9651D226F06005F9130 /* RegisterPageViewController.swift */; };
+		D600A9681D227C8D005F9130 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A9671D227C8D005F9130 /* LoginViewController.swift */; };
+		D600A96C1D2287B2005F9130 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D600A96B1D2287B2005F9130 /* Icon-60@2x.png */; };
+		D600A9701D237D24005F9130 /* LetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A96F1D237D24005F9130 /* LetterViewController.swift */; };
+		D600A9731D238B24005F9130 /* default_female.png in Resources */ = {isa = PBXBuildFile; fileRef = D600A9711D238B24005F9130 /* default_female.png */; };
+		D600A9741D238B24005F9130 /* default_male.png in Resources */ = {isa = PBXBuildFile; fileRef = D600A9721D238B24005F9130 /* default_male.png */; };
 		D69322AA1D20FB6A003E9147 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69322A91D20FB6A003E9147 /* AppDelegate.swift */; };
-		D69322AC1D20FB6A003E9147 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69322AB1D20FB6A003E9147 /* ViewController.swift */; };
+		D69322AC1D20FB6A003E9147 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69322AB1D20FB6A003E9147 /* HomeViewController.swift */; };
 		D69322AF1D20FB6A003E9147 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D69322AD1D20FB6A003E9147 /* Main.storyboard */; };
 		D69322B11D20FB6A003E9147 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D69322B01D20FB6A003E9147 /* Assets.xcassets */; };
 		D69322B41D20FB6A003E9147 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D69322B21D20FB6A003E9147 /* LaunchScreen.storyboard */; };
@@ -34,9 +47,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTabViewController.swift; sourceTree = "<group>"; };
+		C0D47AEF1D22A3CC00637EAB /* ChatNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatNavViewController.swift; sourceTree = "<group>"; };
+		C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNavViewController.swift; sourceTree = "<group>"; };
+		C0D47AF51D237CAC00637EAB /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		C0D47AF91D23840900637EAB /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		C0D47AFC1D23863F00637EAB /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		D600A9651D226F06005F9130 /* RegisterPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
+		D600A9671D227C8D005F9130 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D600A96B1D2287B2005F9130 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@2x.png"; path = "img/Icon-60@2x.png"; sourceTree = "<group>"; };
+		D600A96F1D237D24005F9130 /* LetterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterViewController.swift; sourceTree = "<group>"; };
+		D600A9711D238B24005F9130 /* default_female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default_female.png; path = img/default_female.png; sourceTree = "<group>"; };
+		D600A9721D238B24005F9130 /* default_male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default_male.png; path = img/default_male.png; sourceTree = "<group>"; };
 		D69322A61D20FB6A003E9147 /* Botoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Botoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D69322A91D20FB6A003E9147 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D69322AB1D20FB6A003E9147 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D69322AB1D20FB6A003E9147 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D69322AE1D20FB6A003E9147 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D69322B01D20FB6A003E9147 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D69322B31D20FB6A003E9147 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -74,9 +100,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C0D47AEB1D22A1D800637EAB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D69322AB1D20FB6A003E9147 /* HomeViewController.swift */,
+				D600A9651D226F06005F9130 /* RegisterPageViewController.swift */,
+				D600A9671D227C8D005F9130 /* LoginViewController.swift */,
+				C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */,
+				C0D47AEF1D22A3CC00637EAB /* ChatNavViewController.swift */,
+				C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */,
+				C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */,
+				C0D47AF51D237CAC00637EAB /* SettingViewController.swift */,
+				C0D47AF91D23840900637EAB /* ProfileViewController.swift */,
+				D600A96F1D237D24005F9130 /* LetterViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		C0D47AFB1D2385F200637EAB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C0D47AFC1D23863F00637EAB /* UserInfo.swift */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		D600A96D1D228854005F9130 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				D600A9751D238B2E005F9130 /* default_profile */,
+				D600A96E1D22885C005F9130 /* Icon */,
+			);
+			name = Image;
+			sourceTree = "<group>";
+		};
+		D600A96E1D22885C005F9130 /* Icon */ = {
+			isa = PBXGroup;
+			children = (
+				D600A96B1D2287B2005F9130 /* Icon-60@2x.png */,
+			);
+			name = Icon;
+			sourceTree = "<group>";
+		};
+		D600A9751D238B2E005F9130 /* default_profile */ = {
+			isa = PBXGroup;
+			children = (
+				D600A9711D238B24005F9130 /* default_female.png */,
+				D600A9721D238B24005F9130 /* default_male.png */,
+			);
+			name = default_profile;
+			sourceTree = "<group>";
+		};
 		D693229D1D20FB6A003E9147 = {
 			isa = PBXGroup;
 			children = (
+				D600A96D1D228854005F9130 /* Image */,
 				D69322A81D20FB6A003E9147 /* Botoo */,
 				D69322BD1D20FB6A003E9147 /* BotooTests */,
 				D69322C81D20FB6A003E9147 /* BotooUITests */,
@@ -97,8 +175,9 @@
 		D69322A81D20FB6A003E9147 /* Botoo */ = {
 			isa = PBXGroup;
 			children = (
+				C0D47AFB1D2385F200637EAB /* Common */,
+				C0D47AEB1D22A1D800637EAB /* Controller */,
 				D69322A91D20FB6A003E9147 /* AppDelegate.swift */,
-				D69322AB1D20FB6A003E9147 /* ViewController.swift */,
 				D69322AD1D20FB6A003E9147 /* Main.storyboard */,
 				D69322B01D20FB6A003E9147 /* Assets.xcassets */,
 				D69322B21D20FB6A003E9147 /* LaunchScreen.storyboard */,
@@ -231,7 +310,10 @@
 			files = (
 				D69322B41D20FB6A003E9147 /* LaunchScreen.storyboard in Resources */,
 				D69322B11D20FB6A003E9147 /* Assets.xcassets in Resources */,
+				D600A9741D238B24005F9130 /* default_male.png in Resources */,
 				D69322AF1D20FB6A003E9147 /* Main.storyboard in Resources */,
+				D600A96C1D2287B2005F9130 /* Icon-60@2x.png in Resources */,
+				D600A9731D238B24005F9130 /* default_female.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,8 +338,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D69322AC1D20FB6A003E9147 /* ViewController.swift in Sources */,
+				D600A9681D227C8D005F9130 /* LoginViewController.swift in Sources */,
+				D69322AC1D20FB6A003E9147 /* HomeViewController.swift in Sources */,
+				C0D47AFA1D23840900637EAB /* ProfileViewController.swift in Sources */,
 				D69322AA1D20FB6A003E9147 /* AppDelegate.swift in Sources */,
+				C0D47AF41D237C8A00637EAB /* SettingNavViewController.swift in Sources */,
+				C0D47AF21D22AEFB00637EAB /* ChatViewController.swift in Sources */,
+				C0D47AF61D237CAC00637EAB /* SettingViewController.swift in Sources */,
+				D600A9701D237D24005F9130 /* LetterViewController.swift in Sources */,
+				C0D47AEE1D22A25500637EAB /* ChatTabViewController.swift in Sources */,
+				C0D47AF01D22A3CC00637EAB /* ChatNavViewController.swift in Sources */,
+				C0D47AFD1D23863F00637EAB /* UserInfo.swift in Sources */,
+				D600A9661D226F06005F9130 /* RegisterPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,6 +574,7 @@
 				D69322D01D20FB6A003E9147 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D69322D11D20FB6A003E9147 /* Build configuration list for PBXNativeTarget "BotooTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +583,7 @@
 				D69322D31D20FB6A003E9147 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D69322D41D20FB6A003E9147 /* Build configuration list for PBXNativeTarget "BotooUITests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +592,7 @@
 				D69322D61D20FB6A003E9147 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
