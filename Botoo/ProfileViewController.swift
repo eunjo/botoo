@@ -55,7 +55,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             profile_lb_msg.text = HomeViewController.getUserInfo.userInfo.msg
         }
         */
-        if (NSUserDefaults.standardUserDefaults().stringForKey("stateMSG") != "") {
+        if (HomeViewController.getUserInfo.userInfo.msg != "" &&
+            NSUserDefaults.standardUserDefaults().stringForKey("stateMSG") != "") {
             profile_lb_msg.text = NSUserDefaults.standardUserDefaults().stringForKey("stateMSG")
         }
         
@@ -129,13 +130,15 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userName")
         NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userPW")
         NSUserDefaults.standardUserDefaults().setBool(false, forKey: "isUserLoggedIn")
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: "lock")
         NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "stateMSG")
         NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "lockPw")
         NSUserDefaults.standardUserDefaults().synchronize()
         
-        let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController")
-        homeViewController!.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-        self.parentViewController!.presentViewController(homeViewController!, animated: true, completion: nil)
+        self.tabBarController!.selectedIndex = 0
+//        let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController")
+//        homeViewController!.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+//        self.parentViewController!.presentViewController(homeViewController!, animated: true, completion: nil)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {

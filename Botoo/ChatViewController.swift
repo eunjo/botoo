@@ -18,6 +18,8 @@ class ChatViewController: UIViewController {
     private var drawerIsOpen = false
     private var keyboardIsOpen = false
     
+    private var plusView: UIView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -108,4 +110,8 @@ class ChatViewController: UIViewController {
         }
         drawerIsOpen = true
     }
+    
+    @IBAction func onClickPlus(sender: UIBarButtonItem) {
+    }
+    
 }
