@@ -12,9 +12,11 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var myProPic: UIImageView!
     @IBOutlet weak var myUserName: UILabel!
+    @IBOutlet weak var myStateMsg: UILabel!
     
     @IBOutlet var loverProPic: UIImageView!
     @IBOutlet var loverUserName: UILabel!
+    @IBOutlet weak var loverStateMsg: UILabel!
     
     let isLock = NSUserDefaults.standardUserDefaults().boolForKey("lock")
     
@@ -63,6 +65,9 @@ class HomeViewController: UIViewController {
         }
         // 내 이름 로드
         myUserName.text = NSUserDefaults.standardUserDefaults().stringForKey("userName")
+        
+        // 내 상메 로드
+        myStateMsg.text = NSUserDefaults.standardUserDefaults().stringForKey("stateMSG")
         
         
         // 상대방 로드
