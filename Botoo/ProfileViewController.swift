@@ -33,7 +33,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         initProfile()
         
         // 상메 수정용
-        let tap = UITapGestureRecognizer(target: self, action: Selector("gotoMsgEdit:"))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoMsgEdit(_:)))
         profile_lb_msg.userInteractionEnabled = true
         profile_lb_msg.addGestureRecognizer(tap)
     }
@@ -121,6 +121,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userName")
         NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userPW")
         NSUserDefaults.standardUserDefaults().setBool(false, forKey: "isUserLoggedIn")
+        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "stateMSG")
+        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "lockPw")
         NSUserDefaults.standardUserDefaults().synchronize()
         
         let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController")
@@ -146,12 +148,5 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             //navigationController 의 하위 뷰로 전환
             self.navigationController?.pushViewController(viewController!, animated: true)
         }
-        
-        
     }
-
-    
-    
-    
-    
 }
