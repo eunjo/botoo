@@ -120,22 +120,34 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         presentViewController(alert, animated: true, completion:nil)
     }
     
+    
+    
     @IBAction func onClickLogout(sender: UIButton) {
+        
         //Logout 구현
-        HomeViewController.getUserInfo.userInfo = UserInfo()
         
-        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "gender")
-        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userEmail")
-        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userName")
-        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userPW")
-        NSUserDefaults.standardUserDefaults().setBool(false, forKey: "isUserLoggedIn")
-        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "stateMSG")
-        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "lockPw")
-        NSUserDefaults.standardUserDefaults().synchronize()
+        let myAlert = UIAlertController(title:"Alert", message: "정말 로그아웃 하시겠습니까?", preferredStyle: UIAlertControllerStyle.Alert)
         
-        let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController")
-        homeViewController!.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-        self.parentViewController!.presentViewController(homeViewController!, animated: true, completion: nil)
+        let okAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.Default){ action in
+            self.dismissViewControllerAnimated(true, completion: nil)
+            HomeViewController.getUserInfo.userInfo = UserInfo()
+            
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "gender")
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userEmail")
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userName")
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userPW")
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: "isUserLoggedIn")
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "stateMSG")
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "lockPw")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            
+            let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController")
+            homeViewController!.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+            self.parentViewController!.presentViewController(homeViewController!, animated: true, completion: nil)
+        }
+        myAlert.addAction(okAction)
+        self.presentViewController(myAlert, animated: true, completion: nil)
+        
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
