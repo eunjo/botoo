@@ -34,6 +34,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let tap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoMsgEdit(_:)))
         profile_lb_msg.userInteractionEnabled = true
         profile_lb_msg.addGestureRecognizer(tap)
+        
+        let tap_2 = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoNameEdit(_:)))
+        profile_lb_name.userInteractionEnabled = true
+        profile_lb_name.addGestureRecognizer(tap_2)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -55,8 +59,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             profile_lb_msg.text = HomeViewController.getUserInfo.userInfo.msg
         }
         */
-        if (HomeViewController.getUserInfo.userInfo.msg != "" &&
-            NSUserDefaults.standardUserDefaults().stringForKey("stateMSG") != "") {
+        if (NSUserDefaults.standardUserDefaults().stringForKey("stateMSG") != "") {
             profile_lb_msg.text = NSUserDefaults.standardUserDefaults().stringForKey("stateMSG")
         }
         
@@ -170,4 +173,19 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.navigationController?.pushViewController(viewController!, animated: true)
         }
     }
+    
+    func gotoNameEdit(sender:UITapGestureRecognizer){
+        
+        var viewController: UIViewController?
+        
+        viewController = self.storyboard?.instantiateViewControllerWithIdentifier("nameEditViewController")
+        
+        if(viewController != nil) {
+            viewController!.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+            //navigationController 의 하위 뷰로 전환
+            self.navigationController?.pushViewController(viewController!, animated: true)
+        }
+    }
+    
+    
 }

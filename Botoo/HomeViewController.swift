@@ -29,8 +29,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        profileInit()
-        
         // add tap Gesture
         let tap = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.onClickLoverPic(_:)))
         loverProPic.userInteractionEnabled = true
@@ -104,6 +102,8 @@ class HomeViewController: UIViewController {
             
             getUserInfo.userInfo = UserInfo(memberId: "0", ver: (NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")?.description)!, email: userEmail!, name: userName!, gender: usergender, regId: "", msg: "", image: "", lover: "", lock: false)
         }
+        
+        profileInit()
     }
 
 }
