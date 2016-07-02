@@ -491,6 +491,44 @@
             </objects>
             <point key="canvasLocation" x="2998.5" y="123.5"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Skx-rD-Vrj">
+            <objects>
+                <viewController storyboardIdentifier="agreement" useStoryboardIdentifierAsRestorationIdentifier="YES" id="92K-8u-Qcp" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BE9-Su-fXf"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jvc-fL-ESn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jMa-lv-B18">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3wK-cz-Mtl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2998.5" y="868.5"/>
+        </scene>
+        <!--Msg Edit View Controller-->
+        <scene sceneID="EV6-QJ-BKg">
+            <objects>
+                <viewController storyboardIdentifier="msgEditViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eTG-LA-p89" customClass="msgEditViewController" customModule="Botoo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gCb-4w-zZC"/>
+                        <viewControllerLayoutGuide type="bottom" id="wCg-TZ-lKL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="m8k-mW-iGe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2xA-40-IrW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3414.5" y="868.5"/>
+        </scene>
         <!--Profile View Controller-->
         <scene sceneID="VK7-id-T75">
             <objects>
@@ -509,12 +547,6 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RX8-FK-ZAa">
                                 <rect key="frame" x="0.0" y="293" width="375" height="81"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="상태 메세지를 입력해 주세요." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAG-Rd-fkR">
-                                        <rect key="frame" x="115" y="53" width="245" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="상태" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2u8-TQ-DaD">
                                         <rect key="frame" x="14" y="53" width="26" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -535,6 +567,12 @@
                                         <rect key="frame" x="102" y="12" width="258" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="상태 메세지를 입력해 주세요." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAG-Rd-fkR">
+                                        <rect key="frame" x="115" y="53" width="245" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>

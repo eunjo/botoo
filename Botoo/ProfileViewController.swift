@@ -31,6 +31,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.profile_iv_profile.clipsToBounds = true
         
         initProfile()
+        
+        // 상메 수정용
+        let tap = UITapGestureRecognizer(target: self, action: Selector("gotoMsgEdit:"))
+        profile_lb_msg.userInteractionEnabled = true
+        profile_lb_msg.addGestureRecognizer(tap)
     }
     
     override func didReceiveMemoryWarning() {
@@ -128,4 +133,25 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.profile_iv_profile.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         }
     }
+    
+    
+    func gotoMsgEdit(sender:UITapGestureRecognizer){
+        
+        var viewController: UIViewController?
+        
+        viewController = self.storyboard?.instantiateViewControllerWithIdentifier("msgEditViewController")
+        
+        if(viewController != nil) {
+            viewController!.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+            //navigationController 의 하위 뷰로 전환
+            self.navigationController?.pushViewController(viewController!, animated: true)
+        }
+        
+        
+    }
+
+    
+    
+    
+    
 }

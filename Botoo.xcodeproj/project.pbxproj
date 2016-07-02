@@ -23,6 +23,7 @@
 		D600A9791D239E63005F9130 /* LetterNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A9781D239E63005F9130 /* LetterNavViewController.swift */; };
 		D600A97B1D23A869005F9130 /* LetterrWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A97A1D23A869005F9130 /* LetterrWriteViewController.swift */; };
 		D600A97D1D23B395005F9130 /* letterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A97C1D23B395005F9130 /* letterTableViewCell.swift */; };
+		D607C5D81D277B4E00542804 /* msgEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607C5D71D277B4E00542804 /* msgEditViewController.swift */; };
 		D69322AA1D20FB6A003E9147 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69322A91D20FB6A003E9147 /* AppDelegate.swift */; };
 		D69322AC1D20FB6A003E9147 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69322AB1D20FB6A003E9147 /* HomeViewController.swift */; };
 		D69322AF1D20FB6A003E9147 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D69322AD1D20FB6A003E9147 /* Main.storyboard */; };
@@ -67,6 +68,7 @@
 		D600A9781D239E63005F9130 /* LetterNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterNavViewController.swift; sourceTree = "<group>"; };
 		D600A97A1D23A869005F9130 /* LetterrWriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterrWriteViewController.swift; sourceTree = "<group>"; };
 		D600A97C1D23B395005F9130 /* letterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = letterTableViewCell.swift; sourceTree = "<group>"; };
+		D607C5D71D277B4E00542804 /* msgEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = msgEditViewController.swift; sourceTree = "<group>"; };
 		D69322A61D20FB6A003E9147 /* Botoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Botoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D69322A91D20FB6A003E9147 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D69322AB1D20FB6A003E9147 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				D600A97A1D23A869005F9130 /* LetterrWriteViewController.swift */,
 				D600A97C1D23B395005F9130 /* letterTableViewCell.swift */,
 				D6C0EFF61D2760FF00798E2B /* alarmSetViewController.swift */,
+				D607C5D71D277B4E00542804 /* msgEditViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				D600A97B1D23A869005F9130 /* LetterrWriteViewController.swift in Sources */,
 				C0D47AF41D237C8A00637EAB /* SettingNavViewController.swift in Sources */,
 				C0D47AF21D22AEFB00637EAB /* ChatViewController.swift in Sources */,
+				D607C5D81D277B4E00542804 /* msgEditViewController.swift in Sources */,
 				C0D47AF61D237CAC00637EAB /* SettingViewController.swift in Sources */,
 				D600A97D1D23B395005F9130 /* letterTableViewCell.swift in Sources */,
 				D600A9701D237D24005F9130 /* LetterViewController.swift in Sources */,

@@ -58,6 +58,9 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 3:
             viewController = self.storyboard?.instantiateViewControllerWithIdentifier("alarmSetViewController")
             break
+        case 5:
+            viewController = self.storyboard?.instantiateViewControllerWithIdentifier("agreement")
+            break
         default:
             break
         }
