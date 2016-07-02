@@ -30,12 +30,15 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.profile_iv_profile.layer.cornerRadius = self.profile_iv_profile.frame.size.width / 2
         self.profile_iv_profile.clipsToBounds = true
         
-        initProfile()
-        
         // 상메 수정용
         let tap = UITapGestureRecognizer(target: self, action: Selector("gotoMsgEdit:"))
         profile_lb_msg.userInteractionEnabled = true
         profile_lb_msg.addGestureRecognizer(tap)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        initProfile()
     }
     
     override func didReceiveMemoryWarning() {
@@ -47,8 +50,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         profile_lb_email.text = HomeViewController.getUserInfo.userInfo.email
         userGender = HomeViewController.getUserInfo.userInfo.gender
         
+        /*
         if (HomeViewController.getUserInfo.userInfo.msg != "") {
             profile_lb_msg.text = HomeViewController.getUserInfo.userInfo.msg
+        }
+        */
+        if (NSUserDefaults.standardUserDefaults().stringForKey("stateMSG") != "") {
+            profile_lb_msg.text = NSUserDefaults.standardUserDefaults().stringForKey("stateMSG")
         }
         
         initProfileImage()
