@@ -588,9 +588,25 @@
                     <view key="view" contentMode="scaleToFill" id="m8k-mW-iGe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qsR-ZW-6VN">
+                                <rect key="frame" x="0.0" y="88" width="375" height="47"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="상태메세지를 입력해 주세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yhf-aR-sMY">
+                                        <rect key="frame" x="8" y="8" width="359" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="msgLabel" destination="Yhf-aR-sMY" id="jGf-HG-Sv6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2xA-40-IrW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1314,6 +1330,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="4a1-F2-BdS"/>
-        <segue reference="x39-vu-HcH"/>
+        <segue reference="Igv-Vl-L6y"/>
     </inferredMetricsTieBreakers>
 </document>

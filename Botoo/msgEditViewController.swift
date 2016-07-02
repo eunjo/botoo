@@ -10,10 +10,15 @@ import UIKit
 
 class msgEditViewController: UIViewController {
 
+    @IBOutlet weak var msgLabel: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // right bar item 추가
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "확인", style: .Plain, target: self, action: #selector(addTapped))
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,6 +26,14 @@ class msgEditViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func addTapped(){
+        
+        NSUserDefaults.standardUserDefaults().setObject(msgLabel.text, forKey: "stateMSG")
+        
+        NSUserDefaults.standardUserDefaults().synchronize()
+        navigationController?.popViewControllerAnimated(true)
+        
+    }
 
     /*
     // MARK: - Navigation
