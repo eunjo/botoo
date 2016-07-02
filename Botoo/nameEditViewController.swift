@@ -1,5 +1,5 @@
 //
-//  msgEditViewController.swift
+//  nameEditViewController.swift
 //  Botoo
 //
 //  Created by 이은조 on 2016. 7. 2..
@@ -8,19 +8,19 @@
 
 import UIKit
 
-class msgEditViewController: UIViewController {
+class nameEditViewController: UIViewController {
 
-    @IBOutlet weak var msgLabel: UITextField!
+    @IBOutlet weak var nameLabel: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         // right bar item 추가
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "확인", style: .Plain, target: self, action: #selector(addTapped))
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -29,8 +29,8 @@ class msgEditViewController: UIViewController {
     func addTapped(){
         
         
-        HomeViewController.getUserInfo.userInfo.msg = msgLabel.text
-        NSUserDefaults.standardUserDefaults().setObject(msgLabel.text, forKey: "stateMSG")
+        HomeViewController.getUserInfo.userInfo.name = nameLabel.text
+        NSUserDefaults.standardUserDefaults().setObject(nameLabel.text, forKey: "userName")
         
         NSUserDefaults.standardUserDefaults().synchronize()
         navigationController?.popViewControllerAnimated(true)

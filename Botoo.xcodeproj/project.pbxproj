@@ -25,6 +25,8 @@
 		D600A97D1D23B395005F9130 /* letterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A97C1D23B395005F9130 /* letterTableViewCell.swift */; };
 		D607C5D81D277B4E00542804 /* msgEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607C5D71D277B4E00542804 /* msgEditViewController.swift */; };
 		D607C5DA1D279F5A00542804 /* connectSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607C5D91D279F5A00542804 /* connectSceneViewController.swift */; };
+		D607C5DC1D27AEE100542804 /* nameEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607C5DB1D27AEE100542804 /* nameEditViewController.swift */; };
+		D607C5DE1D27B14100542804 /* byebyeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607C5DD1D27B14100542804 /* byebyeViewController.swift */; };
 		D69322AA1D20FB6A003E9147 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69322A91D20FB6A003E9147 /* AppDelegate.swift */; };
 		D69322AC1D20FB6A003E9147 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69322AB1D20FB6A003E9147 /* HomeViewController.swift */; };
 		D69322AF1D20FB6A003E9147 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D69322AD1D20FB6A003E9147 /* Main.storyboard */; };
@@ -71,6 +73,8 @@
 		D600A97C1D23B395005F9130 /* letterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = letterTableViewCell.swift; sourceTree = "<group>"; };
 		D607C5D71D277B4E00542804 /* msgEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = msgEditViewController.swift; sourceTree = "<group>"; };
 		D607C5D91D279F5A00542804 /* connectSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = connectSceneViewController.swift; sourceTree = "<group>"; };
+		D607C5DB1D27AEE100542804 /* nameEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nameEditViewController.swift; sourceTree = "<group>"; };
+		D607C5DD1D27B14100542804 /* byebyeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = byebyeViewController.swift; sourceTree = "<group>"; };
 		D69322A61D20FB6A003E9147 /* Botoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Botoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D69322A91D20FB6A003E9147 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D69322AB1D20FB6A003E9147 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 				D6C0EFF61D2760FF00798E2B /* alarmSetViewController.swift */,
 				D607C5D71D277B4E00542804 /* msgEditViewController.swift */,
 				D607C5D91D279F5A00542804 /* connectSceneViewController.swift */,
+				D607C5DB1D27AEE100542804 /* nameEditViewController.swift */,
+				D607C5DD1D27B14100542804 /* byebyeViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -351,6 +357,7 @@
 				D6C0EFF71D2760FF00798E2B /* alarmSetViewController.swift in Sources */,
 				D600A9681D227C8D005F9130 /* LoginViewController.swift in Sources */,
 				C0D47AFF1D239EB600637EAB /* LockViewController.swift in Sources */,
+				D607C5DE1D27B14100542804 /* byebyeViewController.swift in Sources */,
 				D69322AC1D20FB6A003E9147 /* HomeViewController.swift in Sources */,
 				C0D47AFA1D23840900637EAB /* ProfileViewController.swift in Sources */,
 				D69322AA1D20FB6A003E9147 /* AppDelegate.swift in Sources */,
@@ -364,6 +371,7 @@
 				D600A9701D237D24005F9130 /* LetterViewController.swift in Sources */,
 				C0D47AEE1D22A25500637EAB /* ChatTabViewController.swift in Sources */,
 				C0D47B031D2758A200637EAB /* ChatNavViewController.swift in Sources */,
+				D607C5DC1D27AEE100542804 /* nameEditViewController.swift in Sources */,
 				C0D47AFD1D23863F00637EAB /* UserInfo.swift in Sources */,
 				D600A9661D226F06005F9130 /* RegisterPageViewController.swift in Sources */,
 				D600A9791D239E63005F9130 /* LetterNavViewController.swift in Sources */,

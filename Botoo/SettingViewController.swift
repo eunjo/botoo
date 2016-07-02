@@ -51,6 +51,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             viewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController")
             break
         case 1:
+            viewController = self.storyboard?.instantiateViewControllerWithIdentifier("byebyeViewController")
             break
         case 2:
             viewController = self.storyboard?.instantiateViewControllerWithIdentifier("LockSetViewController")
