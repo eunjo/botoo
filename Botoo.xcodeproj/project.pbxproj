@@ -30,6 +30,7 @@
 		D69322B41D20FB6A003E9147 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D69322B21D20FB6A003E9147 /* LaunchScreen.storyboard */; };
 		D69322BF1D20FB6A003E9147 /* BotooTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69322BE1D20FB6A003E9147 /* BotooTests.swift */; };
 		D69322CA1D20FB6A003E9147 /* BotooUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69322C91D20FB6A003E9147 /* BotooUITests.swift */; };
+		D6C0EFF71D2760FF00798E2B /* alarmSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C0EFF61D2760FF00798E2B /* alarmSetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		D69322C51D20FB6A003E9147 /* BotooUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BotooUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D69322C91D20FB6A003E9147 /* BotooUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotooUITests.swift; sourceTree = "<group>"; };
 		D69322CB1D20FB6A003E9147 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6C0EFF61D2760FF00798E2B /* alarmSetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = alarmSetViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				D600A97A1D23A869005F9130 /* LetterrWriteViewController.swift */,
 				D600A97C1D23B395005F9130 /* letterTableViewCell.swift */,
 				C0D47B021D2758A200637EAB /* ChatNavViewController.swift */,
+				D6C0EFF61D2760FF00798E2B /* alarmSetViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0D47B011D23A04900637EAB /* LockSetViewController.swift in Sources */,
+				D6C0EFF71D2760FF00798E2B /* alarmSetViewController.swift in Sources */,
 				D600A9681D227C8D005F9130 /* LoginViewController.swift in Sources */,
 				C0D47AFF1D239EB600637EAB /* LockViewController.swift in Sources */,
 				D69322AC1D20FB6A003E9147 /* HomeViewController.swift in Sources */,

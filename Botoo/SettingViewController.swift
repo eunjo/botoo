@@ -55,6 +55,9 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         case 2:
             viewController = self.storyboard?.instantiateViewControllerWithIdentifier("LockSetViewController")
             break
+        case 3:
+            viewController = self.storyboard?.instantiateViewControllerWithIdentifier("alarmSetViewController")
+            break
         default:
             break
         }
