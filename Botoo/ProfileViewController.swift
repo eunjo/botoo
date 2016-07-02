@@ -124,6 +124,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     
     @IBAction func onClickLogout(sender: UIButton) {
+        
+       //        let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController")
+//        homeViewController!.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+//        self.parentViewController!.presentViewController(homeViewController!, animated: true, completion: nil)
+        
         let myAlert = UIAlertController(title:"Alert", message: "정말 로그아웃 하시겠습니까?", preferredStyle: UIAlertControllerStyle.Alert)
         
         let okAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.Default){ action in
@@ -143,7 +148,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.tabBarController!.selectedIndex = 0
         }
         myAlert.addAction(okAction)
-        self.presentViewController(myAlert, animated: true, completion: nil)
+        self.presentViewController(myAlert, animated: true, completion: nil) 
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
