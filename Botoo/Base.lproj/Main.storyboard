@@ -213,12 +213,28 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0q2-mC-S9t">
+                                <rect key="frame" x="68" y="165" width="100" height="100"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1v0-Mx-lQX">
+                                <rect key="frame" x="212" y="165" width="100" height="100"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6nh-6W-ARA">
+                                <rect key="frame" x="68" y="273" width="100" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.8098600333" blue="0.82729438300000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="홈" id="ayI-df-irD"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="myProPic" destination="0q2-mC-S9t" id="JPy-0K-5tv"/>
+                        <outlet property="myUserName" destination="6nh-6W-ARA" id="SR4-IM-cM2"/>
                         <segue destination="tMY-cB-YnR" kind="presentation" identifier="toLoginView" id="4a1-F2-BdS"/>
                         <segue destination="Diw-Ww-5oA" kind="modal" identifier="toLockView" id="x39-vu-HcH"/>
                     </connections>
@@ -642,7 +658,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ViB-GT-Kw0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3241.5" y="123.5"/>
+            <point key="canvasLocation" x="2998.5" y="-606.5"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="aeC-RU-HKx">
@@ -978,6 +994,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="4a1-F2-BdS"/>
-        <segue reference="x39-vu-HcH"/>
+        <segue reference="Igv-Vl-L6y"/>
     </inferredMetricsTieBreakers>
 </document>

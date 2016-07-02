@@ -10,6 +10,9 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var myProPic: UIImageView!
+    @IBOutlet weak var myUserName: UILabel!
+    
     
     let isLock = NSUserDefaults.standardUserDefaults().boolForKey("lock")
     
@@ -21,6 +24,16 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // 내 프사 로드
+        if (NSUserDefaults.standardUserDefaults().integerForKey("gender")==1){
+        myProPic.image = UIImage(named: "default_female.png")
+        }
+        else {
+            myProPic.image = UIImage(named: "default_male.png")
+        }
+        // 내 이름 로드
+        myUserName.text = NSUserDefaults.standardUserDefaults().stringForKey("userName")
         
         // 무한 루프 방지
         getUserInfo.checkLock = isLock
