@@ -18,6 +18,8 @@ class ChatViewController: UIViewController {
     private var drawerIsOpen = false
     private var keyboardIsOpen = false
     
+    private var keyboardHeight = CGRect()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -111,5 +113,4 @@ class ChatViewController: UIViewController {
     
     @IBAction func onClickPlus(sender: UIBarButtonItem) {
     }
-    
 }
