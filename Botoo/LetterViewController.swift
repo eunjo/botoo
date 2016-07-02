@@ -17,6 +17,8 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
     
     var letterList:[String] = ["test"]
     
+    //var letters = [letterTableViewCell]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,6 +41,7 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! letterTableViewCell
         cell.titleLabel?.text = letterList[indexPath.row]
+        cell.writerImage.image = UIImage(named: "default_female.png")
         
         /*
         if (NSUserDefaults.standardUserDefaults().integerForKey("gender")==1){
@@ -70,6 +73,11 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        if let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("letterDetail") {
+            profileViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+            //navigationController 의 하위 뷰로 전환
+            self.navigationController?.pushViewController(profileViewController, animated: true)
+        }
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
