@@ -966,14 +966,18 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7PV-mI-4Qn">
                                 <rect key="frame" x="164" y="319" width="46" height="30"/>
-                                <state key="normal" title="Log in"/>
+                                <state key="normal" title="Log in">
+                                    <color key="titleColor" red="0.85098039219999999" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="loginButtonTapped:" destination="tMY-cB-YnR" eventType="touchUpInside" id="kFq-3R-dSy"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QXh-Aw-Crq">
                                 <rect key="frame" x="158" y="365" width="58" height="30"/>
-                                <state key="normal" title="Register"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" red="0.85098039219999999" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="cT2-x4-Baa" kind="presentation" identifier="toRegisterView" id="evd-0y-4qn"/>
                                 </connections>
@@ -985,7 +989,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.8098600333" blue="0.82729438300000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -1136,6 +1140,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mkm-Ui-C0S">
                                 <rect key="frame" x="158" y="522" width="59" height="30"/>
+                                <color key="tintColor" red="0.85098039219999999" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="registerButtonTapped:" destination="cT2-x4-Baa" eventType="touchUpInside" id="3m4-BV-7nc"/>
@@ -1143,6 +1148,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3x-pK-E0Q">
                                 <rect key="frame" x="90" y="576" width="194" height="30"/>
+                                <color key="tintColor" red="0.85098039219999999" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Already have an account"/>
                                 <connections>
                                     <segue destination="tMY-cB-YnR" kind="presentation" identifier="fromRegisterToLoginView" id="inY-Zf-Fx1"/>
@@ -1159,12 +1165,13 @@
                                     <segment title="남자"/>
                                     <segment title="여자"/>
                                 </segments>
+                                <color key="tintColor" red="0.85098039219999999" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="genderSelect:" destination="cT2-x4-Baa" eventType="valueChanged" id="P0M-Mv-SgV"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.8098600333" blue="0.82729438300000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -1373,7 +1380,7 @@
         <image name="Icon-60.png" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4a1-F2-BdS"/>
         <segue reference="x39-vu-HcH"/>
+        <segue reference="inY-Zf-Fx1"/>
     </inferredMetricsTieBreakers>
 </document>
