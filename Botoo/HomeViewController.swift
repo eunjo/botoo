@@ -18,6 +18,9 @@ class HomeViewController: UIViewController {
     @IBOutlet var loverUserName: UILabel!
     @IBOutlet weak var loverStateMsg: UILabel!
     
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var fromDate: UILabel!
+    
     let isLock = NSUserDefaults.standardUserDefaults().boolForKey("lock")
     
     struct getUserInfo {
@@ -70,8 +73,43 @@ class HomeViewController: UIViewController {
         
         // 상대방 로드
         if (getUserInfo.userInfo.lover == "" || getUserInfo.userInfo.lover == nil) {
-            loverProPic.image = UIImage(named: "default_no_person.png")
+            loverProPic.image = UIImage(named: "default_grey.png")
             loverUserName.text = "연결하러 가기"
+        }
+        
+        // 일수 계산
+        if (NSUserDefaults.standardUserDefaults().stringForKey("firstDate") != ""){
+            
+            let currentDate = NSDate()
+            let dateFormatter = NSDateFormatter()
+            
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let firstDate = dateFormatter.dateFromString(NSUserDefaults.standardUserDefaults().stringForKey("firstDate")!)
+            
+            
+            // 날짜 년 월 일 로 포맷변환
+            let cal = NSCalendar(calendarIdentifier:NSGregorianCalendar)!
+            let comp = cal.components([.Year, .Month, .Day], fromDate:firstDate!)
+            
+            let dateToString:String = "\(comp.year)년 \(comp.month)월 \(comp.day)일부터"
+            //
+        
+            fromDate.text = dateToString
+            
+            
+            
+            
+            // 날짜 계산
+            
+            let calendar = NSCalendar.currentCalendar()
+            
+            let components = calendar.components([.Day], fromDate: firstDate!, toDate: currentDate, options: [])
+            dateLabel.text = "\(components.day+1)일째"
+            
+
+        } else {
+            fromDate.text = "며칠부터"
+            dateLabel.text = "며칠째인가요?"
         }
     }
 
