@@ -34,6 +34,18 @@ class chatBGcolorViewController: UIViewController {
         let blackTap = UITapGestureRecognizer(target: self, action: #selector(chatBGcolorViewController.blackTapped(_:)))
         black.userInteractionEnabled = true
         black.addGestureRecognizer(blackTap)
+        
+        let lightBlueTap = UITapGestureRecognizer(target: self, action: #selector(chatBGcolorViewController.lightBlueTapped(_:)))
+        lightBlue.userInteractionEnabled = true
+        lightBlue.addGestureRecognizer(lightBlueTap)
+        
+        let lightPurpleTap = UITapGestureRecognizer(target: self, action: #selector(chatBGcolorViewController.lightPurpleTapped(_:)))
+        lightPurple.userInteractionEnabled = true
+        lightPurple.addGestureRecognizer(lightPurpleTap)
+        
+        let lightYellowTap = UITapGestureRecognizer(target: self, action: #selector(chatBGcolorViewController.lightYellowTapped(_:)))
+        lightYellow.userInteractionEnabled = true
+        lightYellow.addGestureRecognizer(lightYellowTap)
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,6 +105,37 @@ class chatBGcolorViewController: UIViewController {
         NSUserDefaults.standardUserDefaults().synchronize()
         navigationController?.popViewControllerAnimated(true)
     }
+
+    @IBOutlet weak var lightBlue: UIView!
+    func lightBlueTapped(sender: UITapGestureRecognizer){
+        
+        NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
+        NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgPic")
+        NSUserDefaults.standardUserDefaults().setObject("lightBlue", forKey: "chatBgColor")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    @IBOutlet weak var lightPurple: UIView!
+    func lightPurpleTapped(sender: UITapGestureRecognizer){
+        
+        NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
+        NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgPic")
+        NSUserDefaults.standardUserDefaults().setObject("lightPurple", forKey: "chatBgColor")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    @IBOutlet weak var lightYellow: UIView!
+    func lightYellowTapped(sender: UITapGestureRecognizer){
+        
+        NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
+        NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgPic")
+        NSUserDefaults.standardUserDefaults().setObject("lightYellow", forKey: "chatBgColor")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
 
     
     

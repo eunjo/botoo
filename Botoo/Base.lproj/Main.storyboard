@@ -1730,19 +1730,31 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d6s-4B-6f1">
-                                <rect key="frame" x="250" y="61" width="125" height="125"/>
+                                <rect key="frame" x="250" y="186" width="125" height="125"/>
                                 <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="62e-SH-Gq4">
-                                <rect key="frame" x="0.0" y="186" width="125" height="125"/>
+                                <rect key="frame" x="0.0" y="310" width="125" height="125"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jvU-tF-1PH">
                                 <rect key="frame" x="125" y="61" width="125" height="125"/>
                                 <color key="backgroundColor" red="0.98823529409999999" green="0.89411764709999997" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w4e-Ak-xO0">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VCe-QD-eq6">
+                                <rect key="frame" x="0.0" y="186" width="125" height="125"/>
+                                <color key="backgroundColor" red="0.77254901960784317" green="0.9882352941176471" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="765-Bg-z4t">
                                 <rect key="frame" x="125" y="186" width="125" height="125"/>
+                                <color key="backgroundColor" red="0.9137254901960784" green="0.84705882352941175" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eZW-YZ-3Jv">
+                                <rect key="frame" x="250" y="61" width="125" height="125"/>
+                                <color key="backgroundColor" red="1" green="0.98431372549019602" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w4e-Ak-xO0">
+                                <rect key="frame" x="125" y="311" width="125" height="125"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -1752,7 +1764,10 @@
                     <connections>
                         <outlet property="black" destination="w4e-Ak-xO0" id="IU6-l5-Vq9"/>
                         <outlet property="grey" destination="62e-SH-Gq4" id="EDR-SK-sYy"/>
+                        <outlet property="lightBlue" destination="VCe-QD-eq6" id="40I-ER-ihW"/>
                         <outlet property="lightPink" destination="jvU-tF-1PH" id="6X8-kx-C67"/>
+                        <outlet property="lightPurple" destination="765-Bg-z4t" id="TvL-1h-fMK"/>
+                        <outlet property="lightYellow" destination="eZW-YZ-3Jv" id="kQB-4j-MwK"/>
                         <outlet property="lightgrey" destination="d6s-4B-6f1" id="2gG-ye-s4t"/>
                         <outlet property="white" destination="JEt-QP-0jQ" id="X65-JI-vDR"/>
                     </connections>

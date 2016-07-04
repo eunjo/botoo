@@ -86,6 +86,20 @@ class ChatViewController: UIViewController, KeyboardProtocol {
                 self.view.backgroundColor = UIColor(red:0.99, green:0.89, blue:0.93, alpha:1.0)
                 bgPic.hidden = true
             }
+            if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightBlue"){
+                self.view.backgroundColor = UIColor(red:0.77, green:0.99, blue:1.00, alpha:1.0)
+                bgPic.hidden = true
+            }
+            
+            if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightPurple"){
+                self.view.backgroundColor = UIColor(red:0.91, green:0.85, blue:1.00, alpha:1.0)
+                bgPic.hidden = true
+            }
+            
+            if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightYellow"){
+                self.view.backgroundColor = UIColor(red:1.00, green:0.98, blue:0.85, alpha:1.0)
+                bgPic.hidden = true
+            }
             
         } else if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBgPic")){
             
