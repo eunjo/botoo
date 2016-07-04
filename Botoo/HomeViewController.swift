@@ -78,7 +78,7 @@ class HomeViewController: UIViewController {
         }
         
         // 일수 계산
-        if (NSUserDefaults.standardUserDefaults().stringForKey("firstDate") != ""){
+        if ((NSUserDefaults.standardUserDefaults().stringForKey("firstDate") != "") && (NSUserDefaults.standardUserDefaults().stringForKey("firstDate") != nil)){
             
             let currentDate = NSDate()
             let dateFormatter = NSDateFormatter()
