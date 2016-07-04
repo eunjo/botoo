@@ -202,6 +202,43 @@
             </objects>
             <point key="canvasLocation" x="301.5" y="879.5"/>
         </scene>
+        <!--Image Zoom View Controller-->
+        <scene sceneID="Xtn-hS-aa8">
+            <objects>
+                <viewController storyboardIdentifier="imageZoomViewController" id="vnq-Hu-44x" customClass="imageZoomViewController" customModule="Botoo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7LV-0h-MVa"/>
+                        <viewControllerLayoutGuide type="bottom" id="4gT-ii-89z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8rG-jz-V3Q">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXz-17-CD1">
+                                <rect key="frame" x="20" y="20" width="36" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" red="0.85098039219999999" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeButtonTapped:" destination="vnq-Hu-44x" eventType="touchUpInside" id="zbx-Z3-Y7j"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fqR-Un-LfN">
+                                <rect key="frame" x="0.0" y="146" width="375" height="375"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="ImageForZoom" destination="fqR-Un-LfN" id="aIC-7J-mYe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SSO-PQ-Ymg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-144.5" y="-618.5"/>
+        </scene>
         <!--Connect Scene View Controller-->
         <scene sceneID="oV2-Qh-FG7">
             <objects>
@@ -282,10 +319,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0q2-mC-S9t">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0q2-mC-S9t">
                                 <rect key="frame" x="48" y="138" width="100" height="100"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1v0-Mx-lQX">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1v0-Mx-lQX">
                                 <rect key="frame" x="226" y="138" width="100" height="100"/>
                                 <gestureRecognizers/>
                             </imageView>
@@ -337,6 +374,8 @@
                         <outlet property="myUserName" destination="6nh-6W-ARA" id="SR4-IM-cM2"/>
                         <segue destination="tMY-cB-YnR" kind="presentation" identifier="toLoginView" id="4a1-F2-BdS"/>
                         <segue destination="Diw-Ww-5oA" kind="modal" identifier="toLockView" id="x39-vu-HcH"/>
+                        <segue destination="vnq-Hu-44x" kind="show" identifier="myPicZoom" id="iib-Aj-kMT"/>
+                        <segue destination="vnq-Hu-44x" kind="show" identifier="loverPicZoom" id="jZk-yp-nUi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -366,7 +405,7 @@
         <!--칭구이름-->
         <scene sceneID="NpV-tA-8Pb">
             <objects>
-                <viewController id="iws-kV-VAm" customClass="ChatViewController" customModule="Botoo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chattingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iws-kV-VAm" customClass="ChatViewController" customModule="Botoo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SIN-UT-5dm"/>
                         <viewControllerLayoutGuide type="bottom" id="8hj-u8-MZk"/>
@@ -996,10 +1035,6 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZT4-9Y-F0Z">
                                 <rect key="frame" x="0.0" y="88" width="375" height="80"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rwz-di-ohz">
-                                        <rect key="frame" x="14" y="41" width="340" height="1"/>
-                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="푸시알림" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rHL-65-FcC">
                                         <rect key="frame" x="14" y="8" width="70" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -1026,6 +1061,10 @@
                                             <action selector="pushAlarmPreview_Sc:" destination="YbX-4E-SPh" eventType="valueChanged" id="W3q-Hv-okd"/>
                                         </connections>
                                     </switch>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rwz-di-ohz">
+                                        <rect key="frame" x="14" y="41" width="340" height="1"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -1174,7 +1213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4z3-qs-I2e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1952.5" y="-660.5"/>
+            <point key="canvasLocation" x="1996.5" y="-606.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Qg4-md-BAa">
@@ -1193,7 +1232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PU3-8z-Net" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2382.5" y="-660.5"/>
+            <point key="canvasLocation" x="2383.5" y="-606.5"/>
         </scene>
         <!--Register Page View Controller-->
         <scene sceneID="uK6-ba-Ubt">
@@ -1379,10 +1418,10 @@
             </objects>
             <point key="canvasLocation" x="1562.5" y="123.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Chat Drawer View Controller-->
         <scene sceneID="Zyf-Kt-htP">
             <objects>
-                <viewController id="s61-Gf-xOp" sceneMemberID="viewController">
+                <viewController id="s61-Gf-xOp" customClass="chatDrawerViewController" customModule="Botoo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ylm-fZ-esr"/>
                         <viewControllerLayoutGuide type="bottom" id="QQG-bb-GlW"/>
@@ -1392,7 +1431,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zjh-IK-qzN">
-                                <rect key="frame" x="0.0" y="0.0" width="296" height="130"/>
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="150"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PU7-j4-lmA">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="32"/>
@@ -1408,6 +1447,7 @@
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Z8p-CW-YUm">
                                         <rect key="frame" x="8" y="40" width="225" height="90"/>
+                                        <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YFd-jE-CDZ">
                                             <size key="itemSize" width="68" height="83"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1423,7 +1463,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                             </collectionViewCell>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gtJ-fc-sLa">
                                                 <rect key="frame" x="78" y="3.5" width="68" height="83"/>
@@ -1433,7 +1473,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                             </collectionViewCell>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="9jw-eA-MMp">
                                                 <rect key="frame" x="156" y="3.5" width="68" height="83"/>
@@ -1443,7 +1483,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
@@ -1451,7 +1491,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XO1-Z9-nBW">
-                                <rect key="frame" x="0.0" y="178" width="240" height="32"/>
+                                <rect key="frame" x="0.0" y="203" width="240" height="32"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="대화내용 삭제" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvJ-eO-43Z">
                                         <rect key="frame" x="8" y="4" width="97" height="24"/>
@@ -1466,7 +1506,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MIc-Yn-hii">
-                                <rect key="frame" x="0.0" y="138" width="240" height="32"/>
+                                <rect key="frame" x="0.0" y="158" width="240" height="32"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IMt-YO-Avz">
                                         <rect key="frame" x="8" y="4" width="97" height="24"/>
@@ -1474,19 +1514,198 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Icon-60" translatesAutoresizingMaskIntoConstraints="NO" id="pjm-o3-mBv">
-                                        <rect key="frame" x="248" y="4" width="24" height="24"/>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="albumCollectionView" destination="Zjh-IK-qzN" id="0dj-Zo-IWe"/>
+                        <outlet property="settingView" destination="MIc-Yn-hii" id="pk1-tI-anr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KUU-4y-dem" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1848" y="825.5"/>
+        </scene>
+        <!--Album View Controller-->
+        <scene sceneID="5ek-HS-Ncm">
+            <objects>
+                <viewController storyboardIdentifier="albumViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Nc5-QD-86a" customClass="albumViewController" customModule="Botoo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yTW-gF-Zub"/>
+                        <viewControllerLayoutGuide type="bottom" id="csD-Wv-rOA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zty-M3-FuL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auM-SH-xUf">
+                                <rect key="frame" x="20" y="20" width="26" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" red="0.85098039219999999" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeButtonTapped:" destination="Nc5-QD-86a" eventType="touchUpInside" id="yiG-Ev-X1H"/>
+                                </connections>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hLM-lV-3do">
+                                <rect key="frame" x="2" y="58" width="372" height="609"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="OjF-6a-gbb">
+                                    <size key="itemSize" width="124" height="124"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="bNn-CG-RzT">
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="RNr-nB-YEV">
+                                        <rect key="frame" x="124" y="0.0" width="124" height="124"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="jsc-RW-y59">
+                                        <rect key="frame" x="248" y="0.0" width="124" height="124"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V4Z-Oq-YtN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2182.5" y="879.5"/>
+        </scene>
+        <!--Chat Tab Setting View Controller-->
+        <scene sceneID="hvO-G3-EJJ">
+            <objects>
+                <viewController storyboardIdentifier="chatTabSettingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vvv-xj-bEY" customClass="chatTabSettingViewController" customModule="Botoo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oBO-xV-Wgu"/>
+                        <viewControllerLayoutGuide type="bottom" id="A5A-kw-jLQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9pa-Tp-gcP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bZL-VO-fcT">
+                                <rect key="frame" x="0.0" y="105" width="375" height="91"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fq1-ax-7O4">
+                                        <rect key="frame" x="14" y="45" width="340" height="1"/>
+                                        <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="색상 배경 설정하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0V-MV-4VX">
+                                        <rect key="frame" x="14" y="13" width="340" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="사진 배경 설정하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tS6-d9-3L8">
+                                        <rect key="frame" x="14" y="57" width="340" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="배경화면 설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOL-ee-0fS">
+                                <rect key="frame" x="20" y="76" width="335" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="colorBGset" destination="v0V-MV-4VX" id="nKS-1X-T5m"/>
+                        <outlet property="picBGset" destination="tS6-d9-3L8" id="cNq-GI-A55"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y53-tq-mXK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1833.5" y="1595.5"/>
+        </scene>
+        <!--ChatB Gcolor View Controller-->
+        <scene sceneID="PxM-o0-hY4">
+            <objects>
+                <viewController storyboardIdentifier="colorBGset" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EFZ-8A-x1C" customClass="chatBGcolorViewController" customModule="Botoo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="csM-0R-p85"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZTe-ME-SyR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xav-Em-PYq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mw8-Wl-T99">
+                                <rect key="frame" x="20" y="20" width="24" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" red="0.85098039219999999" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeButtonTapped:" destination="EFZ-8A-x1C" eventType="touchUpInside" id="d1J-q6-HxC"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JEt-QP-0jQ">
+                                <rect key="frame" x="0.0" y="69" width="125" height="125"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d6s-4B-6f1">
+                                <rect key="frame" x="125" y="69" width="125" height="125"/>
+                                <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w4e-Ak-xO0">
+                                <rect key="frame" x="0.0" y="194" width="125" height="125"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="62e-SH-Gq4">
+                                <rect key="frame" x="250" y="69" width="125" height="125"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="black" destination="w4e-Ak-xO0" id="IU6-l5-Vq9"/>
+                        <outlet property="grey" destination="62e-SH-Gq4" id="EDR-SK-sYy"/>
+                        <outlet property="lightgrey" destination="d6s-4B-6f1" id="2gG-ye-s4t"/>
+                        <outlet property="white" destination="JEt-QP-0jQ" id="X65-JI-vDR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="60h-6Y-jep" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2228.5" y="1595.5"/>
         </scene>
     </scenes>
     <resources>
@@ -1496,5 +1715,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="4a1-F2-BdS"/>
         <segue reference="x39-vu-HcH"/>
+        <segue reference="jZk-yp-nUi"/>
     </inferredMetricsTieBreakers>
 </document>

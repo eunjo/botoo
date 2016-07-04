@@ -30,6 +30,11 @@
 		D607C5E01D27DA5E00542804 /* dolphin_only.png in Resources */ = {isa = PBXBuildFile; fileRef = D607C5DF1D27DA5E00542804 /* dolphin_only.png */; };
 		D607C5E21D27DC5700542804 /* dateSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607C5E11D27DC5700542804 /* dateSetViewController.swift */; };
 		D607C5E41D27F23A00542804 /* default_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = D607C5E31D27F23A00542804 /* default_grey.png */; };
+		D607C5E61D2A04D400542804 /* imageZoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607C5E51D2A04D400542804 /* imageZoomViewController.swift */; };
+		D607C5E81D2A18A600542804 /* chatDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607C5E71D2A18A600542804 /* chatDrawerViewController.swift */; };
+		D607C5EA1D2A1A2D00542804 /* albumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607C5E91D2A1A2D00542804 /* albumViewController.swift */; };
+		D607C5EC1D2A3CAF00542804 /* chatTabSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607C5EB1D2A3CAF00542804 /* chatTabSettingViewController.swift */; };
+		D607C5EE1D2A41AF00542804 /* chatBGcolorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607C5ED1D2A41AF00542804 /* chatBGcolorViewController.swift */; };
 		D69322AA1D20FB6A003E9147 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69322A91D20FB6A003E9147 /* AppDelegate.swift */; };
 		D69322AC1D20FB6A003E9147 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69322AB1D20FB6A003E9147 /* HomeViewController.swift */; };
 		D69322AF1D20FB6A003E9147 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D69322AD1D20FB6A003E9147 /* Main.storyboard */; };
@@ -81,6 +86,11 @@
 		D607C5DF1D27DA5E00542804 /* dolphin_only.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dolphin_only.png; path = img/dolphin_only.png; sourceTree = SOURCE_ROOT; };
 		D607C5E11D27DC5700542804 /* dateSetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dateSetViewController.swift; sourceTree = "<group>"; };
 		D607C5E31D27F23A00542804 /* default_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default_grey.png; path = img/default_grey.png; sourceTree = "<group>"; };
+		D607C5E51D2A04D400542804 /* imageZoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imageZoomViewController.swift; sourceTree = "<group>"; };
+		D607C5E71D2A18A600542804 /* chatDrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatDrawerViewController.swift; sourceTree = "<group>"; };
+		D607C5E91D2A1A2D00542804 /* albumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = albumViewController.swift; sourceTree = "<group>"; };
+		D607C5EB1D2A3CAF00542804 /* chatTabSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatTabSettingViewController.swift; sourceTree = "<group>"; };
+		D607C5ED1D2A41AF00542804 /* chatBGcolorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatBGcolorViewController.swift; sourceTree = "<group>"; };
 		D69322A61D20FB6A003E9147 /* Botoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Botoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D69322A91D20FB6A003E9147 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D69322AB1D20FB6A003E9147 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +156,11 @@
 				D607C5DB1D27AEE100542804 /* nameEditViewController.swift */,
 				D607C5DD1D27B14100542804 /* byebyeViewController.swift */,
 				D607C5E11D27DC5700542804 /* dateSetViewController.swift */,
+				D607C5E51D2A04D400542804 /* imageZoomViewController.swift */,
+				D607C5E71D2A18A600542804 /* chatDrawerViewController.swift */,
+				D607C5E91D2A1A2D00542804 /* albumViewController.swift */,
+				D607C5EB1D2A3CAF00542804 /* chatTabSettingViewController.swift */,
+				D607C5ED1D2A41AF00542804 /* chatBGcolorViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -373,20 +388,25 @@
 				D69322AC1D20FB6A003E9147 /* HomeViewController.swift in Sources */,
 				C0D47AFA1D23840900637EAB /* ProfileViewController.swift in Sources */,
 				D69322AA1D20FB6A003E9147 /* AppDelegate.swift in Sources */,
+				D607C5EE1D2A41AF00542804 /* chatBGcolorViewController.swift in Sources */,
 				D600A97B1D23A869005F9130 /* LetterrWriteViewController.swift in Sources */,
+				D607C5EA1D2A1A2D00542804 /* albumViewController.swift in Sources */,
 				C0D47AF41D237C8A00637EAB /* SettingNavViewController.swift in Sources */,
 				C0D47AF21D22AEFB00637EAB /* ChatViewController.swift in Sources */,
 				D607C5D81D277B4E00542804 /* msgEditViewController.swift in Sources */,
+				D607C5E81D2A18A600542804 /* chatDrawerViewController.swift in Sources */,
 				C0D47AF61D237CAC00637EAB /* SettingViewController.swift in Sources */,
 				D607C5DA1D279F5A00542804 /* connectSceneViewController.swift in Sources */,
 				D600A97D1D23B395005F9130 /* letterTableViewCell.swift in Sources */,
 				D600A9701D237D24005F9130 /* LetterViewController.swift in Sources */,
 				C0D47AEE1D22A25500637EAB /* ChatTabViewController.swift in Sources */,
 				C0D47B031D2758A200637EAB /* ChatNavViewController.swift in Sources */,
+				D607C5EC1D2A3CAF00542804 /* chatTabSettingViewController.swift in Sources */,
 				D607C5DC1D27AEE100542804 /* nameEditViewController.swift in Sources */,
 				C0D47AFD1D23863F00637EAB /* UserInfo.swift in Sources */,
 				D600A9661D226F06005F9130 /* RegisterPageViewController.swift in Sources */,
 				D600A9791D239E63005F9130 /* LetterNavViewController.swift in Sources */,
+				D607C5E61D2A04D400542804 /* imageZoomViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
