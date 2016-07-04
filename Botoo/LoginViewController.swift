@@ -8,25 +8,37 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, KeyboardProtocol {
 
     @IBOutlet weak var userEmailTextField: UITextField!
     @IBOutlet weak var userPWTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        userEmailTextField.becomeFirstResponder()
+        //키보드에 대한 노티피케이션 생성
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func keyboardWillHide(notification: NSNotification) {
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        adjustingHeight(true, notification: notification)
+    }
+    
+    func adjustingHeight(show: Bool, notification: NSNotification) {
+        // 1 노티피케이션 정보 얻기
+        var userInfo = notification.userInfo!
+        // 2 키보드 사이즈 얻기
+        let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
+        NSUserDefaults.standardUserDefaults().setObject(keyboardFrame.height, forKey: "keyboardFrame")
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     
     @IBAction func loginButtonTapped(sender: AnyObject) {
-        
         let userEmail = userEmailTextField.text
         let userPW = userPWTextField.text
         
@@ -46,7 +58,10 @@ class LoginViewController: UIViewController {
         }
     }
     
-    
+    //빈 공간 클릭 시 키보드 하이드
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
     /*
     // MARK: - Navigation
