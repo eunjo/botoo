@@ -11,7 +11,7 @@ import UIKit
 class SettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var setting_tv: UITableView!
-    private let items = ["계정관리", "이별하기", "암호설정", "알림설정", "버전정보", "이용약관"]
+    private let items = ["계정관리", "1일설정", "이별하기", "암호설정", "알림설정", "버전정보", "이용약관"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.textLabel?.text = items[indexPath.row]
         
         //버전정보는 accessory .none 설정
-        if(indexPath.row == 4) {
+        if(indexPath.row == 5) {
             cell.accessoryType = UITableViewCellAccessoryType.None
             cell.detailTextLabel?.text = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")?.description
         }
@@ -51,15 +51,18 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
             viewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController")
             break
         case 1:
-            viewController = self.storyboard?.instantiateViewControllerWithIdentifier("byebyeViewController")
+            viewController = self.storyboard?.instantiateViewControllerWithIdentifier("dateSetViewController")
             break
         case 2:
-            viewController = self.storyboard?.instantiateViewControllerWithIdentifier("LockSetViewController")
+            viewController = self.storyboard?.instantiateViewControllerWithIdentifier("byebyeViewController")
             break
         case 3:
+            viewController = self.storyboard?.instantiateViewControllerWithIdentifier("LockSetViewController")
+            break
+        case 4:
             viewController = self.storyboard?.instantiateViewControllerWithIdentifier("alarmSetViewController")
             break
-        case 5:
+        case 6:
             viewController = self.storyboard?.instantiateViewControllerWithIdentifier("agreement")
             break
         default:
