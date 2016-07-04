@@ -20,6 +20,9 @@ class chatTabSettingViewController: UIViewController, UIImagePickerControllerDel
 
         // Do any additional setup after loading the view.
         
+        // 뒤로가기 버튼에 액션 추가
+        
+        
         imagePicker.delegate = self
         
         
@@ -40,11 +43,16 @@ class chatTabSettingViewController: UIViewController, UIImagePickerControllerDel
     
     func colorBGsetting(sender:UITapGestureRecognizer){
         
-        if let connectingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("colorBGset") {
-            connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-            self.presentViewController(connectingViewController, animated: true, completion: nil)
-        }
+        var viewController: UIViewController?
         
+        viewController = self.storyboard?.instantiateViewControllerWithIdentifier("colorBGset")
+        
+        if(viewController != nil) {
+            viewController!.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+            //navigationController 의 하위 뷰로 전환
+            self.navigationController?.pushViewController(viewController!, animated: true)
+        }
+ 
         
     }
     
@@ -63,12 +71,13 @@ class chatTabSettingViewController: UIViewController, UIImagePickerControllerDel
         }
         
         let secondAction = UIAlertAction(title: "기본 이미지로 변경", style: .Default) { (alert: UIAlertAction!) -> Void in
+            NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgPic")
             NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
             NSUserDefaults.standardUserDefaults().setObject("white", forKey: "chatBgColor")
+            NSUserDefaults.standardUserDefaults().synchronize()
         }
         
         let thirdAction = UIAlertAction(title: "취소", style: .Cancel) { (alert: UIAlertAction!) -> Void in
-            
         }
         
         alert.addAction(firstAction)
@@ -80,20 +89,19 @@ class chatTabSettingViewController: UIViewController, UIImagePickerControllerDel
         
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
-        let image = UIImage() //Change to be from UIPicker
-        let data = UIImagePNGRepresentation(image)
-        NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgPic")
-        NSUserDefaults.standardUserDefaults().setObject(data, forKey: "chatBgPic")
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        imagePicker.dismissViewControllerAnimated(false) { (_) in
+            
+            let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+            let data = UIImagePNGRepresentation(image!)
+            NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgPic")
+            NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgColor")
+            NSUserDefaults.standardUserDefaults().setObject(data, forKey: "chatBgPic")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            
+        }
+    }
 
-        
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
 
     /*
     // MARK: - Navigation

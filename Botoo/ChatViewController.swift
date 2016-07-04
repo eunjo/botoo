@@ -16,6 +16,10 @@ import UIKit
 
 class ChatViewController: UIViewController, KeyboardProtocol {
     
+    @IBOutlet weak var drawIsOpenLabel: UILabel!
+    
+    @IBOutlet weak var bgPic: UIImageView!
+    
     private var SETTING = 0
     @IBOutlet var toolbarBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var chatInputTextField: UITextField!
@@ -33,16 +37,63 @@ class ChatViewController: UIViewController, KeyboardProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 배경 설정 //
+        
+        bgPic.layer.zPosition = -1;
+        initBackGround()
+        
+        
         currentKeyboardHeight = 0.0
         
         //키보드에 대한 노티피케이션 생성
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
+
+        // 배경 초기화
+        initBackGround()
+
         //컨테이너 초기화 (unvisible)
         initContainers()
+    }
+    
+    func initBackGround(){
+
+        
+        // color 설정
+        if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBgColor")){
+            if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="white"){
+                self.view.backgroundColor = UIColor.whiteColor()
+                bgPic.hidden = true
+            }
+            if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="grey"){
+                self.view.backgroundColor = UIColor.grayColor()
+                bgPic.hidden = true
+            }
+            if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightgrey"){
+                self.view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.95, alpha:1.0)
+                bgPic.hidden = true
+            }
+            if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="black"){
+                self.view.backgroundColor = UIColor.blackColor()
+                bgPic.hidden = true
+            }
+            if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightPink"){
+                self.view.backgroundColor = UIColor(red:0.99, green:0.89, blue:0.93, alpha:1.0)
+                bgPic.hidden = true
+            }
+            
+        } else if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBgPic")){
+            
+            let imgData = NSUserDefaults.standardUserDefaults().objectForKey("chatBgPic") as! NSData
+            bgPic.image = UIImage(data: imgData)
+            bgPic.hidden = false
+            
+        }
     }
     
     func initContainers() {

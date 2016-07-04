@@ -19,6 +19,10 @@ class chatBGcolorViewController: UIViewController {
         white.userInteractionEnabled = true
         white.addGestureRecognizer(whiteTap)
         
+        let lightPinkTap = UITapGestureRecognizer(target: self, action: #selector(chatBGcolorViewController.lightPinkTapped(_:)))
+        lightPink.userInteractionEnabled = true
+        lightPink.addGestureRecognizer(lightPinkTap)
+        
         let lightgreyTap = UITapGestureRecognizer(target: self, action: #selector(chatBGcolorViewController.lightgreyTapped(_:)))
         lightgrey.userInteractionEnabled = true
         lightgrey.addGestureRecognizer(lightgreyTap)
@@ -37,42 +41,57 @@ class chatBGcolorViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func closeButtonTapped(sender: AnyObject) {
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
+
 
     @IBOutlet weak var white: UIView!
     func whiteTapped(sender: UITapGestureRecognizer){
     
-    NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
-        NSUserDefaults.standardUserDefaults().setObject("white", forKey: "chatBgColor")
-        self.dismissViewControllerAnimated(true, completion: nil)
+        NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
+        NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgPic")
+    NSUserDefaults.standardUserDefaults().setObject("white", forKey: "chatBgColor")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        navigationController?.popViewControllerAnimated(true)
     }
     
+    @IBOutlet weak var lightPink: UIView!
+    func lightPinkTapped(sender: UITapGestureRecognizer){
+        
+        NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
+        NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgPic")
+    NSUserDefaults.standardUserDefaults().setObject("lightPink", forKey: "chatBgColor")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        navigationController?.popViewControllerAnimated(true)
+    }
 
     @IBOutlet weak var black: UIView!
     func blackTapped(sender: UITapGestureRecognizer){
     
-    NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
-        NSUserDefaults.standardUserDefaults().setObject("black", forKey: "chatBgColor")
-        self.dismissViewControllerAnimated(true, completion: nil)
+        NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
+        NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgPic")
+    NSUserDefaults.standardUserDefaults().setObject("black", forKey: "chatBgColor")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        navigationController?.popViewControllerAnimated(true)
     }
     
     @IBOutlet weak var lightgrey: UIView!
     func lightgreyTapped(sender: UITapGestureRecognizer){
         
         NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
-        NSUserDefaults.standardUserDefaults().setObject("lightgrey", forKey: "chatBgColor")
-        self.dismissViewControllerAnimated(true, completion: nil)
+        NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgPic")
+    NSUserDefaults.standardUserDefaults().setObject("lightgrey", forKey: "chatBgColor")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        navigationController?.popViewControllerAnimated(true)
+
     }
     
     @IBOutlet weak var grey: UIView!
     func greyTapped(sender: UITapGestureRecognizer){
         
         NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
-        NSUserDefaults.standardUserDefaults().setObject("grey", forKey: "chatBgColor")
-        self.dismissViewControllerAnimated(true, completion: nil)
+        NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgPic")
+    NSUserDefaults.standardUserDefaults().setObject("grey", forKey: "chatBgColor")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        navigationController?.popViewControllerAnimated(true)
     }
 
     

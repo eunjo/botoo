@@ -40,7 +40,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         profile_lb_name.addGestureRecognizer(tap_2)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         
         initProfile()
     }

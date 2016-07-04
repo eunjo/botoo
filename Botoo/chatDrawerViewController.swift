@@ -15,11 +15,11 @@ class chatDrawerViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(chatDrawerViewController.onClickAlbum))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(chatDrawerViewController.onClickAlbum(_:)))
         albumCollectionView.userInteractionEnabled = true
         albumCollectionView.addGestureRecognizer(tap)
         
-        let tap_2 = UITapGestureRecognizer(target: self, action: #selector(chatDrawerViewController.onClickSetting))
+        let tap_2 = UITapGestureRecognizer(target: self, action: #selector(chatDrawerViewController.onClickSetting(_:)))
         settingView.userInteractionEnabled = true
         settingView.addGestureRecognizer(tap_2)
     }
@@ -31,11 +31,23 @@ class chatDrawerViewController: UIViewController {
     
     @IBOutlet weak var albumCollectionView: UIView!
 
-    func onClickAlbum(){
+    func onClickAlbum(sender: UITapGestureRecognizer){
         
+        /*
         if let connectingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("albumViewController") {
             connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
             self.presentViewController(connectingViewController, animated: true, completion: nil)
+        }
+        */
+        
+        let viewController: UIViewController?
+        
+        viewController = self.storyboard?.instantiateViewControllerWithIdentifier("albumViewController")
+        
+        if(viewController != nil) {
+            viewController!.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+            //navigationController 의 하위 뷰로 전환
+            self.navigationController?.pushViewController(viewController!, animated: true)
         }
 
         
@@ -44,7 +56,7 @@ class chatDrawerViewController: UIViewController {
     
     @IBOutlet weak var settingView: UIView!
     
-    func onClickSetting(){
+    func onClickSetting(sender: UITapGestureRecognizer){
         
         let viewController: UIViewController?
         
