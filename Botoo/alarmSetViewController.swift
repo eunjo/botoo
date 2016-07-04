@@ -32,17 +32,61 @@ class alarmSetViewController: UIViewController {
 
     @IBAction func pushAlarm_Sc(sender: AnyObject) {
         
+        if (sender.on==true){
+            
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isPushAlarmOn")
+            
+        }
+        else {
+        
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: "isPushAlarmOn")
+            
+        }
+        
     }
     
     @IBAction func pushAlarmPreview_Sc(sender: AnyObject) {
+        
+        if (sender.on==true){
+            
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isPushAlarmPreviewOn")
+            
+        }
+        else {
+            
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: "isPushAlarmPreviewOn")
+            
+        }
         
     }
 
     @IBAction func vivAlarm_Sc(sender: AnyObject) {
         
+        if (sender.on==true){
+            
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isVibAlarmOn")
+            
+        }
+        else {
+            
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: "isVibAlarmOn")
+            
+        }
+        
     }
     
     @IBAction func soundAlarm_Sc(sender: AnyObject) {
+        
+        if (sender.on==true){
+            
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isSoundAlarmOn")
+            
+        }
+        else {
+            
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: "isSoundAlarmOn")
+            
+        }
         
     }
 

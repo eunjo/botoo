@@ -37,9 +37,25 @@ class HomeViewController: UIViewController {
         loverProPic.userInteractionEnabled = true
         loverProPic.addGestureRecognizer(tap)
         
+        let tap_2 = UITapGestureRecognizer(target:self, action: #selector(HomeViewController.onClickMyPic(_:)))
+        myProPic.userInteractionEnabled = true
+        myProPic.addGestureRecognizer(tap_2)
+        
         // 무한 루프 방지
         getUserInfo.checkLock = isLock
     }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "myPicZoom") {
+            let svc = segue.destinationViewController as! imageZoomViewController
+            svc.newImage = myProPic.image
+        }
+        else if (segue.identifier == "loverPicZoom"){
+            let svc = segue.destinationViewController as! imageZoomViewController
+            svc.newImage = loverProPic.image
+        }
+    }
+
     
     func onClickLoverPic(sender:UITapGestureRecognizer) {
         if (getUserInfo.userInfo.lover == "" || getUserInfo.userInfo.lover == nil) {
@@ -47,7 +63,27 @@ class HomeViewController: UIViewController {
                 connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
                 self.presentViewController(connectingViewController, animated: true, completion: nil)
             }
+        } else {
+            
+            self.performSegueWithIdentifier("loverPicZoom", sender: self.loverProPic)
+            
+            if let connectingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("imageZoomViewController") {
+                connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+                self.presentViewController(connectingViewController, animated: true, completion: nil)
+            }
+            
         }
+    }
+    
+    func onClickMyPic(sender:UITapGestureRecognizer){
+        
+        self.performSegueWithIdentifier("myPicZoom", sender: self.myProPic)
+        
+        if let connectingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("imageZoomViewController") {
+            connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+            self.presentViewController(connectingViewController, animated: true, completion: nil)
+        }
+        
     }
     
     func profileInit() {
@@ -58,12 +94,14 @@ class HomeViewController: UIViewController {
         self.loverProPic.clipsToBounds = true
         
         // 내 프사 로드
+        
         if (NSUserDefaults.standardUserDefaults().integerForKey("gender") == 1) {
             myProPic.image = UIImage(named: "default_female.png")
         }
         else {
             myProPic.image = UIImage(named: "default_male.png")
         }
+ 
         // 내 이름 로드
         myUserName.text = NSUserDefaults.standardUserDefaults().stringForKey("userName")
         
