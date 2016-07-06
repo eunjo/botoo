@@ -27,10 +27,12 @@ class ChatViewController: UIViewController, KeyboardProtocol {
     @IBOutlet var drawerContainer: UIView!
     @IBOutlet var drawerLeadingConstraint: NSLayoutConstraint!
     @IBOutlet var plusContainer: UIView!
+    @IBOutlet var emotiContainer: UIView!
     
     private var drawerIsOpen = false
     private var keyboardIsOpen = false
     private var plusIsOpen = false
+    private var emoIsOpen = false
     
     private var keyboardHeight = NSUserDefaults.standardUserDefaults().floatForKey("keyboardFrame")
     private var currentKeyboardHeight: CGFloat?
@@ -121,6 +123,9 @@ class ChatViewController: UIViewController, KeyboardProtocol {
         
         plusContainer.alpha = 0
         self.plusContainer.transform = CGAffineTransformTranslate(self.plusContainer.transform, 0, self.plusContainer.frame.height)
+        
+        emotiContainer.alpha = 0
+        self.emotiContainer.transform = CGAffineTransformTranslate(self.emotiContainer.transform, 0, self.emotiContainer.frame.height)
     }
     
     @IBAction func closeOnClick(sender: UIBarButtonItem) {
@@ -200,6 +205,10 @@ class ChatViewController: UIViewController, KeyboardProtocol {
         if plusIsOpen {
             adjustingHeightForPlus(plusIsOpen)
         }
+        
+        if emoIsOpen {
+            adjustingHeightForEmo(emoIsOpen)
+        }
     }
     
     @IBAction func swipeLeft(sender: UISwipeGestureRecognizer) {
@@ -246,6 +255,15 @@ class ChatViewController: UIViewController, KeyboardProtocol {
     }
     
     func adjustingHeightForPlus(show: Bool) {
+        
+        if keyboardIsOpen {
+            self.view.endEditing(true)
+        }
+        
+        if emoIsOpen {
+            adjustingHeightForEmo(emoIsOpen)
+        }
+        
         show ? (plusIsOpen = false) : (plusIsOpen = true)
         //뷰 사이즈 조절
         self.plusContainer.frame = CGRectMake(0, self.toolbar.frame.origin.y + self.toolbar.frame.size.height, self.plusContainer.frame.size.width, CGFloat(keyboardHeight))
@@ -256,26 +274,56 @@ class ChatViewController: UIViewController, KeyboardProtocol {
             hideDrawer()
         }
         
-        let containerHeight = self.plusContainer.frame.height * (show ? 1 : -1)
+        adjustHeightAnimation(show, container: self.plusContainer)
+    }
+    
+    func adjustHeightAnimation(show: Bool, container: UIView) {
+        let containerHeight = container.frame.height * (show ? 1 : -1)
+        
+        let gap = container.frame.origin.y - (self.toolbar.frame.origin.y + self.toolbar.frame.size.height)
+        self.deleteGap(gap, isUp: false)
+        
         UIView.animateWithDuration(0.5, animations: {
-            self.plusContainer.transform = CGAffineTransformTranslate(self.plusContainer.transform, 0, containerHeight)
+            container.transform = CGAffineTransformTranslate(container.transform, 0, containerHeight)
             if !self.keyboardIsOpen {
                 self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, containerHeight)
             }
             }, completion: { finish in
-                let gap = self.plusContainer.frame.origin.y - (self.toolbar.frame.origin.y + self.toolbar.frame.size.height)
-                
+                let gap = container.frame.origin.y - (self.toolbar.frame.origin.y + self.toolbar.frame.size.height)
                 self.deleteGap(gap, isUp: false)
+                
         })
-        
-        if plusIsOpen && keyboardIsOpen {
+    }
+    
+    @IBAction func onClickEmoticon(sender: UIButton) {
+        adjustingHeightForEmo(emoIsOpen)
+    }
+    
+    func adjustingHeightForEmo(show: Bool) {
+        if keyboardIsOpen {
             self.view.endEditing(true)
         }
+        
+        if plusIsOpen {
+            adjustingHeightForPlus(plusIsOpen)
+        }
+        
+        show ? (emoIsOpen = false) : (emoIsOpen = true)
+        //뷰 사이즈 조절
+        self.emotiContainer.frame = CGRectMake(0, self.toolbar.frame.origin.y + self.toolbar.frame.size.height, self.emotiContainer.frame.size.width, CGFloat(keyboardHeight))
+        
+        emotiContainer.alpha = 1
+        
+        if drawerIsOpen {
+            hideDrawer()
+        }
+        
+        adjustHeightAnimation(show, container: self.emotiContainer)
     }
+    
     
     func deleteGap(gap: CGFloat, isUp: Bool) {
         if gap != 0.0 {
-            
             UIView.animateWithDuration(0.1,
                     animations: {
                         //위 애니메이션이 완료된 후의 애니메이션
