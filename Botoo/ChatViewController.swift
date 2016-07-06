@@ -38,6 +38,10 @@ class ChatViewController: UIViewController, KeyboardProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        //컨테이너 초기화 (unvisible)
+        initContainers()
+        
         // 배경 설정 //
         
         bgPic.layer.zPosition = -1;
@@ -56,9 +60,10 @@ class ChatViewController: UIViewController, KeyboardProtocol {
 
         // 배경 초기화
         initBackGround()
-
-        //컨테이너 초기화 (unvisible)
-        initContainers()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+//        hideDrawer()
     }
     
     func initBackGround(){
