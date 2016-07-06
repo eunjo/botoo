@@ -43,6 +43,11 @@ class LockSetViewController: UIViewController {
         if sender.on {
             HomeViewController.getUserInfo.userInfo.lock = true
             NSUserDefaults.standardUserDefaults().setObject(true, forKey: "lock")
+            
+            if (NSUserDefaults.standardUserDefaults().stringForKey("lockPw")==nil){
+                LockViewController.getSender.sender = 2
+                self.performSegueWithIdentifier("toLockView", sender: self)
+            }
         } else {
             HomeViewController.getUserInfo.userInfo.lock = false
             NSUserDefaults.standardUserDefaults().setObject(false, forKey: "lock")
