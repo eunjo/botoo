@@ -8,9 +8,11 @@
 
 import UIKit
 import MobileCoreServices
+import ContactsUI
 
-class ChatPlusViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ChatPlusViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CNContactPickerDelegate {
     
+    // 이미지픽커 선언
     var imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -87,9 +89,11 @@ class ChatPlusViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBAction func contactsButtonTapped(sender: AnyObject) {
         
-        // http://stackoverflow.com/questions/24752627/accessing-ios-address-book-with-swift-array-count-of-zero 참고
-    
-    
+        let peoplePicker = CNContactPickerViewController()
+        
+        peoplePicker.delegate = self
+        self.presentViewController(peoplePicker, animated: true, completion: nil)
+        
     }
     
     @IBAction func sendLocationButtonTapped(sender: AnyObject) {
@@ -101,6 +105,11 @@ class ChatPlusViewController: UIViewController, UIImagePickerControllerDelegate,
         
         
     }
+    
+    func contactPickerDidCancel(picker: CNContactPickerViewController) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     
     
     

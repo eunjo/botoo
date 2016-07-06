@@ -1603,7 +1603,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bW3-c2-tDp">
                                 <rect key="frame" x="155" y="132" width="64" height="64"/>
                                 <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="연락처"/>
+                                <state key="normal" title="연락처">
+                                    <color key="titleColor" red="0.85098039219999999" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="contactsButtonTapped:" destination="QLC-tZ-qZE" eventType="touchUpInside" id="Mgd-Sy-Ome"/>
                                 </connections>
@@ -1799,8 +1801,8 @@
         <image name="dolphin_only.png" width="120" height="120"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="x39-vu-HcH"/>
         <segue reference="jZk-yp-nUi"/>
         <segue reference="4a1-F2-BdS"/>
-        <segue reference="Igv-Vl-L6y"/>
     </inferredMetricsTieBreakers>
 </document>
