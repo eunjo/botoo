@@ -16,7 +16,6 @@ import UIKit
 
 class ChatViewController: UIViewController, KeyboardProtocol {
     
-    @IBOutlet weak var drawIsOpenLabel: UILabel!
     
     @IBOutlet weak var bgPic: UIImageView!
     
@@ -45,7 +44,6 @@ class ChatViewController: UIViewController, KeyboardProtocol {
         initContainers()
         
         // 배경 설정 //
-        
         bgPic.layer.zPosition = -1;
         initBackGround()
         
@@ -128,6 +126,7 @@ class ChatViewController: UIViewController, KeyboardProtocol {
         self.emotiContainer.transform = CGAffineTransformTranslate(self.emotiContainer.transform, 0, self.emotiContainer.frame.height)
     }
     
+    // 채팅창 닫기
     @IBAction func closeOnClick(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -251,7 +250,9 @@ class ChatViewController: UIViewController, KeyboardProtocol {
     }
     
     @IBAction func onClickPlus(sender: UIBarButtonItem) {
+   
         adjustingHeightForPlus(plusIsOpen)
+
     }
     
     func adjustingHeightForPlus(show: Bool) {
