@@ -9,83 +9,10 @@
 import UIKit
 import MobileCoreServices
 import ContactsUI
+import AVFoundation
 
-class ChatPlusViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CNContactPickerDelegate {
+class ChatPlusViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CNContactPickerDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate {
     
-    // 이미지픽커 선언
-    var imagePicker = UIImagePickerController()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        imagePicker.delegate = self
-        
-        
-    }
-    
-    @IBAction func sendPicButtonTapped(sender: AnyObject){
-        
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-        
-        //Action 추가
-        let firstAction = UIAlertAction(title: "사진 앨범에서 선택", style: .Default) { (alert: UIAlertAction!) -> Void in
-            //사진 라이브러리 소스를 선택
-            self.imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-            //수정 가능 옵션
-            self.imagePicker.allowsEditing = true
-            self.imagePicker.mediaTypes = [kUTTypeImage as String]
-            self.presentViewController(self.imagePicker, animated: false, completion: nil)
-        }
-        
-        let secondAction = UIAlertAction(title: "취소", style: .Cancel) { (alert: UIAlertAction!) -> Void in
-        }
-        
-        alert.addAction(firstAction)
-        alert.addAction(secondAction)
-        
-        presentViewController(alert, animated: true, completion:nil)
-        
-        
-    }
-
-    @IBAction func sendVideoButtonTapped(sender: AnyObject) {
-        
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-        
-        //Action 추가
-        let firstAction = UIAlertAction(title: "사진 앨범에서 선택", style: .Default) { (alert: UIAlertAction!) -> Void in
-            //사진 라이브러리 소스를 선택
-            self.imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-            //수정 가능 옵션
-            self.imagePicker.allowsEditing = true
-            self.imagePicker.mediaTypes = [kUTTypeMovie as String]
-            self.presentViewController(self.imagePicker, animated: false, completion: nil)
-        }
-        
-        let secondAction = UIAlertAction(title: "취소", style: .Cancel) { (alert: UIAlertAction!) -> Void in
-        }
-        
-        alert.addAction(firstAction)
-        alert.addAction(secondAction)
-        
-        presentViewController(alert, animated: true, completion:nil)
-
-        
-        
-    }
-
-    @IBAction func sendCamPicButtonTapped(sender: AnyObject) {
-        
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-            imagePicker.sourceType = UIImagePickerControllerSourceType.Camera;
-            imagePicker.allowsEditing = false
-            self.presentViewController(imagePicker, animated: true, completion: nil)
-        }
-        
-        
-    }
-
     
     @IBAction func contactsButtonTapped(sender: AnyObject) {
         
@@ -102,16 +29,56 @@ class ChatPlusViewController: UIViewController, UIImagePickerControllerDelegate,
     }
 
     @IBAction func sendRecButtonTapped(sender: AnyObject) {
+//        self.loadRecordingUI()
         
+        if audioRecorder == nil {
+            startRecording()
+        } else {
+            finishRecording(success: true)
+        }
+    }
+    
+    func getDocumentsDirectory() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    func startRecording() {
+        let audioFilename = getDocumentsDirectory().stringByAppendingString("recording.m4a")
+        let audioURL = NSURL(fileURLWithPath: audioFilename)
         
+        let settings = [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVSampleRateKey: 12000.0,
+            AVNumberOfChannelsKey: 1 as NSNumber,
+            AVEncoderAudioQualityKey: AVAudioQuality.High.rawValue
+        ]
+        
+        do {
+            audioRecorder = try AVAudioRecorder(URL: audioURL, settings: settings)
+            audioRecorder.delegate = self
+            audioRecorder.record()
+        } catch {
+            finishRecording(success: false)
+        }
+    }
+    
+    func finishRecording(success success: Bool) {
+        audioRecorder.stop()
+        audioRecorder = nil
+        
+        if success {
+//            recordButton.setTitle("Tap to Re-record", forState: .Normal)
+            print("successsssssss!!")
+        } else {
+//            recordButton.setTitle("Tap to Record", forState: .Normal)
+            // recording failed :(
+        }
     }
     
     func contactPickerDidCancel(picker: CNContactPickerViewController) {
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    
-    
-    
     
 }
