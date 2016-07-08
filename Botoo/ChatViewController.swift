@@ -13,9 +13,14 @@
 //
 
 import UIKit
+import MobileCoreServices
+import ContactsUI
+import AVFoundation
 
-class ChatViewController: UIViewController, KeyboardProtocol {
+class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CNContactPickerDelegate {
     
+    // 이미지픽커 선언
+    var imagePicker = UIImagePickerController()
     
     @IBOutlet weak var bgPic: UIImageView!
     
@@ -25,8 +30,9 @@ class ChatViewController: UIViewController, KeyboardProtocol {
     @IBOutlet var toolbar: UIToolbar!
     @IBOutlet var drawerContainer: UIView!
     @IBOutlet var drawerLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet var plusContainer: UIView!
-    @IBOutlet var emotiContainer: UIView!
+    @IBOutlet var toolbarDrawer: UIView!
+    @IBOutlet var plusView: UIView!
+    @IBOutlet var emoticonView: UIView!
     
     private var drawerIsOpen = false
     private var keyboardIsOpen = false
@@ -39,6 +45,7 @@ class ChatViewController: UIViewController, KeyboardProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        imagePicker.delegate = self
         
         //컨테이너 초기화 (unvisible)
         initContainers()
@@ -46,7 +53,6 @@ class ChatViewController: UIViewController, KeyboardProtocol {
         // 배경 설정 //
         bgPic.layer.zPosition = -1;
         initBackGround()
-        
         
         currentKeyboardHeight = 0.0
         
@@ -68,7 +74,6 @@ class ChatViewController: UIViewController, KeyboardProtocol {
     
     func initBackGround(){
 
-        
         // color 설정
         if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBgColor")){
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="white"){
@@ -119,11 +124,9 @@ class ChatViewController: UIViewController, KeyboardProtocol {
         drawerContainer.alpha = 0
         self.drawerContainer.transform = CGAffineTransformTranslate(self.drawerContainer.transform, self.drawerContainer.frame.width, 0);
         
-        plusContainer.alpha = 0
-        self.plusContainer.transform = CGAffineTransformTranslate(self.plusContainer.transform, 0, self.plusContainer.frame.height)
-        
-        emotiContainer.alpha = 0
-        self.emotiContainer.transform = CGAffineTransformTranslate(self.emotiContainer.transform, 0, self.emotiContainer.frame.height)
+        toolbarDrawer.alpha = 0
+        plusView.alpha = 0
+        emoticonView.alpha = 0
     }
     
     // 채팅창 닫기
@@ -132,6 +135,7 @@ class ChatViewController: UIViewController, KeyboardProtocol {
     }
     
     func keyboardWillShow(notification:NSNotification) {
+//        keyboardIsOpen = true
         adjustingHeight(true, notification: notification)
 
         if drawerIsOpen {
@@ -140,13 +144,13 @@ class ChatViewController: UIViewController, KeyboardProtocol {
     }
     
     func keyboardWillHide(notification:NSNotification) {
+//        keyboardIsOpen = false
         adjustingHeight(false, notification: notification)
     }
 
     
     func adjustingHeight(show:Bool, notification:NSNotification) {
         keyboardIsOpen = show
-        
         // 1 노티피케이션 정보 얻기
         var userInfo = notification.userInfo!
         // 2 키보드 사이즈 얻기
@@ -174,7 +178,7 @@ class ChatViewController: UIViewController, KeyboardProtocol {
         
         changeInHeight =  changeInHeight * (show ? 1 : -1)
         
-        if !plusIsOpen {
+        if (!emoIsOpen && !plusIsOpen) || abs(changeInHeight) < CGFloat(keyboardHeight) {
             // 3 애니메이션 설정
             let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
             
@@ -183,11 +187,13 @@ class ChatViewController: UIViewController, KeyboardProtocol {
             })
         } else {
             // 키보드가 텍스트 필드를 가리는지 확인
-            let allHeight = (self.toolbar.frame.origin.y + self.toolbar.frame.size.height + CGRectGetHeight(keyboardFrame))
-            if (self.view.frame.height < allHeight) {
-                let gap = (allHeight - self.view.frame.height)
+            if keyboardIsOpen {
+                let allHeight = (self.toolbar.frame.origin.y + self.toolbar.frame.size.height + CGRectGetHeight(keyboardFrame))
+                if (self.view.frame.height < allHeight) {
+                    let gap = (allHeight - self.view.frame.height)
                 
-                self.deleteGap(gap, isUp: true)
+                    self.deleteGap(gap, isUp: true)
+                }
             }
         }
         
@@ -204,7 +210,7 @@ class ChatViewController: UIViewController, KeyboardProtocol {
         if plusIsOpen {
             adjustingHeightForPlus(plusIsOpen)
         }
-        
+
         if emoIsOpen {
             adjustingHeightForEmo(emoIsOpen)
         }
@@ -239,60 +245,68 @@ class ChatViewController: UIViewController, KeyboardProtocol {
             self.view.endEditing(true)
         }
         
-        if plusIsOpen {
+        if plusIsOpen || emoIsOpen {
             adjustingHeightForPlus(plusIsOpen)
         }
 
-        UIView.animateWithDuration(0.7) {
+        UIView.animateWithDuration(0.5) {
             self.drawerContainer.transform = CGAffineTransformTranslate(self.drawerContainer.transform, -self.drawerContainer.frame.width, 0);
         }
+        
         drawerIsOpen = true
     }
     
     @IBAction func onClickPlus(sender: UIBarButtonItem) {
-   
         adjustingHeightForPlus(plusIsOpen)
 
     }
     
     func adjustingHeightForPlus(show: Bool) {
         
-        if keyboardIsOpen {
-            self.view.endEditing(true)
-        }
-        
-        if emoIsOpen {
-            adjustingHeightForEmo(emoIsOpen)
-        }
-        
         show ? (plusIsOpen = false) : (plusIsOpen = true)
-        //뷰 사이즈 조절
-        self.plusContainer.frame = CGRectMake(0, self.toolbar.frame.origin.y + self.toolbar.frame.size.height, self.plusContainer.frame.size.width, CGFloat(keyboardHeight))
         
-        plusContainer.alpha = 1
+        self.toolbarDrawer.frame.size = CGSize(width: self.toolbarDrawer.frame.size.width, height: CGFloat(self.keyboardHeight))
         
         if drawerIsOpen {
             hideDrawer()
         }
         
-        adjustHeightAnimation(show, container: self.plusContainer)
+        adjustHeightAnimation(show, container: self.plusView)
+        
+        if keyboardIsOpen {
+            self.view.endEditing(true)
+        }
+        
+        if plusIsOpen && emoIsOpen {
+            emoIsOpen = false
+            self.emoticonView.alpha = 0.0
+        }
     }
     
     func adjustHeightAnimation(show: Bool, container: UIView) {
-        let containerHeight = container.frame.height * (show ? 1 : -1)
+        let containerHeight = self.toolbarDrawer.frame.height * (show ? 1 : -1)
         
-        let gap = container.frame.origin.y - (self.toolbar.frame.origin.y + self.toolbar.frame.size.height)
-        self.deleteGap(gap, isUp: false)
-        
-        UIView.animateWithDuration(0.5, animations: {
-            container.transform = CGAffineTransformTranslate(container.transform, 0, containerHeight)
+        UIView.animateWithDuration(0.3, animations: {
+            show ? (self.toolbarDrawer.alpha = 0.0) : (self.toolbarDrawer.alpha = 1.0)
+            show ? (container.alpha = 0.0) : (container.alpha = 1.0)
             if !self.keyboardIsOpen {
-                self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, containerHeight)
+                if show  {
+                    let gap = self.toolbarDrawer.frame.origin.y - (self.toolbar.frame.origin.y + self.toolbar.frame.size.height)
+                    self.deleteGap(gap, isUp: false)
+                }
+              
+                
+                if !(self.plusIsOpen && self.emoIsOpen) {
+                    self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, containerHeight)
+                }
             }
             }, completion: { finish in
-                let gap = container.frame.origin.y - (self.toolbar.frame.origin.y + self.toolbar.frame.size.height)
-                self.deleteGap(gap, isUp: false)
-                
+                if !show {
+                    if !(self.plusIsOpen && self.emoIsOpen) {
+                        let gap = self.toolbarDrawer.frame.origin.y - (self.toolbar.frame.origin.y + self.toolbar.frame.size.height)
+                        self.deleteGap(gap, isUp: false)
+                    }
+                }
         })
     }
     
@@ -301,27 +315,26 @@ class ChatViewController: UIViewController, KeyboardProtocol {
     }
     
     func adjustingHeightForEmo(show: Bool) {
-        if keyboardIsOpen {
-            self.view.endEditing(true)
-        }
-        
-        if plusIsOpen {
-            adjustingHeightForPlus(plusIsOpen)
-        }
         
         show ? (emoIsOpen = false) : (emoIsOpen = true)
-        //뷰 사이즈 조절
-        self.emotiContainer.frame = CGRectMake(0, self.toolbar.frame.origin.y + self.toolbar.frame.size.height, self.emotiContainer.frame.size.width, CGFloat(keyboardHeight))
         
-        emotiContainer.alpha = 1
+        self.toolbarDrawer.frame.size = CGSize(width: self.toolbarDrawer.frame.size.width, height: CGFloat(self.keyboardHeight))
         
         if drawerIsOpen {
             hideDrawer()
         }
         
-        adjustHeightAnimation(show, container: self.emotiContainer)
+        adjustHeightAnimation(show, container: self.emoticonView)
+        
+        if keyboardIsOpen {
+            self.view.endEditing(true)
+        }
+        
+        if plusIsOpen && emoIsOpen {
+            plusIsOpen = false
+            self.plusView.alpha = 0.0
+        }
     }
-    
     
     func deleteGap(gap: CGFloat, isUp: Bool) {
         if gap != 0.0 {
@@ -336,4 +349,57 @@ class ChatViewController: UIViewController, KeyboardProtocol {
             )
         }
     }
+    
+    
+    //plus 버튼 클릭 구현
+    
+    @IBAction func onClickPlusPic(sender: UIButton) {
+        pickPic()
+    }
+    
+    @IBAction func onClickPlusVideo(sender: UIButton) {
+        pickPic()
+    }
+    
+    func pickPic() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        //Action 추가
+        let firstAction = UIAlertAction(title: "사진 앨범에서 선택", style: .Default) { (alert: UIAlertAction!) -> Void in
+            //사진 라이브러리 소스를 선택
+            self.imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            //수정 가능 옵션
+            self.imagePicker.allowsEditing = true
+            self.imagePicker.mediaTypes = [kUTTypeMovie as String]
+            self.presentViewController(self.imagePicker, animated: false, completion: nil)
+        }
+        
+        let secondAction = UIAlertAction(title: "취소", style: .Cancel) { (alert: UIAlertAction!) -> Void in
+        }
+        
+        alert.addAction(firstAction)
+        alert.addAction(secondAction)
+        
+        presentViewController(alert, animated: true, completion:nil)
+    }
+    
+    @IBAction func onClickPlusCam(sender: UIButton) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            imagePicker.sourceType = UIImagePickerControllerSourceType.Camera;
+            imagePicker.allowsEditing = false
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func onClickPlusContact(sender: UIButton) {
+        let peoplePicker = CNContactPickerViewController()
+        
+        peoplePicker.delegate = self
+        self.presentViewController(peoplePicker, animated: true, completion: nil)
+    }
+    
+    func contactPickerDidCancel(picker: CNContactPickerViewController) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 }
