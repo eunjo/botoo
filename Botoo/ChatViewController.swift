@@ -237,14 +237,14 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func openDrawer() {
         drawerContainer.alpha = 1
+        
         if keyboardIsOpen {
             self.view.endEditing(true)
         }
-        
-        if plusIsOpen || emoIsOpen {
+        if plusIsOpen {
             adjustingHeightForPlus(plusIsOpen)
         }
-        if (emoIsOpen) {
+        if emoIsOpen {
             adjustingHeightForEmo(emoIsOpen)
         }
 
