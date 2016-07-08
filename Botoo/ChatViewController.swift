@@ -44,7 +44,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         imagePicker.delegate = self
         
         //컨테이너 초기화 (unvisible)
