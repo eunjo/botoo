@@ -12,6 +12,8 @@ class ChatTabViewController: UIViewController {
 
     var idx:Bool = true
     
+    @IBOutlet weak var chatTabBarItem: UITabBarItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

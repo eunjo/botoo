@@ -10,6 +10,9 @@ import UIKit
 
 class LetterNavViewController: UINavigationController {
 
+    
+    @IBOutlet weak var letterTabBarItem: UITabBarItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

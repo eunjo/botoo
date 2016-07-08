@@ -62,12 +62,7 @@ class ChatViewController: UIViewController, KeyboardProtocol {
         initBackGround()
     }
     
-    override func viewWillDisappear(animated: Bool) {
-//        hideDrawer()
-    }
-    
     func initBackGround(){
-
         
         // color 설정
         if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBgColor")){
@@ -115,6 +110,11 @@ class ChatViewController: UIViewController, KeyboardProtocol {
         }
     }
     
+    // 채팅창 닫기
+    @IBAction func closeOnClick(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     func initContainers() {
         drawerContainer.alpha = 0
         self.drawerContainer.transform = CGAffineTransformTranslate(self.drawerContainer.transform, self.drawerContainer.frame.width, 0);
@@ -126,10 +126,6 @@ class ChatViewController: UIViewController, KeyboardProtocol {
         self.emotiContainer.transform = CGAffineTransformTranslate(self.emotiContainer.transform, 0, self.emotiContainer.frame.height)
     }
     
-    // 채팅창 닫기
-    @IBAction func closeOnClick(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
     
     func keyboardWillShow(notification:NSNotification) {
         adjustingHeight(true, notification: notification)
@@ -242,11 +238,16 @@ class ChatViewController: UIViewController, KeyboardProtocol {
         if plusIsOpen {
             adjustingHeightForPlus(plusIsOpen)
         }
+        if (emoIsOpen) {
+            adjustingHeightForEmo(emoIsOpen)
+        }
 
         UIView.animateWithDuration(0.7) {
             self.drawerContainer.transform = CGAffineTransformTranslate(self.drawerContainer.transform, -self.drawerContainer.frame.width, 0);
         }
         drawerIsOpen = true
+        
+        
     }
     
     @IBAction func onClickPlus(sender: UIBarButtonItem) {
