@@ -67,10 +67,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         initBackGround()
     }
     
-    override func viewWillDisappear(animated: Bool) {
-//        hideDrawer()
-    }
-    
     func initBackGround(){
 
         // color 설정
@@ -119,6 +115,11 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         }
     }
     
+    // 채팅창 닫기
+    @IBAction func closeOnClick(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     func initContainers() {
         drawerContainer.alpha = 0
         self.drawerContainer.transform = CGAffineTransformTranslate(self.drawerContainer.transform, self.drawerContainer.frame.width, 0);
@@ -128,10 +129,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         emoticonView.alpha = 0
     }
     
-    // 채팅창 닫기
-    @IBAction func closeOnClick(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
     
     func keyboardWillShow(notification:NSNotification) {
 //        keyboardIsOpen = true
@@ -247,12 +244,17 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         if plusIsOpen || emoIsOpen {
             adjustingHeightForPlus(plusIsOpen)
         }
+        if (emoIsOpen) {
+            adjustingHeightForEmo(emoIsOpen)
+        }
 
         UIView.animateWithDuration(0.5) {
             self.drawerContainer.transform = CGAffineTransformTranslate(self.drawerContainer.transform, -self.drawerContainer.frame.width, 0);
         }
         
         drawerIsOpen = true
+        
+        
     }
     
     @IBAction func onClickPlus(sender: UIBarButtonItem) {

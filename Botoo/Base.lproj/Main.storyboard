@@ -397,6 +397,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="채팅" badgeValue="0" id="rz3-Mg-zQr"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="chatTabBarItem" destination="rz3-Mg-zQr" id="Bfp-sl-olX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PqW-Or-fpz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -646,7 +649,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="편지쓰기" id="o5V-82-wwO">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="mNk-bi-gl8">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="mNk-bi-gl8">
                             <color key="tintColor" red="0.85098039219999999" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="editItemTapped:" destination="Dyn-mD-alR" id="7FL-zQ-TZu"/>
@@ -840,6 +843,15 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPl-Nk-U1a">
+                                <rect key="frame" x="155" y="199" width="65" height="30"/>
+                                <state key="normal" title="연결끊기">
+                                    <color key="titleColor" red="0.85098039219999999" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="disconnectButtonTapped:" destination="pHp-dt-ndB" eventType="touchUpInside" id="Sug-hc-gpH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.8098600333" blue="0.82729438300000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -1491,6 +1503,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
+                        <outlet property="letterTabBarItem" destination="yaI-tb-dKj" id="VSg-EZ-PKx"/>
                         <segue destination="Dyn-mD-alR" kind="relationship" relationship="rootViewController" id="pbQ-M2-3UE"/>
                     </connections>
                 </navigationController>
@@ -1606,6 +1619,105 @@
             </objects>
             <point key="canvasLocation" x="1848" y="825.5"/>
         </scene>
+<<<<<<< HEAD
+        <!--Chat Plus View Controller-->
+        <scene sceneID="sH7-Br-AsN">
+            <objects>
+                <viewController id="QLC-tZ-qZE" customClass="ChatPlusViewController" customModule="Botoo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Klk-aZ-tGC"/>
+                        <viewControllerLayoutGuide type="bottom" id="69I-fw-L8K"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Rdl-5a-L0N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCR-WX-UHP">
+                                <rect key="frame" x="46" y="37" width="64" height="64"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="64" id="27x-jQ-IHh"/>
+                                    <constraint firstAttribute="height" constant="64" id="3Os-GY-Z9E"/>
+                                    <constraint firstAttribute="width" constant="64" id="I0R-fz-lb9"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="KA4-uv-m92"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="64" id="OS7-VA-Awh"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="Zga-U7-Ilm"/>
+                                </constraints>
+                                <state key="normal" title="사진">
+                                    <color key="titleColor" red="0.85098039219999999" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendPicButtonTapped:" destination="QLC-tZ-qZE" eventType="touchUpInside" id="394-XA-cRy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EAi-ep-l1M">
+                                <rect key="frame" x="265" y="37" width="64" height="64"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="64" id="2ut-5s-1h5"/>
+                                    <constraint firstAttribute="height" constant="64" id="3mL-OV-Kiq"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="VPa-g1-kvd"/>
+                                    <constraint firstAttribute="width" constant="64" id="lEj-kO-nUs"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="nNg-35-5jn"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="64" id="tMv-4Z-Vh7"/>
+                                </constraints>
+                                <state key="normal" title="카메라">
+                                    <color key="titleColor" red="0.85098039219999999" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendCamPicButtonTapped:" destination="QLC-tZ-qZE" eventType="touchUpInside" id="pbj-yX-roa"/>
+                                </connections>
+                            </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="vc9-Ib-Wd4">
+                                <rect key="frame" x="168" y="0.0" width="39" height="37"/>
+                                <color key="currentPageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ztV-Sx-f3k">
+                                <rect key="frame" x="155" y="37" width="64" height="64"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="34J-Ow-kqg"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="95f-A3-aDU"/>
+                                    <constraint firstAttribute="height" constant="64" id="J54-lZ-kpv"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="64" id="KRK-Bh-xsh"/>
+                                    <constraint firstAttribute="width" constant="64" id="WXS-bv-zy4"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="64" id="fJM-UE-0ql"/>
+                                </constraints>
+                                <state key="normal" title="동영상">
+                                    <color key="titleColor" red="0.85098039219999999" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendVideoButtonTapped:" destination="QLC-tZ-qZE" eventType="touchUpInside" id="gxN-v8-N6a"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bW3-c2-tDp">
+                                <rect key="frame" x="46" y="132" width="64" height="64"/>
+                                <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="52X-6k-gEg"/>
+                                    <constraint firstAttribute="width" constant="64" id="BSh-mX-5f5"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="Sq6-AO-hfU"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="64" id="XPc-Wv-zec"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="d28-Ni-SEi"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="64" id="wm6-bF-yWO"/>
+                                </constraints>
+                                <state key="normal" title="연락처">
+                                    <color key="titleColor" red="0.85098039219999999" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="contactsButtonTapped:" destination="QLC-tZ-qZE" eventType="touchUpInside" id="Mgd-Sy-Ome"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98823529409999999" green="0.89411764709999997" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8pj-k4-Naw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1411.5" y="1434"/>
+        </scene>
+=======
+>>>>>>> f836bfb1ffd06e189a4fa1c898a56e72c074c169
         <!--Album View Controller-->
         <scene sceneID="5ek-HS-Ncm">
             <objects>
