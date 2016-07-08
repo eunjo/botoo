@@ -44,7 +44,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         imagePicker.delegate = self
         
         //컨테이너 초기화 (unvisible)
@@ -296,7 +295,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     let gap = self.toolbarDrawer.frame.origin.y - (self.toolbar.frame.origin.y + self.toolbar.frame.size.height)
                     self.deleteGap(gap, isUp: false)
                 }
-              
                 
                 if !(self.plusIsOpen && self.emoIsOpen) {
                     self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, containerHeight)
