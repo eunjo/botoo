@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+import Parse
+import Bolts
+import ParseUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
