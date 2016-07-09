@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "119"
             endingLineNumber = "119"
-            landmarkName = "initBackGround()"
+            landmarkName = "closeOnClick(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
