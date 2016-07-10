@@ -18,6 +18,9 @@
 		C0D47B031D2758A200637EAB /* ChatNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47B021D2758A200637EAB /* ChatNavViewController.swift */; };
 		C0D47B071D2A076300637EAB /* KeyboardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47B061D2A076300637EAB /* KeyboardProtocol.swift */; };
 		C0D47B0B1D31717900637EAB /* ExtensionForUIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47B0A1D31717900637EAB /* ExtensionForUIDevice.swift */; };
+		C0D47B0D1D32AF2600637EAB /* URLInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47B0C1D32AF2600637EAB /* URLInfo.swift */; };
+		C0D47B101D32AFCF00637EAB /* TestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47B0F1D32AFCF00637EAB /* TestProtocol.swift */; };
+		C0D47B121D32AFF600637EAB /* TestConstruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47B111D32AFF600637EAB /* TestConstruct.swift */; };
 		D600A9661D226F06005F9130 /* RegisterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A9651D226F06005F9130 /* RegisterPageViewController.swift */; };
 		D600A9681D227C8D005F9130 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A9671D227C8D005F9130 /* LoginViewController.swift */; };
 		D600A96C1D2287B2005F9130 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D600A96B1D2287B2005F9130 /* Icon-60@2x.png */; };
@@ -77,6 +80,9 @@
 		C0D47B021D2758A200637EAB /* ChatNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatNavViewController.swift; sourceTree = "<group>"; };
 		C0D47B061D2A076300637EAB /* KeyboardProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardProtocol.swift; sourceTree = "<group>"; };
 		C0D47B0A1D31717900637EAB /* ExtensionForUIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForUIDevice.swift; sourceTree = "<group>"; };
+		C0D47B0C1D32AF2600637EAB /* URLInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLInfo.swift; sourceTree = "<group>"; };
+		C0D47B0F1D32AFCF00637EAB /* TestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestProtocol.swift; sourceTree = "<group>"; };
+		C0D47B111D32AFF600637EAB /* TestConstruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestConstruct.swift; sourceTree = "<group>"; };
 		D600A9651D226F06005F9130 /* RegisterPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
 		D600A9671D227C8D005F9130 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D600A96B1D2287B2005F9130 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@2x.png"; path = "img/Icon-60@2x.png"; sourceTree = "<group>"; };
@@ -176,6 +182,7 @@
 				C0D47AFC1D23863F00637EAB /* UserInfo.swift */,
 				C0D47B061D2A076300637EAB /* KeyboardProtocol.swift */,
 				C0D47B0A1D31717900637EAB /* ExtensionForUIDevice.swift */,
+				C0D47B0C1D32AF2600637EAB /* URLInfo.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -183,6 +190,7 @@
 		C0D47B041D2A073400637EAB /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				C0D47B0F1D32AFCF00637EAB /* TestProtocol.swift */,
 			);
 			name = Protocol;
 			sourceTree = "<group>";
@@ -193,6 +201,14 @@
 				D600A97C1D23B395005F9130 /* letterTableViewCell.swift */,
 			);
 			name = TableCell;
+			sourceTree = "<group>";
+		};
+		C0D47B0E1D32AF9C00637EAB /* Construct */ = {
+			isa = PBXGroup;
+			children = (
+				C0D47B111D32AFF600637EAB /* TestConstruct.swift */,
+			);
+			name = Construct;
 			sourceTree = "<group>";
 		};
 		D600A96D1D228854005F9130 /* Image */ = {
@@ -238,6 +254,7 @@
 		D69322A81D20FB6A003E9147 /* Botoo */ = {
 			isa = PBXGroup;
 			children = (
+				C0D47B0E1D32AF9C00637EAB /* Construct */,
 				C0D47B051D2A074200637EAB /* TableCell */,
 				C0D47B041D2A073400637EAB /* Protocol */,
 				C0D47AFB1D2385F200637EAB /* Common */,
@@ -410,7 +427,9 @@
 				D600A9681D227C8D005F9130 /* LoginViewController.swift in Sources */,
 				C0D47AFF1D239EB600637EAB /* LockViewController.swift in Sources */,
 				D607C5DE1D27B14100542804 /* byebyeViewController.swift in Sources */,
+				C0D47B121D32AFF600637EAB /* TestConstruct.swift in Sources */,
 				D607C5E21D27DC5700542804 /* dateSetViewController.swift in Sources */,
+				C0D47B0D1D32AF2600637EAB /* URLInfo.swift in Sources */,
 				D69322AC1D20FB6A003E9147 /* HomeViewController.swift in Sources */,
 				C0D47B0B1D31717900637EAB /* ExtensionForUIDevice.swift in Sources */,
 				C0D47AFA1D23840900637EAB /* ProfileViewController.swift in Sources */,
@@ -435,6 +454,7 @@
 				D600A9661D226F06005F9130 /* RegisterPageViewController.swift in Sources */,
 				D600A9791D239E63005F9130 /* LetterNavViewController.swift in Sources */,
 				D607C5E61D2A04D400542804 /* imageZoomViewController.swift in Sources */,
+				C0D47B101D32AFCF00637EAB /* TestProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
