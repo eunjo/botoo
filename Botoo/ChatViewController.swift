@@ -39,12 +39,15 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private var plusIsOpen = false
     private var emoIsOpen = false
     
-    private var keyboardHeight = NSUserDefaults.standardUserDefaults().floatForKey("keyboardFrame")
+    private var bottomDrawerHeight = 0.0
     private var currentKeyboardHeight: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
+        
+        //디바이스 모델 체크 및 키보드 높이 설정
+        checkDevice()
         
         //컨테이너 초기화 (unvisible)
         initContainers()
@@ -58,13 +61,31 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         //키보드에 대한 노티피케이션 생성
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
-        
     }
     
     override func viewWillAppear(animated: Bool) {
 
         // 배경 초기화
         initBackGround()
+    }
+    
+    func checkDevice() {
+        let modelName = UIDevice.currentDevice().modelName
+        
+        switch modelName {
+        case "iPhone 4", "iPhone 4s", "iPhone 5", "iPhone 5s", "iPhone 5c", "iPhone SE":
+            self.bottomDrawerHeight = 224.0
+            break
+        case "iPhone 6", "iPhone 6s":
+            self.bottomDrawerHeight = 225.0
+            break
+        case "iPhone 6 Plus", "iPhone 6s Plus":
+            self.bottomDrawerHeight = 236.0
+            break
+        default:
+            self.bottomDrawerHeight = 225.0
+            break
+        }
     }
     
     func initBackGround(){
@@ -129,14 +150,15 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         emoticonView.alpha = 0
     }
     
-    
     func keyboardWillShow(notification:NSNotification) {
-//        keyboardIsOpen = true
+        
         adjustingHeight(true, notification: notification)
 
         if drawerIsOpen {
             hideDrawer()
         }
+        
+        self.toolbarDrawer.hidden = true
     }
     
     func keyboardWillHide(notification:NSNotification) {
@@ -146,18 +168,14 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 
     
     func adjustingHeight(show:Bool, notification:NSNotification) {
+        
         keyboardIsOpen = show
+        
         // 1 노티피케이션 정보 얻기
         var userInfo = notification.userInfo!
         // 2 키보드 사이즈 얻기
         let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
         var changeInHeight = CGRectGetHeight(keyboardFrame)
-        
-        if (keyboardHeight != Float(CGRectGetHeight(keyboardFrame))) {
-            if (keyboardHeight > Float(CGRectGetHeight(keyboardFrame))) {
-                keyboardHeight = Float(CGRectGetHeight(keyboardFrame))
-            }
-        }
         
         if currentKeyboardHeight > 0.0 && currentKeyboardHeight != CGRectGetHeight(keyboardFrame) {
             switch max(currentKeyboardHeight!, CGRectGetHeight(keyboardFrame)) {
@@ -174,7 +192,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         
         changeInHeight =  changeInHeight * (show ? 1 : -1)
         
-        if (!emoIsOpen && !plusIsOpen) || abs(changeInHeight) < CGFloat(keyboardHeight) {
+        if (!emoIsOpen && !plusIsOpen) {
             // 3 애니메이션 설정
             let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
             
@@ -185,11 +203,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             // 키보드가 텍스트 필드를 가리는지 확인
             if keyboardIsOpen {
                 let allHeight = (self.toolbar.frame.origin.y + self.toolbar.frame.size.height + CGRectGetHeight(keyboardFrame))
-                if (self.view.frame.height < allHeight) {
-                    let gap = (allHeight - self.view.frame.height)
-                
-                    self.deleteGap(gap, isUp: true)
-                }
+                let gap = (allHeight - self.view.frame.height)
+                self.deleteGap(gap, isUp: true)
             }
         }
         
@@ -266,8 +281,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         
         show ? (plusIsOpen = false) : (plusIsOpen = true)
         
-        self.toolbarDrawer.frame.size = CGSize(width: self.toolbarDrawer.frame.size.width, height: CGFloat(self.keyboardHeight))
-        
         if drawerIsOpen {
             hideDrawer()
         }
@@ -285,6 +298,14 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func adjustHeightAnimation(show: Bool, container: UIView) {
+        
+        self.toolbarDrawer.hidden = false
+        
+        var frame = self.toolbarDrawer.frame
+        frame.origin.y = UIScreen.mainScreen().bounds.height - CGFloat(self.bottomDrawerHeight)
+        frame.size.height = CGFloat(self.bottomDrawerHeight)
+        self.toolbarDrawer.frame = frame;
+        
         let containerHeight = self.toolbarDrawer.frame.height * (show ? 1 : -1)
         
         UIView.animateWithDuration(0.3, animations: {
@@ -317,8 +338,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     func adjustingHeightForEmo(show: Bool) {
         
         show ? (emoIsOpen = false) : (emoIsOpen = true)
-        
-        self.toolbarDrawer.frame.size = CGSize(width: self.toolbarDrawer.frame.size.width, height: CGFloat(self.keyboardHeight))
         
         if drawerIsOpen {
             hideDrawer()

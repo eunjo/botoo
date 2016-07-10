@@ -17,6 +17,7 @@
 		C0D47B011D23A04900637EAB /* LockSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47B001D23A04900637EAB /* LockSetViewController.swift */; };
 		C0D47B031D2758A200637EAB /* ChatNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47B021D2758A200637EAB /* ChatNavViewController.swift */; };
 		C0D47B071D2A076300637EAB /* KeyboardProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47B061D2A076300637EAB /* KeyboardProtocol.swift */; };
+		C0D47B0B1D31717900637EAB /* ExtensionForUIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47B0A1D31717900637EAB /* ExtensionForUIDevice.swift */; };
 		D600A9661D226F06005F9130 /* RegisterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A9651D226F06005F9130 /* RegisterPageViewController.swift */; };
 		D600A9681D227C8D005F9130 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A9671D227C8D005F9130 /* LoginViewController.swift */; };
 		D600A96C1D2287B2005F9130 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D600A96B1D2287B2005F9130 /* Icon-60@2x.png */; };
@@ -75,6 +76,7 @@
 		C0D47B001D23A04900637EAB /* LockSetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockSetViewController.swift; sourceTree = "<group>"; };
 		C0D47B021D2758A200637EAB /* ChatNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatNavViewController.swift; sourceTree = "<group>"; };
 		C0D47B061D2A076300637EAB /* KeyboardProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardProtocol.swift; sourceTree = "<group>"; };
+		C0D47B0A1D31717900637EAB /* ExtensionForUIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForUIDevice.swift; sourceTree = "<group>"; };
 		D600A9651D226F06005F9130 /* RegisterPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
 		D600A9671D227C8D005F9130 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D600A96B1D2287B2005F9130 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@2x.png"; path = "img/Icon-60@2x.png"; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			children = (
 				C0D47AFC1D23863F00637EAB /* UserInfo.swift */,
 				C0D47B061D2A076300637EAB /* KeyboardProtocol.swift */,
+				C0D47B0A1D31717900637EAB /* ExtensionForUIDevice.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				D607C5DE1D27B14100542804 /* byebyeViewController.swift in Sources */,
 				D607C5E21D27DC5700542804 /* dateSetViewController.swift in Sources */,
 				D69322AC1D20FB6A003E9147 /* HomeViewController.swift in Sources */,
+				C0D47B0B1D31717900637EAB /* ExtensionForUIDevice.swift in Sources */,
 				C0D47AFA1D23840900637EAB /* ProfileViewController.swift in Sources */,
 				D69322AA1D20FB6A003E9147 /* AppDelegate.swift in Sources */,
 				D607C5EE1D2A41AF00542804 /* chatBGcolorViewController.swift in Sources */,

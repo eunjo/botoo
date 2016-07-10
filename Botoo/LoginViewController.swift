@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, KeyboardProtocol {
+class LoginViewController: UIViewController {
 
     @IBOutlet weak var userEmailTextField: UITextField!
     @IBOutlet weak var userPWTextField: UITextField!
@@ -17,26 +17,7 @@ class LoginViewController: UIViewController, KeyboardProtocol {
         super.viewDidLoad()
         
         userEmailTextField.becomeFirstResponder()
-        //키보드에 대한 노티피케이션 생성
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
     }
-
-    func keyboardWillHide(notification: NSNotification) {
-    }
-    
-    func keyboardWillShow(notification: NSNotification) {
-        adjustingHeight(true, notification: notification)
-    }
-    
-    func adjustingHeight(show: Bool, notification: NSNotification) {
-        // 1 노티피케이션 정보 얻기
-        var userInfo = notification.userInfo!
-        // 2 키보드 사이즈 얻기
-        let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
-        NSUserDefaults.standardUserDefaults().setObject(keyboardFrame.height, forKey: "keyboardFrame")
-        NSUserDefaults.standardUserDefaults().synchronize()
-    }
-    
     
     @IBAction func loginButtonTapped(sender: AnyObject) {
         let userEmail = userEmailTextField.text
