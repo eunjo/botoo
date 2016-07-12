@@ -60,6 +60,7 @@ class chatBGcolorViewController: UIViewController {
     
         NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
         NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgPic")
+        NSUserDefaults.standardUserDefaults().setObject((false), forKey: "ischatBGdefault")
     NSUserDefaults.standardUserDefaults().setObject("white", forKey: "chatBgColor")
         NSUserDefaults.standardUserDefaults().synchronize()
         navigationController?.popViewControllerAnimated(true)
@@ -70,6 +71,7 @@ class chatBGcolorViewController: UIViewController {
         
         NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
         NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgPic")
+        NSUserDefaults.standardUserDefaults().setObject((false), forKey: "ischatBGdefault")
     NSUserDefaults.standardUserDefaults().setObject("lightPink", forKey: "chatBgColor")
         NSUserDefaults.standardUserDefaults().synchronize()
         navigationController?.popViewControllerAnimated(true)
@@ -80,6 +82,7 @@ class chatBGcolorViewController: UIViewController {
     
         NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
         NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgPic")
+        NSUserDefaults.standardUserDefaults().setObject((false), forKey: "ischatBGdefault")
     NSUserDefaults.standardUserDefaults().setObject("black", forKey: "chatBgColor")
         NSUserDefaults.standardUserDefaults().synchronize()
         navigationController?.popViewControllerAnimated(true)
@@ -90,6 +93,7 @@ class chatBGcolorViewController: UIViewController {
         
         NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
         NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgPic")
+        NSUserDefaults.standardUserDefaults().setObject((false), forKey: "ischatBGdefault")
     NSUserDefaults.standardUserDefaults().setObject("lightgrey", forKey: "chatBgColor")
         NSUserDefaults.standardUserDefaults().synchronize()
         navigationController?.popViewControllerAnimated(true)
@@ -101,6 +105,7 @@ class chatBGcolorViewController: UIViewController {
         
         NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
         NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgPic")
+        NSUserDefaults.standardUserDefaults().setObject((false), forKey: "ischatBGdefault")
     NSUserDefaults.standardUserDefaults().setObject("grey", forKey: "chatBgColor")
         NSUserDefaults.standardUserDefaults().synchronize()
         navigationController?.popViewControllerAnimated(true)
@@ -111,6 +116,7 @@ class chatBGcolorViewController: UIViewController {
         
         NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
         NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgPic")
+        NSUserDefaults.standardUserDefaults().setObject((false), forKey: "ischatBGdefault")
         NSUserDefaults.standardUserDefaults().setObject("lightBlue", forKey: "chatBgColor")
         NSUserDefaults.standardUserDefaults().synchronize()
         navigationController?.popViewControllerAnimated(true)
@@ -121,6 +127,7 @@ class chatBGcolorViewController: UIViewController {
         
         NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
         NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgPic")
+        NSUserDefaults.standardUserDefaults().setObject((false), forKey: "ischatBGdefault")
         NSUserDefaults.standardUserDefaults().setObject("lightPurple", forKey: "chatBgColor")
         NSUserDefaults.standardUserDefaults().synchronize()
         navigationController?.popViewControllerAnimated(true)
@@ -131,6 +138,7 @@ class chatBGcolorViewController: UIViewController {
         
         NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
         NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgPic")
+        NSUserDefaults.standardUserDefaults().setObject((false), forKey: "ischatBGdefault")
         NSUserDefaults.standardUserDefaults().setObject("lightYellow", forKey: "chatBgColor")
         NSUserDefaults.standardUserDefaults().synchronize()
         navigationController?.popViewControllerAnimated(true)
