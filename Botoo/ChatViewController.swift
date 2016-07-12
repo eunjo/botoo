@@ -89,6 +89,11 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func initBackGround(){
+        
+        if ( !(NSUserDefaults.standardUserDefaults().boolForKey("ischatBgColor")) || !(NSUserDefaults.standardUserDefaults().boolForKey("ischatBgPic")) ){
+            bgPic.image = UIImage(named: "chatBGdefault.png")
+            bgPic.hidden = false
+        }
 
         // color 설정
         if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBgColor")){
@@ -133,6 +138,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             bgPic.image = UIImage(data: imgData)
             bgPic.hidden = false
             
+        } else if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBGdefalut")){
+            
+            bgPic.image = UIImage(named: "chatBGdefault.png")
+            bgPic.hidden = false
         }
     }
     

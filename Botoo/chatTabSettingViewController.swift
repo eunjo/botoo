@@ -72,8 +72,8 @@ class chatTabSettingViewController: UIViewController, UIImagePickerControllerDel
         
         let secondAction = UIAlertAction(title: "기본 이미지로 변경", style: .Default) { (alert: UIAlertAction!) -> Void in
             NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgPic")
-            NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
-            NSUserDefaults.standardUserDefaults().setObject("white", forKey: "chatBgColor")
+            NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgColor")
+            NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBGdefault")
             NSUserDefaults.standardUserDefaults().synchronize()
         }
         
