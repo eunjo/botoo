@@ -41,6 +41,7 @@
 		D607C5EC1D2A3CAF00542804 /* chatTabSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607C5EB1D2A3CAF00542804 /* chatTabSettingViewController.swift */; };
 		D607C5EE1D2A41AF00542804 /* chatBGcolorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607C5ED1D2A41AF00542804 /* chatBGcolorViewController.swift */; };
 		D63A11CC1D34CA6C00AD6989 /* chatBGdefault.png in Resources */ = {isa = PBXBuildFile; fileRef = D63A11CB1D34CA6C00AD6989 /* chatBGdefault.png */; };
+		D63A11CE1D3521E800AD6989 /* homeBG.png in Resources */ = {isa = PBXBuildFile; fileRef = D63A11CD1D3521E800AD6989 /* homeBG.png */; };
 		D680FADA1D314D6200A84986 /* Default-iPhone6.png in Resources */ = {isa = PBXBuildFile; fileRef = D680FAD91D314D6200A84986 /* Default-iPhone6.png */; };
 		D69322AA1D20FB6A003E9147 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69322A91D20FB6A003E9147 /* AppDelegate.swift */; };
 		D69322AC1D20FB6A003E9147 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69322AB1D20FB6A003E9147 /* HomeViewController.swift */; };
@@ -104,6 +105,7 @@
 		D607C5EB1D2A3CAF00542804 /* chatTabSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatTabSettingViewController.swift; sourceTree = "<group>"; };
 		D607C5ED1D2A41AF00542804 /* chatBGcolorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatBGcolorViewController.swift; sourceTree = "<group>"; };
 		D63A11CB1D34CA6C00AD6989 /* chatBGdefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chatBGdefault.png; path = img/chatBGdefault.png; sourceTree = "<group>"; };
+		D63A11CD1D3521E800AD6989 /* homeBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = homeBG.png; path = img/homeBG.png; sourceTree = "<group>"; };
 		D680FAD91D314D6200A84986 /* Default-iPhone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-iPhone6.png"; path = "img/Default-iPhone6.png"; sourceTree = "<group>"; };
 		D69322A61D20FB6A003E9147 /* Botoo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Botoo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D69322A91D20FB6A003E9147 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 		D600A96D1D228854005F9130 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				D63A11CD1D3521E800AD6989 /* homeBG.png */,
 				D63A11CB1D34CA6C00AD6989 /* chatBGdefault.png */,
 				D680FAD91D314D6200A84986 /* Default-iPhone6.png */,
 				D600A96E1D22885C005F9130 /* Icon */,
@@ -396,6 +399,7 @@
 			files = (
 				D69322B41D20FB6A003E9147 /* LaunchScreen.storyboard in Resources */,
 				D69322B11D20FB6A003E9147 /* Assets.xcassets in Resources */,
+				D63A11CE1D3521E800AD6989 /* homeBG.png in Resources */,
 				D63A11CC1D34CA6C00AD6989 /* chatBGdefault.png in Resources */,
 				D607C5E41D27F23A00542804 /* default_grey.png in Resources */,
 				D69322AF1D20FB6A003E9147 /* Main.storyboard in Resources */,
