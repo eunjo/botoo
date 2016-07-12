@@ -24,11 +24,6 @@ class RegisterPageViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     @IBAction func genderSelect(sender: AnyObject) {
         
         if (genderSegment.selectedSegmentIndex == 0){
@@ -37,6 +32,10 @@ class RegisterPageViewController: UIViewController {
         if (genderSegment.selectedSegmentIndex == 1){
             gender = 1
         }
+    }
+    
+    @IBAction func onClickHaveAcc(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func registerButtonTapped(sender: AnyObject) {

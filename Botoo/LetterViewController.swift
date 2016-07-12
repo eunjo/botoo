@@ -73,10 +73,10 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("letterDetail") {
-            profileViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        if let letterDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("letterDetail") {
+            letterDetailViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
             //navigationController 의 하위 뷰로 전환
-            self.navigationController?.pushViewController(profileViewController, animated: true)
+            self.navigationController?.pushViewController(letterDetailViewController, animated: true)
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
@@ -97,24 +97,6 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-    /*
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.row {
-        case 0:
-            if let profileViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") {
-                profileViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-                //navigationController 의 하위 뷰로 전환
-                self.navigationController?.pushViewController(profileViewController, animated: true)
-            }
-            break
-        case 1:
-            break
-        default:
-            break
-        }
-        
-    }
-    */
 
     @IBAction func addItemTapped(sender: AnyObject) {
         

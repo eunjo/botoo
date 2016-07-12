@@ -30,6 +30,18 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.profile_iv_profile.layer.cornerRadius = self.profile_iv_profile.frame.size.width / 2
         self.profile_iv_profile.clipsToBounds = true
         
+        // 상메 수정용
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoMsgEdit(_:)))
+        profile_lb_msg.userInteractionEnabled = true
+        profile_lb_msg.addGestureRecognizer(tap)
+        
+        let tap_2 = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoNameEdit(_:)))
+        profile_lb_name.userInteractionEnabled = true
+        profile_lb_name.addGestureRecognizer(tap_2)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
         initProfile()
     }
     
@@ -42,8 +54,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         profile_lb_email.text = HomeViewController.getUserInfo.userInfo.email
         userGender = HomeViewController.getUserInfo.userInfo.gender
         
+        /*
         if (HomeViewController.getUserInfo.userInfo.msg != "") {
             profile_lb_msg.text = HomeViewController.getUserInfo.userInfo.msg
+        }
+        */
+        if (NSUserDefaults.standardUserDefaults().stringForKey("stateMSG") != "") {
+            profile_lb_msg.text = NSUserDefaults.standardUserDefaults().stringForKey("stateMSG")
         }
         
         initProfileImage()
@@ -107,20 +124,34 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         presentViewController(alert, animated: true, completion:nil)
     }
     
+    
+    
     @IBAction func onClickLogout(sender: UIButton) {
-        //Logout 구현
-        HomeViewController.getUserInfo.userInfo = UserInfo()
         
-        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "gender")
-        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userEmail")
-        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userName")
-        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userPW")
-        NSUserDefaults.standardUserDefaults().setBool(false, forKey: "isUserLoggedIn")
-        NSUserDefaults.standardUserDefaults().synchronize()
+       //        let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController")
+//        homeViewController!.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+//        self.parentViewController!.presentViewController(homeViewController!, animated: true, completion: nil)
         
-        let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController")
-        homeViewController!.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-        self.parentViewController!.presentViewController(homeViewController!, animated: true, completion: nil)
+        let myAlert = UIAlertController(title:"Alert", message: "정말 로그아웃 하시겠습니까?", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.Default){ action in
+            //Logout 구현
+            HomeViewController.getUserInfo.userInfo = UserInfo()
+            
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "gender")
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userEmail")
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userName")
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userPW")
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: "isUserLoggedIn")
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: "lock")
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "stateMSG")
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "lockPw")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            
+            self.tabBarController!.selectedIndex = 0
+        }
+        myAlert.addAction(okAction)
+        self.presentViewController(myAlert, animated: true, completion: nil) 
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -128,4 +159,33 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.profile_iv_profile.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         }
     }
+    
+    
+    func gotoMsgEdit(sender:UITapGestureRecognizer){
+        
+        var viewController: UIViewController?
+        
+        viewController = self.storyboard?.instantiateViewControllerWithIdentifier("msgEditViewController")
+        
+        if(viewController != nil) {
+            viewController!.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+            //navigationController 의 하위 뷰로 전환
+            self.navigationController?.pushViewController(viewController!, animated: true)
+        }
+    }
+    
+    func gotoNameEdit(sender:UITapGestureRecognizer){
+        
+        var viewController: UIViewController?
+        
+        viewController = self.storyboard?.instantiateViewControllerWithIdentifier("nameEditViewController")
+        
+        if(viewController != nil) {
+            viewController!.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+            //navigationController 의 하위 뷰로 전환
+            self.navigationController?.pushViewController(viewController!, animated: true)
+        }
+    }
+    
+    
 }

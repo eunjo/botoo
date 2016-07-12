@@ -15,18 +15,11 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        userEmailTextField.becomeFirstResponder()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
     @IBAction func loginButtonTapped(sender: AnyObject) {
-        
         let userEmail = userEmailTextField.text
         let userPW = userPWTextField.text
         
@@ -46,7 +39,10 @@ class LoginViewController: UIViewController {
         }
     }
     
-    
+    //빈 공간 클릭 시 키보드 하이드
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
     /*
     // MARK: - Navigation
