@@ -16,7 +16,7 @@ class RegisterPageViewController: UIViewController {
     @IBOutlet weak var PWrepeatTextField: UITextField!
     @IBOutlet weak var genderSegment: UISegmentedControl!
     
-    var gender:Int = 0
+    var gender:Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
