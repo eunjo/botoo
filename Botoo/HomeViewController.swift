@@ -43,6 +43,7 @@ class HomeViewController: UIViewController {
         
         // 무한 루프 방지
         getUserInfo.checkLock = isLock
+        
     }
     
     override func viewWillAppear(animated: Bool) {

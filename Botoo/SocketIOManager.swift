@@ -18,14 +18,12 @@ class SocketIOManager: NSObject {
     
     var socket: SocketIOClient = SocketIOClient(socketURL: NSURL(string: "http://ec2-52-42-42-59.us-west-2.compute.amazonaws.com")!)
     
-    /*
-    Socket connect establish/ disconnect
- 
+    
     func establishConnection() {
         socket.connect()
         print("connected successfully")
     }
-    
+    /*
     
     func closeConnection() {
         socket.disconnect()
