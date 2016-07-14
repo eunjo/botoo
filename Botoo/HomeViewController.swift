@@ -105,10 +105,10 @@ class HomeViewController: UIViewController {
         // 내 프사 로드
         
         if (NSUserDefaults.standardUserDefaults().integerForKey("gender") == 1) {
-            myProPic.image = UIImage(named: "default_female.png")
+            myProPic.image = UIImage(named: "tp_default_female.png")
         }
         else {
-            myProPic.image = UIImage(named: "default_male.png")
+            myProPic.image = UIImage(named: "tp_default_male.png")
         }
  
         // 내 이름 로드
@@ -120,7 +120,7 @@ class HomeViewController: UIViewController {
         
         // 상대방 로드
         if (getUserInfo.userInfo.lover == "" || getUserInfo.userInfo.lover == nil) {
-            loverProPic.image = UIImage(named: "default_grey.png")
+            loverProPic.image = UIImage(named: "tp_default_grey.png")
             loverUserName.text = "연결하러 가기"
         }
         
@@ -179,7 +179,7 @@ class HomeViewController: UIViewController {
             
             /** 
                     서버 연결 후 수정
-            **/
+             **/
             
             getUserInfo.userInfo = UserInfo(memberId: "0", ver: (NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")?.description)!, email: userEmail!, name: userName!, gender: usergender, regId: "", msg: "", image: "", lover: "", lock: false)
         }
