@@ -34,11 +34,17 @@ class SocketIOManager: NSObject {
         SocketIOManager.sharedInstance.establishConnection()
     }
     
-    
     // app 비활성화시 disconnect
     func applicationDidEnterBackground(application: UIApplication) {
         SocketIOManager.sharedInstance.closeConnection()
     }
+    
+    
+    func sendMessage(message: String) {
+        socket.emit("chatMessage", message)
+    }
+    
+    
     
     
 

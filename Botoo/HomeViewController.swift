@@ -44,15 +44,17 @@ class HomeViewController: UIViewController {
         // 무한 루프 방지
         getUserInfo.checkLock = isLock
         
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         
         // 서 버 연 결 테 스 팅
         
-        TestConstruct().testConnect { (json, error) -> Void in
+        let defaultURLInfo = URLInfo()
+        TestConstruct().testConnect( defaultURLInfo, httpMethod: "GET", params: nil, completionHandler: { (json, error) -> Void in
             print("받았어요 :: \(json)")
-        }
+        })
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -429,5 +429,11 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     func contactPickerDidCancel(picker: CNContactPickerViewController) {
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
+
+    @IBAction func sendButtonTapped(sender: AnyObject) {
+        
+
+    }
+
     
 }

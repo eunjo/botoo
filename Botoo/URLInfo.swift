@@ -15,6 +15,7 @@ public class URLInfo {
     
     
     init() {
-        test = WEB_SERVER_IP + "/hyein"
+        test = WEB_SERVER_IP + "/"
     }
+    
 }

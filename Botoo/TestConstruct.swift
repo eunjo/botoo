@@ -12,13 +12,21 @@ class TestConstruct: TestProtocol {
     
     let session = NSURLSession.sharedSession()
     let urlInfo = URLInfo()
+    let request = NSMutableURLRequest()
     
-    func testConnect(completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
+    func testConnect(urlInfo:URLInfo, httpMethod:String, params:Dictionary<String,String>?, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
         
         //파라미터를 추가한 URL 생성
-        let URL = NSURL(string: "\(URLInfo().test)")
+        let URL = NSURL(string: "\(urlInfo.test)")
         
-        let task = session.dataTaskWithRequest(NSMutableURLRequest(URL: URL!)) {
+        request.HTTPMethod = httpMethod
+        request.URL = URL
+        
+        if (params != nil){
+            request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(params, options: [])
+        }
+        
+        let task = session.dataTaskWithRequest(request) {
             (data, response, error) -> Void in
             let httpResponse = response as! NSHTTPURLResponse
             let statusCode = httpResponse.statusCode

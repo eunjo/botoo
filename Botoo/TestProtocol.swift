@@ -9,5 +9,5 @@
 import Foundation
 
 protocol TestProtocol {
-    func testConnect(completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
+    func testConnect(urlInfo:URLInfo, httpMethod:String, params:Dictionary<String,String>?, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
 }

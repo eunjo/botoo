@@ -66,7 +66,19 @@ class RegisterPageViewController: UIViewController {
         
         
         // Store data 
-        // 지울 것.
+        let loginParams = [
+            "email": userEmail! as String,
+            "pw": userPW! as String,
+            "name": userName! as String,
+            "gender": gender! as Int
+        ]
+        
+        var urlInfoForRegister:URLInfo = URLInfo()
+        urlInfoForRegister.test = urlInfoForRegister.WEB_SERVER_IP+"/member"
+
+        TestConstruct().testConnect( urlInfoForRegister, httpMethod: "POST", params: loginParams as! Dictionary<String,String>, completionHandler: { (json, error) -> Void in
+            print("가입 정보가 잘들어갔어욤 :: \(json)")
+        })
         
         NSUserDefaults.standardUserDefaults().setObject(gender, forKey: "gender")
         NSUserDefaults.standardUserDefaults().setObject(userEmail, forKey: "userEmail")
