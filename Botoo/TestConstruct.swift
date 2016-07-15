@@ -14,10 +14,10 @@ class TestConstruct: TestProtocol {
     let urlInfo = URLInfo()
     let request = NSMutableURLRequest()
     
-    func testConnect(url_Info:String, httpMethod:String, params:Dictionary<String,String>?, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
+    func testConnect(urlInfo:URLInfo, httpMethod:String, params:Dictionary<String,String>?, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
         
         //파라미터를 추가한 URL 생성
-        let URL = NSURL(string: "\(urlInfo.test)+\(url_Info)")
+        let URL = NSURL(string: "\(urlInfo.test)")
         
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.HTTPMethod = httpMethod

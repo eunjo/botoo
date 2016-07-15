@@ -51,7 +51,9 @@ class HomeViewController: UIViewController {
         
         // 서 버 연 결 테 스 팅
 
-        TestConstruct().testConnect("/", httpMethod: "GET", params: nil, completionHandler: { (json, error) -> Void in
+        let urlInfoForConnect:URLInfo = URLInfo()
+        urlInfoForConnect.test = urlInfoForConnect.WEB_SERVER_IP+"/"
+        TestConstruct().testConnect(urlInfoForConnect, httpMethod: "GET", params: nil, completionHandler: { (json, error) -> Void in
             print("받았어요 :: \(json)")
         })
     }

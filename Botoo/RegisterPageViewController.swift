@@ -73,7 +73,10 @@ class RegisterPageViewController: UIViewController {
             "gender": gender! as String
         ]
         
-        TestConstruct().testConnect("/member", httpMethod: "POST", params: loginParams as! Dictionary<String,String>, completionHandler: { (json, error) -> Void in
+        var urlInfoForRegister:URLInfo = URLInfo()
+        urlInfoForRegister.test = urlInfoForRegister.WEB_SERVER_IP+"/member"
+
+        TestConstruct().testConnect(urlInfoForRegister, httpMethod: "POST", params: loginParams as! Dictionary<String,String>, completionHandler: { (json, error) -> Void in
             print("가입 정보가 잘들어갔어욤 :: \(json)")
         })
         
