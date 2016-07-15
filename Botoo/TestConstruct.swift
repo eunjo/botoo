@@ -19,11 +19,12 @@ class TestConstruct: TestProtocol {
         //파라미터를 추가한 URL 생성
         let URL = NSURL(string: "\(urlInfo.test)")
         
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.HTTPMethod = httpMethod
         request.URL = URL
         
         if (params != nil){
-            request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(params, options: [])
+            request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(params!, options: [])
         }
         
         let task = session.dataTaskWithRequest(request) {

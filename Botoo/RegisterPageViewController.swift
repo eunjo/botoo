@@ -16,7 +16,7 @@ class RegisterPageViewController: UIViewController {
     @IBOutlet weak var PWrepeatTextField: UITextField!
     @IBOutlet weak var genderSegment: UISegmentedControl!
     
-    var gender:Int?
+    var gender:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +27,10 @@ class RegisterPageViewController: UIViewController {
     @IBAction func genderSelect(sender: AnyObject) {
         
         if (genderSegment.selectedSegmentIndex == 0){
-            gender = 0
+            gender = "0"
         }
         if (genderSegment.selectedSegmentIndex == 1){
-            gender = 1
+            gender = "1"
         }
     }
     
@@ -47,7 +47,7 @@ class RegisterPageViewController: UIViewController {
         
         // Check for Empty Fields
     
-        if (userEmail!.isEmpty || userName!.isEmpty || userPW!.isEmpty || PWrepeat!.isEmpty){
+        if (userEmail!.isEmpty || userName!.isEmpty || userPW!.isEmpty || PWrepeat!.isEmpty || gender==nil){
             
             // Display alert message
             displayRegisterAlert("All fields are required")
@@ -70,7 +70,7 @@ class RegisterPageViewController: UIViewController {
             "email": userEmail! as String,
             "pw": userPW! as String,
             "name": userName! as String,
-            "gender": gender! as Int
+            "gender": gender! as String
         ]
         
         var urlInfoForRegister:URLInfo = URLInfo()

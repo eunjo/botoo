@@ -107,7 +107,7 @@ class HomeViewController: UIViewController {
         
         // 내 프사 로드
         
-        if (NSUserDefaults.standardUserDefaults().integerForKey("gender") == 1) {
+        if (NSUserDefaults.standardUserDefaults().stringForKey("gender") == "1") {
             myProPic.image = UIImage(named: "tp_default_female.png")
         }
         else {
