@@ -50,9 +50,8 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         
         // 서 버 연 결 테 스 팅
-        
-        let defaultURLInfo = URLInfo()
-        TestConstruct().testConnect( defaultURLInfo, httpMethod: "GET", params: nil, completionHandler: { (json, error) -> Void in
+
+        TestConstruct().testConnect("/", httpMethod: "GET", params: nil, completionHandler: { (json, error) -> Void in
             print("받았어요 :: \(json)")
         })
     }
