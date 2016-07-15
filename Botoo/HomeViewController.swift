@@ -50,7 +50,6 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         
         // 서 버 연 결 테 스 팅
-
         let urlInfoForConnect:URLInfo = URLInfo()
         urlInfoForConnect.test = urlInfoForConnect.WEB_SERVER_IP+"/"
         TestConstruct().testConnect(urlInfoForConnect, httpMethod: "GET", params: nil, completionHandler: { (json, error) -> Void in

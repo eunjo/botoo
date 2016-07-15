@@ -22,6 +22,7 @@ class RegisterPageViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        genderSegment.selectedSegmentIndex = 0
     }
 
     @IBAction func genderSelect(sender: AnyObject) {
@@ -63,9 +64,27 @@ class RegisterPageViewController: UIViewController {
             return
         }
         
+        // URL Info 객체 생성
+        var urlInfoForRegister:URLInfo = URLInfo()
+
+        
+        // Email 중복검사
+        let checkParams = [
+            "email": userEmail! as String,
+        ]
+        
+        urlInfoForRegister.test = urlInfoForRegister.WEB_SERVER_IP+"/checkEmail"
+        TestConstruct().testConnect(urlInfoForRegister, httpMethod: "GET", params: checkParams, completionHandler: { (json, error) -> Void in
+            print("email 중복검사 :: \(json)")
+        })
+ 
         
         
-        // Store data 
+        
+
+        // Store data
+        urlInfoForRegister.test = urlInfoForRegister.WEB_SERVER_IP+"/member"
+        
         let loginParams = [
             "email": userEmail! as String,
             "pw": userPW! as String,
@@ -73,12 +92,10 @@ class RegisterPageViewController: UIViewController {
             "gender": gender! as String
         ]
         
-        var urlInfoForRegister:URLInfo = URLInfo()
-        urlInfoForRegister.test = urlInfoForRegister.WEB_SERVER_IP+"/member"
-
         TestConstruct().testConnect(urlInfoForRegister, httpMethod: "POST", params: loginParams as! Dictionary<String,String>, completionHandler: { (json, error) -> Void in
             print("가입 정보가 잘들어갔어욤 :: \(json)")
         })
+        
         
         NSUserDefaults.standardUserDefaults().setObject(gender, forKey: "gender")
         NSUserDefaults.standardUserDefaults().setObject(userEmail, forKey: "userEmail")
