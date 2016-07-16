@@ -59,6 +59,7 @@ class LoginViewController: UIViewController {
         
         while self.threadIsAlive == 0 {}
         
+        
         if !isAlreadyExists {
             
             print("등록안된 이메일일때")

@@ -23,7 +23,11 @@ class HomeViewController: UIViewController {
     
     let isLock = NSUserDefaults.standardUserDefaults().boolForKey("lock")
     
+    var threadIsAlive = 0
+    
     var userEmail:String?
+    
+    var isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn")
     
     var userEmailStored:String?
     var userNameStored:String?
@@ -55,32 +59,25 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         
-        // URL Info 객체 생성
-        var urlInfoForRegister:URLInfo = URLInfo()
+        print("홈뷰 뷰윌어피어")
         
-        // 유저 정보 받아오기
-//        urlInfoForRegister.test = urlInfoForRegister.WEB_SERVER_IP+"/checkEmail?email="+userEmail
-//        TestConstruct().testConnect(urlInfoForRegister, httpMethod: "GET", params: nil, completionHandler: { (json, error) -> Void in
-//            self.isGot = true
-//            self.userEmailStored = String(json["email"])
-//            self.userNameStored = String(json["name"])
-//            self.userGenderStored = String(json["gender"])
-//            
-//            self.userEmailStored = self.userEmailStored!.stringByReplacingOccurrencesOfString("Optional(", withString: "")
-//            self.userEmailStored = self.userEmailStored!.stringByReplacingOccurrencesOfString(")", withString: "")
-//
-//            self.userNameStored = self.userNameStored!.stringByReplacingOccurrencesOfString("Optional(", withString: "")
-//            self.userNameStored = self.userNameStored!.stringByReplacingOccurrencesOfString(")", withString: "")
-//            
-//            self.userGenderStored = self.userGenderStored!.stringByReplacingOccurrencesOfString("Optional(", withString: "")
-//            self.userGenderStored = self.userGenderStored!.stringByReplacingOccurrencesOfString(")", withString: "")
-//            
-//        })
-//        
-//        while(self.isGot==nil){
-//        }
-//        profileInit()
+        if (isUserLoggedIn) {
+            
+            print("홈뷰 if문 진입")
+            MemberConstruct().checkEmail(userEmail!, completionHandler: { (json, error) -> Void in
+                if json != nil {
+                    self.userNameStored = json["name"] as? String
+                    self.userGenderStored = json["gender"] as? String
+                }
+                
+                self.threadIsAlive = 1
+            })
+            
+            while self.threadIsAlive == 0 {}
+            
+            profileInit()
 
+        }
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -206,8 +203,6 @@ class HomeViewController: UIViewController {
             }
             
             let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
-            let userName = NSUserDefaults.standardUserDefaults().stringForKey("userName")
-            let usergender = NSUserDefaults.standardUserDefaults().integerForKey("gender")
             
             /** 
                     서버 연결 후 수정
