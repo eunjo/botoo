@@ -25,11 +25,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     private var userGender: String?
     
     var userEmailStored:String?
-    var userPWStored:String?
     var userGenderStored:String?
     var userNameStored:String?
     
-    let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+    var isGot:Bool?
+    
+    var userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
     
     override func viewDidLoad(){
         setViewBorder()
@@ -46,24 +47,42 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         profile_lb_name.userInteractionEnabled = true
         profile_lb_name.addGestureRecognizer(tap_2)
         
-        // URL Info 객체 생성
-        var urlInfoForRegister:URLInfo = URLInfo()
-        
-        // Email 중복검사
-        urlInfoForRegister.test = urlInfoForRegister.WEB_SERVER_IP+"/checkEmail?email="+userEmail!
-        TestConstruct().testConnect(urlInfoForRegister, httpMethod: "GET", params: nil, completionHandler: { (json, error) -> Void in
-            print("profile view :: \(json)")
-            self.userEmailStored = String(json["email"])
-            self.userPWStored = String(json["pw"])
-            self.userGenderStored = String(json["gender"])
-            self.userNameStored = String(json["name"])
-        })
         
     }
     
     override func viewWillAppear(animated: Bool) {
         
+        // URL Info 객체 생성
+        var urlInfoForRegister:URLInfo = URLInfo()
+        
+        // 유저 정보 받아오기
+        urlInfoForRegister.test = urlInfoForRegister.WEB_SERVER_IP+"/checkEmail?email="+userEmail
+        TestConstruct().testConnect(urlInfoForRegister, httpMethod: "GET", params: nil, completionHandler: { (json, error) -> Void in
+
+            self.userEmailStored = String(json["email"])
+            self.userGenderStored = String(json["gender"])
+            self.userNameStored = String(json["name"])
+            
+            // 한번 파싱
+            self.userEmailStored = self.userEmailStored!.stringByReplacingOccurrencesOfString("Optional(", withString: "")
+            self.userEmailStored = self.userEmailStored!.stringByReplacingOccurrencesOfString(")", withString: "")
+            
+            self.userNameStored = self.userNameStored!.stringByReplacingOccurrencesOfString("Optional(", withString: "")
+            self.userNameStored = self.userNameStored!.stringByReplacingOccurrencesOfString(")", withString: "")
+            
+            self.userGenderStored = self.userGenderStored!.stringByReplacingOccurrencesOfString("Optional(", withString: "")
+            self.userGenderStored = self.userGenderStored!.stringByReplacingOccurrencesOfString(")", withString: "")
+            
+            self.isGot = true
+            
+        })
+        
+        while(isGot==nil){
+            
+        }
+        
         initProfile()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -71,9 +90,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func initProfile() {
-        profile_lb_name.text = userNameStored!
-        profile_lb_email.text = userEmailStored!
-        userGender = userGenderStored!
+        profile_lb_name.text = userNameStored
+        profile_lb_email.text = userEmailStored
+        userGender = userGenderStored
         
         /*
         if (HomeViewController.getUserInfo.userInfo.msg != "") {

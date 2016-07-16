@@ -23,6 +23,14 @@ class HomeViewController: UIViewController {
     
     let isLock = NSUserDefaults.standardUserDefaults().boolForKey("lock")
     
+    var userEmail:String = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
+    
+    var userEmailStored:String?
+    var userNameStored:String?
+    var userGenderStored:String?
+    
+    var isGot:Bool?
+    
     struct getUserInfo {
         static var userInfo = UserInfo()
         static var checkLock = false
@@ -50,11 +58,32 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         
         // 서 버 연 결 테 스 팅
-        let urlInfoForConnect:URLInfo = URLInfo()
-        urlInfoForConnect.test = urlInfoForConnect.WEB_SERVER_IP+"/"
-        TestConstruct().testConnect(urlInfoForConnect, httpMethod: "GET", params: nil, completionHandler: { (json, error) -> Void in
-            print("받았어요 :: \(json)")
+        // URL Info 객체 생성
+        var urlInfoForRegister:URLInfo = URLInfo()
+        
+        // 유저 정보 받아오기
+        urlInfoForRegister.test = urlInfoForRegister.WEB_SERVER_IP+"/checkEmail?email="+userEmail
+        TestConstruct().testConnect(urlInfoForRegister, httpMethod: "GET", params: nil, completionHandler: { (json, error) -> Void in
+            self.isGot = true
+            self.userEmailStored = String(json["email"])
+            self.userNameStored = String(json["name"])
+            self.userGenderStored = String(json["gender"])
+            
+            self.userEmailStored = self.userEmailStored!.stringByReplacingOccurrencesOfString("Optional(", withString: "")
+            self.userEmailStored = self.userEmailStored!.stringByReplacingOccurrencesOfString(")", withString: "")
+
+            self.userNameStored = self.userNameStored!.stringByReplacingOccurrencesOfString("Optional(", withString: "")
+            self.userNameStored = self.userNameStored!.stringByReplacingOccurrencesOfString(")", withString: "")
+            
+            self.userGenderStored = self.userGenderStored!.stringByReplacingOccurrencesOfString("Optional(", withString: "")
+            self.userGenderStored = self.userGenderStored!.stringByReplacingOccurrencesOfString(")", withString: "")
+            
         })
+        
+        while(self.isGot==nil){
+        }
+        profileInit()
+
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -99,6 +128,9 @@ class HomeViewController: UIViewController {
     }
     
     func profileInit() {
+    
+ 
+        
         //circle image view 적용
         self.myProPic.layer.cornerRadius = self.myProPic.frame.size.width / 2
         self.myProPic.clipsToBounds = true
@@ -107,7 +139,7 @@ class HomeViewController: UIViewController {
         
         // 내 프사 로드
         
-        if (NSUserDefaults.standardUserDefaults().stringForKey("gender") == "1") {
+        if (userGenderStored == "1") {
             myProPic.image = UIImage(named: "tp_default_female.png")
         }
         else {
@@ -115,7 +147,7 @@ class HomeViewController: UIViewController {
         }
  
         // 내 이름 로드
-        myUserName.text = NSUserDefaults.standardUserDefaults().stringForKey("userName")
+        myUserName.text = userNameStored
         
         // 내 상메 로드
         myStateMsg.text = NSUserDefaults.standardUserDefaults().stringForKey("stateMSG")
