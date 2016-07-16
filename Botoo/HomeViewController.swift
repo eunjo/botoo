@@ -27,8 +27,6 @@ class HomeViewController: UIViewController {
     
     var userEmail:String?
     
-    var isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn")
-    
     var userEmailStored:String?
     var userNameStored:String?
     var userGenderStored:String?
@@ -59,11 +57,11 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         
-        print("홈뷰 뷰윌어피어")
+        var isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn")
         
         if (isUserLoggedIn) {
             
-            print("홈뷰 if문 진입")
+            userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
             MemberConstruct().checkEmail(userEmail!, completionHandler: { (json, error) -> Void in
                 if json != nil {
                     self.userNameStored = json["name"] as? String

@@ -19,6 +19,8 @@ class RegisterPageViewController: UIViewController {
     var gender:String?
     let generalOkAction = UIAlertAction(title:"확인", style:UIAlertActionStyle.Default, handler:nil)
     
+    var threadIsAlive = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -78,13 +80,19 @@ class RegisterPageViewController: UIViewController {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.displayRegisterAlert("이미 가입된 이메일 주소입니다", okAction: self.generalOkAction)
                 }
+                self.threadIsAlive = 1
             }
         })
         
         if (isAlreadyExists){
+            self.threadIsAlive = 1
             return
         }
+        
+        while (threadIsAlive == 0) {}
  
+        
+        sleep(1)
         let loginParams = [
             "email": userEmail! as String,
             "pw": userPW! as String,
@@ -92,7 +100,7 @@ class RegisterPageViewController: UIViewController {
             "gender": gender! as String
         ]
         
-        if isAlreadyExists == false {
+        if (isAlreadyExists != true){
             MemberConstruct().register(loginParams, completionHandler: { (json, error) -> Void in
                 print("가입 정보가 잘들어갔어욤 :: \(json)")
                 dispatch_async(dispatch_get_main_queue()) {
@@ -103,6 +111,7 @@ class RegisterPageViewController: UIViewController {
                 }
             })
         }
+
     }
     
     
