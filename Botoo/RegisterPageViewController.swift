@@ -88,7 +88,7 @@ class RegisterPageViewController: UIViewController {
             "gender": gender! as String
         ]
         
-        if !isAlreadyExists {
+        if isAlreadyExists == false {
             MemberConstruct().register(loginParams, completionHandler: { (json, error) -> Void in
                 print("가입 정보가 잘들어갔어욤 :: \(json)")
                 dispatch_async(dispatch_get_main_queue()) {

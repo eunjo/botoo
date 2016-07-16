@@ -59,7 +59,7 @@ class LoginViewController: UIViewController {
         
         while self.threadIsAlive == 0 {}
         
-        if !isAlreadyExists {
+        if isAlreadyExists == false {
             
             print("등록안된 이메일일때")
             let myAlert = UIAlertController(title:"Alert", message: "등록되지 않은 계정이거나 비밀번호가 틀립니다", preferredStyle: UIAlertControllerStyle.Alert)
