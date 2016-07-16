@@ -80,6 +80,10 @@ class RegisterPageViewController: UIViewController {
                 }
             }
         })
+        
+        if (isAlreadyExists){
+            return
+        }
  
         let loginParams = [
             "email": userEmail! as String,
