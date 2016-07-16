@@ -16,11 +16,12 @@ class connectSceneViewController: UIViewController {
     @IBOutlet weak var searchEmailTextField: UITextField!
     @IBOutlet weak var searchResult: UILabel!
     
-    var isGot:Bool?
     
     var loverEmailStored:String?
     var loverGenderStored:String?
     var loverNameStored:String?
+    
+    var isGot:Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
