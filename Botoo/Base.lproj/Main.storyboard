@@ -263,17 +263,11 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="검색 결과 여기에 표시" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agz-yS-aAf">
-                                <rect key="frame" x="20" y="216" width="162" height="21"/>
+                                <rect key="frame" x="20" y="216" width="245" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IpU-N6-W1d">
-                                <rect key="frame" x="273" y="212" width="72" height="30"/>
-                                <state key="normal" title="연결 신청">
-                                    <color key="titleColor" red="0.85098039219999999" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ik-in-drq">
                                 <rect key="frame" x="20" y="28" width="58" height="22"/>
                                 <state key="normal" title="뒤로 가기">
@@ -292,6 +286,12 @@
                                     <action selector="searchButtonTapped:" destination="HSz-ki-p1e" eventType="touchUpInside" id="gCs-fa-jEe"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IpU-N6-W1d">
+                                <rect key="frame" x="273" y="212" width="72" height="30"/>
+                                <state key="normal" title="연결 신청">
+                                    <color key="titleColor" red="0.85098039219999999" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.8098600333" blue="0.82729438300000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -300,6 +300,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="backButton" destination="1ik-in-drq" id="5B1-g8-wce"/>
+                        <outlet property="searchButton" destination="IpU-N6-W1d" id="up5-Ze-w0P"/>
                         <outlet property="searchEmailTextField" destination="pED-Iy-fmT" id="gcE-qN-caC"/>
                         <outlet property="searchResult" destination="agz-yS-aAf" id="Oop-H0-4VI"/>
                     </connections>

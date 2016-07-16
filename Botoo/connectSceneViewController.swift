@@ -11,6 +11,7 @@ import UIKit
 class connectSceneViewController: UIViewController {
 
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var searchButton: UIButton!
     
     @IBOutlet weak var searchEmailTextField: UITextField!
     @IBOutlet weak var searchResult: UILabel!
@@ -42,15 +43,16 @@ class connectSceneViewController: UIViewController {
 
     @IBAction func searchButtonTapped(sender: AnyObject) {
         
-        let loverEmail:String = searchEmailTextField.text!
+        let loverEmail = searchEmailTextField.text
         
         // URL Info 객체 생성
         var urlInfoForRegister:URLInfo = URLInfo()
         
         // 유저 정보 받아오기
-        urlInfoForRegister.test = urlInfoForRegister.WEB_SERVER_IP+"/checkEmail?email="+loverEmail
+        urlInfoForRegister.test = urlInfoForRegister.WEB_SERVER_IP+"/checkEmail?email="+loverEmail!
         TestConstruct().testConnect(urlInfoForRegister, httpMethod: "GET", params: nil, completionHandler: { (json, error) -> Void in
             self.isGot = true
+            
             self.loverEmailStored = String(json["email"])
             self.loverNameStored = String(json["name"])
             
@@ -59,16 +61,18 @@ class connectSceneViewController: UIViewController {
             
             self.loverNameStored = self.loverNameStored!.stringByReplacingOccurrencesOfString("Optional(", withString: "")
             self.loverNameStored = self.loverNameStored!.stringByReplacingOccurrencesOfString(")", withString: "")
-            
+            self.searchButton.enabled = true
         })
         
         sleep(1)
         searchResult.text = loverNameStored
         
-        print("등록안된 이메일일때")
-        searchResult.text = "존재하지 않는 사용자입니다"
-        return
-        
+        if (isGot==nil){
+            print("등록안된 이메일일때")
+            searchResult.text = "존재하지 않는 사용자입니다"
+            searchButton.enabled = false
+            return
+        }
     }
     
     
