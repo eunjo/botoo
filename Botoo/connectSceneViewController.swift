@@ -44,12 +44,7 @@ class connectSceneViewController: UIViewController {
         
         let loverEmail:String = searchEmailTextField.text!
         
-        // URL Info 객체 생성
-        var urlInfoForRegister:URLInfo = URLInfo()
-        
-        // 유저 정보 받아오기
-        urlInfoForRegister.test = urlInfoForRegister.WEB_SERVER_IP+"/checkEmail?email="+loverEmail
-        TestConstruct().testConnect(urlInfoForRegister, httpMethod: "GET", params: nil, completionHandler: { (json, error) -> Void in
+        MemberConstruct().checkEmail(loverEmail, completionHandler: { (json, error) -> Void in
             self.isGot = true
             self.loverEmailStored = String(json["email"])
             self.loverNameStored = String(json["name"])
@@ -70,18 +65,5 @@ class connectSceneViewController: UIViewController {
         return
         
     }
-    
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

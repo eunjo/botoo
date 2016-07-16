@@ -17,6 +17,7 @@ class RegisterPageViewController: UIViewController {
     @IBOutlet weak var genderSegment: UISegmentedControl!
     
     var gender:String?
+    let generalOkAction = UIAlertAction(title:"확인", style:UIAlertActionStyle.Default, handler:nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,14 +47,14 @@ class RegisterPageViewController: UIViewController {
         let userPW = userPWTextField.text
         let PWrepeat = PWrepeatTextField.text
         
-        var isAlreadyExists:Bool?
+        var isAlreadyExists:Bool = false
         
         // Check for Empty Fields
     
         if (userEmail!.isEmpty || userName!.isEmpty || userPW!.isEmpty || PWrepeat!.isEmpty || gender==nil){
             
             // Display alert message
-            displayRegisterAlert("All fields are required")
+            displayRegisterAlert("All fields are required", okAction: generalOkAction)
             return
         }
         
@@ -62,40 +63,22 @@ class RegisterPageViewController: UIViewController {
         if (userPW != PWrepeat) {
             
             // Display alert message
-            displayRegisterAlert("Passwords do not match")
+            displayRegisterAlert("Passwords do not match", okAction: generalOkAction)
             return
         }
         
-
         
-        // URL Info 객체 생성
-        var urlInfoForRegister:URLInfo = URLInfo()
-
         // Email 중복검사
-
-        urlInfoForRegister.test = urlInfoForRegister.WEB_SERVER_IP+"/checkEmail?email="+userEmail!
-        TestConstruct().testConnect(urlInfoForRegister, httpMethod: "GET", params: nil, completionHandler: { (json, error) -> Void in
+        MemberConstruct().checkEmail(userEmail!, completionHandler: { (json, error) -> Void in
             print("email 중복검사 :: \(json)")
             isAlreadyExists = true
-            print(isAlreadyExists)
+            
+            // UI 작업
+            dispatch_async(dispatch_get_main_queue()) {
+                self.displayRegisterAlert("이미 가입된 이메일 주소입니다", okAction: self.generalOkAction)
+            }
         })
-        
-        sleep(1)
-        print("if문 전")
-        if (isAlreadyExists==true){
-            print("if문 진입")
-            displayRegisterAlert("이미 가입된 이메일 주소입니다")
-            return
-        }
-        print("if문 후")
  
-        
-        
-        
-
-        // Store data
-        urlInfoForRegister.test = urlInfoForRegister.WEB_SERVER_IP+"/member"
-        
         let loginParams = [
             "email": userEmail! as String,
             "pw": userPW! as String,
@@ -103,37 +86,27 @@ class RegisterPageViewController: UIViewController {
             "gender": gender! as String
         ]
         
-        TestConstruct().testConnect(urlInfoForRegister, httpMethod: "POST", params: loginParams as! Dictionary<String,String>, completionHandler: { (json, error) -> Void in
-            print("가입 정보가 잘들어갔어욤 :: \(json)")
-            
-            
-        })
-        
-        
-        // Display alert message with confirmation
-        let myAlert = UIAlertController(title:"Alert", message: "Registration is successful", preferredStyle: UIAlertControllerStyle.Alert)
-        
-        let okAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.Default){ action in
-            self.dismissViewControllerAnimated(true, completion: nil)
+        if !isAlreadyExists {
+            MemberConstruct().register(loginParams, completionHandler: { (json, error) -> Void in
+                print("가입 정보가 잘들어갔어욤 :: \(json)")
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.displayRegisterAlert("가입되었습니다.",
+                        okAction: UIAlertAction(title:"OK", style:UIAlertActionStyle.Default) { action in
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        })
+                }
+            })
         }
-        myAlert.addAction(okAction)
-        self.presentViewController(myAlert, animated: true, completion: nil)
-        
-        
     }
     
     
-    func displayRegisterAlert(userMessage: String){
+    func displayRegisterAlert(userMessage: String, okAction: UIAlertAction){
+        let myAlert = UIAlertController(title:"알림", message: userMessage, preferredStyle: UIAlertControllerStyle.Alert)
         
-        var myAlert = UIAlertController(title:"Alert", message: userMessage, preferredStyle: UIAlertControllerStyle.Alert)
-        
-        let okAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.Default, handler:nil)
+        let okAction = okAction
         
         myAlert.addAction(okAction)
-        
         self.presentViewController(myAlert, animated: true, completion: nil)
-        
-        
     }
     
     
@@ -141,16 +114,4 @@ class RegisterPageViewController: UIViewController {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
