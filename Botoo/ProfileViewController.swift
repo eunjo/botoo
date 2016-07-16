@@ -22,7 +22,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     private var lineViews = [UIView]()
     private let tapGesture = UITapGestureRecognizer()
-    private var userGender: Int?
+    private var userGender: String?
+    
+    var userEmailStored:String?
+    var userPWStored:String?
+    var userGenderStored:String?
+    var userNameStored:String?
     
     override func viewDidLoad(){
         setViewBorder()
@@ -38,6 +43,21 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let tap_2 = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoNameEdit(_:)))
         profile_lb_name.userInteractionEnabled = true
         profile_lb_name.addGestureRecognizer(tap_2)
+        
+        // URL Info 객체 생성
+        var urlInfoForRegister:URLInfo = URLInfo()
+        
+        // Email 중복검사
+        let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+        urlInfoForRegister.test = urlInfoForRegister.WEB_SERVER_IP+"/checkEmail?email="+userEmail!
+        TestConstruct().testConnect(urlInfoForRegister, httpMethod: "GET", params: nil, completionHandler: { (json, error) -> Void in
+            print("profile view :: \(json)")
+            self.userEmailStored = String(json["email"])
+            self.userPWStored = String(json["pw"])
+            self.userGenderStored = String(json["gender"])
+            self.userNameStored = String(json["name"])
+        })
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -50,9 +70,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func initProfile() {
-        profile_lb_name.text = HomeViewController.getUserInfo.userInfo.name
-        profile_lb_email.text = HomeViewController.getUserInfo.userInfo.email
-        userGender = HomeViewController.getUserInfo.userInfo.gender
+        profile_lb_name.text = userNameStored!
+        profile_lb_email.text = userEmailStored!
+        userGender = userGenderStored!
         
         /*
         if (HomeViewController.getUserInfo.userInfo.msg != "") {
@@ -67,9 +87,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func initProfileImage() {
-        if (userGender == 0) {
+        if (userGenderStored == "0") {
             self.profile_iv_profile.image = UIImage(named: "default_male")
-        } else if (userGender == 1) {
+        } else if (userGenderStored == "1") {
             self.profile_iv_profile.image = UIImage(named: "default_female")
         }
     }
