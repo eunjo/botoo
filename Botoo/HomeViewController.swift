@@ -23,7 +23,7 @@ class HomeViewController: UIViewController {
     
     let isLock = NSUserDefaults.standardUserDefaults().boolForKey("lock")
     
-    var userEmail:String = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
+    var userEmail:String?
     
     var userEmailStored:String?
     var userNameStored:String?
@@ -38,7 +38,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
         
         // add tap Gesture
         let tap = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.onClickLoverPic(_:)))
@@ -51,38 +51,35 @@ class HomeViewController: UIViewController {
         
         // 무한 루프 방지
         getUserInfo.checkLock = isLock
-        
-        
     }
     
     override func viewWillAppear(animated: Bool) {
         
-        // 서 버 연 결 테 스 팅
         // URL Info 객체 생성
         var urlInfoForRegister:URLInfo = URLInfo()
         
         // 유저 정보 받아오기
-        urlInfoForRegister.test = urlInfoForRegister.WEB_SERVER_IP+"/checkEmail?email="+userEmail
-        TestConstruct().testConnect(urlInfoForRegister, httpMethod: "GET", params: nil, completionHandler: { (json, error) -> Void in
-            self.isGot = true
-            self.userEmailStored = String(json["email"])
-            self.userNameStored = String(json["name"])
-            self.userGenderStored = String(json["gender"])
-            
-            self.userEmailStored = self.userEmailStored!.stringByReplacingOccurrencesOfString("Optional(", withString: "")
-            self.userEmailStored = self.userEmailStored!.stringByReplacingOccurrencesOfString(")", withString: "")
-
-            self.userNameStored = self.userNameStored!.stringByReplacingOccurrencesOfString("Optional(", withString: "")
-            self.userNameStored = self.userNameStored!.stringByReplacingOccurrencesOfString(")", withString: "")
-            
-            self.userGenderStored = self.userGenderStored!.stringByReplacingOccurrencesOfString("Optional(", withString: "")
-            self.userGenderStored = self.userGenderStored!.stringByReplacingOccurrencesOfString(")", withString: "")
-            
-        })
-        
-        while(self.isGot==nil){
-        }
-        profileInit()
+//        urlInfoForRegister.test = urlInfoForRegister.WEB_SERVER_IP+"/checkEmail?email="+userEmail
+//        TestConstruct().testConnect(urlInfoForRegister, httpMethod: "GET", params: nil, completionHandler: { (json, error) -> Void in
+//            self.isGot = true
+//            self.userEmailStored = String(json["email"])
+//            self.userNameStored = String(json["name"])
+//            self.userGenderStored = String(json["gender"])
+//            
+//            self.userEmailStored = self.userEmailStored!.stringByReplacingOccurrencesOfString("Optional(", withString: "")
+//            self.userEmailStored = self.userEmailStored!.stringByReplacingOccurrencesOfString(")", withString: "")
+//
+//            self.userNameStored = self.userNameStored!.stringByReplacingOccurrencesOfString("Optional(", withString: "")
+//            self.userNameStored = self.userNameStored!.stringByReplacingOccurrencesOfString(")", withString: "")
+//            
+//            self.userGenderStored = self.userGenderStored!.stringByReplacingOccurrencesOfString("Optional(", withString: "")
+//            self.userGenderStored = self.userGenderStored!.stringByReplacingOccurrencesOfString(")", withString: "")
+//            
+//        })
+//        
+//        while(self.isGot==nil){
+//        }
+//        profileInit()
 
     }
 
