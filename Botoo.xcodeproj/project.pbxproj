@@ -45,7 +45,6 @@
 		D63A11E51D352D2A00AD6989 /* tp_default_female.png in Resources */ = {isa = PBXBuildFile; fileRef = D63A11E21D352D2A00AD6989 /* tp_default_female.png */; };
 		D63A11E61D352D2A00AD6989 /* tp_default_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = D63A11E31D352D2A00AD6989 /* tp_default_grey.png */; };
 		D63A11E71D352D2A00AD6989 /* tp_default_male.png in Resources */ = {isa = PBXBuildFile; fileRef = D63A11E41D352D2A00AD6989 /* tp_default_male.png */; };
-		D63A11E91D374DAB00AD6989 /* Source in Resources */ = {isa = PBXBuildFile; fileRef = D63A11E81D374DAB00AD6989 /* Source */; };
 		D63A11EC1D374E1100AD6989 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63A11EB1D374E1100AD6989 /* SocketIOManager.swift */; };
 		D63A12061D37504D00AD6989 /* NSCharacterSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63A11EF1D37504D00AD6989 /* NSCharacterSet.swift */; };
 		D63A12071D37504D00AD6989 /* SocketAckEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63A11F01D37504D00AD6989 /* SocketAckEmitter.swift */; };
@@ -138,7 +137,6 @@
 		D63A11E21D352D2A00AD6989 /* tp_default_female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tp_default_female.png; path = img/tp_default_female.png; sourceTree = "<group>"; };
 		D63A11E31D352D2A00AD6989 /* tp_default_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tp_default_grey.png; path = img/tp_default_grey.png; sourceTree = "<group>"; };
 		D63A11E41D352D2A00AD6989 /* tp_default_male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tp_default_male.png; path = img/tp_default_male.png; sourceTree = "<group>"; };
-		D63A11E81D374DAB00AD6989 /* Source */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Source; path = "/Users/Eunjo/Desktop/Americano/dolphins/Botoo/git/socket.io-client-swift-master/Source"; sourceTree = "<absolute>"; };
 		D63A11EB1D374E1100AD6989 /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		D63A11EF1D37504D00AD6989 /* NSCharacterSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSCharacterSet.swift; path = "socket.io-client-swift-master/Source/NSCharacterSet.swift"; sourceTree = "<group>"; };
 		D63A11F01D37504D00AD6989 /* SocketAckEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SocketAckEmitter.swift; path = "socket.io-client-swift-master/Source/SocketAckEmitter.swift"; sourceTree = "<group>"; };
@@ -491,7 +489,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D63A11E91D374DAB00AD6989 /* Source in Resources */,
 				D69322B41D20FB6A003E9147 /* LaunchScreen.storyboard in Resources */,
 				D69322B11D20FB6A003E9147 /* Assets.xcassets in Resources */,
 				D63A11CE1D3521E800AD6989 /* homeBG.png in Resources */,
