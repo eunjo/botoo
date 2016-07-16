@@ -31,24 +31,26 @@ class LoginViewController: UIViewController {
         var isAlreadyExists:Bool = false
         
         MemberConstruct().checkEmail(userEmail!, completionHandler: { (json, error) -> Void in
-            userEmailStored = json["email"] as? String
-            userPWStored = json["pw"] as? String
+            if json != nil {
+                userEmailStored = json["email"] as? String
+                userPWStored = json["pw"] as? String
             
-            isAlreadyExists = true
+                isAlreadyExists = true
             
-            // UI 작업
-            dispatch_async(dispatch_get_main_queue()) {
+                // UI 작업
+                dispatch_async(dispatch_get_main_queue()) {
                 
-                // 여기까지 왔다는 것 == 이메일이 존재함.
-                if (userPWStored! == userPW!) {
-                    // Log in is successful
-                    print("if문 비교 성공")
+                    // 여기까지 왔다는 것 == 이메일이 존재함.
+                    if (userPWStored! == userPW!) {
+                        // Log in is successful
+                        print("if문 비교 성공")
                         
-                    NSUserDefaults.standardUserDefaults().setObject(userEmail, forKey: "userEmail")
-                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isUserLoggedIn")
-                    NSUserDefaults.standardUserDefaults().synchronize()
+                        NSUserDefaults.standardUserDefaults().setObject(userEmail, forKey: "userEmail")
+                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isUserLoggedIn")
+                        NSUserDefaults.standardUserDefaults().synchronize()
                     
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
                 }
             }
             
