@@ -29,6 +29,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     var userGenderStored:String?
     var userNameStored:String?
     
+    let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+    
     override func viewDidLoad(){
         setViewBorder()
         //circle image view 적용
@@ -48,7 +50,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         var urlInfoForRegister:URLInfo = URLInfo()
         
         // Email 중복검사
-        let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
         urlInfoForRegister.test = urlInfoForRegister.WEB_SERVER_IP+"/checkEmail?email="+userEmail!
         TestConstruct().testConnect(urlInfoForRegister, httpMethod: "GET", params: nil, completionHandler: { (json, error) -> Void in
             print("profile view :: \(json)")
@@ -87,9 +88,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func initProfileImage() {
-        if (userGenderStored == "0") {
+        if (userGender == "0") {
             self.profile_iv_profile.image = UIImage(named: "default_male")
-        } else if (userGenderStored == "1") {
+        } else if (userGender == "1") {
             self.profile_iv_profile.image = UIImage(named: "default_female")
         }
     }
