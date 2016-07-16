@@ -79,10 +79,6 @@ class RegisterPageViewController: UIViewController {
             isAlreadyExists = true
             print(isAlreadyExists)
         })
-        /*
-        while(isAlreadyExists==nil){
-        }
-        */
         
         sleep(1)
         print("if문 전")
@@ -113,12 +109,6 @@ class RegisterPageViewController: UIViewController {
             
         })
         
-        
-        NSUserDefaults.standardUserDefaults().setObject(gender, forKey: "gender")
-        NSUserDefaults.standardUserDefaults().setObject(userEmail, forKey: "userEmail")
-        NSUserDefaults.standardUserDefaults().setObject(userName, forKey: "userName")
-        NSUserDefaults.standardUserDefaults().setObject(userPW, forKey: "userPW")
-        NSUserDefaults.standardUserDefaults().synchronize()
         
         // Display alert message with confirmation
         let myAlert = UIAlertController(title:"Alert", message: "Registration is successful", preferredStyle: UIAlertControllerStyle.Alert)

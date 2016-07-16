@@ -184,7 +184,9 @@ class HomeViewController: UIViewController {
                     서버 연결 후 수정
              **/
             
+            /*
             getUserInfo.userInfo = UserInfo(memberId: "0", ver: (NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")?.description)!, email: userEmail!, name: userName!, gender: usergender, regId: "", msg: "", image: "", lover: "", lock: false)
+            */
         }
         
         profileInit()
