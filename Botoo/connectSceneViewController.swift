@@ -11,15 +11,18 @@ import UIKit
 class connectSceneViewController: UIViewController {
 
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var searchButton: UIButton!
     
     @IBOutlet weak var searchEmailTextField: UITextField!
     @IBOutlet weak var searchResult: UILabel!
     
-    var isGot:Bool?
+    var isGot:Bool = false
     
     var loverEmailStored:String?
     var loverGenderStored:String?
     var loverNameStored:String?
+    
+    var threadIsAlive = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,28 +45,30 @@ class connectSceneViewController: UIViewController {
 
     @IBAction func searchButtonTapped(sender: AnyObject) {
         
-        let loverEmail:String = searchEmailTextField.text!
+        let loverEmail = searchEmailTextField.text
         
-        MemberConstruct().checkEmail(loverEmail, completionHandler: { (json, error) -> Void in
-            self.isGot = true
-            self.loverEmailStored = String(json["email"])
-            self.loverNameStored = String(json["name"])
-            
-            self.loverEmailStored = self.loverEmailStored!.stringByReplacingOccurrencesOfString("Optional(", withString: "")
-            self.loverEmailStored = self.loverEmailStored!.stringByReplacingOccurrencesOfString(")", withString: "")
-            
-            self.loverNameStored = self.loverNameStored!.stringByReplacingOccurrencesOfString("Optional(", withString: "")
-            self.loverNameStored = self.loverNameStored!.stringByReplacingOccurrencesOfString(")", withString: "")
-            
+        MemberConstruct().checkEmail(loverEmail!, completionHandler: { (json, error) -> Void in
+            if json != nil {
+                self.isGot = true
+                
+                self.loverEmailStored = json["email"] as? String
+                self.loverNameStored = json["name"] as? String
+                
+                self.searchButton.enabled = true
+            }
+            self.threadIsAlive = 1
         })
         
-        sleep(1)
+        while self.threadIsAlive == 0 {}
+        
         searchResult.text = loverNameStored
         
-        print("등록안된 이메일일때")
-        searchResult.text = "존재하지 않는 사용자입니다"
-        return
-        
+        if !isGot {
+            print("등록안된 이메일일때")
+            searchResult.text = "존재하지 않는 사용자입니다"
+            searchButton.enabled = false
+            return
+        }
     }
 
 }

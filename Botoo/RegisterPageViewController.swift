@@ -71,11 +71,13 @@ class RegisterPageViewController: UIViewController {
         // Email 중복검사
         MemberConstruct().checkEmail(userEmail!, completionHandler: { (json, error) -> Void in
             print("email 중복검사 :: \(json)")
-            isAlreadyExists = true
+            if json != nil {
+                isAlreadyExists = true
             
-            // UI 작업
-            dispatch_async(dispatch_get_main_queue()) {
-                self.displayRegisterAlert("이미 가입된 이메일 주소입니다", okAction: self.generalOkAction)
+                // UI 작업
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.displayRegisterAlert("이미 가입된 이메일 주소입니다", okAction: self.generalOkAction)
+                }
             }
         })
  

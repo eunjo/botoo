@@ -30,7 +30,10 @@ class MemberConstruct: MemberProtocol {
                     let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
                     completionHandler(json, nil)
                 }catch {
-                    print("Error with Json: \(error)")
+//                    print("Error with Json: \(error)")
+                    
+                    // 이메일이 없는 경우 (0bytes 가 넘어오는 경우 nil 을 보내버림)
+                    completionHandler(nil, nil)
                 }
             }
         }
