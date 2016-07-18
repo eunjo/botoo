@@ -10,7 +10,6 @@ import Foundation
 
 public class URLInfo {
     public let WEB_SERVER_IP = "http://ec2-52-42-42-59.us-west-2.compute.amazonaws.com"
-    public var test: String
     
     public var checkEmail: String
     public var register: String
@@ -21,12 +20,11 @@ public class URLInfo {
     public var disconnect: String
     
     init() {
-        test = WEB_SERVER_IP+"/"
         changeMsg = WEB_SERVER_IP + "/member/changeMsg"
         checkEmail = WEB_SERVER_IP + "/member/checkEmail"
         register = WEB_SERVER_IP + "/member/register"
         drop = WEB_SERVER_IP + "/member/drop"
-        changeName = WEB_SERVER_IP+"/member/changeName"
+        changeName = WEB_SERVER_IP + "/member/changeName"
         connect = WEB_SERVER_IP + "/member/connect"
         disconnect = WEB_SERVER_IP + "/member/disconnect"
     }
