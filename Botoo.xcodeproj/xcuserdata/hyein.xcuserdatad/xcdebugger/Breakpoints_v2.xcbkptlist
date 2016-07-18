@@ -298,22 +298,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Botoo/RegisterPageViewController.swift"
-            timestampString = "490382540.948643"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "registerButtonTapped(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Botoo/RegisterPageViewController.swift"
             timestampString = "490507414.074659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
