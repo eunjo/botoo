@@ -27,6 +27,12 @@ class msgEditViewController: UIViewController {
     }
     
     func addTapped(){
+        let myMsg = NSUserDefaults.standardUserDefaults().stringForKey("userId")
+        
+        MemberConstruct().changeMsg(myMsg!, userMsg: msgLabel.text!,  completionHandler: { (json, error) -> Void in
+            print("success")
+        })
+
         
         
         HomeViewController.getUserInfo.userInfo.msg = msgLabel.text

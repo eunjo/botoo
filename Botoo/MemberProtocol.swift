@@ -14,4 +14,5 @@ protocol MemberProtocol {
     func register(userInfo: Dictionary<String,String>?, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
     func drop(userId: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
     func changeName(userID: String, userName: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
+    func changeMsg(userID: String, userMsg: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
 }
