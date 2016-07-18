@@ -78,17 +78,19 @@ class HomeViewController: UIViewController {
             
             while self.threadIsAlive == 0 {}
             
-            MemberConstruct().checkEmail(loverEmailStored!, completionHandler: { (json, error) -> Void in
-                if json != nil {
-                    self.loverNameStored = json["name"] as? String
-                    self.loverGenderStored = json["gender"] as? String
-                }
+            if loverEmailStored != nil {
+                MemberConstruct().checkEmail(loverEmailStored!, completionHandler: { (json, error) -> Void in
+                    if json != nil {
+                        self.loverNameStored = json["name"] as? String
+                        self.loverGenderStored = json["gender"] as? String
+                    }
                 
-                self.threadIsAlive = 1
-            })
+                    self.threadIsAlive = 1
+                })
 
             
-            while self.threadIsAlive == 0 {}
+                while self.threadIsAlive == 0 {}
+            }
             
             profileInit()
 

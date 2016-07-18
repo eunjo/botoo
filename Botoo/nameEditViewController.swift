@@ -28,15 +28,11 @@ class nameEditViewController: UIViewController {
     
     func addTapped(){
         
-        MemberConstruct().changeName(<#T##userID: String##String#>, userName: <#T##String#>,  completionHandler: { (json, error) -> Void in
-            if json != nil {
-                
-            }
-            
-            self.threadIsAlive = 1
-        })
+        let myId = NSUserDefaults.standardUserDefaults().stringForKey("userId")
         
-        while self.threadIsAlive == 0 {}
+        MemberConstruct().changeName(myId!, userName: nameLabel.text!,  completionHandler: { (json, error) -> Void in
+            print("success")
+        })
         
         
         HomeViewController.getUserInfo.userInfo.name = nameLabel.text
