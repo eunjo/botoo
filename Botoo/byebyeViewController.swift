@@ -26,10 +26,7 @@ class byebyeViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         
         MemberConstruct().checkEmail(myEmail!, completionHandler: { (json, error) -> Void in
-            if json != nil {
-                
-                self.loverEmailStored = json["lover"] as? String
-            }
+            self.loverEmailStored = json["lover"] as? String
         })
     }
 
