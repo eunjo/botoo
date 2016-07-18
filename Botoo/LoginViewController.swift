@@ -30,6 +30,7 @@ class LoginViewController: UIViewController {
         var userNameStored:String?
         var userIdStored: String?
         var userLoverStored: String?
+        var userConnectId: String?
         
         var isAlreadyExists:Bool = false
         
@@ -44,6 +45,12 @@ class LoginViewController: UIViewController {
                     userLoverStored = ""
                 } else {
                     userLoverStored = json["lover"] as? String
+                }
+                
+                if json["connect_id"] as? String == nil {
+                    userConnectId = ""
+                } else {
+                    userConnectId = json["connect_id"] as? String
                 }
 
             
@@ -61,6 +68,7 @@ class LoginViewController: UIViewController {
                         NSUserDefaults.standardUserDefaults().setObject(userIdStored, forKey: "userId")
                         NSUserDefaults.standardUserDefaults().setObject(userNameStored, forKey: "userName")
                         NSUserDefaults.standardUserDefaults().setObject(userLoverStored, forKey: "userLover")
+                        NSUserDefaults.standardUserDefaults().setObject(userConnectId, forKey: "userConnectId")
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isUserLoggedIn")
                         NSUserDefaults.standardUserDefaults().synchronize()
                     

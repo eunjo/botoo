@@ -36,15 +36,22 @@ class LetterrWriteViewController: UIViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         let date:String = dateFormatter.stringFromDate(currentDate)
-        
-        
-        
         let myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+        let connect_id = NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")
         
-        MemberConstruct().updateLetter(title!, body: body!, sender: myEmail!, date: date, completionHandler: { (json, error) -> Void in
+        
+        let letterParams = [
+            "sender": myEmail! as String,
+            "title": title! as String,
+            "body": body! as String,
+            "date": date as String,
+            "connect_id": connect_id! as String
+        ]
+        
+        MemberConstruct().writeLetter(letterParams, completionHandler: { (json, error) -> Void in
             print(json)
 
-            })
+        })
         // 서버 구축 후 데이터 저장
         
         navigationController?.popViewControllerAnimated(true)

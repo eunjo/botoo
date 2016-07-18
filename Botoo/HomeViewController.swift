@@ -31,6 +31,7 @@ class HomeViewController: UIViewController {
     var userNameStored:String?
     var userGenderStored:String?
     var userMsgStored:String?
+    var connectId:String?
     
     var loverEmailStored:String?
     var loverNameStored:String?
@@ -80,7 +81,12 @@ class HomeViewController: UIViewController {
                     self.loverEmailStored = json["lover"] as? String
                     self.firstDateStored = json["date"] as? String
                     self.userMsgStored = json["msg"] as? String
+                    self.connectId = json["connect_id"] as? String
                     self.isGot = true
+                    
+                    
+                    NSUserDefaults.standardUserDefaults().setObject(self.loverEmailStored, forKey: "userLover")
+                    NSUserDefaults.standardUserDefaults().setObject(self.connectId, forKey: "userConnectId")
                 }
                 
                 self.threadIsAlive = 1

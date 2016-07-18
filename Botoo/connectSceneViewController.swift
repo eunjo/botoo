@@ -22,6 +22,7 @@ class connectSceneViewController: UIViewController {
     var loverGenderStored:String?
     var loverNameStored:String?
     var loversLoverStored:String?
+    var connectId:String?
     
     var threadIsAlive = 0
     let generalOkAction = UIAlertAction(title:"확인", style:UIAlertActionStyle.Default, handler:nil)
@@ -86,6 +87,7 @@ class connectSceneViewController: UIViewController {
                 self.loverEmailStored = json["email"] as? String
                 self.loverNameStored = json["name"] as? String
                 self.loversLoverStored = json["lover"] as? String
+                self.connectId = json["connect_id"] as? String
                 
                 if (self.loversLoverStored != nil){
                     self.isAlreadyConnected = true
@@ -117,7 +119,8 @@ class connectSceneViewController: UIViewController {
                         self.dismissViewControllerAnimated(true, completion: nil)
                     }
                 
-                    NSUserDefaults.standardUserDefaults().setObject(self.loverEmailStored, forKey: "userLover")
+                NSUserDefaults.standardUserDefaults().setObject(self.loverEmailStored, forKey: "userLover")
+                NSUserDefaults.standardUserDefaults().setObject(self.connectId, forKey: "userConnectId")
             })
         }
     }
