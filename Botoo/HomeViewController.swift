@@ -77,6 +77,7 @@ class HomeViewController: UIViewController {
                     self.loverEmailStored = json["lover"] as? String
                     self.firstDateStored = json["date"] as? String
                     self.userMsgStored = json["msg"] as? String
+                    self.isGot = true
                 }
                 
                 self.threadIsAlive = 1
@@ -95,14 +96,15 @@ class HomeViewController: UIViewController {
                     self.threadIsAlive = 1
                 })
 
-            
-                while self.threadIsAlive == 0 {}
             }
+            
+            while self.threadIsAlive == 0 {}
             
             profileInit()
 
         }
     }
+    
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "myPicZoom") {
@@ -240,16 +242,9 @@ class HomeViewController: UIViewController {
             
             let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
             
-            /** 
-                    서버 연결 후 수정
-             **/
             
-            /*
-            getUserInfo.userInfo = UserInfo(memberId: "0", ver: (NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString")?.description)!, email: userEmail!, name: userName!, gender: usergender, regId: "", msg: "", image: "", lover: "", lock: false)
-            */
         }
         
-        profileInit()
     }
 
 }
