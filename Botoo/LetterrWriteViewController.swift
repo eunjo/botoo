@@ -28,15 +28,32 @@ class LetterrWriteViewController: UIViewController {
     @IBAction func submitButtonTapped(sender: AnyObject) {
         
         let title = titleTextField.text
-        let letter = letterText.text
-        let writerGender = NSUserDefaults.standardUserDefaults().integerForKey("gender")
+        let body = letterText.text
         
+        let currentDate = NSDate()
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let date:String = dateFormatter.stringFromDate(currentDate)
+        
+        
+        
+        let myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+        
+        MemberConstruct().updateLetter(title!, body: body!, sender: myEmail!, date: date, completionHandler: { (json, error) -> Void in
+            print(json)
+
+            })
         // 서버 구축 후 데이터 저장
         
         navigationController?.popViewControllerAnimated(true)
+ 
         
-        
-    }
+}
+}
+
+
 
     /*
     // MARK: - Navigation
@@ -48,4 +65,4 @@ class LetterrWriteViewController: UIViewController {
     }
     */
 
-}
+
