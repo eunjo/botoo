@@ -85,10 +85,11 @@ class connectSceneViewController: UIViewController {
                 self.loverNameStored = json["name"] as? String
                 self.loversLoverStored = json["lover"] as? String
                 
-                self.isAlreadyConnected = true
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.displayRegisterAlert("이 분은 이미 연인이에요", okAction: self.generalOkAction)
+                if (self.loversLoverStored != nil){
+                    self.isAlreadyConnected = true
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.displayRegisterAlert("이 분은 이미 연인이에요", okAction: self.generalOkAction)
+                    }
                 }
             }
             self.threadIsAlive = 1
@@ -97,8 +98,16 @@ class connectSceneViewController: UIViewController {
         
         while (threadIsAlive == 0) {}
         
+        if (isAlreadyConnected == true){
+            return
+        }
+        
+        
+        
 
         if (isAlreadyConnected != true){
+            
+            print("연결시도")
             
             let myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
             
