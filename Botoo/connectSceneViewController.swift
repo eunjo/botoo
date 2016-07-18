@@ -113,15 +113,15 @@ class connectSceneViewController: UIViewController {
             
             MemberConstruct().connect(myEmail!, loverEmail: loverEmailStored!, completionHandler: { (json, error) -> Void in
                 
-                dispatch_async(dispatch_get_main_queue()) {
+                if json != nil {
+                    dispatch_async(dispatch_get_main_queue()) {
                     
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
                 }
             })
 
         }
-
-        
         
     }
     
