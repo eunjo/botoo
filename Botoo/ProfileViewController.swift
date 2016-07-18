@@ -27,8 +27,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     var userEmailStored:String?
     var userGenderStored:String?
     var userNameStored:String?
+    var userMsgStored:String?
     
-    var isGot:Bool?
+    var isGot:Bool = false
     
     var userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
     
@@ -47,6 +48,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         profile_lb_name.userInteractionEnabled = true
         profile_lb_name.addGestureRecognizer(tap_2)
         
+        initProfile()
+        
         
     }
     
@@ -57,17 +60,23 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.userEmailStored = json["email"] as? String
             self.userGenderStored = json["gender"] as? String
             self.userNameStored = json["name"] as? String
+            self.userMsgStored = json["msg"] as? String
             
             self.isGot = true
             
         })
         
-        while(isGot==nil){
+        while(isGot==false){
             
         }
         
+        if (isGot == true){
+            initProfile()
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
         initProfile()
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -78,15 +87,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         profile_lb_name.text = userNameStored
         profile_lb_email.text = userEmailStored
         userGender = userGenderStored
+        profile_lb_msg.text = userMsgStored
         
-        /*
-        if (HomeViewController.getUserInfo.userInfo.msg != "") {
-            profile_lb_msg.text = HomeViewController.getUserInfo.userInfo.msg
-        }
-        */
-        if (NSUserDefaults.standardUserDefaults().stringForKey("stateMSG") != "") {
-            profile_lb_msg.text = NSUserDefaults.standardUserDefaults().stringForKey("stateMSG")
-        }
         
         initProfileImage()
     }
