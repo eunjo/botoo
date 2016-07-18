@@ -35,6 +35,8 @@ class HomeViewController: UIViewController {
     var loverNameStored:String?
     var loverGenderStored:String?
     
+    var firstDateStored:String?
+    
     var isGot:Bool?
     
     struct getUserInfo {
@@ -71,6 +73,7 @@ class HomeViewController: UIViewController {
                     self.userNameStored = json["name"] as? String
                     self.userGenderStored = json["gender"] as? String
                     self.loverEmailStored = json["lover"] as? String
+                    self.firstDateStored = json["date"] as? String
                 }
                 
                 self.threadIsAlive = 1
@@ -182,13 +185,13 @@ class HomeViewController: UIViewController {
         }
         
         // 일수 계산
-        if ((NSUserDefaults.standardUserDefaults().stringForKey("firstDate") != "") && (NSUserDefaults.standardUserDefaults().stringForKey("firstDate") != nil)){
+        if ((firstDateStored != "") && (firstDateStored != nil)){
             
             let currentDate = NSDate()
             let dateFormatter = NSDateFormatter()
             
             dateFormatter.dateFormat = "yyyy-MM-dd"
-            let firstDate = dateFormatter.dateFromString(NSUserDefaults.standardUserDefaults().stringForKey("firstDate")!)
+            let firstDate = dateFormatter.dateFromString(firstDateStored!)
             
             
             // 날짜 년 월 일 로 포맷변환
