@@ -154,9 +154,6 @@ class HomeViewController: UIViewController {
     }
     
     func profileInit() {
-    
- 
-        
         //circle image view 적용
         self.myProPic.layer.cornerRadius = self.myProPic.frame.size.width / 2
         self.myProPic.clipsToBounds = true
