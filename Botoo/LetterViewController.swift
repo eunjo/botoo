@@ -17,21 +17,12 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
     
     var letterList:[String] = ["test"]
     
-    //var letters = [letterTableViewCell]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         self.letterTable.delegate = self
         self.letterTable.dataSource = self
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return letterList.count

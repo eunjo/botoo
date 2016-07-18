@@ -625,7 +625,7 @@
             </objects>
             <point key="canvasLocation" x="1487.5" y="879.5"/>
         </scene>
-        <!--편지쓰기-->
+        <!--편지-->
         <scene sceneID="Z3W-bp-EJf">
             <objects>
                 <viewController id="Dyn-mD-alR" customClass="LetterViewController" customModule="Botoo" customModuleProvider="target" sceneMemberID="viewController">
@@ -676,7 +676,7 @@
                             <constraint firstItem="8CL-MQ-nfc" firstAttribute="top" secondItem="coI-rB-Gun" secondAttribute="bottom" id="XAx-Sa-wfI"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="편지쓰기" id="o5V-82-wwO">
+                    <navigationItem key="navigationItem" title="편지" id="o5V-82-wwO">
                         <barButtonItem key="leftBarButtonItem" title="Edit" id="mNk-bi-gl8">
                             <color key="tintColor" red="0.85098039219999999" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
