@@ -30,10 +30,12 @@ class HomeViewController: UIViewController {
     var userEmailStored:String?
     var userNameStored:String?
     var userGenderStored:String?
+    var userMsgStored:String?
     
     var loverEmailStored:String?
     var loverNameStored:String?
     var loverGenderStored:String?
+    var loverMsgStored:String?
     
     var firstDateStored:String?
     
@@ -74,6 +76,7 @@ class HomeViewController: UIViewController {
                     self.userGenderStored = json["gender"] as? String
                     self.loverEmailStored = json["lover"] as? String
                     self.firstDateStored = json["date"] as? String
+                    self.userMsgStored = json["msg"] as? String
                 }
                 
                 self.threadIsAlive = 1
@@ -86,6 +89,7 @@ class HomeViewController: UIViewController {
                     if json != nil {
                         self.loverNameStored = json["name"] as? String
                         self.loverGenderStored = json["gender"] as? String
+                        self.loverMsgStored = json["msg"] as? String
                     }
                 
                     self.threadIsAlive = 1
@@ -164,7 +168,7 @@ class HomeViewController: UIViewController {
         myUserName.text = userNameStored
         
         // 내 상메 로드
-        myStateMsg.text = NSUserDefaults.standardUserDefaults().stringForKey("stateMSG")
+        myStateMsg.text = userMsgStored
         
         
         // 상대방 로드
@@ -182,6 +186,7 @@ class HomeViewController: UIViewController {
                 loverProPic.image = UIImage(named: "tp_default_male.png")
             }
             loverUserName.text = loverNameStored
+            loverStateMsg.text = loverMsgStored
         }
         
         // 일수 계산
