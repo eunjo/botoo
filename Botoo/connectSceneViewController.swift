@@ -21,6 +21,7 @@ class connectSceneViewController: UIViewController {
     var loverEmailStored:String?
     var loverGenderStored:String?
     var loverNameStored:String?
+    var loversLoverStored:String?
     
     var threadIsAlive = 0
     
@@ -71,20 +72,60 @@ class connectSceneViewController: UIViewController {
         }
     }
     
-    
+    var isAlreadyConnected:Bool = false
     
     @IBAction func connectButtonTapped(sender: AnyObject) {
         
-        let myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+        let loverEmail = searchEmailTextField.text
         
-        MemberConstruct().connect(myEmail!, loverEmail: loverEmailStored!, completionHandler: { (json, error) -> Void in
-            
-            dispatch_async(dispatch_get_main_queue()) {
- 
-                self.dismissViewControllerAnimated(true, completion: nil)
-            }
-        })
+        MemberConstruct().checkEmail(loverEmail!, completionHandler: { (json, error) -> Void in
+            if json != nil {
 
+                self.loverEmailStored = json["email"] as? String
+                self.loverNameStored = json["name"] as? String
+                self.loversLoverStored = json["lover"] as? String
+                
+                self.isAlreadyConnected = true
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.displayRegisterAlert("이 분은 이미 연인이에요", okAction: self.generalOkAction)
+                }
+            }
+            self.threadIsAlive = 1
+
+        })
+        
+        while (threadIsAlive == 0) {}
+        
+
+        if (isAlreadyConnected != true){
+            
+            let myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+            
+            MemberConstruct().connect(myEmail!, loverEmail: loverEmailStored!, completionHandler: { (json, error) -> Void in
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+            })
+
+        }
+
+        
+        
     }
+    
+    func displayRegisterAlert(userMessage: String, okAction: UIAlertAction){
+        let myAlert = UIAlertController(title:"알림", message: userMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = okAction
+        
+        myAlert.addAction(okAction)
+        self.presentViewController(myAlert, animated: true, completion: nil)
+    }
+    
+    var gender:String?
+    let generalOkAction = UIAlertAction(title:"확인", style:UIAlertActionStyle.Default, handler:nil)
 
 }

@@ -83,11 +83,7 @@ class RegisterPageViewController: UIViewController {
             }
             self.threadIsAlive = 1
         })
-        
-//        if (isAlreadyExists){
-//            self.threadIsAlive = 1
-//            return
-//        }
+
         
         while (threadIsAlive == 0) {}
  
