@@ -75,10 +75,21 @@ class connectSceneViewController: UIViewController {
     
     @IBAction func connectButtonTapped(sender: AnyObject) {
         
+        let myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
         
-        
-        
-        
+        MemberConstruct().connect(myEmail!, loverEmail: loverEmailStored!, completionHandler: { (json, error) -> Void in
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                let myAlert = UIAlertController(title:"Alert", message: "연결했어요", preferredStyle: UIAlertControllerStyle.Alert)
+                let okAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.Default, handler:nil)
+                
+                myAlert.addAction(okAction)
+                self.presentViewController(myAlert, animated: true, completion: nil)
+                
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        })
+
     }
 
 }
