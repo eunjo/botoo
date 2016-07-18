@@ -11,7 +11,7 @@ import UIKit
 class connectSceneViewController: UIViewController {
 
     @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var connectButton: UIButton!
     
     @IBOutlet weak var searchEmailTextField: UITextField!
     @IBOutlet weak var searchResult: UILabel!
@@ -54,7 +54,7 @@ class connectSceneViewController: UIViewController {
                 self.loverEmailStored = json["email"] as? String
                 self.loverNameStored = json["name"] as? String
                 
-                self.searchButton.enabled = true
+                self.connectButton.enabled = true
             }
             self.threadIsAlive = 1
         })
@@ -66,9 +66,19 @@ class connectSceneViewController: UIViewController {
         if !isGot {
             print("등록안된 이메일일때")
             searchResult.text = "존재하지 않는 사용자입니다"
-            searchButton.enabled = false
+            connectButton.enabled = false
             return
         }
+    }
+    
+    
+    
+    @IBAction func connectButtonTapped(sender: AnyObject) {
+        
+        
+        
+        
+        
     }
 
 }

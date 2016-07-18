@@ -27,6 +27,7 @@ class LoginViewController: UIViewController {
         
         var userEmailStored:String?
         var userPWStored:String?
+        var userNameStored:String?
         
         var isAlreadyExists:Bool = false
         
@@ -34,6 +35,7 @@ class LoginViewController: UIViewController {
             if json != nil {
                 userEmailStored = json["email"] as? String
                 userPWStored = json["pw"] as? String
+                userNameStored = json["name"] as? String
             
                 isAlreadyExists = true
             
@@ -45,7 +47,8 @@ class LoginViewController: UIViewController {
                         // Log in is successful
                         print("if문 비교 성공")
                         
-                        NSUserDefaults.standardUserDefaults().setObject(userEmail, forKey: "userEmail")
+                        NSUserDefaults.standardUserDefaults().setObject(userEmailStored, forKey: "userEmail")
+                        NSUserDefaults.standardUserDefaults().setObject(userNameStored, forKey: "userName")
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isUserLoggedIn")
                         NSUserDefaults.standardUserDefaults().synchronize()
                     
