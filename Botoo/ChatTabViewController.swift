@@ -11,6 +11,7 @@ import UIKit
 class ChatTabViewController: UIViewController {
 
     var idx:Bool = true
+    var idx2:Bool = true
     
     @IBOutlet weak var chatTabBarItem: UITabBarItem!
     
@@ -19,20 +20,28 @@ class ChatTabViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override func viewWillAppear(animated: Bool) {
         self.tabBarController!.selectedIndex = 0
-        if idx {
-            let chatNavViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ChatNavViewController")
-            chatNavViewController!.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-            self.parentViewController!.presentViewController(chatNavViewController!, animated: true, completion: nil)
-            idx = false
+        
+        if NSUserDefaults.standardUserDefaults().stringForKey("userLover") == "" {
+            if idx2 {
+                if let connectingViewController =   self.storyboard?.instantiateViewControllerWithIdentifier("ConnectingViewController") {
+                    connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+                    self.parentViewController!.presentViewController(connectingViewController, animated: true, completion: nil)
+                }
+                idx2 = false
+            } else {
+                idx2 = true
+            }
         } else {
-            idx = true
+            if idx {
+                let chatNavViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ChatNavViewController")
+                chatNavViewController!.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+                self.parentViewController!.presentViewController(chatNavViewController!, animated: true, completion: nil)
+                idx = false
+            } else {
+                idx = true
+            }
         }
     }
 }
