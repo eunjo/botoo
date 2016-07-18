@@ -151,16 +151,17 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func onClickDrop(sender: UIButton) {
+        print("!@#")
+        
         MemberConstruct().drop(NSUserDefaults.standardUserDefaults().stringForKey("userId")!,
                                completionHandler: { (json, error) -> Void in
-            if json != nil {
-                print(json)
-            }
-            
+            print(json)
             self.threadIsAlive = 1
         })
         
         while self.threadIsAlive == 0 {}
+        
+        print("success")
     }
     
     
