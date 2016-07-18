@@ -51,7 +51,7 @@ class LetterrWriteViewController: UIViewController {
         MemberConstruct().writeLetter(letterParams, completionHandler: { (json, error) -> Void in
             print(json)
 
-            })
+        })
         // 서버 구축 후 데이터 저장
         
         navigationController?.popViewControllerAnimated(true)
