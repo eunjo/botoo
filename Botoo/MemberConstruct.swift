@@ -79,9 +79,9 @@ class MemberConstruct: MemberProtocol {
         return task
     }
     
-    func drop(userEmail: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
+    func drop(userId: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
         //파라미터를 추가한 URL 생성
-        let postString = "email=\(userEmail)"
+        let postString = "id=\(userId)"
         let URL = NSURL(string: "\(urlInfo.drop)?\(postString)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
         
         let task = session.dataTaskWithRequest(NSMutableURLRequest(URL: URL!)) {
@@ -92,8 +92,10 @@ class MemberConstruct: MemberProtocol {
             //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
             if (statusCode == 200) {
                 do{
-                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
-                    completionHandler(json, nil)
+//                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
+                    
+                    // 받아오는 데이터가 json 형식이 아닌 경우
+                    completionHandler(NSString(data: data!, encoding: NSUTF8StringEncoding)!, nil)
                 }catch {
                     print("Error with Json: \(error)")
                 }

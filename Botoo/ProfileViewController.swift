@@ -31,6 +31,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     var isGot:Bool?
     
     var userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
+    var threadIsAlive = 0
     
     override func viewDidLoad(){
         setViewBorder()
@@ -149,6 +150,18 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         presentViewController(alert, animated: true, completion:nil)
     }
     
+    @IBAction func onClickDrop(sender: UIButton) {
+        MemberConstruct().drop(NSUserDefaults.standardUserDefaults().stringForKey("userId")!,
+                               completionHandler: { (json, error) -> Void in
+            if json != nil {
+                print(json)
+            }
+            
+            self.threadIsAlive = 1
+        })
+        
+        while self.threadIsAlive == 0 {}
+    }
     
     
     @IBAction func onClickLogout(sender: UIButton) {

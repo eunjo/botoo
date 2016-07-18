@@ -28,6 +28,7 @@ class LoginViewController: UIViewController {
         var userEmailStored:String?
         var userPWStored:String?
         var userNameStored:String?
+        var userIdStored: String?
         
         var isAlreadyExists:Bool = false
         
@@ -36,6 +37,7 @@ class LoginViewController: UIViewController {
                 userEmailStored = json["email"] as? String
                 userPWStored = json["pw"] as? String
                 userNameStored = json["name"] as? String
+                userIdStored = json["_id"] as? String
             
                 isAlreadyExists = true
             
@@ -45,9 +47,10 @@ class LoginViewController: UIViewController {
                     // 여기까지 왔다는 것 == 이메일이 존재함.
                     if (userPWStored! == userPW!) {
                         // Log in is successful
-                        print("if문 비교 성공")
+                        
                         
                         NSUserDefaults.standardUserDefaults().setObject(userEmailStored, forKey: "userEmail")
+                        NSUserDefaults.standardUserDefaults().setObject(userIdStored, forKey: "userId")
                         NSUserDefaults.standardUserDefaults().setObject(userNameStored, forKey: "userName")
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isUserLoggedIn")
                         NSUserDefaults.standardUserDefaults().synchronize()
@@ -62,9 +65,6 @@ class LoginViewController: UIViewController {
         
         while self.threadIsAlive == 0 {}
         
-
-        
-
         if isAlreadyExists == false {
             
             print("등록안된 이메일일때")
