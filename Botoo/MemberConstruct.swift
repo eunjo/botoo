@@ -180,10 +180,12 @@ class MemberConstruct: MemberProtocol {
             let httpResponse = response as! NSHTTPURLResponse
             let statusCode = httpResponse.statusCode
             
+            print(response)
             //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
             if (statusCode == 200) {
                 do{
                     let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
+                    print(json)
                     completionHandler(json, nil)
                 }catch {
                     print("Error with Json: \(error)")
