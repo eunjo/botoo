@@ -157,13 +157,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBAction func onClickLogout(sender: UIButton) {
         alterMessage("정말 로그아웃 하시겠습니까?")
-        self.tabBarController!.selectedIndex = 0
     }
     
     func alterMessage(text: String) {
         let myAlert = UIAlertController(title:"알림", message: text, preferredStyle: UIAlertControllerStyle.Alert)
         
-        let okAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.Default){ action in
+        let okAction = UIAlertAction(title:"확인", style:UIAlertActionStyle.Default){ action in
             //Logout 구현
             HomeViewController.getUserInfo.userInfo = UserInfo()
             
@@ -180,11 +179,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             if text.containsString("탈퇴") {
                 MemberConstruct().drop(NSUserDefaults.standardUserDefaults().stringForKey("userId")!, loverEmail: NSUserDefaults.standardUserDefaults().stringForKey("userLover")!, completionHandler: { (json, error) -> Void in
                     
-                    
                     print("탈퇴 success")
                 })
             }
+            
+            self.tabBarController!.selectedIndex = 0
         }
+        
         myAlert.addAction(okAction)
         self.presentViewController(myAlert, animated: true, completion: nil)
     }
