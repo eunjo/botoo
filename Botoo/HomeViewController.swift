@@ -61,9 +61,12 @@ class HomeViewController: UIViewController {
         
         // 무한 루프 방지
         getUserInfo.checkLock = isLock
+        
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        super.viewWillAppear(animated)
         
         var isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn")
         
@@ -244,6 +247,8 @@ class HomeViewController: UIViewController {
             
             
         }
+        
+        profileInit()
         
     }
 
