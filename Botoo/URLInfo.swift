@@ -16,6 +16,7 @@ public class URLInfo {
     public var register: String
     public var drop: String
     public var changeName: String
+    public var connect: String
     
     
     init() {
@@ -25,5 +26,6 @@ public class URLInfo {
         register = WEB_SERVER_IP + "/member/register"
         drop = WEB_SERVER_IP + "/member/drop"
         changeName = WEB_SERVER_IP+"/member/changeName"
+        connect = WEB_SERVER_IP + "/member/connect"
     }
 }
