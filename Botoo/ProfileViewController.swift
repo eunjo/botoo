@@ -31,7 +31,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     var isGot:Bool?
     
     var userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
-    var threadIsAlive = 0
     
     override func viewDidLoad(){
         setViewBorder()
@@ -152,24 +151,17 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBAction func onClickDrop(sender: UIButton) {
         
-        MemberConstruct().drop(NSUserDefaults.standardUserDefaults().stringForKey("userId")!,
-                               completionHandler: { (json, error) -> Void in
-            self.threadIsAlive = 1
-        })
-        
-        while self.threadIsAlive == 0 {}
-        
-        print("탈퇴 success")
+        alterMessage("정말 탈퇴 하시겠습니까?")
     }
     
     
     @IBAction func onClickLogout(sender: UIButton) {
-        
-       //        let homeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("HomeViewController")
-//        homeViewController!.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-//        self.parentViewController!.presentViewController(homeViewController!, animated: true, completion: nil)
-        
-        let myAlert = UIAlertController(title:"Alert", message: "정말 로그아웃 하시겠습니까?", preferredStyle: UIAlertControllerStyle.Alert)
+        alterMessage("정말 로그아웃 하시겠습니까?")
+        self.tabBarController!.selectedIndex = 0
+    }
+    
+    func alterMessage(text: String) {
+        let myAlert = UIAlertController(title:"알림", message: text, preferredStyle: UIAlertControllerStyle.Alert)
         
         let okAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.Default){ action in
             //Logout 구현
@@ -185,10 +177,16 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "lockPw")
             NSUserDefaults.standardUserDefaults().synchronize()
             
-            self.tabBarController!.selectedIndex = 0
+            if text.containsString("탈퇴") {
+                MemberConstruct().drop(NSUserDefaults.standardUserDefaults().stringForKey("userId")!, loverEmail: NSUserDefaults.standardUserDefaults().stringForKey("userLover")!, completionHandler: { (json, error) -> Void in
+                    
+                    
+                    print("탈퇴 success")
+                })
+            }
         }
         myAlert.addAction(okAction)
-        self.presentViewController(myAlert, animated: true, completion: nil) 
+        self.presentViewController(myAlert, animated: true, completion: nil)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {

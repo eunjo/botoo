@@ -24,6 +24,8 @@ class connectSceneViewController: UIViewController {
     var loversLoverStored:String?
     
     var threadIsAlive = 0
+    let generalOkAction = UIAlertAction(title:"확인", style:UIAlertActionStyle.Default, handler:nil)
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,10 +104,7 @@ class connectSceneViewController: UIViewController {
             return
         }
         
-        
-        
-
-        if (isAlreadyConnected != true){
+        if (isAlreadyConnected != true) {
             
             print("연결시도")
             
@@ -117,12 +116,12 @@ class connectSceneViewController: UIViewController {
                     
                         self.dismissViewControllerAnimated(true, completion: nil)
                     }
+                
+                    NSUserDefaults.standardUserDefaults().setObject(self.loverEmailStored, forKey: "userLover")
             })
-
         }
-        
     }
-    
+
     func displayRegisterAlert(userMessage: String, okAction: UIAlertAction){
         let myAlert = UIAlertController(title:"알림", message: userMessage, preferredStyle: UIAlertControllerStyle.Alert)
         
@@ -131,8 +130,4 @@ class connectSceneViewController: UIViewController {
         myAlert.addAction(okAction)
         self.presentViewController(myAlert, animated: true, completion: nil)
     }
-    
-    var gender:String?
-    let generalOkAction = UIAlertAction(title:"확인", style:UIAlertActionStyle.Default, handler:nil)
-
 }
