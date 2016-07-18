@@ -23,6 +23,16 @@ class HomeViewController: UIViewController {
     
     let isLock = NSUserDefaults.standardUserDefaults().boolForKey("lock")
     
+    var threadIsAlive = 0
+    
+    var userEmail:String?
+    
+    var userEmailStored:String?
+    var userNameStored:String?
+    var userGenderStored:String?
+    
+    var isGot:Bool?
+    
     struct getUserInfo {
         static var userInfo = UserInfo()
         static var checkLock = false
@@ -30,7 +40,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
         
         // add tap Gesture
         let tap = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.onClickLoverPic(_:)))
@@ -43,18 +53,29 @@ class HomeViewController: UIViewController {
         
         // 무한 루프 방지
         getUserInfo.checkLock = isLock
-        
-        
     }
     
     override func viewWillAppear(animated: Bool) {
         
-        // 서 버 연 결 테 스 팅
-        let urlInfoForConnect:URLInfo = URLInfo()
-        urlInfoForConnect.test = urlInfoForConnect.WEB_SERVER_IP+"/"
-        TestConstruct().testConnect(urlInfoForConnect, httpMethod: "GET", params: nil, completionHandler: { (json, error) -> Void in
-            print("받았어요 :: \(json)")
-        })
+        var isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn")
+        
+        if (isUserLoggedIn) {
+            
+            userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+            MemberConstruct().checkEmail(userEmail!, completionHandler: { (json, error) -> Void in
+                if json != nil {
+                    self.userNameStored = json["name"] as? String
+                    self.userGenderStored = json["gender"] as? String
+                }
+                
+                self.threadIsAlive = 1
+            })
+            
+            while self.threadIsAlive == 0 {}
+            
+            profileInit()
+
+        }
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -99,6 +120,9 @@ class HomeViewController: UIViewController {
     }
     
     func profileInit() {
+    
+ 
+        
         //circle image view 적용
         self.myProPic.layer.cornerRadius = self.myProPic.frame.size.width / 2
         self.myProPic.clipsToBounds = true
@@ -107,7 +131,7 @@ class HomeViewController: UIViewController {
         
         // 내 프사 로드
         
-        if (NSUserDefaults.standardUserDefaults().stringForKey("gender") == "1") {
+        if (userGenderStored == "1") {
             myProPic.image = UIImage(named: "tp_default_female.png")
         }
         else {
@@ -115,7 +139,7 @@ class HomeViewController: UIViewController {
         }
  
         // 내 이름 로드
-        myUserName.text = NSUserDefaults.standardUserDefaults().stringForKey("userName")
+        myUserName.text = userNameStored
         
         // 내 상메 로드
         myStateMsg.text = NSUserDefaults.standardUserDefaults().stringForKey("stateMSG")
@@ -177,8 +201,6 @@ class HomeViewController: UIViewController {
             }
             
             let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
-            let userName = NSUserDefaults.standardUserDefaults().stringForKey("userName")
-            let usergender = NSUserDefaults.standardUserDefaults().integerForKey("gender")
             
             /** 
                     서버 연결 후 수정
