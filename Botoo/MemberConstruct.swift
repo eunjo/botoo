@@ -255,14 +255,18 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
         return task
     }
     
-    func updateLetter(title:String, body:String, sender:String, date:String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
+    func writeLetter(letterInfo: Dictionary<String,String>?, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
         //파라미터를 추가한 URL 생성
-        let postString = "title=\(title)&body=\(body)&sender=\(sender)&date=\(date)"
-        let URL = NSURL(string: "\(urlInfo.updateLetter)?\(postString)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
+        
+        let URL = NSURL(string: "\(urlInfo.writeLetter)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
         
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.HTTPMethod = "PUT"
+        request.HTTPMethod = "POST"
         request.URL = URL
+        
+        if (letterInfo != nil){
+            request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(letterInfo!, options: [])
+        }
         
         let task = session.dataTaskWithRequest(request) {
             (data, response, error) -> Void in
@@ -280,9 +284,5 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
         task.resume()
         return task
     }
-
-
-    
-
 }
 
