@@ -104,4 +104,31 @@ class MemberConstruct: MemberProtocol {
         task.resume()
         return task
     }
+    
+    func changeName(userID: String, userName: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
+        let postString = "id=\(userID)&name=\(userName)"
+        let URL = NSURL(string: "\(urlInfo.changeName)?\(postString)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
+        
+        let task = session.dataTaskWithRequest(NSMutableURLRequest(URL: URL!)) {
+            (data, response, error) -> Void in
+            let httpResponse = response as! NSHTTPURLResponse
+            let statusCode = httpResponse.statusCode
+            
+            //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
+            if (statusCode == 200) {
+                do{
+                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
+                    completionHandler(json, nil)
+                }catch {
+                    print("Error with Json: \(error)")
+                }
+            }
+        }
+        
+        //task 실행
+        task.resume()
+        return task
+
+    }
 }
+

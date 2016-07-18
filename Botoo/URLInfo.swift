@@ -15,6 +15,7 @@ public class URLInfo {
     public var checkEmail: String
     public var register: String
     public var drop: String
+    public var changeName: String
     
     
     init() {
@@ -23,5 +24,6 @@ public class URLInfo {
         checkEmail = WEB_SERVER_IP + "/member/checkEmail"
         register = WEB_SERVER_IP + "/member/register"
         drop = WEB_SERVER_IP + "/member/drop"
+        changeName = WEB_SERVER_IP+"/member/changeName"
     }
 }
