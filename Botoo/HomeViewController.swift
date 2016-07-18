@@ -110,7 +110,7 @@ class HomeViewController: UIViewController {
 
     
     func onClickLoverPic(sender:UITapGestureRecognizer) {
-        if (getUserInfo.userInfo.lover == "" || getUserInfo.userInfo.lover == nil) {
+        if (loverEmailStored == nil) {
             if let connectingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ConnectingViewController") {
                 connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
                 self.presentViewController(connectingViewController, animated: true, completion: nil)
