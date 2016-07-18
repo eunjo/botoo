@@ -31,9 +31,8 @@ class nameEditViewController: UIViewController {
         let myId = NSUserDefaults.standardUserDefaults().stringForKey("userId")
         
         MemberConstruct().changeName(myId!, userName: nameLabel.text!,  completionHandler: { (json, error) -> Void in
-            print("success")
+            print(json)
         })
-        
         
         HomeViewController.getUserInfo.userInfo.name = nameLabel.text
         NSUserDefaults.standardUserDefaults().setObject(nameLabel.text, forKey: "userName")

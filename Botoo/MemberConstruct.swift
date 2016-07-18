@@ -93,7 +93,6 @@ class MemberConstruct: MemberProtocol {
             //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
             if (statusCode == 200) {
                     // 받아오는 데이터가 json 형식이 아닌 경우
-                print(NSString(data: data!, encoding: NSUTF8StringEncoding)!)
                     completionHandler(NSString(data: data!, encoding: NSUTF8StringEncoding)!, nil)
             }
         }
@@ -110,7 +109,7 @@ class MemberConstruct: MemberProtocol {
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.HTTPMethod = "PUT"
         request.URL = URL
-        
+            
         let task = session.dataTaskWithRequest(request) {
             (data, response, error) -> Void in
             let httpResponse = response as! NSHTTPURLResponse
@@ -121,8 +120,7 @@ class MemberConstruct: MemberProtocol {
             //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
             if (statusCode == 200) {
                 do{
-                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
-                    completionHandler(json, nil)
+                    completionHandler(NSString(data: data!, encoding: NSUTF8StringEncoding)!, nil)
                 }catch {
                     print("Error with Json: \(error)")
                 }
@@ -140,17 +138,21 @@ class MemberConstruct: MemberProtocol {
         let postString = "id=\(userID)&msg=\(userMsg)"
         let URL = NSURL(string: "\(urlInfo.changeMsg)?\(postString)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
         
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.HTTPMethod = "PUT"
+        request.URL = URL
         
-        let task = session.dataTaskWithRequest(NSMutableURLRequest(URL: URL!)) {
+        let task = session.dataTaskWithRequest(request) {
             (data, response, error) -> Void in
             let httpResponse = response as! NSHTTPURLResponse
             let statusCode = httpResponse.statusCode
             
+            print(response)
+            
             //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
             if (statusCode == 200) {
                 do{
-                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
-                    completionHandler(json, nil)
+                    completionHandler(NSString(data: data!, encoding: NSUTF8StringEncoding)!, nil)
                 }catch {
                     print("Error with Json: \(error)")
                 }
