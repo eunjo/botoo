@@ -20,6 +20,7 @@ public class URLInfo {
     public var updateDate: String
     public var disconnect: String
     public var writeLetter: String
+    public var callLetter: String
 
     init() {
         updateDate = WEB_SERVER_IP + "/member/updateDate"
@@ -31,5 +32,6 @@ public class URLInfo {
         connect = WEB_SERVER_IP + "/member/connect"
         disconnect = WEB_SERVER_IP + "/member/disconnect"
         writeLetter = WEB_SERVER_IP + "/member/writeLetter"
+        callLetter = WEB_SERVER_IP + "/member/callLetter"
     }
 }

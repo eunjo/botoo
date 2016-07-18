@@ -19,9 +19,15 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         self.letterTable.delegate = self
         self.letterTable.dataSource = self
+        
+        MemberConstruct().callLetter(NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")!,
+                                     completionHandler: { (json, error) -> Void in
+                                        print(json)
+        })
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
