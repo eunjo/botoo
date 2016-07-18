@@ -17,11 +17,11 @@ public class URLInfo {
     public var drop: String
     public var changeName: String
     public var connect: String
-    
+    public var changeMsg: String
     
     init() {
         test = WEB_SERVER_IP+"/"
-        
+        changeMsg = WEB_SERVER_IP + "/member/changeMsg"
         checkEmail = WEB_SERVER_IP + "/member/checkEmail"
         register = WEB_SERVER_IP + "/member/register"
         drop = WEB_SERVER_IP + "/member/drop"
