@@ -89,16 +89,12 @@ class MemberConstruct: MemberProtocol {
             let httpResponse = response as! NSHTTPURLResponse
             let statusCode = httpResponse.statusCode
             
+            print(response)
             //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
             if (statusCode == 200) {
-                do{
-//                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
-                    
                     // 받아오는 데이터가 json 형식이 아닌 경우
+                print(NSString(data: data!, encoding: NSUTF8StringEncoding)!)
                     completionHandler(NSString(data: data!, encoding: NSUTF8StringEncoding)!, nil)
-                }catch {
-                    print("Error with Json: \(error)")
-                }
             }
         }
         
@@ -111,7 +107,6 @@ class MemberConstruct: MemberProtocol {
         let postString = "id=\(userID)&name=\(userName)"
         let URL = NSURL(string: "\(urlInfo.changeName)?\(postString)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
     
-        
         let task = session.dataTaskWithRequest(NSMutableURLRequest(URL: URL!)) {
             (data, response, error) -> Void in
             let httpResponse = response as! NSHTTPURLResponse
