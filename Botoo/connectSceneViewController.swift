@@ -113,16 +113,13 @@ class connectSceneViewController: UIViewController {
             
             MemberConstruct().connect(myEmail!, loverEmail: loverEmailStored!, completionHandler: { (json, error) -> Void in
                 
-                if json != nil {
                     dispatch_async(dispatch_get_main_queue()) {
                     
                         self.dismissViewControllerAnimated(true, completion: nil)
                     }
-                    
                     NSUserDefaults.standardUserDefaults().setObject(self.loverEmailStored, forKey: "userLover")
                 }
             })
-
         }
         
     }

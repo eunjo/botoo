@@ -10,10 +10,27 @@ import UIKit
 
 class byebyeViewController: UIViewController {
     
+    var threadIsAlive = 0
+    
+    var loverEmailStored:String?
+    
+    var myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        MemberConstruct().checkEmail(myEmail!, completionHandler: { (json, error) -> Void in
+            if json != nil {
+                
+                self.loverEmailStored = json["lover"] as? String
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,6 +40,14 @@ class byebyeViewController: UIViewController {
     
     @IBAction func disconnectButtonTapped(sender: AnyObject) {
         
+        MemberConstruct().disconnect(myEmail!, loverEmail: loverEmailStored!, completionHandler: { (json, error) -> Void in
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                    
+                    self.navigationController?.popViewControllerAnimated(true)
+            }
+        })
+
     }
 
 

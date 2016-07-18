@@ -17,13 +17,17 @@ public class URLInfo {
     public var changeName: String
     public var connect: String
     public var changeMsg: String
-    
+    public var updateDate: String
+    public var disconnect: String
+
     init() {
+        updateDate = WEB_SERVER_IP + "/member/updateDate"
         changeMsg = WEB_SERVER_IP + "/member/changeMsg"
         checkEmail = WEB_SERVER_IP + "/member/checkEmail"
         register = WEB_SERVER_IP + "/member/register"
         drop = WEB_SERVER_IP + "/member/drop"
         changeName = WEB_SERVER_IP + "/member/changeName"
         connect = WEB_SERVER_IP + "/member/connect"
+        disconnect = WEB_SERVER_IP + "/member/disconnect"
     }
 }
