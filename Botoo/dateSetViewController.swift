@@ -61,6 +61,19 @@ class dateSetViewController: UIViewController {
             NSUserDefaults.standardUserDefaults().setObject(dateTextField.text, forKey: "firstDate")
         }
         
+        let myId = NSUserDefaults.standardUserDefaults().stringForKey("userId")
+        let loverId = NSUserDefaults.standardUserDefaults().stringForKey("userLover")
+        
+        MemberConstruct().updateDate(myId!, loverID: loverId!, userDate: dateTextField.text!, completionHandler: { (json, error) -> Void in
+            print(json)
+        })
+        
+       
+        
+        
+
+
+        
         navigationController?.popViewControllerAnimated(true)
         
     }

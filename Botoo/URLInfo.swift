@@ -17,8 +17,10 @@ public class URLInfo {
     public var changeName: String
     public var connect: String
     public var changeMsg: String
+    public var updateDate: String
     
     init() {
+        updateDate = WEB_SERVER_IP + "/member/updateDate"
         changeMsg = WEB_SERVER_IP + "/member/changeMsg"
         checkEmail = WEB_SERVER_IP + "/member/checkEmail"
         register = WEB_SERVER_IP + "/member/register"
