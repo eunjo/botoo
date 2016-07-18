@@ -118,6 +118,8 @@ class connectSceneViewController: UIViewController {
                     
                         self.dismissViewControllerAnimated(true, completion: nil)
                     }
+                    
+                    NSUserDefaults.standardUserDefaults().setObject(self.loverEmailStored, forKey: "userLover")
                 }
             })
 

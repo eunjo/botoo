@@ -79,9 +79,9 @@ class MemberConstruct: MemberProtocol {
         return task
     }
     
-    func drop(userId: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
+    func drop(userId: String, loverEmail: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
         //파라미터를 추가한 URL 생성
-        let postString = "id=\(userId)"
+        let postString = "id=\(userId)&loverEmail=\(loverEmail)"
         let URL = NSURL(string: "\(urlInfo.drop)?\(postString)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
         
         let task = session.dataTaskWithRequest(NSMutableURLRequest(URL: URL!)) {
