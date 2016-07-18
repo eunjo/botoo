@@ -194,4 +194,37 @@ class MemberConstruct: MemberProtocol {
         task.resume()
         return task
     }
+    
+    func disconnect(myEmail:String, loverEmail:String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
+        //파라미터를 추가한 URL 생성
+        let postString = "myEmail=\(myEmail)&loverEmail=\(loverEmail)"
+        let URL = NSURL(string: "\(urlInfo.disconnect)?\(postString)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
+        
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.HTTPMethod = "PUT"
+        request.URL = URL
+        
+        let task = session.dataTaskWithRequest(request) {
+            (data, response, error) -> Void in
+            let httpResponse = response as! NSHTTPURLResponse
+            let statusCode = httpResponse.statusCode
+            
+            //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
+            if (statusCode == 200) {
+                do{
+                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
+                    completionHandler(json, nil)
+                }catch {
+                    print("Error with Json: \(error)")
+                }
+            }
+        }
+        
+        
+        //task 실행
+        task.resume()
+        return task
+    }
+
+    
 }

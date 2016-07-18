@@ -18,6 +18,7 @@ public class URLInfo {
     public var changeName: String
     public var connect: String
     public var changeMsg: String
+    public var disconnect: String
     
     init() {
         test = WEB_SERVER_IP+"/"
@@ -27,5 +28,6 @@ public class URLInfo {
         drop = WEB_SERVER_IP + "/member/drop"
         changeName = WEB_SERVER_IP+"/member/changeName"
         connect = WEB_SERVER_IP + "/member/connect"
+        disconnect = WEB_SERVER_IP + "/member/disconnect"
     }
 }
