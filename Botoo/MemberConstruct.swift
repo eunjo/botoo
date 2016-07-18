@@ -110,7 +110,11 @@ class MemberConstruct: MemberProtocol {
         let postString = "myEmail=\(myEmail)&loverEmail=\(loverEmail)"
         let URL = NSURL(string: "\(urlInfo.connect)?\(postString)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
         
-        let task = session.dataTaskWithRequest(NSMutableURLRequest(URL: URL!)) {
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.HTTPMethod = "PUT"
+        request.URL = URL
+        
+        let task = session.dataTaskWithRequest(request) {
             (data, response, error) -> Void in
             let httpResponse = response as! NSHTTPURLResponse
             let statusCode = httpResponse.statusCode

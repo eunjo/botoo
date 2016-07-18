@@ -31,6 +31,10 @@ class HomeViewController: UIViewController {
     var userNameStored:String?
     var userGenderStored:String?
     
+    var loverEmailStored:String?
+    var loverNameStored:String?
+    var loverGenderStored:String?
+    
     var isGot:Bool?
     
     struct getUserInfo {
@@ -66,10 +70,23 @@ class HomeViewController: UIViewController {
                 if json != nil {
                     self.userNameStored = json["name"] as? String
                     self.userGenderStored = json["gender"] as? String
+                    self.loverEmailStored = json["lover"] as? String
                 }
                 
                 self.threadIsAlive = 1
             })
+            
+            while self.threadIsAlive == 0 {}
+            
+            MemberConstruct().checkEmail(loverEmailStored!, completionHandler: { (json, error) -> Void in
+                if json != nil {
+                    self.loverNameStored = json["name"] as? String
+                    self.loverGenderStored = json["gender"] as? String
+                }
+                
+                self.threadIsAlive = 1
+            })
+
             
             while self.threadIsAlive == 0 {}
             
@@ -146,9 +163,20 @@ class HomeViewController: UIViewController {
         
         
         // 상대방 로드
-        if (getUserInfo.userInfo.lover == "" || getUserInfo.userInfo.lover == nil) {
+        if (loverEmailStored==nil) {
+            
             loverProPic.image = UIImage(named: "tp_default_grey.png")
             loverUserName.text = "연결하러 가기"
+            
+        } else {
+            
+            if (loverGenderStored == "1") {
+                loverProPic.image = UIImage(named: "tp_default_female.png")
+            }
+            else {
+                loverProPic.image = UIImage(named: "tp_default_male.png")
+            }
+            loverUserName.text = loverNameStored
         }
         
         // 일수 계산
