@@ -100,6 +100,8 @@ class HomeViewController: UIViewController {
                         self.loverNameStored = json["name"] as? String
                         self.loverGenderStored = json["gender"] as? String
                         self.loverMsgStored = json["msg"] as? String
+                        
+                        NSUserDefaults.standardUserDefaults().setObject(self.loverNameStored, forKey: "loverName")
                     }
                 
                     self.threadIsAlive = 1
@@ -157,9 +159,6 @@ class HomeViewController: UIViewController {
     }
     
     func profileInit() {
-    
- 
-        
         //circle image view 적용
         self.myProPic.layer.cornerRadius = self.myProPic.frame.size.width / 2
         self.myProPic.clipsToBounds = true
