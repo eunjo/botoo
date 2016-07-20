@@ -1273,7 +1273,7 @@
             </objects>
             <point key="canvasLocation" x="1087.5" y="-606.5"/>
         </scene>
-        <!--Title-->
+        <!--Letterr Write View Controller-->
         <scene sceneID="iko-6i-SJg">
             <objects>
                 <viewController storyboardIdentifier="letterWriteViewController" id="TCT-s0-GvF" customClass="LetterrWriteViewController" customModule="Botoo" customModuleProvider="target" sceneMemberID="viewController">
@@ -1321,7 +1321,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="tRj-wf-bLZ"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="letterText" destination="bgd-wu-zXp" id="e4f-Jv-bVs"/>
