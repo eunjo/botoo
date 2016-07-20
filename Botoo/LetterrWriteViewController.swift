@@ -19,7 +19,6 @@ class LetterrWriteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.title = "편지쓰기"
 
         // Do any additional setup after loading the view.
         letterText!.layer.cornerRadius = 8.0
