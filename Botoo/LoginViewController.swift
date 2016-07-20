@@ -69,6 +69,7 @@ class LoginViewController: UIViewController {
                         NSUserDefaults.standardUserDefaults().setObject(userNameStored, forKey: "userName")
                         NSUserDefaults.standardUserDefaults().setObject(userLoverStored, forKey: "userLover")
                         NSUserDefaults.standardUserDefaults().setObject(userConnectId, forKey: "userConnectId")
+                        NSUserDefaults.standardUserDefaults().setObject(json["gender"] as? String, forKey: "userGender")
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isUserLoggedIn")
                         NSUserDefaults.standardUserDefaults().synchronize()
                     

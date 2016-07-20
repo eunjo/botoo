@@ -69,7 +69,7 @@ class HomeViewController: UIViewController {
         
         super.viewWillAppear(animated)
         
-        var isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn")
+        let isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn")
         
         if (isUserLoggedIn) {
             
@@ -82,7 +82,6 @@ class HomeViewController: UIViewController {
                     self.userMsgStored = json["msg"] as? String
                     self.loverEmailStored = json["lover"] as? String
                     self.connectId = json["connect_id"] as? String
-   //               self.proPic = json["proPic"] as? String
                     self.isGot = true
                     
                     var loverTemp = "nil"
@@ -110,7 +109,6 @@ class HomeViewController: UIViewController {
             
             while self.threadIsAlive == 0 {}
             
-            profileInit()
             if loverEmailStored != nil {
                 MemberConstruct().checkEmail(loverEmailStored!, completionHandler: { (json, error) -> Void in
                     if json != nil {
@@ -119,17 +117,15 @@ class HomeViewController: UIViewController {
                         self.loverMsgStored = json["msg"] as? String
                         
                         NSUserDefaults.standardUserDefaults().setObject(self.loverNameStored, forKey: "loverName")
+                        
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.profileInit()
+                        }
                     }
-                
-                    self.threadIsAlive = 1
                 })
 
             }
-            
-            while self.threadIsAlive == 0 {}
-            
-           // profileInit()
-
         }
     }
     
@@ -234,9 +230,6 @@ class HomeViewController: UIViewController {
             //
         
             fromDate.text = dateToString
-            
-            
-            
             
             // 날짜 계산
             

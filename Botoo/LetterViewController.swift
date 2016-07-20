@@ -22,11 +22,15 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
         
         self.letterTable.delegate = self
         self.letterTable.dataSource = self
-        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
         if NSUserDefaults.standardUserDefaults().stringForKey("userConnectId") != "nil" {
             MemberConstruct().callLetter(NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")!,
                                          completionHandler: { (json, error) -> Void in
                                             let JsonData = json as! [[String: AnyObject]]
+                                            
+                                            self.letterList = []
                                             for data in JsonData {
                                                 self.letterList.append(letterTableVO(title: data["title"] as! String, writerImage: data["sender"] as! String, letterId: data["_id"] as! String, date: data["date"] as! String, body: data["body"] as! String))
                                             }
@@ -36,10 +40,13 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
                                             }
             })
         }
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        self.letterTable.reloadData()
+        
+        // write 한 편지 reload
+        if LetterrWriteViewController.getNewLetterInfo.letterInfo != nil {
+            self.letterList.append(LetterrWriteViewController.getNewLetterInfo.letterInfo!)
+            LetterrWriteViewController.getNewLetterInfo.letterInfo = nil
+            self.letterTable.reloadData()
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,11 +58,14 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = tableView.dequeueReusableCellWithIdentifier("LetterTableViewCell", forIndexPath: indexPath)
         (cell.viewWithTag(100) as! UILabel).text = letterList[indexPath.row].title
         
-        if letterList[indexPath.row].writerImage == "nil" {
+        if letterList[indexPath.row].writerImage == "nil1" {
             (cell.viewWithTag(101) as! UIImageView).image = UIImage(named: "default_female.png")
+        } else if letterList[indexPath.row].writerImage == "nil0" {
+            (cell.viewWithTag(101) as! UIImageView).image = UIImage(named: "default_male.png")
         } else {
             // image 적용
         }
+        
         return cell
     }
     
@@ -79,9 +89,9 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if let letterDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("letterDetail") {
+        if let letterDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("letterDetail") as? LetterDetailViewController {
             letterDetailViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-            //navigationController 의 하위 뷰로 전환
+            letterDetailViewController.letterBody = self.letterList[indexPath.row].body
             self.navigationController?.pushViewController(letterDetailViewController, animated: true)
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
