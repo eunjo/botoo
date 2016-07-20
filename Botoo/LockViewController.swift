@@ -62,21 +62,33 @@ class LockViewController: UIViewController {
         
         if (selectedNum < 11) {
             enteredPw = enteredPw + "\(selectedNum)"
-        }
-        
-        pass_bts[count].backgroundColor = UIColor.whiteColor()
-        if count < 4 {
-            count += 1
-            
-            if (count == 4) {
-                count = 0
-                if(getSender.sender == 2) {
-                    changePw(enteredPw)
-                } else {
-                    checkPw(enteredPw)
-                    enteredPw = ""
+            pass_bts[count].backgroundColor = UIColor.whiteColor()
+            if count < 4 {
+                count += 1
+                
+                if (count == 4) {
+                    count = 0
+                    if(getSender.sender == 2) {
+                        changePw(enteredPw)
+                    } else {
+                        checkPw(enteredPw)
+                        enteredPw = ""
+                    }
                 }
             }
+            print(enteredPw)
+        } else if (selectedNum == 11 && count > 0){
+            let last = enteredPw[enteredPw.endIndex.predecessor()]
+           
+            if(last == "0"){
+            enteredPw.removeAtIndex(enteredPw.endIndex.predecessor())
+            }
+            
+            enteredPw.removeAtIndex(enteredPw.endIndex.predecessor())
+            count -= 1
+            pass_bts[count].backgroundColor = UIColor.clearColor()
+            
+            print(enteredPw)
         }
     }
     
