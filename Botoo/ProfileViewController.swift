@@ -29,8 +29,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     var userNameStored:String?
     var userMsgStored:String?
     
-    var isGot:Bool = false
-    
     var userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
     
     override func viewDidLoad(){
@@ -62,25 +60,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.userNameStored = json["name"] as? String
             self.userMsgStored = json["msg"] as? String
             
-            self.isGot = true
+            dispatch_async(dispatch_get_main_queue()) {
+                self.initProfile()
+            }
             
         })
-        
-        while(isGot==false){
-            
-        }
-        
-        if (isGot == true){
-            initProfile()
-        }
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        initProfile()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     func initProfile() {
