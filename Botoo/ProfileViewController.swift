@@ -195,6 +195,17 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(false) { (_) in
             self.profile_iv_profile.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+            var proPic = info[UIImagePickerControllerOriginalImage] as? UIImage
+            
+            let userEmailParams = [
+                "email": self.userEmailStored! as String,
+            ]
+            
+            MemberConstruct().saveProPic(userEmailParams, proPic: (info[UIImagePickerControllerOriginalImage] as? UIImage)!, completionHandler: { (json, error) -> Void in
+                    print("프사 성공 :: \(json)")
+                
+            })
+
         }
     }
     
@@ -224,6 +235,5 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.navigationController?.pushViewController(viewController!, animated: true)
         }
     }
-    
     
 }
