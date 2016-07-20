@@ -429,7 +429,10 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
         
     }
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 3bd503eafc81f6943caa6bae8776933fca3d0199
 }
 
