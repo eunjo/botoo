@@ -73,17 +73,18 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
         
         if editingStyle == UITableViewCellEditingStyle.Delete {
             
-            let connect_ID = NSUserDefaults.standardUserDefaults().stringForKey("connectID")
-            let letter_ID=NSUserDefaults.standardUserDefaults().stringForKey("letterID")
+            let connect_ID = NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")
+            let letter_ID = letterList[indexPath.row].letterId
 
             
-            MemberConstruct().deleteLetter(connect_ID!, letterID: letter_ID!, completionHandler: { (json, error) -> Void in
-                print("success")
+            MemberConstruct().deleteLetter(connect_ID!, letterID: letter_ID, completionHandler: { (json, error) -> Void in
+                print(json)
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.letterList.removeAtIndex(indexPath.row)
+                    self.letterTable.reloadData()
+                }
             })
-
-            
-            letterList.removeAtIndex(indexPath.row)
-            letterTable.reloadData()
         }
     }
     
