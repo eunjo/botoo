@@ -383,6 +383,38 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
         task.resume()
         return task
     }
+    
+    func deleteLetter(connectID: String, letterID: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
+        let postString = "connectID=\(connectID)&letterID=\(letterID)"
+        let URL = NSURL(string: "\(urlInfo.deleteLetter)?\(postString)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
+        
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.HTTPMethod = "DELETE"
+        request.URL = URL
+        
+        let task = session.dataTaskWithRequest(request) {
+            (data, response, error) -> Void in
+            let httpResponse = response as! NSHTTPURLResponse
+            let statusCode = httpResponse.statusCode
+            
+            print(response)
+            
+            //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
+            if (statusCode == 200) {
+                do{
+                    completionHandler(NSString(data: data!, encoding: NSUTF8StringEncoding)!, nil)
+                }catch {
+                    print("Error with Json: \(error)")
+                }
+            }
+        }
+        
+        //task 실행
+        task.resume()
+        return task
+        
+    }
+
 
  
 
