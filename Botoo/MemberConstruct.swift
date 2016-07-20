@@ -281,7 +281,12 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
             
             //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
             if (statusCode == 200) {
-                completionHandler("success", nil)
+                do{
+                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
+                    completionHandler(json, nil)
+                }catch {
+                    print("Error with Json: \(error)")
+                }
             }
         }
         

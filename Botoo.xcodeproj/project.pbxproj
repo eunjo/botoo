@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C007CBAB1D3F54FA00FA5A4C /* LetterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C007CBAA1D3F54FA00FA5A4C /* LetterDetailViewController.swift */; };
 		C0D47AEE1D22A25500637EAB /* ChatTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */; };
 		C0D47AF21D22AEFB00637EAB /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */; };
 		C0D47AF41D237C8A00637EAB /* SettingNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */; };
@@ -99,6 +100,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C007CBAA1D3F54FA00FA5A4C /* LetterDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterDetailViewController.swift; sourceTree = "<group>"; };
 		C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTabViewController.swift; sourceTree = "<group>"; };
 		C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNavViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				D607C5E91D2A1A2D00542804 /* albumViewController.swift */,
 				D607C5EB1D2A3CAF00542804 /* chatTabSettingViewController.swift */,
 				D607C5ED1D2A41AF00542804 /* chatBGcolorViewController.swift */,
+				C007CBAA1D3F54FA00FA5A4C /* LetterDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 				D63A12201D37507400AD6989 /* WebSocket.swift in Sources */,
 				C0D47B0D1D32AF2600637EAB /* URLInfo.swift in Sources */,
 				D63A120D1D37504D00AD6989 /* SocketEnginePacketType.swift in Sources */,
+				C007CBAB1D3F54FA00FA5A4C /* LetterDetailViewController.swift in Sources */,
 				D63A11EC1D374E1100AD6989 /* SocketIOManager.swift in Sources */,
 				D69322AC1D20FB6A003E9147 /* HomeViewController.swift in Sources */,
 				D63A120A1D37504D00AD6989 /* SocketClientManager.swift in Sources */,
