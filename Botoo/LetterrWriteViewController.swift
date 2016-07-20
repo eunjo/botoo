@@ -40,9 +40,12 @@ class LetterrWriteViewController: UIViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         let date:String = dateFormatter.stringFromDate(currentDate)
-        let userProfile = NSUserDefaults.standardUserDefaults().stringForKey("userProfile")
+        var userProfile = NSUserDefaults.standardUserDefaults().stringForKey("userProfile")
         let connect_id = NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")
         
+        if userProfile == "nil" {
+            userProfile = "nil\(NSUserDefaults.standardUserDefaults().stringForKey("userGender"))"
+        }
         
         let letterParams = [
             "sender": userProfile! as String,
