@@ -242,11 +242,11 @@
 		C0D47AFB1D2385F200637EAB /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				D63A11EB1D374E1100AD6989 /* SocketIOManager.swift */,
 				C0D47AFC1D23863F00637EAB /* UserInfo.swift */,
 				C0D47B061D2A076300637EAB /* KeyboardProtocol.swift */,
 				C0D47B0A1D31717900637EAB /* ExtensionForUIDevice.swift */,
 				C0D47B0C1D32AF2600637EAB /* URLInfo.swift */,
-				D63A11EB1D374E1100AD6989 /* SocketIOManager.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
