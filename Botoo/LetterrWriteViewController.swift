@@ -19,6 +19,7 @@ class LetterrWriteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.title = "편지쓰기"
 
         // Do any additional setup after loading the view.
         letterText!.layer.cornerRadius = 8.0
@@ -44,7 +45,7 @@ class LetterrWriteViewController: UIViewController {
         let connect_id = NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")
         
         if userProfile == "nil" {
-            userProfile = "nil\(NSUserDefaults.standardUserDefaults().stringForKey("userGender"))"
+            userProfile = "nil\(NSUserDefaults.standardUserDefaults().stringForKey("userGender")!)"
         }
         
         let letterParams = [
