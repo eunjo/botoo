@@ -82,6 +82,7 @@ class HomeViewController: UIViewController {
                     self.userMsgStored = json["msg"] as? String
                     self.loverEmailStored = json["lover"] as? String
                     self.connectId = json["connect_id"] as? String
+   //               self.proPic = json["proPic"] as? String
                     self.isGot = true
                     
                     var loverTemp = "nil"

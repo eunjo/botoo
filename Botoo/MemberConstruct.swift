@@ -349,6 +349,38 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
         task.resume()
         return task
     }
+    
+    func setProPicDefault(myEmail:String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
+        //파라미터를 추가한 URL 생성
+        let postString = "myEmail=\(myEmail)"
+        let URL = NSURL(string: "\(urlInfo.setProPicDefault)?\(postString)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
+        
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.HTTPMethod = "PUT"
+        request.URL = URL
+        
+        let task = session.dataTaskWithRequest(request) {
+            (data, response, error) -> Void in
+            let httpResponse = response as! NSHTTPURLResponse
+            let statusCode = httpResponse.statusCode
+            
+            print(response)
+            //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
+            if (statusCode == 200) {
+                do{
+                    completionHandler("success", nil)
+                }catch {
+                    print("Error with Json: \(error)")
+                }
+            }
+        }
+        
+        
+        //task 실행
+        task.resume()
+        return task
+    }
+
  
 
 }
