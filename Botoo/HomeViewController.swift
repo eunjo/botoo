@@ -108,6 +108,8 @@ class HomeViewController: UIViewController {
                         self.loverNameStored = json["name"] as? String
                         self.loverGenderStored = json["gender"] as? String
                         self.loverMsgStored = json["msg"] as? String
+                        
+                        NSUserDefaults.standardUserDefaults().setObject(self.loverNameStored, forKey: "loverName")
                     }
                 
                     self.threadIsAlive = 1

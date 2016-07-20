@@ -17,6 +17,8 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
     
     var letterList:[String] = ["test"]
     
+    var letterList2:[letterTableViewCell] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
