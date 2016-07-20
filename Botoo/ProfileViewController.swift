@@ -121,10 +121,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         
         let secondAction = UIAlertAction(title: "기본 이미지로 변경", style: .Default) { (alert: UIAlertAction!) -> Void in
+            /*
             
             MemberConstruct().setProPicDefault(self.userEmailStored!, completionHandler: { (json, error) -> Void in
 
             })
+ */
+ 
             
             self.initProfileImage()
         }

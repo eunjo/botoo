@@ -23,6 +23,7 @@ public class URLInfo {
     public var callLetter: String
     public var saveProPic: String
     public var setProPicDefault: String
+    public var deleteLetter: String
 
     init() {
         updateDate = WEB_SERVER_IP + "/member/updateDate"
@@ -37,5 +38,6 @@ public class URLInfo {
         callLetter = WEB_SERVER_IP + "/letter/callLetter"
         saveProPic = WEB_SERVER_IP + "/member/saveProPic"
         setProPicDefault = WEB_SERVER_IP + "/member/setProPicDefault"
+        deleteLetter = WEB_SERVER_IP + "/member/deleteLetter"
     }
 }

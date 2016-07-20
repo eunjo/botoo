@@ -18,4 +18,5 @@ protocol MemberProtocol {
     func updateDate(userID: String, loverID: String, userDate: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
     func writeLetter(letterInfo: Dictionary<String,String>?, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
     func callLetter(connectID: String,completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
+    func deleteLetter(connectID: String,letterID:String,completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
 }
