@@ -109,6 +109,7 @@ class HomeViewController: UIViewController {
             
             while self.threadIsAlive == 0 {}
             
+            profileInit()
             if loverEmailStored != nil {
                 MemberConstruct().checkEmail(loverEmailStored!, completionHandler: { (json, error) -> Void in
                     if json != nil {
@@ -126,7 +127,7 @@ class HomeViewController: UIViewController {
             
             while self.threadIsAlive == 0 {}
             
-            profileInit()
+           // profileInit()
 
         }
     }

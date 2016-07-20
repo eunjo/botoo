@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class MemberConstruct: MemberProtocol {
     
@@ -315,5 +316,43 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
         return task
 
     }
+    
+    func saveProPic(userEmail: Dictionary<String,String>?, proPic: UIImage, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
+        //파라미터를 추가한 URL 생성
+        let URL = NSURL(string: "\(urlInfo.saveProPic)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
+        
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.HTTPMethod = "POST"
+        request.URL = URL
+        
+        if (userEmail != nil){
+            request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(userEmail!, options: [])
+        }
+        
+        let task = session.dataTaskWithRequest(request) {
+            (data, response, error) -> Void in
+            let httpResponse = response as! NSHTTPURLResponse
+            let statusCode = httpResponse.statusCode
+            
+            print(response)
+            //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
+            if (statusCode == 200) {
+                do{
+                    print(data)
+                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
+                    //핸들러를 이용하여 json을 return 한다.
+                    completionHandler(json, nil)
+                }catch {
+                    print("Error with Json: \(error)")
+                }
+            }
+        }
+        
+        //task 실행
+        task.resume()
+        return task
+    }
+ 
+
 }
 
