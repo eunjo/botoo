@@ -38,6 +38,6 @@ public class URLInfo {
         callLetter = WEB_SERVER_IP + "/letter/callLetter"
         saveProPic = WEB_SERVER_IP + "/member/saveProPic"
         setProPicDefault = WEB_SERVER_IP + "/member/setProPicDefault"
-        deleteLetter = WEB_SERVER_IP + "/member/deleteLetter"
+        deleteLetter = WEB_SERVER_IP + "/letter/deleteLetter"
     }
 }
