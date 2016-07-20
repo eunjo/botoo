@@ -17,8 +17,6 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
     
     var letterList:[String] = ["test"]
     
-    var letterList2:[letterTableViewCell] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,7 +27,6 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
         MemberConstruct().callLetter(NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")!,
                                      completionHandler: { (json, error) -> Void in
                                         print(json)
-                                        letterList2(letterTableViewCell()
         })
     }
     
