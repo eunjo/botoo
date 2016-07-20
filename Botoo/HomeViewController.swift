@@ -95,10 +95,14 @@ class HomeViewController: UIViewController {
                         connectIdTemp = json["connect_id"] as! String
                     }
                     
-                    print(loverTemp)
+                    var proPicTemp = "nil"
+                    if json["proPic"] as? String != nil {
+                        proPicTemp = json["proPic"] as! String
+                    }
                     
                     NSUserDefaults.standardUserDefaults().setObject(loverTemp, forKey: "userLover")
                     NSUserDefaults.standardUserDefaults().setObject(connectIdTemp, forKey: "userConnectId")
+                    NSUserDefaults.standardUserDefaults().setObject(proPicTemp, forKey: "userProfile")
                 }
                 
                 self.threadIsAlive = 1

@@ -33,8 +33,8 @@ public class URLInfo {
         changeName = WEB_SERVER_IP + "/member/changeName"
         connect = WEB_SERVER_IP + "/member/connect"
         disconnect = WEB_SERVER_IP + "/member/disconnect"
-        writeLetter = WEB_SERVER_IP + "/member/writeLetter"
-        callLetter = WEB_SERVER_IP + "/member/callLetter"
+        writeLetter = WEB_SERVER_IP + "/letter/writeLetter"
+        callLetter = WEB_SERVER_IP + "/letter/callLetter"
         saveProPic = WEB_SERVER_IP + "/member/saveProPic"
         setProPicDefault = WEB_SERVER_IP + "/member/setProPicDefault"
     }
