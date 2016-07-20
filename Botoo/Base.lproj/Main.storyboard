@@ -1332,10 +1332,10 @@
             </objects>
             <point key="canvasLocation" x="1996.5" y="-606.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Letter Detail View Controller-->
         <scene sceneID="Qg4-md-BAa">
             <objects>
-                <viewController storyboardIdentifier="letterDetail" id="ymv-eO-61v" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="letterDetail" id="ymv-eO-61v" customClass="LetterDetailViewController" customModule="Botoo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Zew-WP-wHE"/>
                         <viewControllerLayoutGuide type="bottom" id="mo0-Yi-Bnq"/>
@@ -1343,9 +1343,23 @@
                     <view key="view" contentMode="scaleToFill" id="5h2-mq-b1T">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chatBGdefault.png" translatesAutoresizingMaskIntoConstraints="NO" id="uzu-6R-Iiw">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7eF-LU-CBu">
+                                <rect key="frame" x="0.0" y="79" width="375" height="542"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="textField" destination="7eF-LU-CBu" id="E1D-se-8ty"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PU3-8z-Net" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1824,6 +1838,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chatBGdefault.png" width="750" height="1334"/>
         <image name="dolphin_only.png" width="120" height="120"/>
         <image name="homeBG.png" width="750" height="1334"/>
     </resources>

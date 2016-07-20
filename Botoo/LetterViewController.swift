@@ -22,23 +22,27 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
         
         self.letterTable.delegate = self
         self.letterTable.dataSource = self
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         if NSUserDefaults.standardUserDefaults().stringForKey("userConnectId") != "nil" {
             MemberConstruct().callLetter(NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")!,
                                          completionHandler: { (json, error) -> Void in
                                             let JsonData = json as! [[String: AnyObject]]
+                                            
+                                            self.letterList = []
                                             for data in JsonData {
                                                 self.letterList.append(letterTableVO(title: data["title"] as! String, writerImage: data["sender"] as! String, letterId: data["_id"] as! String, date: data["date"] as! String, body: data["body"] as! String))
                                             }
-                                            
-                                            dispatch_async(dispatch_get_main_queue()) {
-                                                self.letterTable.reloadData()
-                                            }
             })
         }
-    }
-    
-    override func viewDidAppear(animated: Bool) {
+        
+        // write 한 편지 reload
+        if LetterrWriteViewController.getNewLetterInfo.letterInfo != nil {
+            self.letterList.append(LetterrWriteViewController.getNewLetterInfo.letterInfo!)
+            LetterrWriteViewController.getNewLetterInfo.letterInfo = nil
+        }
+        
         self.letterTable.reloadData()
     }
     
@@ -69,9 +73,9 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if let letterDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("letterDetail") {
+        if let letterDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("letterDetail") as? LetterDetailViewController {
             letterDetailViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-            //navigationController 의 하위 뷰로 전환
+            letterDetailViewController.letterBody = self.letterList[indexPath.row].body
             self.navigationController?.pushViewController(letterDetailViewController, animated: true)
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: false)

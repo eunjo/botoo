@@ -13,6 +13,10 @@ class LetterrWriteViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var letterText: UITextView!
     
+    struct getNewLetterInfo {
+        static var letterInfo: letterTableVO?
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -50,27 +54,13 @@ class LetterrWriteViewController: UIViewController {
         
         MemberConstruct().writeLetter(letterParams, completionHandler: { (json, error) -> Void in
             print(json)
-
+            dispatch_async(dispatch_get_main_queue()) {
+                LetterrWriteViewController.getNewLetterInfo.letterInfo = letterTableVO(title: letterParams["title"]!, writerImage: letterParams["sender"]!, letterId: json["_id"] as! String, date: letterParams["date"]!, body: letterParams["body"]!)
+                self.navigationController?.popViewControllerAnimated(true)
+            }
         })
         
-        navigationController?.popViewControllerAnimated(true)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("?")
     }
 }
-
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 
