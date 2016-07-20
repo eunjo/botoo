@@ -24,10 +24,6 @@ class byebyeViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        
-        MemberConstruct().checkEmail(myEmail!, completionHandler: { (json, error) -> Void in
-            self.loverEmailStored = json["lover"] as? String
-        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,13 +33,21 @@ class byebyeViewController: UIViewController {
     
     @IBAction func disconnectButtonTapped(sender: AnyObject) {
         
-        MemberConstruct().disconnect(myEmail!, loverEmail: loverEmailStored!, completionHandler: { (json, error) -> Void in
-            
-            dispatch_async(dispatch_get_main_queue()) {
-                    
+        if NSUserDefaults.standardUserDefaults().stringForKey("userConnectId") != "nil" {
+            MemberConstruct().disconnect(myEmail!, loverEmail: loverEmailStored!, completionHandler: { (json, error) -> Void in
+                print("??")
+                dispatch_async(dispatch_get_main_queue()) {
+                    print("????")
                     self.navigationController?.popViewControllerAnimated(true)
-            }
-        })
+                }
+            })
+        } else {
+            let myAlert = UIAlertController(title:"알림", message: "짝이 없어요.", preferredStyle: UIAlertControllerStyle.Alert)
+            let okAction = UIAlertAction(title:"확인", style:UIAlertActionStyle.Default, handler:nil)
+            
+            myAlert.addAction(okAction)
+            self.presentViewController(myAlert, animated: true, completion: nil)
+        }
 
     }
 
