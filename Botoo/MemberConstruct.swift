@@ -397,8 +397,7 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
         task.resume()
         return task
     }
-<<<<<<< HEAD
-    
+*/  
     func deleteLetter(connectID: String, letterID: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
         let postString = "connectID=\(connectID)&letterID=\(letterID)"
         let URL = NSURL(string: "\(urlInfo.deleteLetter)?\(postString)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
@@ -429,12 +428,5 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
         return task
         
     }
-
-
-=======
-*/
->>>>>>> e29b7e46d9327a711ea4c3aa7e1a21fe87aa705a
- 
-
 }
 
