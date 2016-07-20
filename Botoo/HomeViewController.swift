@@ -78,15 +78,23 @@ class HomeViewController: UIViewController {
                 if json != nil {
                     self.userNameStored = json["name"] as? String
                     self.userGenderStored = json["gender"] as? String
-                    self.loverEmailStored = json["lover"] as? String
                     self.firstDateStored = json["date"] as? String
                     self.userMsgStored = json["msg"] as? String
-                    self.connectId = json["connect_id"] as? String
                     self.isGot = true
                     
+                    var loverTemp = "nil"
+                    if json["lover"] as? String != nil {
+                        loverTemp = json["lover"] as! String
+                    }
                     
-                    NSUserDefaults.standardUserDefaults().setObject(self.loverEmailStored, forKey: "userLover")
-                    NSUserDefaults.standardUserDefaults().setObject(self.connectId, forKey: "userConnectId")
+                    var connectIdTemp = "nil"
+                    if json["connect_id"] as? String != nil {
+                        connectIdTemp = json["connect_id"] as! String
+                    }
+                    
+                    
+                    NSUserDefaults.standardUserDefaults().setObject(loverTemp, forKey: "userLover")
+                    NSUserDefaults.standardUserDefaults().setObject(connectIdTemp, forKey: "userConnectId")
                 }
                 
                 self.threadIsAlive = 1
@@ -180,7 +188,7 @@ class HomeViewController: UIViewController {
         
         
         // 상대방 로드
-        if (loverEmailStored==nil) {
+        if (loverEmailStored == nil) {
             
             loverProPic.image = UIImage(named: "tp_default_grey.png")
             loverUserName.text = "연결하러 가기"
