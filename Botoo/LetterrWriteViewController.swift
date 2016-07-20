@@ -36,12 +36,12 @@ class LetterrWriteViewController: UIViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         let date:String = dateFormatter.stringFromDate(currentDate)
-        let myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+        let userProfile = NSUserDefaults.standardUserDefaults().stringForKey("userProfile")
         let connect_id = NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")
         
         
         let letterParams = [
-            "sender": myEmail! as String,
+            "sender": userProfile! as String,
             "title": title! as String,
             "body": body! as String,
             "date": date as String,
@@ -52,12 +52,13 @@ class LetterrWriteViewController: UIViewController {
             print(json)
 
         })
-        // 서버 구축 후 데이터 저장
         
         navigationController?.popViewControllerAnimated(true)
- 
-        
-}
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("?")
+    }
 }
 
 

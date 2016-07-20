@@ -27,7 +27,7 @@
 		D600A9701D237D24005F9130 /* LetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A96F1D237D24005F9130 /* LetterViewController.swift */; };
 		D600A9791D239E63005F9130 /* LetterNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A9781D239E63005F9130 /* LetterNavViewController.swift */; };
 		D600A97B1D23A869005F9130 /* LetterrWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A97A1D23A869005F9130 /* LetterrWriteViewController.swift */; };
-		D600A97D1D23B395005F9130 /* letterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A97C1D23B395005F9130 /* letterTableViewCell.swift */; };
+		D600A97D1D23B395005F9130 /* letterTableVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A97C1D23B395005F9130 /* letterTableVO.swift */; };
 		D607C5D81D277B4E00542804 /* msgEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607C5D71D277B4E00542804 /* msgEditViewController.swift */; };
 		D607C5DA1D279F5A00542804 /* connectSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607C5D91D279F5A00542804 /* connectSceneViewController.swift */; };
 		D607C5DC1D27AEE100542804 /* nameEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607C5DB1D27AEE100542804 /* nameEditViewController.swift */; };
@@ -119,7 +119,7 @@
 		D600A96F1D237D24005F9130 /* LetterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterViewController.swift; sourceTree = "<group>"; };
 		D600A9781D239E63005F9130 /* LetterNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterNavViewController.swift; sourceTree = "<group>"; };
 		D600A97A1D23A869005F9130 /* LetterrWriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterrWriteViewController.swift; sourceTree = "<group>"; };
-		D600A97C1D23B395005F9130 /* letterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = letterTableViewCell.swift; sourceTree = "<group>"; };
+		D600A97C1D23B395005F9130 /* letterTableVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = letterTableVO.swift; sourceTree = "<group>"; };
 		D607C5D71D277B4E00542804 /* msgEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = msgEditViewController.swift; sourceTree = "<group>"; };
 		D607C5D91D279F5A00542804 /* connectSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = connectSceneViewController.swift; sourceTree = "<group>"; };
 		D607C5DB1D27AEE100542804 /* nameEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nameEditViewController.swift; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 		C0D47B051D2A074200637EAB /* TableCell */ = {
 			isa = PBXGroup;
 			children = (
-				D600A97C1D23B395005F9130 /* letterTableViewCell.swift */,
+				D600A97C1D23B395005F9130 /* letterTableVO.swift */,
 			);
 			name = TableCell;
 			sourceTree = "<group>";
@@ -566,7 +566,7 @@
 				C0D47AF61D237CAC00637EAB /* SettingViewController.swift in Sources */,
 				D607C5DA1D279F5A00542804 /* connectSceneViewController.swift in Sources */,
 				D63A12091D37504D00AD6989 /* SocketAnyEvent.swift in Sources */,
-				D600A97D1D23B395005F9130 /* letterTableViewCell.swift in Sources */,
+				D600A97D1D23B395005F9130 /* letterTableVO.swift in Sources */,
 				D600A9701D237D24005F9130 /* LetterViewController.swift in Sources */,
 				C0D47AEE1D22A25500637EAB /* ChatTabViewController.swift in Sources */,
 				D63A12181D37504D00AD6989 /* SocketParsable.swift in Sources */,
