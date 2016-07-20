@@ -428,11 +428,6 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
         return task
         
     }
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 3bd503eafc81f6943caa6bae8776933fca3d0199
 }
+
 
