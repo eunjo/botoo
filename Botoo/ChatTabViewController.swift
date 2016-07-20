@@ -23,7 +23,7 @@ class ChatTabViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         self.tabBarController!.selectedIndex = 0
         
-        if NSUserDefaults.standardUserDefaults().stringForKey("userLover") == "" {
+        if NSUserDefaults.standardUserDefaults().stringForKey("userLover") == "nil" {
             if idx2 {
                 if let connectingViewController =   self.storyboard?.instantiateViewControllerWithIdentifier("ConnectingViewController") {
                     connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical

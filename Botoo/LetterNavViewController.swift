@@ -24,7 +24,7 @@ class LetterNavViewController: UINavigationController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        if NSUserDefaults.standardUserDefaults().stringForKey("userLover") == "" {
+        if NSUserDefaults.standardUserDefaults().stringForKey("userLover") == "nil" {
             self.tabBarController!.selectedIndex = 0
             if idx {
                 if let connectingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ConnectingViewController") {

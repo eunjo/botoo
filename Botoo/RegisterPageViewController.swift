@@ -99,7 +99,7 @@ class RegisterPageViewController: UIViewController {
                 print("가입 정보가 잘들어갔어욤 :: \(json)")
                 dispatch_async(dispatch_get_main_queue()) {
                     self.displayRegisterAlert("가입되었습니다.",
-                        okAction: UIAlertAction(title:"OK", style:UIAlertActionStyle.Default) { action in
+                        okAction: UIAlertAction(title:"확인", style:UIAlertActionStyle.Default) { action in
                             self.dismissViewControllerAnimated(true, completion: nil)
                         })
                 }

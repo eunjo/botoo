@@ -42,13 +42,13 @@ class LoginViewController: UIViewController {
                 userIdStored = json["_id"] as? String
 
                 if json["lover"] as? String == nil {
-                    userLoverStored = ""
+                    userLoverStored = "nil"
                 } else {
                     userLoverStored = json["lover"] as? String
                 }
                 
                 if json["connect_id"] as? String == nil {
-                    userConnectId = ""
+                    userConnectId = "nil"
                 } else {
                     userConnectId = json["connect_id"] as? String
                 }

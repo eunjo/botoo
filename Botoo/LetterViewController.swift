@@ -24,10 +24,12 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
         self.letterTable.delegate = self
         self.letterTable.dataSource = self
         
-        MemberConstruct().callLetter(NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")!,
-                                     completionHandler: { (json, error) -> Void in
-                                        print(json)
-        })
+        if NSUserDefaults.standardUserDefaults().stringForKey("userConnectId") != "nil" {
+            MemberConstruct().callLetter(NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")!,
+                                         completionHandler: { (json, error) -> Void in
+                                            print(json)
+            })
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
