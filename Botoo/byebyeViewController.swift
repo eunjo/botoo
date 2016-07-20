@@ -11,9 +11,6 @@ import UIKit
 class byebyeViewController: UIViewController {
     
     var threadIsAlive = 0
-    
-    var loverEmailStored:String?
-    
     var myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
     
     override func viewDidLoad() {
@@ -34,10 +31,9 @@ class byebyeViewController: UIViewController {
     @IBAction func disconnectButtonTapped(sender: AnyObject) {
         
         if NSUserDefaults.standardUserDefaults().stringForKey("userConnectId") != "nil" {
+            let loverEmailStored =  NSUserDefaults.standardUserDefaults().stringForKey("userLover")
             MemberConstruct().disconnect(myEmail!, loverEmail: loverEmailStored!, completionHandler: { (json, error) -> Void in
-                print("??")
                 dispatch_async(dispatch_get_main_queue()) {
-                    print("????")
                     self.navigationController?.popViewControllerAnimated(true)
                 }
             })

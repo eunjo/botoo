@@ -80,6 +80,8 @@ class HomeViewController: UIViewController {
                     self.userGenderStored = json["gender"] as? String
                     self.firstDateStored = json["date"] as? String
                     self.userMsgStored = json["msg"] as? String
+                    self.loverEmailStored = json["lover"] as? String
+                    self.connectId = json["connect_id"] as? String
                     self.isGot = true
                     
                     var loverTemp = "nil"
@@ -92,6 +94,7 @@ class HomeViewController: UIViewController {
                         connectIdTemp = json["connect_id"] as! String
                     }
                     
+                    print(loverTemp)
                     
                     NSUserDefaults.standardUserDefaults().setObject(loverTemp, forKey: "userLover")
                     NSUserDefaults.standardUserDefaults().setObject(connectIdTemp, forKey: "userConnectId")
