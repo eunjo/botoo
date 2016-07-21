@@ -57,6 +57,7 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
         
         let cell = tableView.dequeueReusableCellWithIdentifier("LetterTableViewCell", forIndexPath: indexPath)
         (cell.viewWithTag(100) as! UILabel).text = letterList[indexPath.row].title
+        (cell.viewWithTag(200) as! UILabel).text = letterList[indexPath.row].date
         
         if letterList[indexPath.row].writerImage == "nil1" {
             (cell.viewWithTag(101) as! UIImageView).image = UIImage(named: "default_female.png")
