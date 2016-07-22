@@ -152,13 +152,13 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="S2t-DP-maJ">
                                         <rect key="frame" x="0.0" y="300" width="283" height="80"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHT-7G-SHs">
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHT-7G-SHs">
                                                 <rect key="frame" x="0.0" y="0.0" width="87" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="ADd-6f-fU4"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                <state key="normal">
+                                                <state key="normal" title="←">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                             </button>
@@ -200,7 +200,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="asx-e7-1iV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="301.5" y="879.5"/>
+            <point key="canvasLocation" x="190.5" y="825.5"/>
         </scene>
         <!--Image Zoom View Controller-->
         <scene sceneID="Xtn-hS-aa8">
@@ -1848,8 +1848,8 @@
         <image name="homeBG.png" width="750" height="1334"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="x39-vu-HcH"/>
-        <segue reference="jZk-yp-nUi"/>
         <segue reference="4a1-F2-BdS"/>
+        <segue reference="jZk-yp-nUi"/>
+        <segue reference="Igv-Vl-L6y"/>
     </inferredMetricsTieBreakers>
 </document>
