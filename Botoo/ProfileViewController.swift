@@ -202,29 +202,21 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     
     func gotoMsgEdit(sender:UITapGestureRecognizer){
+        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("msgEditViewController") as! msgEditViewController
         
-        var viewController: UIViewController?
-        
-        viewController = self.storyboard?.instantiateViewControllerWithIdentifier("msgEditViewController")
-        
-        if(viewController != nil) {
-            viewController!.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-            //navigationController 의 하위 뷰로 전환
-            self.navigationController?.pushViewController(viewController!, animated: true)
-        }
+        viewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        viewController.msg = userMsgStored
+        //navigationController 의 하위 뷰로 전환
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func gotoNameEdit(sender:UITapGestureRecognizer){
+        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("nameEditViewController") as! nameEditViewController
         
-        var viewController: UIViewController?
-        
-        viewController = self.storyboard?.instantiateViewControllerWithIdentifier("nameEditViewController")
-        
-        if(viewController != nil) {
-            viewController!.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-            //navigationController 의 하위 뷰로 전환
-            self.navigationController?.pushViewController(viewController!, animated: true)
-        }
+        viewController.msg = userNameStored
+        viewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        //navigationController 의 하위 뷰로 전환
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
 }
