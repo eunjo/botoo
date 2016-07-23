@@ -85,7 +85,6 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
             
             let connect_ID = NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")
             let letter_ID = letterList[indexPath.row].letterId
-
             
             LetterConstruct().deleteLetter(connect_ID!, letterID: letter_ID, completionHandler: { (json, error) -> Void in
                 print(json)
@@ -100,11 +99,12 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        //letter 읽음 처리
-        LetterConstruct().updateLetter( NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")!, letterID: letterList[indexPath.row].letterId, isRead: "1", completionHandler: { (json, error) -> Void in
-            print(json)
-            
-        })
+        if letterList[indexPath.row].writerId != NSUserDefaults.standardUserDefaults().stringForKey("userId")! { // 내가 쓴 경우
+            //letter 읽음 처리
+            LetterConstruct().updateLetter( NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")!, letterID: letterList[indexPath.row].letterId, isRead: "1", completionHandler: { (json, error) -> Void in
+                print(json)
+            })
+        }
         
         if let letterDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("letterDetail") as? LetterDetailViewController {
             letterDetailViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
