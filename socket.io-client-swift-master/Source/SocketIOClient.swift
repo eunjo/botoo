@@ -143,7 +143,8 @@ public final class SocketIOClient : NSObject, SocketEngineClient, SocketParsable
             engine?.connect()
         }
         
-        guard timeoutAfter != 0 else { return }
+        guard timeoutAfter != 0 else { // guard == 조건이 틀리면 !
+            return }
 
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(timeoutAfter) * Int64(NSEC_PER_SEC))
 

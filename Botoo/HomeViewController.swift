@@ -106,6 +106,7 @@ class HomeViewController: UIViewController {
                     NSUserDefaults.standardUserDefaults().setObject(connectIdTemp, forKey: "userConnectId")
                     NSUserDefaults.standardUserDefaults().setObject(proPicTemp, forKey: "userProfile")
                     NSUserDefaults.standardUserDefaults().setObject(json["_id"] as? String, forKey: "userId")
+                    NSUserDefaults.standardUserDefaults().setObject(self.userNameStored, forKey: "userName")
                 }
                 
                 self.threadIsAlive = 1
