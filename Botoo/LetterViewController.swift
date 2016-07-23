@@ -26,13 +26,14 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidAppear(animated: Bool) {
         if NSUserDefaults.standardUserDefaults().stringForKey("userConnectId") != "nil" {
-            MemberConstruct().callLetter(NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")!,
+            LetterConstruct().callLetter(NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")!,
                                          completionHandler: { (json, error) -> Void in
                                             let JsonData = json as! [[String: AnyObject]]
                                             
                                             self.letterList = []
                                             for data in JsonData {
-                                                self.letterList.append(letterTableVO(title: data["title"] as! String, writerImage: data["sender"] as! String, letterId: data["_id"] as! String, date: data["date"] as! String, body: data["body"] as! String))
+                                                print(data)
+                                                self.letterList.append(letterTableVO(writerId: data["senderId"] as! String, title: data["title"] as! String, writerImage: data["sender"] as! String, letterId: data["_id"] as! String, date: data["date"] as! String, body: data["body"] as! String, isRead: Int(data["isRead"] as! String)!))
                                             }
                                             
                                             dispatch_async(dispatch_get_main_queue()) {
@@ -67,6 +68,12 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
             // image 적용
         }
         
+        if letterList[indexPath.row].isRead == 0 { // 안 읽은 경우
+            (cell.viewWithTag(300) as! UIImageView).hidden = false
+        } else if letterList[indexPath.row].isRead == 1 || letterList[indexPath.row].writerId == NSUserDefaults.standardUserDefaults().stringForKey("userId") { // 읽었거나 내가 쓴 경우
+            (cell.viewWithTag(300) as! UIImageView).hidden = true
+        }
+        
         return cell
     }
     
@@ -78,7 +85,7 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
             let letter_ID = letterList[indexPath.row].letterId
 
             
-            MemberConstruct().deleteLetter(connect_ID!, letterID: letter_ID, completionHandler: { (json, error) -> Void in
+            LetterConstruct().deleteLetter(connect_ID!, letterID: letter_ID, completionHandler: { (json, error) -> Void in
                 print(json)
                 
                 dispatch_async(dispatch_get_main_queue()) {
@@ -90,6 +97,12 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        //letter 읽음 처리
+        LetterConstruct().updateLetter( NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")!, letterID: letterList[indexPath.row].letterId, isRead: "1", completionHandler: { (json, error) -> Void in
+            print(json)
+            
+        })
         
         if let letterDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("letterDetail") as? LetterDetailViewController {
             letterDetailViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
