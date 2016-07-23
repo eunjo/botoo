@@ -17,6 +17,8 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
     
     var letterList:[letterTableVO] = []
     
+    var isReadCount:Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,9 +36,13 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
                                             for data in JsonData {
                                                 print(data)
                                                 self.letterList.append(letterTableVO(writerId: data["senderId"] as! String, title: data["title"] as! String, writerImage: data["sender"] as! String, letterId: data["_id"] as! String, date: data["date"] as! String, body: data["body"] as! String, isRead: Int(data["isRead"] as! String)!))
+                                                if(Int(data["isRead"] as! String)==0){
+                                                    self.isReadCount++
+                                                }
                                             }
                                             
                                             dispatch_async(dispatch_get_main_queue()) {
+                                                //LetterNavViewController().resetBadge(self.isReadCount)
                                                 self.letterTable.reloadData()
                                             }
             })

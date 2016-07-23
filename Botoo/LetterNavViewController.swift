@@ -10,9 +10,10 @@ import UIKit
 
 class LetterNavViewController: UINavigationController {
 
-    
+
     @IBOutlet weak var letterTabBarItem: UITabBarItem!
-    
+
+    var isReadCount:Int = 0
     var idx:Bool = true
     
     override func viewDidLoad() {
@@ -21,6 +22,7 @@ class LetterNavViewController: UINavigationController {
         // Do any additional setup after loading the view.
         self.navigationBar.barTintColor = UIColor(red: 252.0/255, green: 228.0/255, blue: 236.0/255, alpha: 1)
         self.navigationBar.tintColor = UIColor.blackColor()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -36,11 +38,24 @@ class LetterNavViewController: UINavigationController {
                 idx = true
             }
         }
+
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func resetBadge(isReadCount:Int){
+        
+
+        if (isReadCount==0){
+            self.tabBarItem.badgeValue = nil
+        } else {
+            self.tabBarItem.badgeValue = String(isReadCount)
+        }
+
     }
 
 }
