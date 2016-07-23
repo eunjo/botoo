@@ -16,7 +16,7 @@ class RegisterPageViewController: UIViewController {
     @IBOutlet weak var PWrepeatTextField: UITextField!
     @IBOutlet weak var genderSegment: UISegmentedControl!
     
-    var gender:String?
+    var gender = "0"
     let generalOkAction = UIAlertAction(title:"확인", style:UIAlertActionStyle.Default, handler:nil)
     
     var threadIsAlive = 0
@@ -51,9 +51,11 @@ class RegisterPageViewController: UIViewController {
         
         var isAlreadyExists:Bool = false
         
+        
+        
         // Check for Empty Fields
     
-        if (userEmail!.isEmpty || userName!.isEmpty || userPW!.isEmpty || PWrepeat!.isEmpty || gender==nil){
+        if (userEmail!.isEmpty || userName!.isEmpty || userPW!.isEmpty || PWrepeat!.isEmpty || genderSegment==nil){
             
             // Display alert message
             displayRegisterAlert("All fields are required", okAction: generalOkAction)
@@ -91,8 +93,9 @@ class RegisterPageViewController: UIViewController {
             "email": userEmail! as String,
             "pw": userPW! as String,
             "name": userName! as String,
-            "gender": gender! as String
+            "gender": gender as String
         ]
+        
         
         if (isAlreadyExists != true){
             MemberConstruct().register(loginParams, completionHandler: { (json, error) -> Void in
