@@ -82,6 +82,7 @@
 		D6E2AF521D3E1D3F00C01509 /* tp_default_female.png in Resources */ = {isa = PBXBuildFile; fileRef = D6E2AF4F1D3E1D3F00C01509 /* tp_default_female.png */; };
 		D6E2AF531D3E1D3F00C01509 /* tp_default_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = D6E2AF501D3E1D3F00C01509 /* tp_default_grey.png */; };
 		D6E2AF541D3E1D3F00C01509 /* tp_default_male.png in Resources */ = {isa = PBXBuildFile; fileRef = D6E2AF511D3E1D3F00C01509 /* tp_default_male.png */; };
+		D6E2AF561D4336AE00C01509 /* red_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = D6E2AF551D4336AE00C01509 /* red_circle.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,6 +184,7 @@
 		D6E2AF4F1D3E1D3F00C01509 /* tp_default_female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tp_default_female.png; path = img/tp_default_female.png; sourceTree = "<group>"; };
 		D6E2AF501D3E1D3F00C01509 /* tp_default_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tp_default_grey.png; path = img/tp_default_grey.png; sourceTree = "<group>"; };
 		D6E2AF511D3E1D3F00C01509 /* tp_default_male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tp_default_male.png; path = img/tp_default_male.png; sourceTree = "<group>"; };
+		D6E2AF551D4336AE00C01509 /* red_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red_circle.png; path = img/red_circle.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,6 +286,7 @@
 		D600A96D1D228854005F9130 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				D6E2AF551D4336AE00C01509 /* red_circle.png */,
 				D63A11CD1D3521E800AD6989 /* homeBG.png */,
 				D63A11CB1D34CA6C00AD6989 /* chatBGdefault.png */,
 				D680FAD91D314D6200A84986 /* Default-iPhone6.png */,
@@ -499,6 +502,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6E2AF541D3E1D3F00C01509 /* tp_default_male.png in Resources */,
+				D6E2AF561D4336AE00C01509 /* red_circle.png in Resources */,
 				D69322B41D20FB6A003E9147 /* LaunchScreen.storyboard in Resources */,
 				D69322B11D20FB6A003E9147 /* Assets.xcassets in Resources */,
 				D63A11CE1D3521E800AD6989 /* homeBG.png in Resources */,
