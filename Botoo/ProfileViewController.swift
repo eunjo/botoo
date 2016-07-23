@@ -192,10 +192,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.profile_iv_profile.image = info[UIImagePickerControllerOriginalImage] as? UIImage
             let proPic = self.profile_iv_profile.image
             
+            /*
             MemberConstruct().saveProPic(self.userEmailStored!, proPic: proPic!, completionHandler: { (json, error) -> Void in
                     print("프사 성공 :: \(json)")
                 
             })
+ */
  
         }
     }
