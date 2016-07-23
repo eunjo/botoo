@@ -28,6 +28,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     var userGenderStored:String?
     var userNameStored:String?
     var userMsgStored:String?
+    var userProPicStored:String?
     
     var userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
     
@@ -59,6 +60,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.userGenderStored = json["gender"] as? String
             self.userNameStored = json["name"] as? String
             self.userMsgStored = json["msg"] as? String
+            self.userProPicStored = json["proPic"] as? String
+            
             
             dispatch_async(dispatch_get_main_queue()) {
                 self.initProfile()
@@ -78,10 +81,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func initProfileImage() {
-        if (userGender == "0") {
-            self.profile_iv_profile.image = UIImage(named: "default_male")
-        } else if (userGender == "1") {
-            self.profile_iv_profile.image = UIImage(named: "default_female")
+        if (userProPicStored == nil){
+            if (userGender == "0") {
+                self.profile_iv_profile.image = UIImage(named: "default_male")
+            } else if (userGender == "1") {
+                self.profile_iv_profile.image = UIImage(named: "default_female")
+            }
         }
     }
     
@@ -121,13 +126,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         
         let secondAction = UIAlertAction(title: "기본 이미지로 변경", style: .Default) { (alert: UIAlertAction!) -> Void in
-            /*
             
             MemberConstruct().setProPicDefault(self.userEmailStored!, completionHandler: { (json, error) -> Void in
 
             })
- */
- 
             
             self.initProfileImage()
         }
@@ -189,15 +191,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.profile_iv_profile.image = info[UIImagePickerControllerOriginalImage] as? UIImage
             var proPic = info[UIImagePickerControllerOriginalImage] as? UIImage
             
-            let userEmailParams = [
-                "email": self.userEmailStored! as String,
-            ]
-            
-            MemberConstruct().saveProPic(userEmailParams, proPic: (info[UIImagePickerControllerOriginalImage] as? UIImage)!, completionHandler: { (json, error) -> Void in
+            MemberConstruct().saveProPic(self.userEmailStored!, proPic: (info[UIImagePickerControllerOriginalImage] as? UIImage)!, completionHandler: { (json, error) -> Void in
                     print("프사 성공 :: \(json)")
                 
             })
-
+ 
         }
     }
     
