@@ -11,6 +11,7 @@ import UIKit
 class msgEditViewController: UIViewController {
 
     @IBOutlet weak var msgLabel: UITextField!
+    var msg: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,18 +21,21 @@ class msgEditViewController: UIViewController {
         // right bar item 추가
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "확인", style: .Plain, target: self, action: #selector(addTapped))
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewWillAppear(animated: Bool) {
+        if msg != nil {
+            msgLabel.text = msg
+        }
     }
     
     func addTapped(){
-        let myMsg = NSUserDefaults.standardUserDefaults().stringForKey("userId")
+        let myId = NSUserDefaults.standardUserDefaults().stringForKey("userId")
         
-        MemberConstruct().changeMsg(myMsg!, userMsg: msgLabel.text!,  completionHandler: { (json, error) -> Void in
-            print("success")
-        })
+        if msgLabel.text != msg {
+            MemberConstruct().changeMsg(myId!, userMsg: msgLabel.text!,  completionHandler: { (json, error) -> Void in
+                print("success")
+            })
+        }
 
         
         
