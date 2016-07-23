@@ -70,7 +70,9 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
         
         if letterList[indexPath.row].isRead == 0 { // 안 읽은 경우
             (cell.viewWithTag(300) as! UIImageView).hidden = false
-        } else if letterList[indexPath.row].isRead == 1 || letterList[indexPath.row].writerId == NSUserDefaults.standardUserDefaults().stringForKey("userId") { // 읽었거나 내가 쓴 경우
+        }
+        
+        if letterList[indexPath.row].isRead == 1 || letterList[indexPath.row].writerId == NSUserDefaults.standardUserDefaults().stringForKey("userId")! { // 읽었거나 내가 쓴 경우
             (cell.viewWithTag(300) as! UIImageView).hidden = true
         }
         
