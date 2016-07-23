@@ -16,29 +16,17 @@ class SocketIOManager: NSObject {
         super.init()
     }
     
-    var socket: SocketIOClient = SocketIOClient(socketURL: NSURL(string: "http://ec2-52-42-42-59.us-west-2.compute.amazonaws.com")!)
+    var socket: SocketIOClient = SocketIOClient(socketURL: NSURL(string: "http://192.168.1.2:3000")!)
     
     // connecting
     func establishConnection() {
         socket.connect()
-        print("connected successfully")
     }
     
     // disconnecting
     func closeConnection() {
         socket.disconnect()
     }
-
-    // app 활성화시 connect
-    func applicationDidBecomeActive(application: UIApplication) {
-        SocketIOManager.sharedInstance.establishConnection()
-    }
-    
-    // app 비활성화시 disconnect
-    func applicationDidEnterBackground(application: UIApplication) {
-        SocketIOManager.sharedInstance.closeConnection()
-    }
-    
     
     func sendMessage(message: String) {
         socket.emit("chatMessage", message)

@@ -129,7 +129,7 @@ public final class SocketIOClient : NSObject, SocketEngineClient, SocketParsable
     /// Connect to the server. If we aren't connected after timeoutAfter, call handler
     public func connect(timeoutAfter timeoutAfter: Int, withTimeoutHandler handler: (() -> Void)?) {
         assert(timeoutAfter >= 0, "Invalid timeout: \(timeoutAfter)")
-
+        
         guard status != .Connected else {
             DefaultSocketLogger.Logger.log("Tried connecting on an already connected socket", type: logType)
             return
