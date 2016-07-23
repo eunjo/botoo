@@ -190,8 +190,10 @@ class HomeViewController: UIViewController {
         // 내 이름 로드
         myUserName.text = userNameStored
         
+        
         // 내 상메 로드
         myStateMsg.text = userMsgStored
+        myStateMsg.numberOfLines = 3;
         
         
         // 상대방 로드
