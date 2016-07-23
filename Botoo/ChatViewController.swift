@@ -42,6 +42,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private var bottomDrawerHeight = 0.0
     private var currentKeyboardHeight: CGFloat?
     
+    private let userName = NSUserDefaults.standardUserDefaults().stringForKey("userName")!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
@@ -67,6 +69,51 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 
         // 배경 초기화
         initBackGround()
+        
+        //유저 소켓 연결
+        initSocket()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        SocketIOManager.sharedInstance.getChatMessage { (messageInfo) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                print(messageInfo)
+//                self.chatMessages.append(messageInfo)
+//                self.tblChat.reloadData()
+                //                self.scrollToBottom()
+            })
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        //유저 소켓 연결 끊기
+        exitSocket()
+    }
+    
+    func initSocket() {
+        // 유저 네임 서버로 보내기
+        SocketIOManager.sharedInstance.connectToServerWithNickname(self.userName, completionHandler: { (userList) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if userList != nil {
+                    print(userList)
+                    print("채팅 입장.")
+                    
+                    // 요런 식으로 접근 가능
+//                    users = userList
+//                    users[indexPath.row]["nickname"] as? String
+//                    users[indexPath.row]["isConnected"] as! Bool
+//                    users[indexPath.row]["isConnected"] as! Bool
+                }
+            })
+        })
+    }
+    
+    func exitSocket() {
+        SocketIOManager.sharedInstance.exitChatWithNickname(self.userName) { () -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                print("채팅을 나갑니다.")
+            })
+        }
     }
     
     func checkDevice() {
@@ -430,10 +477,12 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
 
+    // 전송 버튼
     @IBAction func sendButtonTapped(sender: AnyObject) {
-        
-
+        if chatInputTextField.text!.characters.count > 0 {
+            SocketIOManager.sharedInstance.sendMessage(chatInputTextField.text!, withNickname: self.userName)
+            chatInputTextField.text = ""
+            chatInputTextField.resignFirstResponder()
+        }
     }
-
-    
 }

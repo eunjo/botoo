@@ -58,7 +58,11 @@
                                                 </state>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sXb-Au-jAA">
+<<<<<<< HEAD
                                                 <rect key="frame" x="99" y="0.0" width="86" height="80"/>
+=======
+                                                <rect key="frame" x="98" y="0.0" width="87" height="80"/>
+>>>>>>> 0b8468249b4042fc15c82e14a4439cc7cfc3549e
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="c4Z-OL-Sjl"/>
                                                 </constraints>
@@ -93,7 +97,11 @@
                                                 </state>
                                             </button>
                                             <button opaque="NO" tag="5" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Typ-ie-m2i">
+<<<<<<< HEAD
                                                 <rect key="frame" x="99" y="0.0" width="86" height="80"/>
+=======
+                                                <rect key="frame" x="98" y="0.0" width="87" height="80"/>
+>>>>>>> 0b8468249b4042fc15c82e14a4439cc7cfc3549e
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="kPw-xK-ivM"/>
                                                 </constraints>
