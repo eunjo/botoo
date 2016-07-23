@@ -262,17 +262,21 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
         return task
     }
     
-    func saveProPic(userEmail: Dictionary<String,String>?, proPic: UIImage, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
+    func saveProPic(userEmail: String, proPic: UIImage, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
         //파라미터를 추가한 URL 생성
+ 
         let URL = NSURL(string: "\(urlInfo.saveProPic)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
-        
+
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.HTTPMethod = "POST"
         request.URL = URL
         
-        if (userEmail != nil){
-            request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(userEmail!, options: [])
-        }
+        var imageData = UIImageJPEGRepresentation(proPic, 1.0)
+        var base64String = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+    
+        var params = ["file_data": base64String, "test": "TEST", "userEmail": userEmail]
+
+        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(params, options: [])
         
         let task = session.dataTaskWithRequest(request) {
             (data, response, error) -> Void in
@@ -297,9 +301,10 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
         task.resume()
         return task
     }
+ 
     
-    /*
-    func setProPicDefault(myEmail:String, proPic:UIImage, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
+    
+    func setProPicDefault(myEmail:String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
         //파라미터를 추가한 URL 생성
         let postString = "myEmail=\(myEmail)"
         let URL = NSURL(string: "\(urlInfo.setProPicDefault)?\(postString)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
@@ -307,14 +312,6 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.HTTPMethod = "PUT"
         request.URL = URL
-        
-        var imageData = UIImageJPEGRepresentation(proPic, 1.0)
-        var base64String = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
-        
-        var params = ["image":[ "content_type": "image/jpeg", "filename":"\(myEmail).jpg", "file_data": base64String]]
-        
-        request.HTTPBody = try! (NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions(rawValue: 0)))
-        
         
         let task = session.dataTaskWithRequest(request) {
             (data, response, error) -> Void in
@@ -337,7 +334,6 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
         task.resume()
         return task
     }
-*/  
 }
 
 

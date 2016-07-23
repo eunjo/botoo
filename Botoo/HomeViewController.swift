@@ -31,12 +31,14 @@ class HomeViewController: UIViewController {
     var userNameStored:String?
     var userGenderStored:String?
     var userMsgStored:String?
+    var userProPicStored:String?
     var connectId:String?
     
     var loverEmailStored:String?
     var loverNameStored:String?
     var loverGenderStored:String?
     var loverMsgStored:String?
+    var loverProPicStored:String?
     
     var firstDateStored:String?
     
@@ -80,6 +82,7 @@ class HomeViewController: UIViewController {
                     self.userGenderStored = json["gender"] as? String
                     self.firstDateStored = json["date"] as? String
                     self.userMsgStored = json["msg"] as? String
+                    self.userProPicStored = json["proPic"] as? String
                     self.loverEmailStored = json["lover"] as? String
                     self.connectId = json["connect_id"] as? String
                     self.isGot = true
@@ -116,6 +119,7 @@ class HomeViewController: UIViewController {
                         self.loverNameStored = json["name"] as? String
                         self.loverGenderStored = json["gender"] as? String
                         self.loverMsgStored = json["msg"] as? String
+                        self.loverProPicStored = json["proPic"] as? String
                         
                         NSUserDefaults.standardUserDefaults().setObject(self.loverNameStored, forKey: "loverName")
                         
@@ -181,11 +185,13 @@ class HomeViewController: UIViewController {
         
         // 내 프사 로드
         
-        if (userGenderStored == "1") {
-            myProPic.image = UIImage(named: "tp_default_female.png")
-        }
-        else {
-            myProPic.image = UIImage(named: "tp_default_male.png")
+        if (userProPicStored == nil){
+            if (userGenderStored == "1") {
+                myProPic.image = UIImage(named: "tp_default_female.png")
+            }
+            else {
+                myProPic.image = UIImage(named: "tp_default_male.png")
+            }
         }
  
         // 내 이름 로드
@@ -205,11 +211,14 @@ class HomeViewController: UIViewController {
             
         } else {
             
-            if (loverGenderStored == "1") {
-                loverProPic.image = UIImage(named: "tp_default_female.png")
-            }
-            else {
-                loverProPic.image = UIImage(named: "tp_default_male.png")
+            if (loverProPicStored == nil){
+            
+                if (loverGenderStored == "1") {
+                    loverProPic.image = UIImage(named: "tp_default_female.png")
+                }
+                else {
+                    loverProPic.image = UIImage(named: "tp_default_male.png")
+                }
             }
             loverUserName.text = loverNameStored
             loverStateMsg.text = loverMsgStored
