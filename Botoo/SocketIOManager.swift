@@ -43,9 +43,4 @@ class SocketIOManager: NSObject {
     func sendMessage(message: String) {
         socket.emit("chatMessage", message)
     }
-    
-    
-    
-    
-
 }
