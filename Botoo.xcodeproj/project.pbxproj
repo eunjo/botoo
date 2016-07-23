@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1475A2772683D1CBDB9CF705 /* Pods_BotooTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C04906F2127FB29A80CE91 /* Pods_BotooTests.framework */; };
+		202B3D8640072A435D9A7F82 /* Pods_Botoo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC75A78849B5A4C7DB472BE2 /* Pods_Botoo.framework */; };
+		37CB7AF5439E02A01100BFF4 /* Pods_BotooUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A318B1C7A6CAB18E12E4F9D /* Pods_BotooUITests.framework */; };
 		C007CBAB1D3F54FA00FA5A4C /* LetterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C007CBAA1D3F54FA00FA5A4C /* LetterDetailViewController.swift */; };
 		C007CBAD1D430C0700FA5A4C /* LetterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C007CBAC1D430C0700FA5A4C /* LetterProtocol.swift */; };
 		C007CBAF1D430C0F00FA5A4C /* LetterConstruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C007CBAE1D430C0F00FA5A4C /* LetterConstruct.swift */; };
@@ -103,9 +106,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1FFF5D5A6C56890C3ED96C02 /* Pods-Botoo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Botoo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Botoo/Pods-Botoo.debug.xcconfig"; sourceTree = "<group>"; };
+		8A318B1C7A6CAB18E12E4F9D /* Pods_BotooUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BotooUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		969B1890A501AD6036EFCE1F /* Pods-BotooTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BotooTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BotooTests/Pods-BotooTests.release.xcconfig"; sourceTree = "<group>"; };
+		A0C04906F2127FB29A80CE91 /* Pods_BotooTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BotooTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9698A71E34BF32826AAC35C /* Pods-BotooTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BotooTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BotooTests/Pods-BotooTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C007CBAA1D3F54FA00FA5A4C /* LetterDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterDetailViewController.swift; sourceTree = "<group>"; };
 		C007CBAC1D430C0700FA5A4C /* LetterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterProtocol.swift; sourceTree = "<group>"; };
 		C007CBAE1D430C0F00FA5A4C /* LetterConstruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterConstruct.swift; sourceTree = "<group>"; };
+		C007CBB11D43BFF500FA5A4C /* Botoo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Botoo-Bridging-Header.h"; sourceTree = "<group>"; };
 		C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTabViewController.swift; sourceTree = "<group>"; };
 		C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNavViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +129,7 @@
 		C0D47B0C1D32AF2600637EAB /* URLInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLInfo.swift; sourceTree = "<group>"; };
 		C0D47B0F1D32AFCF00637EAB /* MemberProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberProtocol.swift; sourceTree = "<group>"; };
 		C0D47B111D32AFF600637EAB /* MemberConstruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberConstruct.swift; sourceTree = "<group>"; };
+		CC75A78849B5A4C7DB472BE2 /* Pods_Botoo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Botoo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D600A9651D226F06005F9130 /* RegisterPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
 		D600A9671D227C8D005F9130 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D600A96B1D2287B2005F9130 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@2x.png"; path = "img/Icon-60@2x.png"; sourceTree = "<group>"; };
@@ -185,6 +195,9 @@
 		D6E2AF501D3E1D3F00C01509 /* tp_default_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tp_default_grey.png; path = img/tp_default_grey.png; sourceTree = "<group>"; };
 		D6E2AF511D3E1D3F00C01509 /* tp_default_male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tp_default_male.png; path = img/tp_default_male.png; sourceTree = "<group>"; };
 		D6E2AF551D4336AE00C01509 /* red_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = red_circle.png; path = img/red_circle.png; sourceTree = "<group>"; };
+		E03CA554205EBEE5732A530D /* Pods-BotooUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BotooUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BotooUITests/Pods-BotooUITests.release.xcconfig"; sourceTree = "<group>"; };
+		EE02784E003FA3675EEEB2B3 /* Pods-Botoo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Botoo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Botoo/Pods-Botoo.release.xcconfig"; sourceTree = "<group>"; };
+		FD41DD904D802218E25AC3A0 /* Pods-BotooUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BotooUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BotooUITests/Pods-BotooUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +205,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				202B3D8640072A435D9A7F82 /* Pods_Botoo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +213,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1475A2772683D1CBDB9CF705 /* Pods_BotooTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,12 +221,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37CB7AF5439E02A01100BFF4 /* Pods_BotooUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		664E3AAB4E48120EE39D7FAA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CC75A78849B5A4C7DB472BE2 /* Pods_Botoo.framework */,
+				A0C04906F2127FB29A80CE91 /* Pods_BotooTests.framework */,
+				8A318B1C7A6CAB18E12E4F9D /* Pods_BotooUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C0D47AEB1D22A1D800637EAB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +279,7 @@
 				C0D47B061D2A076300637EAB /* KeyboardProtocol.swift */,
 				C0D47B0A1D31717900637EAB /* ExtensionForUIDevice.swift */,
 				C0D47B0C1D32AF2600637EAB /* URLInfo.swift */,
+				C007CBB11D43BFF500FA5A4C /* Botoo-Bridging-Header.h */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -281,6 +308,19 @@
 				C007CBAE1D430C0F00FA5A4C /* LetterConstruct.swift */,
 			);
 			name = Construct;
+			sourceTree = "<group>";
+		};
+		C1FF39EA8B68D1EBD93310AA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1FFF5D5A6C56890C3ED96C02 /* Pods-Botoo.debug.xcconfig */,
+				EE02784E003FA3675EEEB2B3 /* Pods-Botoo.release.xcconfig */,
+				A9698A71E34BF32826AAC35C /* Pods-BotooTests.debug.xcconfig */,
+				969B1890A501AD6036EFCE1F /* Pods-BotooTests.release.xcconfig */,
+				FD41DD904D802218E25AC3A0 /* Pods-BotooUITests.debug.xcconfig */,
+				E03CA554205EBEE5732A530D /* Pods-BotooUITests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		D600A96D1D228854005F9130 /* Image */ = {
@@ -348,6 +388,8 @@
 				D69322BD1D20FB6A003E9147 /* BotooTests */,
 				D69322C81D20FB6A003E9147 /* BotooUITests */,
 				D69322A71D20FB6A003E9147 /* Products */,
+				C1FF39EA8B68D1EBD93310AA /* Pods */,
+				664E3AAB4E48120EE39D7FAA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -404,9 +446,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D69322CE1D20FB6A003E9147 /* Build configuration list for PBXNativeTarget "Botoo" */;
 			buildPhases = (
+				7E6CB09C34ACEC30E6FA3DA3 /* [CP] Check Pods Manifest.lock */,
 				D69322A21D20FB6A003E9147 /* Sources */,
 				D69322A31D20FB6A003E9147 /* Frameworks */,
 				D69322A41D20FB6A003E9147 /* Resources */,
+				C938472F4C3BE4F8136AEB6B /* [CP] Embed Pods Frameworks */,
+				2B1D76A27DD2AA011F9C9782 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -421,9 +466,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D69322D11D20FB6A003E9147 /* Build configuration list for PBXNativeTarget "BotooTests" */;
 			buildPhases = (
+				B3238536E65544B5CBD076E0 /* [CP] Check Pods Manifest.lock */,
 				D69322B61D20FB6A003E9147 /* Sources */,
 				D69322B71D20FB6A003E9147 /* Frameworks */,
 				D69322B81D20FB6A003E9147 /* Resources */,
+				A9C35E443C11733DB01C048C /* [CP] Embed Pods Frameworks */,
+				87A1AC7665E76F83FC853CEA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -439,9 +487,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D69322D41D20FB6A003E9147 /* Build configuration list for PBXNativeTarget "BotooUITests" */;
 			buildPhases = (
+				19715D3DDB10AA4C56DA3676 /* [CP] Check Pods Manifest.lock */,
 				D69322C11D20FB6A003E9147 /* Sources */,
 				D69322C21D20FB6A003E9147 /* Frameworks */,
 				D69322C31D20FB6A003E9147 /* Resources */,
+				8023752FD99B3437CCC71DF5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -532,6 +582,129 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		19715D3DDB10AA4C56DA3676 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		2B1D76A27DD2AA011F9C9782 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Botoo/Pods-Botoo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7E6CB09C34ACEC30E6FA3DA3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8023752FD99B3437CCC71DF5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BotooUITests/Pods-BotooUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		87A1AC7665E76F83FC853CEA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BotooTests/Pods-BotooTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A9C35E443C11733DB01C048C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BotooTests/Pods-BotooTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B3238536E65544B5CBD076E0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C938472F4C3BE4F8136AEB6B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Botoo/Pods-Botoo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D69322A21D20FB6A003E9147 /* Sources */ = {
@@ -738,6 +911,7 @@
 		};
 		D69322CF1D20FB6A003E9147 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1FFF5D5A6C56890C3ED96C02 /* Pods-Botoo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -748,11 +922,13 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dolphins.Botoo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Botoo/Botoo-Bridging-Header.h";
 			};
 			name = Debug;
 		};
 		D69322D01D20FB6A003E9147 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE02784E003FA3675EEEB2B3 /* Pods-Botoo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -763,11 +939,13 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dolphins.Botoo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Botoo/Botoo-Bridging-Header.h";
 			};
 			name = Release;
 		};
 		D69322D21D20FB6A003E9147 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9698A71E34BF32826AAC35C /* Pods-BotooTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = BotooTests/Info.plist;
@@ -780,6 +958,7 @@
 		};
 		D69322D31D20FB6A003E9147 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 969B1890A501AD6036EFCE1F /* Pods-BotooTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = BotooTests/Info.plist;
@@ -792,6 +971,7 @@
 		};
 		D69322D51D20FB6A003E9147 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD41DD904D802218E25AC3A0 /* Pods-BotooUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = BotooUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -803,6 +983,7 @@
 		};
 		D69322D61D20FB6A003E9147 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E03CA554205EBEE5732A530D /* Pods-BotooUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = BotooUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

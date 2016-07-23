@@ -30,9 +30,9 @@ class alarmSetViewController: UIViewController {
     }
     
 
-    @IBAction func pushAlarm_Sc(sender: AnyObject) {
+    @IBAction func pushAlarm_Sc(sender: UISwitch) {
         
-        if (sender.on==true){
+        if (sender.on == true){
             
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isPushAlarmOn")
             
@@ -45,7 +45,7 @@ class alarmSetViewController: UIViewController {
         
     }
     
-    @IBAction func pushAlarmPreview_Sc(sender: AnyObject) {
+    @IBAction func pushAlarmPreview_Sc(sender: UISwitch) {
         
         if (sender.on==true){
             
@@ -60,7 +60,7 @@ class alarmSetViewController: UIViewController {
         
     }
 
-    @IBAction func vivAlarm_Sc(sender: AnyObject) {
+    @IBAction func vivAlarm_Sc(sender: UISwitch) {
         
         if (sender.on==true){
             
@@ -75,9 +75,9 @@ class alarmSetViewController: UIViewController {
         
     }
     
-    @IBAction func soundAlarm_Sc(sender: AnyObject) {
+    @IBAction func soundAlarm_Sc(sender: UISwitch) {
         
-        if (sender.on==true){
+        if sender.on {
             
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isSoundAlarmOn")
             

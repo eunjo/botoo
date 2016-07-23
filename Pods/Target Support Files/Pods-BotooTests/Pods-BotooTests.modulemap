@@ -1,0 +1,6 @@
+framework module Pods_BotooTests {
+  umbrella header "Pods-BotooTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

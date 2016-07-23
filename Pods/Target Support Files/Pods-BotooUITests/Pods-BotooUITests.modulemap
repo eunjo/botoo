@@ -1,0 +1,6 @@
+framework module Pods_BotooUITests {
+  umbrella header "Pods-BotooUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
