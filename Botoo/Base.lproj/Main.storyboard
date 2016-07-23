@@ -663,9 +663,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" tag="300" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Icon-60" translatesAutoresizingMaskIntoConstraints="NO" id="IuC-OJ-t0x">
-                                                    <rect key="frame" x="347" y="28" width="20" height="20"/>
-                                                    <color key="backgroundColor" red="0.84705882349999995" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <imageView userInteractionEnabled="NO" tag="300" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="red_circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="IuC-OJ-t0x">
+                                                    <rect key="frame" x="317" y="17" width="50" height="50"/>
                                                     <color key="tintColor" red="0.84705882349999995" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                             </subviews>
@@ -1848,10 +1847,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Icon-60" width="60" height="60"/>
         <image name="chatBGdefault.png" width="750" height="1334"/>
         <image name="dolphin_only.png" width="120" height="120"/>
         <image name="homeBG.png" width="750" height="1334"/>
+        <image name="red_circle.png" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Igv-Vl-L6y"/>
