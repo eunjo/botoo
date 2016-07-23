@@ -17,6 +17,38 @@
             endingLineNumber = "66"
             landmarkName = "addTapped()"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Botoo.dateSetViewController.addTapped () -&gt; ()"
+                  moduleName = "Botoo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seoljunmyung/Desktop/botoo/Botoo/dateSetViewController.swift"
+                  timestampString = "490786422.946039"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "1935">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Botoo.dateSetViewController.(addTapped () -&gt; ()).(closure #1)"
+                  moduleName = "Botoo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seoljunmyung/Desktop/botoo/Botoo/dateSetViewController.swift"
+                  timestampString = "490786422.949855"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "26">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -33,6 +65,38 @@
             endingLineNumber = "67"
             landmarkName = "addTapped()"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Botoo.dateSetViewController.addTapped () -&gt; ()"
+                  moduleName = "Botoo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seoljunmyung/Desktop/botoo/Botoo/dateSetViewController.swift"
+                  timestampString = "490786423.873152"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "1935">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Botoo.dateSetViewController.(addTapped () -&gt; ()).(closure #1)"
+                  moduleName = "Botoo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seoljunmyung/Desktop/botoo/Botoo/dateSetViewController.swift"
+                  timestampString = "490786423.8734"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "26">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
