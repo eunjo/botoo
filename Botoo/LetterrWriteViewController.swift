@@ -42,12 +42,14 @@ class LetterrWriteViewController: UIViewController {
         let date:String = dateFormatter.stringFromDate(currentDate)
         var userProfile = NSUserDefaults.standardUserDefaults().stringForKey("userProfile")
         let connect_id = NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")
+        let user_id = NSUserDefaults.standardUserDefaults().stringForKey("userId")
         
         if userProfile == "nil" {
             userProfile = "nil\(NSUserDefaults.standardUserDefaults().stringForKey("userGender")!)"
         }
         
         let letterParams = [
+            "sender_id": user_id! as String,
             "sender": userProfile! as String,
             "title": title! as String,
             "body": body! as String,
@@ -55,10 +57,9 @@ class LetterrWriteViewController: UIViewController {
             "connect_id": connect_id! as String
         ]
         
-        MemberConstruct().writeLetter(letterParams, completionHandler: { (json, error) -> Void in
-            print(json)
+        LetterConstruct().writeLetter(letterParams, completionHandler: { (json, error) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
-                LetterrWriteViewController.getNewLetterInfo.letterInfo = letterTableVO(title: letterParams["title"]!, writerImage: letterParams["sender"]!, letterId: json["_id"] as! String, date: letterParams["date"]!, body: letterParams["body"]!)
+                LetterrWriteViewController.getNewLetterInfo.letterInfo = letterTableVO(writerId: letterParams["sender_id"]!, title: letterParams["title"]!, writerImage: letterParams["sender"]!, letterId: json["_id"] as! String, date: letterParams["date"]!, body: letterParams["body"]!, isRead: 0)
                 self.navigationController?.popViewControllerAnimated(true)
             }
         })

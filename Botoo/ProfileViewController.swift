@@ -28,6 +28,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     var userGenderStored:String?
     var userNameStored:String?
     var userMsgStored:String?
+    var userProPicStored:String?
     
     var userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
     
@@ -59,6 +60,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.userGenderStored = json["gender"] as? String
             self.userNameStored = json["name"] as? String
             self.userMsgStored = json["msg"] as? String
+            self.userProPicStored = json["proPic"] as? String
+            
             
             dispatch_async(dispatch_get_main_queue()) {
                 self.initProfile()
@@ -78,10 +81,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func initProfileImage() {
-        if (userGender == "0") {
-            self.profile_iv_profile.image = UIImage(named: "default_male")
-        } else if (userGender == "1") {
-            self.profile_iv_profile.image = UIImage(named: "default_female")
+        if (userProPicStored == nil){
+            if (userGender == "0") {
+                self.profile_iv_profile.image = UIImage(named: "default_male")
+            } else if (userGender == "1") {
+                self.profile_iv_profile.image = UIImage(named: "default_female")
+            }
         }
     }
     
@@ -121,13 +126,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         
         let secondAction = UIAlertAction(title: "기본 이미지로 변경", style: .Default) { (alert: UIAlertAction!) -> Void in
-            /*
             
             MemberConstruct().setProPicDefault(self.userEmailStored!, completionHandler: { (json, error) -> Void in
 
             })
- */
- 
             
             self.initProfileImage()
         }
@@ -168,6 +170,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: "lock")
             NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "stateMSG")
             NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "lockPw")
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userId")
             NSUserDefaults.standardUserDefaults().synchronize()
             
             if text.containsString("탈퇴") {
@@ -187,45 +190,35 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(false) { (_) in
             self.profile_iv_profile.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-            var proPic = info[UIImagePickerControllerOriginalImage] as? UIImage
+            let proPic = self.profile_iv_profile.image
             
-            let userEmailParams = [
-                "email": self.userEmailStored! as String,
-            ]
-            
-            MemberConstruct().saveProPic(userEmailParams, proPic: (info[UIImagePickerControllerOriginalImage] as? UIImage)!, completionHandler: { (json, error) -> Void in
+            /*
+            MemberConstruct().saveProPic(self.userEmailStored!, proPic: proPic!, completionHandler: { (json, error) -> Void in
                     print("프사 성공 :: \(json)")
                 
             })
-
+ */
+ 
         }
     }
     
     
     func gotoMsgEdit(sender:UITapGestureRecognizer){
+        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("msgEditViewController") as! msgEditViewController
         
-        var viewController: UIViewController?
-        
-        viewController = self.storyboard?.instantiateViewControllerWithIdentifier("msgEditViewController")
-        
-        if(viewController != nil) {
-            viewController!.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-            //navigationController 의 하위 뷰로 전환
-            self.navigationController?.pushViewController(viewController!, animated: true)
-        }
+        viewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        viewController.msg = userMsgStored
+        //navigationController 의 하위 뷰로 전환
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     func gotoNameEdit(sender:UITapGestureRecognizer){
+        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("nameEditViewController") as! nameEditViewController
         
-        var viewController: UIViewController?
-        
-        viewController = self.storyboard?.instantiateViewControllerWithIdentifier("nameEditViewController")
-        
-        if(viewController != nil) {
-            viewController!.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-            //navigationController 의 하위 뷰로 전환
-            self.navigationController?.pushViewController(viewController!, animated: true)
-        }
+        viewController.msg = userNameStored
+        viewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        //navigationController 의 하위 뷰로 전환
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
 }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C007CBAB1D3F54FA00FA5A4C /* LetterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C007CBAA1D3F54FA00FA5A4C /* LetterDetailViewController.swift */; };
+		C007CBAD1D430C0700FA5A4C /* LetterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C007CBAC1D430C0700FA5A4C /* LetterProtocol.swift */; };
+		C007CBAF1D430C0F00FA5A4C /* LetterConstruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C007CBAE1D430C0F00FA5A4C /* LetterConstruct.swift */; };
 		C0D47AEE1D22A25500637EAB /* ChatTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */; };
 		C0D47AF21D22AEFB00637EAB /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */; };
 		C0D47AF41D237C8A00637EAB /* SettingNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */; };
@@ -101,6 +103,8 @@
 
 /* Begin PBXFileReference section */
 		C007CBAA1D3F54FA00FA5A4C /* LetterDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterDetailViewController.swift; sourceTree = "<group>"; };
+		C007CBAC1D430C0700FA5A4C /* LetterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterProtocol.swift; sourceTree = "<group>"; };
+		C007CBAE1D430C0F00FA5A4C /* LetterConstruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterConstruct.swift; sourceTree = "<group>"; };
 		C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTabViewController.swift; sourceTree = "<group>"; };
 		C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNavViewController.swift; sourceTree = "<group>"; };
@@ -255,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				C0D47B0F1D32AFCF00637EAB /* MemberProtocol.swift */,
+				C007CBAC1D430C0700FA5A4C /* LetterProtocol.swift */,
 			);
 			name = Protocol;
 			sourceTree = "<group>";
@@ -271,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				C0D47B111D32AFF600637EAB /* MemberConstruct.swift */,
+				C007CBAE1D430C0F00FA5A4C /* LetterConstruct.swift */,
 			);
 			name = Construct;
 			sourceTree = "<group>";
@@ -537,6 +543,7 @@
 				D63A12071D37504D00AD6989 /* SocketAckEmitter.swift in Sources */,
 				D63A121F1D37507400AD6989 /* SSLSecurity.swift in Sources */,
 				D63A12171D37504D00AD6989 /* SocketPacket.swift in Sources */,
+				C007CBAD1D430C0700FA5A4C /* LetterProtocol.swift in Sources */,
 				C0D47AFF1D239EB600637EAB /* LockViewController.swift in Sources */,
 				D607C5DE1D27B14100542804 /* byebyeViewController.swift in Sources */,
 				D63A12161D37504D00AD6989 /* SocketLogger.swift in Sources */,
@@ -575,6 +582,7 @@
 				C0D47AEE1D22A25500637EAB /* ChatTabViewController.swift in Sources */,
 				D63A12181D37504D00AD6989 /* SocketParsable.swift in Sources */,
 				D63A12191D37504D00AD6989 /* SocketStringReader.swift in Sources */,
+				C007CBAF1D430C0F00FA5A4C /* LetterConstruct.swift in Sources */,
 				D63A12121D37504D00AD6989 /* SocketIOClient.swift in Sources */,
 				D63A12111D37504D00AD6989 /* SocketEventHandler.swift in Sources */,
 				D63A121B1D37504D00AD6989 /* String.swift in Sources */,

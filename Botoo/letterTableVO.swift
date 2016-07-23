@@ -15,13 +15,18 @@ class letterTableVO {
     var letterId = ""
     var date = ""
     var body = ""
+    var writerId = ""
     
-    init(title: String, writerImage: String, letterId: String, date: String, body: String) {
+    var isRead = 0 // false
+    
+    init(writerId: String, title: String, writerImage: String, letterId: String, date: String, body: String, isRead: Int) {
+        self.writerId = writerId
         self.title = title
         self.writerImage = writerImage
         self.body = body
         self.date = date
         self.letterId = letterId
+        self.isRead = isRead
     }
     
     init() {}

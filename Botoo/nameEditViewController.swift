@@ -11,6 +11,7 @@ import UIKit
 class nameEditViewController: UIViewController {
 
     @IBOutlet weak var nameLabel: UITextField!
+    var msg: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,18 +22,20 @@ class nameEditViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "확인", style: .Plain, target: self, action: #selector(addTapped))
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(animated: Bool) {
+        if msg != nil {
+            nameLabel.text = msg
+        }
     }
     
     func addTapped(){
-        
         let myId = NSUserDefaults.standardUserDefaults().stringForKey("userId")
         
-        MemberConstruct().changeName(myId!, userName: nameLabel.text!,  completionHandler: { (json, error) -> Void in
-            print(json)
-        })
+        if nameLabel.text != msg {
+            MemberConstruct().changeName(myId!, userName: nameLabel.text!,  completionHandler: { (json, error) -> Void in
+                print(json)
+            })
+        }
         
         HomeViewController.getUserInfo.userInfo.name = nameLabel.text
         NSUserDefaults.standardUserDefaults().setObject(nameLabel.text, forKey: "userName")
