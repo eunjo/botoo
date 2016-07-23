@@ -64,22 +64,19 @@ class connectSceneViewController: UIViewController {
                     self.loverEmailStored = json["email"] as? String
                     self.loverNameStored = json["name"] as? String
                     
-                    self.connectButton.enabled = true
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.searchResult.text = self.loverNameStored
+                        self.connectButton.enabled = true
+                    }
+                } else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        print("등록안된 이메일일때")
+                        self.searchResult.text = "존재하지 않는 사용자입니다"
+                        self.connectButton.enabled = false
+                        return
+                    }
                 }
-                self.threadIsAlive = 1
             })
-            
-            while self.threadIsAlive == 0 {}
-            
-            searchResult.text = loverNameStored
-            
-            
-            if !isGot {
-                print("등록안된 이메일일때")
-                searchResult.text = "존재하지 않는 사용자입니다"
-                connectButton.enabled = false
-                return
-            }
         }
     }
     
@@ -109,10 +106,6 @@ class connectSceneViewController: UIViewController {
         })
         
         while (threadIsAlive == 0) {}
-        
-        if (isAlreadyConnected == true){
-            return
-        }
         
         if (isAlreadyConnected != true) {
             

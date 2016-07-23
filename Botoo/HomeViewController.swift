@@ -51,7 +51,12 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+        
+        //circle image view 적용
+        self.myProPic.layer.cornerRadius = self.myProPic.frame.size.width / 2
+        self.myProPic.clipsToBounds = true
+        self.loverProPic.layer.cornerRadius = self.loverProPic.frame.size.width / 2
+        self.loverProPic.clipsToBounds = true
         
         // add tap Gesture
         let tap = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.onClickLoverPic(_:)))
@@ -68,7 +73,6 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        
         super.viewWillAppear(animated)
         
         let isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn")
@@ -107,6 +111,25 @@ class HomeViewController: UIViewController {
                     NSUserDefaults.standardUserDefaults().setObject(proPicTemp, forKey: "userProfile")
                     NSUserDefaults.standardUserDefaults().setObject(json["_id"] as? String, forKey: "userId")
                     NSUserDefaults.standardUserDefaults().setObject(self.userNameStored, forKey: "userName")
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        // 내 프사 로드
+                        if (self.userProPicStored == nil){
+                            if (self.userGenderStored == "1") {
+                                self.myProPic.image = UIImage(named: "tp_default_female.png")
+                            }
+                            else {
+                                self.myProPic.image = UIImage(named: "tp_default_male.png")
+                            }
+                        }
+                        
+                        // 내 이름 로드
+                        self.myUserName.text = self.userNameStored
+                        
+                        // 내 상메 로드
+                        self.myStateMsg.text = self.userMsgStored
+                        self.myStateMsg.numberOfLines = 3;
+                    }
                 }
                 
                 self.threadIsAlive = 1
@@ -123,7 +146,6 @@ class HomeViewController: UIViewController {
                         self.loverProPicStored = json["proPic"] as? String
                         
                         NSUserDefaults.standardUserDefaults().setObject(self.loverNameStored, forKey: "loverName")
-                        
                         
                         dispatch_async(dispatch_get_main_queue()) {
                             self.profileInit()
@@ -178,32 +200,6 @@ class HomeViewController: UIViewController {
     }
     
     func profileInit() {
-        //circle image view 적용
-        self.myProPic.layer.cornerRadius = self.myProPic.frame.size.width / 2
-        self.myProPic.clipsToBounds = true
-        self.loverProPic.layer.cornerRadius = self.loverProPic.frame.size.width / 2
-        self.loverProPic.clipsToBounds = true
-        
-        // 내 프사 로드
-        
-        if (userProPicStored == nil){
-            if (userGenderStored == "1") {
-                myProPic.image = UIImage(named: "tp_default_female.png")
-            }
-            else {
-                myProPic.image = UIImage(named: "tp_default_male.png")
-            }
-        }
- 
-        // 내 이름 로드
-        myUserName.text = userNameStored
-        
-        
-        // 내 상메 로드
-        myStateMsg.text = userMsgStored
-        myStateMsg.numberOfLines = 3;
-        
-        
         // 상대방 로드
         if (loverEmailStored == nil) {
             
