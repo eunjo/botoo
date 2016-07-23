@@ -208,6 +208,7 @@ class HomeViewController: UIViewController {
             
             loverProPic.image = UIImage(named: "tp_default_grey.png")
             loverUserName.text = "연결하러 가기"
+            loverStateMsg.text = ""
             
         } else {
             

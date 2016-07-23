@@ -122,7 +122,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             //델리게이트 지정
             picker.delegate = self
             //화면에 표시
-            self.presentViewController(picker, animated: false, completion: nil)
+            self.presentViewController(picker, animated: true, completion: nil)
         }
         
         let secondAction = UIAlertAction(title: "기본 이미지로 변경", style: .Default) { (alert: UIAlertAction!) -> Void in
@@ -161,6 +161,14 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let okAction = UIAlertAction(title:"확인", style:UIAlertActionStyle.Default){ action in
             //Logout 구현
             HomeViewController.getUserInfo.userInfo = UserInfo()
+           
+            if text.containsString("탈퇴") {
+                MemberConstruct().drop(NSUserDefaults.standardUserDefaults().stringForKey("userId")!, loverEmail: NSUserDefaults.standardUserDefaults().stringForKey("userLover")!, completionHandler: { (json, error) -> Void in
+                    
+                    print("탈퇴 success")
+                })
+            }
+
             
             NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "gender")
             NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userEmail")
@@ -173,12 +181,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userId")
             NSUserDefaults.standardUserDefaults().synchronize()
             
-            if text.containsString("탈퇴") {
-                MemberConstruct().drop(NSUserDefaults.standardUserDefaults().stringForKey("userId")!, loverEmail: NSUserDefaults.standardUserDefaults().stringForKey("userLover")!, completionHandler: { (json, error) -> Void in
-                    
-                    print("탈퇴 success")
-                })
-            }
             
             self.tabBarController!.selectedIndex = 0
         }
@@ -188,9 +190,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        picker.dismissViewControllerAnimated(false) { (_) in
+        picker.dismissViewControllerAnimated(true) { (_) in
             self.profile_iv_profile.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-            let proPic = self.profile_iv_profile.image
+            _ = self.profile_iv_profile.image
             
             /*
             MemberConstruct().saveProPic(self.userEmailStored!, proPic: proPic!, completionHandler: { (json, error) -> Void in
