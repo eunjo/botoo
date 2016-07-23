@@ -170,6 +170,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: "lock")
             NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "stateMSG")
             NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "lockPw")
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userId")
             NSUserDefaults.standardUserDefaults().synchronize()
             
             if text.containsString("탈퇴") {
@@ -189,9 +190,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(false) { (_) in
             self.profile_iv_profile.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-            var proPic = info[UIImagePickerControllerOriginalImage] as? UIImage
+            let proPic = self.profile_iv_profile.image
             
-            MemberConstruct().saveProPic(self.userEmailStored!, proPic: (info[UIImagePickerControllerOriginalImage] as? UIImage)!, completionHandler: { (json, error) -> Void in
+            MemberConstruct().saveProPic(self.userEmailStored!, proPic: proPic!, completionHandler: { (json, error) -> Void in
                     print("프사 성공 :: \(json)")
                 
             })

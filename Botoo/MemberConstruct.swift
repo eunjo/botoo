@@ -287,10 +287,7 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
             //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
             if (statusCode == 200) {
                 do{
-                    print(data)
-                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
-                    //핸들러를 이용하여 json을 return 한다.
-                    completionHandler(json, nil)
+                    completionHandler(NSString(data: data!, encoding: NSUTF8StringEncoding)!, nil)
                 }catch {
                     print("Error with Json: \(error)")
                 }
@@ -302,8 +299,6 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
         return task
     }
  
-    
-    
     func setProPicDefault(myEmail:String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
         //파라미터를 추가한 URL 생성
         let postString = "myEmail=\(myEmail)"
