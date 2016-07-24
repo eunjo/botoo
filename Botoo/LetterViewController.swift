@@ -42,7 +42,6 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
                                             }
                                             
                                             dispatch_async(dispatch_get_main_queue()) {
-                                                //LetterNavViewController().resetBadge(self.isReadCount)
                                                 self.letterTable.reloadData()
                                             }
             })

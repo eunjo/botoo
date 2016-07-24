@@ -38,7 +38,7 @@ class LetterNavViewController: UINavigationController {
                 idx = true
             }
         }
-
+        self.tabBarItem.badgeValue = nil
 
     }
 
@@ -49,7 +49,6 @@ class LetterNavViewController: UINavigationController {
     
     func resetBadge(isReadCount:Int){
         
-
         if (isReadCount==0){
             self.tabBarItem.badgeValue = nil
         } else {
