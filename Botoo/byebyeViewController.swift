@@ -35,6 +35,7 @@ class byebyeViewController: UIViewController {
             MemberConstruct().disconnect(myEmail!, loverEmail: loverEmailStored!, completionHandler: { (json, error) -> Void in
                 dispatch_async(dispatch_get_main_queue()) {
                     self.navigationController?.popViewControllerAnimated(true)
+                    NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userLover")
                 }
             })
         } else {

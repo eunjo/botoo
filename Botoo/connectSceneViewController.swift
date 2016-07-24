@@ -64,22 +64,19 @@ class connectSceneViewController: UIViewController {
                     self.loverEmailStored = json["email"] as? String
                     self.loverNameStored = json["name"] as? String
                     
-                    self.connectButton.enabled = true
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.searchResult.text = self.loverNameStored
+                        self.connectButton.enabled = true
+                    }
+                } else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        print("등록안된 이메일일때")
+                        self.searchResult.text = "존재하지 않는 사용자입니다"
+                        self.connectButton.enabled = false
+                        return
+                    }
                 }
-                self.threadIsAlive = 1
             })
-            
-            while self.threadIsAlive == 0 {}
-            
-            searchResult.text = loverNameStored
-            
-            
-            if !isGot {
-                print("등록안된 이메일일때")
-                searchResult.text = "존재하지 않는 사용자입니다"
-                connectButton.enabled = false
-                return
-            }
         }
     }
     
@@ -110,10 +107,6 @@ class connectSceneViewController: UIViewController {
         
         while (threadIsAlive == 0) {}
         
-        if (isAlreadyConnected == true){
-            return
-        }
-        
         if (isAlreadyConnected != true) {
             
             print("연결시도")
@@ -140,5 +133,21 @@ class connectSceneViewController: UIViewController {
         
         myAlert.addAction(okAction)
         self.presentViewController(myAlert, animated: true, completion: nil)
+    }
+    
+    class ViewController: UIViewController {
+        
+        @IBAction func showAlertButtonTapped(sender: UIButton) {
+            
+            // create the alert
+            let myAlert = UIAlertController(title: "UIAlertController", message: "연결을 수락하시겠습니까?", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            // add the actions (buttons)
+            myAlert.addAction(UIAlertAction(title: "연결", style: UIAlertActionStyle.Default, handler: nil))
+            myAlert.addAction(UIAlertAction(title: "거부", style: UIAlertActionStyle.Cancel, handler: nil))
+            
+            // show the alert
+            self.presentViewController(myAlert, animated: true, completion: nil)
+        }
     }
 }
