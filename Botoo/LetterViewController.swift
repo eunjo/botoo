@@ -15,6 +15,8 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var editItem: UIBarButtonItem!
     @IBOutlet weak var addItem: UIBarButtonItem!
     
+
+    
     var letterList:[letterTableVO] = []
     
     var isReadCount:Int = 0
@@ -42,6 +44,7 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
                                             }
                                             
                                             dispatch_async(dispatch_get_main_queue()) {
+                                                
                                                 self.letterTable.reloadData()
                                             }
             })
