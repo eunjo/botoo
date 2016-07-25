@@ -94,11 +94,23 @@ class connectSceneViewController: UIViewController {
                 self.loversLoverStored = json["lover"] as? String
                 self.connectId = json["connect_id"] as? String
                 
+                // create the alert
+                let myAlert = UIAlertController(title: "UIAlertController", message: "연결을 수락하시겠습니까?", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                // add the actions (buttons)
+                myAlert.addAction(UIAlertAction(title: "연결", style: UIAlertActionStyle.Default, handler: nil))
+                myAlert.addAction(UIAlertAction(title: "거부", style: UIAlertActionStyle.Cancel, handler: nil))
+                
+                // show the alert
+                self.presentViewController(myAlert, animated: true, completion: nil)
+
+                
                 if (self.loversLoverStored != nil){
                     self.isAlreadyConnected = true
                     dispatch_async(dispatch_get_main_queue()) {
                         self.displayRegisterAlert("이 분은 이미 연인이에요", okAction: self.generalOkAction)
                     }
+
                 }
             }
             self.threadIsAlive = 1
@@ -135,19 +147,7 @@ class connectSceneViewController: UIViewController {
         self.presentViewController(myAlert, animated: true, completion: nil)
     }
     
-    class ViewController: UIViewController {
+    
         
-        @IBAction func showAlertButtonTapped(sender: UIButton) {
-            
-            // create the alert
-            let myAlert = UIAlertController(title: "UIAlertController", message: "연결을 수락하시겠습니까?", preferredStyle: UIAlertControllerStyle.Alert)
-            
-            // add the actions (buttons)
-            myAlert.addAction(UIAlertAction(title: "연결", style: UIAlertActionStyle.Default, handler: nil))
-            myAlert.addAction(UIAlertAction(title: "거부", style: UIAlertActionStyle.Cancel, handler: nil))
-            
-            // show the alert
-            self.presentViewController(myAlert, animated: true, completion: nil)
-        }
-    }
+    
 }
