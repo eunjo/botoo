@@ -30,28 +30,28 @@ class connectSceneViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func alert2(sender:AnyObject) {
-        //
+    override func viewDidAppear(animated: Bool) {
+        
+        self.alert2()
+    }
+    
+    func alert2() {
         let alert=UIAlertController(title: "Alert 2", message: "Two is awesome too", preferredStyle: UIAlertControllerStyle.Alert);
-        //default input textField (no configuration...)
-        alert.addTextFieldWithConfigurationHandler(nil);
-        //no event handler (just close dialog box)
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Cancel, handler: nil));
-        //event handler with closure
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction) in
-            let fields = alert.textFields!;
-            print("Yes we can: "+fields[0].text!);
+            print("예쓰~~")
         }));
-        presentViewController(alert, animated: true, completion: nil);
+        
+        self.presentViewController(alert, animated: true, completion: nil);
         print("나타난다");
+        
     }
     
     
