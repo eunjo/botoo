@@ -38,14 +38,13 @@ class connectSceneViewController: UIViewController {
     
     func alert2() {
 
-        let alert=UIAlertController(title: "Alert 2", message: "Two is awesome too", preferredStyle: UIAlertControllerStyle.Alert);
-        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Cancel, handler: nil));
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction) in
-            print("예쓰~~")
-        }));
+        let alert=UIAlertController(title: "연결 신청", message: "수락하시겠습니까?", preferredStyle: .ActionSheet);
+        alert.addAction(UIAlertAction(title: "네", style: UIAlertActionStyle.Default, handler: nil));
+        alert.addAction(UIAlertAction(title: "아니오", style: UIAlertActionStyle.Cancel, handler: nil));
+
         
         self.presentViewController(alert, animated: true, completion: nil);
-        print("나타난다");
+       
         
     }
     
@@ -91,7 +90,7 @@ class connectSceneViewController: UIViewController {
         var isAlreadyConnected = false;
     
     func connectButtonTapped(sender: AnyObject) {
-        
+       
         let loverEmail = searchEmailTextField.text
         
         MemberConstruct().checkEmail(loverEmail!, completionHandler: { (json, error) -> Void in
@@ -144,5 +143,6 @@ class connectSceneViewController: UIViewController {
         myAlert.addAction(okAction)
         self.presentViewController(myAlert, animated: true, completion: nil)
     }
+}
     
-   }
+
