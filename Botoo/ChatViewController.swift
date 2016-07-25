@@ -546,8 +546,14 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         // 날짜 년 월 일 로 포맷변환
         let cal = NSCalendar(calendarIdentifier:NSGregorianCalendar)!
         let comp = cal.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate:Date!)
+        let new_minute:String
         
-        let dateToString:String = "\(comp.hour):\(comp.minute)"
+        if (comp.minute < 10){
+            new_minute = "0\(comp.minute)"
+        } else {
+            new_minute = String(comp.minute)
+        }
+        let dateToString:String = "\(comp.hour):\(new_minute)"
         
         cell?.dateLabel.text = dateToString
         
