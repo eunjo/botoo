@@ -63,15 +63,16 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         //키보드에 대한 노티피케이션 생성
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
+        
+        if !NSUserDefaults.standardUserDefaults().boolForKey("isOnline") {
+            //유저 소켓 연결
+            initSocket()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
-
         // 배경 초기화
         initBackGround()
-        
-        //유저 소켓 연결
-        initSocket()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -97,6 +98,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 if userList != nil {
                     print(userList)
                     print("채팅 입장.")
+                    
+                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isOnline")
                     
                     // 요런 식으로 접근 가능
 //                    users = userList
