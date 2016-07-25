@@ -16,6 +16,8 @@ class LetterNavViewController: UINavigationController {
     var isReadCount:Int = 0
     var idx:Bool = true
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,7 +41,6 @@ class LetterNavViewController: UINavigationController {
             }
         }
 
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,7 +50,6 @@ class LetterNavViewController: UINavigationController {
     
     func resetBadge(isReadCount:Int){
         
-
         if (isReadCount==0){
             self.tabBarItem.badgeValue = nil
         } else {

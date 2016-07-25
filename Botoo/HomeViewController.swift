@@ -157,7 +157,6 @@ class HomeViewController: UIViewController {
         }
     }
     
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "myPicZoom") {
             let svc = segue.destinationViewController as! imageZoomViewController
@@ -169,7 +168,6 @@ class HomeViewController: UIViewController {
         }
     }
 
-    
     func onClickLoverPic(sender:UITapGestureRecognizer) {
         if (loverEmailStored == nil) {
             if let connectingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ConnectingViewController") {

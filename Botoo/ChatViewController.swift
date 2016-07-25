@@ -17,12 +17,13 @@ import MobileCoreServices
 import ContactsUI
 import AVFoundation
 
-class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CNContactPickerDelegate {
+class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CNContactPickerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     // 이미지픽커 선언
     var imagePicker = UIImagePickerController()
     
     @IBOutlet weak var bgPic: UIImageView!
+    @IBOutlet var messageTableView: UITableView!
     
     private var SETTING = 0
     @IBOutlet var toolbarBottomConstraint: NSLayoutConstraint!
@@ -43,10 +44,13 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private var currentKeyboardHeight: CGFloat?
     
     private let userName = NSUserDefaults.standardUserDefaults().stringForKey("userName")!
+    private var chatMessages:[[String : AnyObject]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
+        messageTableView.delegate = self
+        messageTableView.dataSource = self
         
         //디바이스 모델 체크 및 키보드 높이 설정
         checkDevice()
@@ -63,24 +67,27 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         //키보드에 대한 노티피케이션 생성
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
+        
+        if !NSUserDefaults.standardUserDefaults().boolForKey("isOnline") {
+            print("connected...")
+            //유저 소켓 연결
+            initSocket()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
-
         // 배경 초기화
         initBackGround()
-        
-        //유저 소켓 연결
-        initSocket()
     }
     
     override func viewDidAppear(animated: Bool) {
         SocketIOManager.sharedInstance.getChatMessage { (messageInfo) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                print(messageInfo)
+//                print(messageInfo)
+                self.chatMessages.append(messageInfo)
 //                self.chatMessages.append(messageInfo)
-//                self.tblChat.reloadData()
-                //                self.scrollToBottom()
+                self.messageTableView.reloadData()
+//                self.scrollToBottom()
             })
         }
     }
@@ -88,6 +95,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     override func viewWillDisappear(animated: Bool) {
         //유저 소켓 연결 끊기
         exitSocket()
+        
+        for item in self.chatMessages {
+            print("\(item["nickname"]!) : \(item["message"]!)")
+        }
     }
     
     func initSocket() {
@@ -97,6 +108,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 if userList != nil {
                     print(userList)
                     print("채팅 입장.")
+                    
+                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isOnline")
                     
                     // 요런 식으로 접근 가능
 //                    users = userList
@@ -138,8 +151,11 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     func initBackGround(){
         
         if ( !(NSUserDefaults.standardUserDefaults().boolForKey("ischatBgColor")) || !(NSUserDefaults.standardUserDefaults().boolForKey("ischatBgPic")) ){
-            bgPic.image = UIImage(named: "chatBGdefault.png")
-            bgPic.hidden = false
+//            bgPic.image = UIImage(named: "chatBGdefault.png")
+//            bgPic.hidden = false
+            
+            
+            messageTableView.backgroundColor = UIColor(patternImage: UIImage(named: "chatBGdefault.png")!)
         }
 
         // color 설정
@@ -479,10 +495,57 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 
     // 전송 버튼
     @IBAction func sendButtonTapped(sender: AnyObject) {
+        
         if chatInputTextField.text!.characters.count > 0 {
             SocketIOManager.sharedInstance.sendMessage(chatInputTextField.text!, withNickname: self.userName)
             chatInputTextField.text = ""
             chatInputTextField.resignFirstResponder()
         }
+    }
+    
+    
+    // tableView set
+    /** 
+        테이블뷰셀     이름 안뜨고 (constraint 설정 문제인 것 같은데 잘 모르겠다 흑흑)
+                    날짜 형식 / 한국 기준으로 바꿔서 집어 넣기..
+                    메세지 버블 길어졌을 때 날짜 라벨 위치 (이것도 constraint 문제 같아)
+                    너무 배고파
+                    테이블뷰 때문에 빈 공간 클릭 시 키보드 안내려감! (드로어두)
+                    메세지 버블 이미지 (말풍선 이미지) 나인 패치 -----
+     
+        키보드        키보드 .......
+    **/
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.chatMessages.count
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print(self.chatMessages[indexPath.row]["message"])
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
+        
+        if cell == nil {
+            tableView.registerNib(UINib(nibName: "UIChatTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatTableViewCell")
+            cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
+        }
+        
+//        cell?.messageBubble.backgroundColor = UIColor(patternImage: UIImage(named: "messageBubble")!)
+        cell?.messageBubble.text = self.chatMessages[indexPath.row]["message"] as? String
+        
+        cell?.nameLabel.text = self.chatMessages[indexPath.row]["name"] as? String
+        cell?.dateLabel.text = self.chatMessages[indexPath.row]["date"] as? String
+        
+        return cell!
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 }

@@ -63,7 +63,6 @@ class LoginViewController: UIViewController {
                     if (userPWStored! == userPW!) {
                         // Log in is successful
                         
-                        
                         NSUserDefaults.standardUserDefaults().setObject(userEmailStored, forKey: "userEmail")
                         NSUserDefaults.standardUserDefaults().setObject(userIdStored, forKey: "userId")
                         NSUserDefaults.standardUserDefaults().setObject(userNameStored, forKey: "userName")
