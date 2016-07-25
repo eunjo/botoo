@@ -32,21 +32,7 @@ class connectSceneViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    
-    @IBAction func alert2() {
-        //
-
-    func viewDidAppear() {
-        
+    override func viewDidAppear(animated: Bool) {
         self.alert2()
     }
     
@@ -62,7 +48,6 @@ class connectSceneViewController: UIViewController {
         print("나타난다");
         
     }
-    
     
     func backButtonTapped(sender: AnyObject) {
         
@@ -161,4 +146,3 @@ class connectSceneViewController: UIViewController {
     }
     
    }
-}
