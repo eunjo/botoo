@@ -45,7 +45,7 @@ class connectSceneViewController: UIViewController {
     @IBAction func alert2() {
         //
 
-    override func viewDidAppear(animated: Bool) {
+    func viewDidAppear() {
         
         self.alert2()
     }
@@ -160,7 +160,5 @@ class connectSceneViewController: UIViewController {
         self.presentViewController(myAlert, animated: true, completion: nil)
     }
     
-    
-        
-    
-};
+   }
+}
