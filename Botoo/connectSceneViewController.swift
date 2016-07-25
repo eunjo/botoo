@@ -31,16 +31,14 @@ class connectSceneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-       
-    }
+        }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-     func alert2(sender:AnyObject) {
+    @IBAction func alert2(sender:AnyObject) {
         //
         let alert=UIAlertController(title: "Alert 2", message: "Two is awesome too", preferredStyle: UIAlertControllerStyle.Alert);
         //default input textField (no configuration...)
