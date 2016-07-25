@@ -83,9 +83,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     override func viewDidAppear(animated: Bool) {
         SocketIOManager.sharedInstance.getChatMessage { (messageInfo) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                print(messageInfo)
                 self.chatMessages.append(messageInfo)
-//                self.chatMessages.append(messageInfo)
                 self.messageTableView.reloadData()
 //                self.scrollToBottom()
             })
@@ -154,56 +152,56 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 //            bgPic.image = UIImage(named: "chatBGdefault.png")
 //            bgPic.hidden = false
             
-            
+
             messageTableView.backgroundColor = UIColor(patternImage: UIImage(named: "chatBGdefault.png")!)
         }
 
         // color 설정
         if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBgColor")){
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="white"){
-                self.view.backgroundColor = UIColor.whiteColor()
+                messageTableView.backgroundColor = UIColor.whiteColor()
                 bgPic.hidden = true
             }
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="grey"){
-                self.view.backgroundColor = UIColor.grayColor()
+                messageTableView.backgroundColor = UIColor.grayColor()
                 bgPic.hidden = true
             }
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightgrey"){
-                self.view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.95, alpha:1.0)
+                messageTableView.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.95, alpha:1.0)
                 bgPic.hidden = true
             }
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="black"){
-                self.view.backgroundColor = UIColor.blackColor()
+                messageTableView.backgroundColor = UIColor.blackColor()
                 bgPic.hidden = true
             }
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightPink"){
-                self.view.backgroundColor = UIColor(red:0.99, green:0.89, blue:0.93, alpha:1.0)
+                messageTableView.backgroundColor = UIColor(red:0.99, green:0.89, blue:0.93, alpha:1.0)
                 bgPic.hidden = true
             }
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightBlue"){
-                self.view.backgroundColor = UIColor(red:0.77, green:0.99, blue:1.00, alpha:1.0)
+                messageTableView.backgroundColor = UIColor(red:0.77, green:0.99, blue:1.00, alpha:1.0)
                 bgPic.hidden = true
             }
             
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightPurple"){
-                self.view.backgroundColor = UIColor(red:0.91, green:0.85, blue:1.00, alpha:1.0)
+                messageTableView.backgroundColor = UIColor(red:0.91, green:0.85, blue:1.00, alpha:1.0)
                 bgPic.hidden = true
             }
             
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightYellow"){
-                self.view.backgroundColor = UIColor(red:1.00, green:0.98, blue:0.85, alpha:1.0)
+                messageTableView.backgroundColor = UIColor(red:1.00, green:0.98, blue:0.85, alpha:1.0)
                 bgPic.hidden = true
             }
             
         } else if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBgPic")){
             
             let imgData = NSUserDefaults.standardUserDefaults().objectForKey("chatBgPic") as! NSData
-            bgPic.image = UIImage(data: imgData)
+            messageTableView.backgroundColor = UIColor(patternImage: UIImage(data: imgData)!)
             bgPic.hidden = false
             
         } else if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBGdefalut")){
             
-            bgPic.image = UIImage(named: "chatBGdefault.png")
+            messageTableView.backgroundColor = UIColor(patternImage: UIImage(named: "chatBGdefault.png")!)
             bgPic.hidden = false
         }
     }
