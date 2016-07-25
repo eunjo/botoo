@@ -103,7 +103,7 @@ class connectSceneViewController: UIViewController {
         }
     }
     
-    var isAlreadyConnected:Bool = false
+        var isAlreadyConnected = false;
     
     func connectButtonTapped(sender: AnyObject) {
         
