@@ -17,6 +17,8 @@ class ChatTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        messageBubble.backgroundColor = UIColor(patternImage: UIImage(named: "chatBubble.png")!)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

@@ -48,6 +48,7 @@
 		D607C5EA1D2A1A2D00542804 /* albumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607C5E91D2A1A2D00542804 /* albumViewController.swift */; };
 		D607C5EC1D2A3CAF00542804 /* chatTabSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607C5EB1D2A3CAF00542804 /* chatTabSettingViewController.swift */; };
 		D607C5EE1D2A41AF00542804 /* chatBGcolorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D607C5ED1D2A41AF00542804 /* chatBGcolorViewController.swift */; };
+		D632BEED1D465BC90029D6C1 /* chatBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = D632BEEC1D465BC90029D6C1 /* chatBubble.png */; };
 		D63A11CC1D34CA6C00AD6989 /* chatBGdefault.png in Resources */ = {isa = PBXBuildFile; fileRef = D63A11CB1D34CA6C00AD6989 /* chatBGdefault.png */; };
 		D63A11CE1D3521E800AD6989 /* homeBG.png in Resources */ = {isa = PBXBuildFile; fileRef = D63A11CD1D3521E800AD6989 /* homeBG.png */; };
 		D63A11EC1D374E1100AD6989 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63A11EB1D374E1100AD6989 /* SocketIOManager.swift */; };
@@ -150,6 +151,7 @@
 		D607C5E91D2A1A2D00542804 /* albumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = albumViewController.swift; sourceTree = "<group>"; };
 		D607C5EB1D2A3CAF00542804 /* chatTabSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatTabSettingViewController.swift; sourceTree = "<group>"; };
 		D607C5ED1D2A41AF00542804 /* chatBGcolorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = chatBGcolorViewController.swift; sourceTree = "<group>"; };
+		D632BEEC1D465BC90029D6C1 /* chatBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chatBubble.png; path = img/chatBubble.png; sourceTree = "<group>"; };
 		D63A11CB1D34CA6C00AD6989 /* chatBGdefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chatBGdefault.png; path = img/chatBGdefault.png; sourceTree = "<group>"; };
 		D63A11CD1D3521E800AD6989 /* homeBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = homeBG.png; path = img/homeBG.png; sourceTree = "<group>"; };
 		D63A11EB1D374E1100AD6989 /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 		D600A96D1D228854005F9130 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				D632BEEC1D465BC90029D6C1 /* chatBubble.png */,
 				C050D5BD1D45B5E000D7114F /* messageBubble.png */,
 				D6E2AF551D4336AE00C01509 /* red_circle.png */,
 				D63A11CD1D3521E800AD6989 /* homeBG.png */,
@@ -546,6 +549,7 @@
 				D607C5E01D27DA5E00542804 /* dolphin_only.png in Resources */,
 				D680FADA1D314D6200A84986 /* Default-iPhone6.png in Resources */,
 				D600A96C1D2287B2005F9130 /* Icon-60@2x.png in Resources */,
+				D632BEED1D465BC90029D6C1 /* chatBubble.png in Resources */,
 				D6E2AF521D3E1D3F00C01509 /* tp_default_female.png in Resources */,
 				C050D5BA1D45AF5F00D7114F /* UIChatTableViewCell.xib in Resources */,
 			);

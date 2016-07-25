@@ -532,11 +532,26 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
         }
         
-//        cell?.messageBubble.backgroundColor = UIColor(patternImage: UIImage(named: "messageBubble")!)
         cell?.messageBubble.text = self.chatMessages[indexPath.row]["message"] as? String
         
         cell?.nameLabel.text = self.chatMessages[indexPath.row]["name"] as? String
-        cell?.dateLabel.text = self.chatMessages[indexPath.row]["date"] as? String
+        
+        var date = self.chatMessages[indexPath.row]["date"] as? String
+        date!.replaceRange(date!.startIndex.advancedBy(24)..<date!.startIndex.advancedBy(24 + 15), with: "")
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.timeZone = NSTimeZone(name: "KST")
+        dateFormatter.dateFormat = "EEE MMM dd yyyy HH:mm:ss"
+        let Date = dateFormatter.dateFromString(date!)
+        
+        
+        // 날짜 년 월 일 로 포맷변환
+        let cal = NSCalendar(calendarIdentifier:NSGregorianCalendar)!
+        let comp = cal.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate:Date!)
+        
+        let dateToString:String = "\(comp.hour):\(comp.minute)"
+        
+        cell?.dateLabel.text = dateToString
         
         return cell!
     }
