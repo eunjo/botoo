@@ -30,14 +30,30 @@ class connectSceneViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
+        
+       
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+     func alert2(sender:AnyObject) {
+        //
+        let alert=UIAlertController(title: "Alert 2", message: "Two is awesome too", preferredStyle: UIAlertControllerStyle.Alert);
+        //default input textField (no configuration...)
+        alert.addTextFieldWithConfigurationHandler(nil);
+        //no event handler (just close dialog box)
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Cancel, handler: nil));
+        //event handler with closure
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: {(action:UIAlertAction) in
+            let fields = alert.textFields!;
+            print("Yes we can: "+fields[0].text!);
+        }));
+        presentViewController(alert, animated: true, completion: nil);
+        print("나타난다");
     }
     
     
@@ -93,17 +109,7 @@ class connectSceneViewController: UIViewController {
                 self.loverNameStored = json["name"] as? String
                 self.loversLoverStored = json["lover"] as? String
                 self.connectId = json["connect_id"] as? String
-                
-                // create the alert
-                let myAlert = UIAlertController(title: "UIAlertController", message: "연결을 수락하시겠습니까?", preferredStyle: UIAlertControllerStyle.Alert)
-                
-                // add the actions (buttons)
-                myAlert.addAction(UIAlertAction(title: "연결", style: UIAlertActionStyle.Default, handler: nil))
-                myAlert.addAction(UIAlertAction(title: "거부", style: UIAlertActionStyle.Cancel, handler: nil))
-                
-                // show the alert
-                self.presentViewController(myAlert, animated: true, completion: nil)
-
+               
                 
                 if (self.loversLoverStored != nil){
                     self.isAlreadyConnected = true
