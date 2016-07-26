@@ -62,6 +62,7 @@
 		D632BF011D46882C0029D6C1 /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = D632BEF71D46882C0029D6C1 /* 8.png */; };
 		D632BF021D46882C0029D6C1 /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = D632BEF81D46882C0029D6C1 /* 9.png */; };
 		D632BF041D470E4D0029D6C1 /* chatBubbleL.png in Resources */ = {isa = PBXBuildFile; fileRef = D632BF031D470E4D0029D6C1 /* chatBubbleL.png */; };
+		D632BF061D473A600029D6C1 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D632BF051D473A600029D6C1 /* FileManager.swift */; };
 		D63A11CC1D34CA6C00AD6989 /* chatBGdefault.png in Resources */ = {isa = PBXBuildFile; fileRef = D63A11CB1D34CA6C00AD6989 /* chatBGdefault.png */; };
 		D63A11CE1D3521E800AD6989 /* homeBG.png in Resources */ = {isa = PBXBuildFile; fileRef = D63A11CD1D3521E800AD6989 /* homeBG.png */; };
 		D63A11EC1D374E1100AD6989 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63A11EB1D374E1100AD6989 /* SocketIOManager.swift */; };
@@ -178,6 +179,7 @@
 		D632BEF71D46882C0029D6C1 /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 8.png; path = img/num/8.png; sourceTree = "<group>"; };
 		D632BEF81D46882C0029D6C1 /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 9.png; path = img/num/9.png; sourceTree = "<group>"; };
 		D632BF031D470E4D0029D6C1 /* chatBubbleL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chatBubbleL.png; path = img/chatBubbleL.png; sourceTree = "<group>"; };
+		D632BF051D473A600029D6C1 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		D63A11CB1D34CA6C00AD6989 /* chatBGdefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chatBGdefault.png; path = img/chatBGdefault.png; sourceTree = "<group>"; };
 		D63A11CD1D3521E800AD6989 /* homeBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = homeBG.png; path = img/homeBG.png; sourceTree = "<group>"; };
 		D63A11EB1D374E1100AD6989 /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				C0D47B061D2A076300637EAB /* KeyboardProtocol.swift */,
 				C0D47B0A1D31717900637EAB /* ExtensionForUIDevice.swift */,
 				C0D47B0C1D32AF2600637EAB /* URLInfo.swift */,
+				D632BF051D473A600029D6C1 /* FileManager.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -752,6 +755,7 @@
 				D63A12081D37504D00AD6989 /* SocketAckManager.swift in Sources */,
 				D607C5D81D277B4E00542804 /* msgEditViewController.swift in Sources */,
 				D607C5E81D2A18A600542804 /* chatDrawerViewController.swift in Sources */,
+				D632BF061D473A600029D6C1 /* FileManager.swift in Sources */,
 				C050D5BC1D45B01700D7114F /* ChatTableViewCell.swift in Sources */,
 				D63A12151D37504D00AD6989 /* SocketIOClientStatus.swift in Sources */,
 				D63A12131D37504D00AD6989 /* SocketIOClientOption.swift in Sources */,
