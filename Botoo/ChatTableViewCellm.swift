@@ -18,7 +18,8 @@ class ChatTableViewCellm: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        messageBubble.backgroundColor = UIColor(patternImage: UIImage(named: "chatBubble.png")!)
+        let buttonImageNormal = UIImage(named: "chatBubble.png")!
+        messageBubble.backgroundColor = UIColor(patternImage: buttonImageNormal.resizableImageWithCapInsets(UIEdgeInsetsMake(2, 2, 7, 7)))
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
