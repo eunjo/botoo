@@ -18,6 +18,7 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
 
     
     var letterList:[letterTableVO] = []
+    let userId =  NSUserDefaults.standardUserDefaults().stringForKey("userId")!
     
     var isReadCount:Int = 0
     
@@ -37,10 +38,10 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
                                             self.isReadCount = 0
                                             self.letterList = []
                                             for data in JsonData {
-                                                print(data)
                                                 self.letterList.append(letterTableVO(writerId: data["senderId"] as! String, title: data["title"] as! String, writerImage: data["sender"] as! String, letterId: data["_id"] as! String, date: data["date"] as! String, body: data["body"] as! String, isRead: Int(data["isRead"] as! String)!))
-                                                if(Int(data["isRead"] as! String)==0){
-                                                    self.isReadCount++
+                                                
+                                                if(Int(data["isRead"] as! String) == 0 && self.userId != data["senderId"] as! String){
+                                                    self.isReadCount += 1
                                                     NSUserDefaults.standardUserDefaults().setObject(self.isReadCount, forKey: "letterBadge")
                                                 }
                                             }
@@ -82,7 +83,7 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
             (cell.viewWithTag(300) as! UIImageView).hidden = false
         }
         
-        if letterList[indexPath.row].isRead == 1 || letterList[indexPath.row].writerId == NSUserDefaults.standardUserDefaults().stringForKey("userId")! { // 읽었거나 내가 쓴 경우
+        if letterList[indexPath.row].isRead == 1 || letterList[indexPath.row].writerId == userId { // 읽었거나 내가 쓴 경우
             (cell.viewWithTag(300) as! UIImageView).hidden = true
         }
         
@@ -109,7 +110,7 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if letterList[indexPath.row].writerId != NSUserDefaults.standardUserDefaults().stringForKey("userId")! { // 내가 쓴 경우
+        if letterList[indexPath.row].writerId != NSUserDefaults.standardUserDefaults().stringForKey("userId")! { // 내가 쓴 경우 X
             //letter 읽음 처리
             LetterConstruct().updateLetter( NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")!, letterID: letterList[indexPath.row].letterId, isRead: "1", completionHandler: { (json, error) -> Void in
                 print(json)
@@ -149,15 +150,4 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
             self.navigationController?.pushViewController(profileViewController, animated: true)
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

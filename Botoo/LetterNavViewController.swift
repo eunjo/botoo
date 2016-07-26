@@ -16,8 +16,6 @@ class LetterNavViewController: UINavigationController {
     var isReadCount:Int = 0
     var idx:Bool = true
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
