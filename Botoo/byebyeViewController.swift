@@ -46,6 +46,7 @@ class byebyeViewController: UIViewController {
             self.presentViewController(myAlert, animated: true, completion: nil)
         }
 
+        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "letterBadge")
     }
 
 
