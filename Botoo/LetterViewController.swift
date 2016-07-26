@@ -18,7 +18,7 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
 
     
     var letterList:[letterTableVO] = []
-    let userId =  NSUserDefaults.standardUserDefaults().stringForKey("userId")!
+    var userId:String?
     
     var isReadCount:Int = 0
     
@@ -29,7 +29,16 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
         self.letterTable.dataSource = self
     }
     
+    override func viewWillAppear(animated: Bool) {
+        
+        NSUserDefaults.standardUserDefaults().setObject(self.isReadCount, forKey: "letterBadge")
+    }
+    
     override func viewDidAppear(animated: Bool) {
+        
+        if (NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn")){
+            self.userId =  NSUserDefaults.standardUserDefaults().stringForKey("userId")!
+        }
         if NSUserDefaults.standardUserDefaults().stringForKey("userConnectId") != "nil" {
             LetterConstruct().callLetter(NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")!,
                                          completionHandler: { (json, error) -> Void in
