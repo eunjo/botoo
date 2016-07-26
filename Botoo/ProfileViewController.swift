@@ -179,6 +179,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "stateMSG")
             NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "lockPw")
             NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userId")
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "letterBadge")
             NSUserDefaults.standardUserDefaults().synchronize()
             
             
