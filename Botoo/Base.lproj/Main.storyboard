@@ -371,7 +371,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ywm-T2-HP5">
-                                <rect key="frame" x="256" y="72" width="20" height="20"/>
+                                <rect key="frame" x="257" y="72" width="20" height="20"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QMo-TD-l7D">
                                 <rect key="frame" x="272" y="72" width="20" height="20"/>
@@ -380,7 +380,7 @@
                                 <rect key="frame" x="287" y="72" width="20" height="20"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vG0-eJ-pp6">
-                                <rect key="frame" x="238" y="72" width="20" height="20"/>
+                                <rect key="frame" x="242" y="72" width="20" height="20"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgN-Hr-Exu">
                                 <rect key="frame" x="48" y="559" width="278" height="59"/>
