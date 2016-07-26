@@ -25,6 +25,7 @@ class LetterNavViewController: UINavigationController {
         self.navigationBar.barTintColor = UIColor(red: 252.0/255, green: 228.0/255, blue: 236.0/255, alpha: 1)
         self.navigationBar.tintColor = UIColor.blackColor()
         
+        self.resetBadge(NSUserDefaults.standardUserDefaults().integerForKey("letterBadge"))
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -40,6 +41,7 @@ class LetterNavViewController: UINavigationController {
                 idx = true
             }
         }
+        self.resetBadge(NSUserDefaults.standardUserDefaults().integerForKey("letterBadge"))
 
     }
 
