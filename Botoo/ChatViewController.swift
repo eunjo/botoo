@@ -45,6 +45,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     private let userName = NSUserDefaults.standardUserDefaults().stringForKey("userName")!
     private var userSocketId = ""
+    private let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
     private var chatMessages:[[String : AnyObject]] = []
     
     override func viewDidLoad() {
@@ -499,11 +500,13 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     // 전송 버튼
     @IBAction func sendButtonTapped(sender: AnyObject) {
         
+        
         if chatInputTextField.text!.characters.count > 0 {
             SocketIOManager.sharedInstance.sendMessage(chatInputTextField.text!, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
             chatInputTextField.text = ""
             chatInputTextField.resignFirstResponder()
         }
+        
     }
     
     
@@ -531,6 +534,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         let message = self.chatMessages[indexPath.row]["message"] as? String
         let name = self.chatMessages[indexPath.row]["nickname"] as? String
         let date = self.chatMessages[indexPath.row]["date"] as? String
+        
+        FileManager.sharedInstance.writeFile(message!, sender: self.userEmail, date: date!)
+        FileManager.sharedInstance.readFile()
         
         if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
             var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm

@@ -175,7 +175,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "377"
             endingLineNumber = "377"
-            landmarkName = "adjustHeightAnimation(_:container:)"
+            landmarkName = "adjustingHeightForPlus(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -591,8 +591,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
             endingLineNumber = "91"
-            landmarkName = "viewDidAppear(_:)"
-            landmarkType = "5">
+            landmarkName = "ChatViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -735,8 +735,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "503"
             endingLineNumber = "503"
-            landmarkName = "sendButtonTapped(_:)"
-            landmarkType = "5">
+            landmarkName = "ChatViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -47,6 +47,7 @@ class HomeViewController: UIViewController {
     var loverProPicStored:String?
     
     var firstDateStored:String?
+    var alert:String?
     
     var isGot:Bool?
     
@@ -96,6 +97,13 @@ class HomeViewController: UIViewController {
                     self.loverEmailStored = json["lover"] as? String
                     self.connectId = json["connect_id"] as? String
                     self.isGot = true
+                    
+                    
+                    self.alert = json["alert"] as? String
+                    if self.alert != nil {
+                        self.alert2()
+                    }
+                    
                     
                     var loverTemp = "nil"
                     if json["lover"] as? String != nil {
@@ -279,6 +287,32 @@ class HomeViewController: UIViewController {
             dateLabel.text = ""
         }
     }
+    
+    func alert2() {
+        
+        let alert=UIAlertController(title: "연결 신청", message: "수락하시겠습니까?", preferredStyle: .ActionSheet);
+        alert.addAction(UIAlertAction(title: "네", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            //thread
+            
+            
+        }))
+        alert.addAction(UIAlertAction(title: "아니오", style: UIAlertActionStyle.Cancel, handler: nil));
+        self.presentViewController(alert, animated: true, completion: nil);
+        
+        let myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+        
+        MemberConstruct().connect(myEmail!, loverEmail: self.alert!, completionHandler: { (json, error) -> Void in
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            
+            NSUserDefaults.standardUserDefaults().setObject(self.loverEmailStored, forKey: "userLover")
+            NSUserDefaults.standardUserDefaults().setObject(self.connectId, forKey: "userConnectId")
+        })
+    }
+
     
 
     override func viewDidAppear(animated: Bool) {
