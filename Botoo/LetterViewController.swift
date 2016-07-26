@@ -34,12 +34,14 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
                                          completionHandler: { (json, error) -> Void in
                                             let JsonData = json as! [[String: AnyObject]]
                                             
+                                            self.isReadCount = 0
                                             self.letterList = []
                                             for data in JsonData {
                                                 print(data)
                                                 self.letterList.append(letterTableVO(writerId: data["senderId"] as! String, title: data["title"] as! String, writerImage: data["sender"] as! String, letterId: data["_id"] as! String, date: data["date"] as! String, body: data["body"] as! String, isRead: Int(data["isRead"] as! String)!))
                                                 if(Int(data["isRead"] as! String)==0){
                                                     self.isReadCount++
+                                                    NSUserDefaults.standardUserDefaults().setObject(self.isReadCount, forKey: "letterBadge")
                                                 }
                                             }
                                             
