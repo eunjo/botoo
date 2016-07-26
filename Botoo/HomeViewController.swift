@@ -158,7 +158,6 @@ class HomeViewController: UIViewController {
                         }
                     }
                 })
-
             }
         }
     }
