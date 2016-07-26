@@ -21,6 +21,12 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var fromDate: UILabel!
     
+    @IBOutlet weak var num1: UIImageView!
+    @IBOutlet weak var num2: UIImageView!
+    @IBOutlet weak var num3: UIImageView!
+    @IBOutlet weak var num4: UIImageView!
+    
+    
     let isLock = NSUserDefaults.standardUserDefaults().boolForKey("lock")
     
     var threadIsAlive = 0
@@ -237,19 +243,41 @@ class HomeViewController: UIViewController {
             let dateToString:String = "\(comp.year)년 \(comp.month)월 \(comp.day)일부터"
             //
         
-            fromDate.text = dateToString
+            fromDate.text = ""
             
             // 날짜 계산
             
             let calendar = NSCalendar.currentCalendar()
             
             let components = calendar.components([.Day], fromDate: firstDate!, toDate: currentDate, options: [])
-            dateLabel.text = "\(components.day+1)일째"
+            //dateLabel.text = "\(components.day+1)일째"
+            dateLabel.text = ""
             
+            let date_num:Int = components.day+1
+            let thousand:Int = date_num/1000
+            let hundred:Int = (date_num-(thousand*1000))/100
+            let ten:Int = (date_num-(thousand*1000)-(hundred*100))/10
+            let one:Int = date_num-(thousand*1000)-(hundred*100)-(ten*10)
+            
+            num1.image = UIImage(named: "\(thousand).png")
+            num2.image = UIImage(named: "\(hundred).png")
+            num3.image = UIImage(named: "\(ten).png")
+            num4.image = UIImage(named: "\(one).png")
+            
+            if (date_num < 1000) {
+                num1.image = nil
+            }
+            if (date_num < 100){
+                num2.image = nil
+            }
+            if (date_num < 10){
+                num3.image = nil
+            }
+
 
         } else {
-            fromDate.text = "며칠부터"
-            dateLabel.text = "며칠째인가요?"
+            fromDate.text = ""
+            dateLabel.text = ""
         }
     }
     

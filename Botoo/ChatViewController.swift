@@ -83,9 +83,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     override func viewDidAppear(animated: Bool) {
         SocketIOManager.sharedInstance.getChatMessage { (messageInfo) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                print(messageInfo)
                 self.chatMessages.append(messageInfo)
-//                self.chatMessages.append(messageInfo)
                 self.messageTableView.reloadData()
 //                self.scrollToBottom()
             })
@@ -154,56 +152,56 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 //            bgPic.image = UIImage(named: "chatBGdefault.png")
 //            bgPic.hidden = false
             
-            
+
             messageTableView.backgroundColor = UIColor(patternImage: UIImage(named: "chatBGdefault.png")!)
         }
 
         // color 설정
         if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBgColor")){
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="white"){
-                self.view.backgroundColor = UIColor.whiteColor()
+                messageTableView.backgroundColor = UIColor.whiteColor()
                 bgPic.hidden = true
             }
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="grey"){
-                self.view.backgroundColor = UIColor.grayColor()
+                messageTableView.backgroundColor = UIColor.grayColor()
                 bgPic.hidden = true
             }
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightgrey"){
-                self.view.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.95, alpha:1.0)
+                messageTableView.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.95, alpha:1.0)
                 bgPic.hidden = true
             }
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="black"){
-                self.view.backgroundColor = UIColor.blackColor()
+                messageTableView.backgroundColor = UIColor.blackColor()
                 bgPic.hidden = true
             }
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightPink"){
-                self.view.backgroundColor = UIColor(red:0.99, green:0.89, blue:0.93, alpha:1.0)
+                messageTableView.backgroundColor = UIColor(red:0.99, green:0.89, blue:0.93, alpha:1.0)
                 bgPic.hidden = true
             }
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightBlue"){
-                self.view.backgroundColor = UIColor(red:0.77, green:0.99, blue:1.00, alpha:1.0)
+                messageTableView.backgroundColor = UIColor(red:0.77, green:0.99, blue:1.00, alpha:1.0)
                 bgPic.hidden = true
             }
             
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightPurple"){
-                self.view.backgroundColor = UIColor(red:0.91, green:0.85, blue:1.00, alpha:1.0)
+                messageTableView.backgroundColor = UIColor(red:0.91, green:0.85, blue:1.00, alpha:1.0)
                 bgPic.hidden = true
             }
             
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightYellow"){
-                self.view.backgroundColor = UIColor(red:1.00, green:0.98, blue:0.85, alpha:1.0)
+                messageTableView.backgroundColor = UIColor(red:1.00, green:0.98, blue:0.85, alpha:1.0)
                 bgPic.hidden = true
             }
             
         } else if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBgPic")){
             
             let imgData = NSUserDefaults.standardUserDefaults().objectForKey("chatBgPic") as! NSData
-            bgPic.image = UIImage(data: imgData)
+            messageTableView.backgroundColor = UIColor(patternImage: UIImage(data: imgData)!)
             bgPic.hidden = false
             
         } else if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBGdefalut")){
             
-            bgPic.image = UIImage(named: "chatBGdefault.png")
+            messageTableView.backgroundColor = UIColor(patternImage: UIImage(named: "chatBGdefault.png")!)
             bgPic.hidden = false
         }
     }
@@ -525,20 +523,38 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
+        let message = self.chatMessages[indexPath.row]["message"] as? String
+        let name = self.chatMessages[indexPath.row]["nickname"] as? String
+        let date = self.chatMessages[indexPath.row]["date"] as? String
         
-        if cell == nil {
-            tableView.registerNib(UINib(nibName: "UIChatTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatTableViewCell")
-            cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
+        if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
+            var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
+            
+            if cell == nil {
+                tableView.registerNib(UINib(nibName: "UIChatTableViewCellm", bundle: nil), forCellReuseIdentifier: "ChatTableViewCellm")
+                cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
+            }
+            
+            cell?.messageBubble.text = message
+            cell?.nameLabel.text = name
+            cell?.dateLabel.text = dateToString(date!)
+            
+            return cell!
+            
+        } else { // 상대방 메세지
+            var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
+            
+            if cell == nil {
+                tableView.registerNib(UINib(nibName: "UIChatTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatTableViewCell")
+                cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
+            }
+            
+            cell?.messageBubble.text = message
+            cell?.nameLabel.text = name
+            cell?.dateLabel.text = dateToString(date!)
+            
+            return cell!
         }
-        
-//        cell?.messageBubble.backgroundColor = UIColor(patternImage: UIImage(named: "messageBubble")!)
-        cell?.messageBubble.text = self.chatMessages[indexPath.row]["message"] as? String
-        
-        cell?.nameLabel.text = self.chatMessages[indexPath.row]["name"] as? String
-        cell?.dateLabel.text = self.chatMessages[indexPath.row]["date"] as? String
-        
-        return cell!
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -547,5 +563,30 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+    
+    func dateToString(dateString: String) -> String {
+        var date = dateString
+        date.replaceRange(date.startIndex.advancedBy(24)..<date.startIndex.advancedBy(24 + 15), with: "")
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.timeZone = NSTimeZone(name: "KST")
+        dateFormatter.dateFormat = "EEE MMM dd yyyy HH:mm:ss"
+        let Date = dateFormatter.dateFromString(date)
+        
+        
+        // 날짜 년 월 일 로 포맷변환
+        let cal = NSCalendar(calendarIdentifier:NSGregorianCalendar)!
+        let comp = cal.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate:Date!)
+        let new_minute:String
+        
+        if (comp.minute < 10){
+            new_minute = "0\(comp.minute)"
+        } else {
+            new_minute = String(comp.minute)
+        }
+        let dateToString:String = "\(comp.hour):\(new_minute)"
+        
+        return dateToString
     }
 }
