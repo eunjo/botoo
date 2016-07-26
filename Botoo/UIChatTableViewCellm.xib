@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JiY-j1-OUZ" id="WZz-8M-lY4">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="64.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8d-J4-617">
@@ -36,16 +36,14 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="clI-0b-Gsp" firstAttribute="bottom" secondItem="WZz-8M-lY4" secondAttribute="bottomMargin" id="2Ab-Ia-DQ5"/>
-                    <constraint firstItem="0jV-cH-O7y" firstAttribute="leading" secondItem="WZz-8M-lY4" secondAttribute="leadingMargin" constant="19" id="2dz-aC-ht2"/>
-                    <constraint firstItem="Q8d-J4-617" firstAttribute="leading" secondItem="WZz-8M-lY4" secondAttribute="leadingMargin" id="Hru-jc-BEA"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="0jV-cH-O7y" secondAttribute="bottom" constant="6" id="T2l-G8-YcC"/>
-                    <constraint firstItem="clI-0b-Gsp" firstAttribute="trailing" secondItem="WZz-8M-lY4" secondAttribute="trailingMargin" id="T43-Uu-9ux"/>
-                    <constraint firstItem="Q8d-J4-617" firstAttribute="trailing" secondItem="WZz-8M-lY4" secondAttribute="trailingMargin" id="Uh1-Fn-zR4"/>
-                    <constraint firstItem="clI-0b-Gsp" firstAttribute="top" secondItem="WZz-8M-lY4" secondAttribute="topMargin" constant="14" id="YAW-03-ow3"/>
-                    <constraint firstItem="clI-0b-Gsp" firstAttribute="leading" secondItem="0jV-cH-O7y" secondAttribute="trailing" constant="8" id="g7G-Wy-J9d"/>
-                    <constraint firstItem="0jV-cH-O7y" firstAttribute="top" secondItem="Q8d-J4-617" secondAttribute="bottom" constant="8" id="hIE-YA-gyo"/>
-                    <constraint firstItem="Q8d-J4-617" firstAttribute="top" secondItem="WZz-8M-lY4" secondAttribute="topMargin" id="tw7-HD-5wA"/>
+                    <constraint firstItem="Q8d-J4-617" firstAttribute="top" secondItem="WZz-8M-lY4" secondAttribute="topMargin" id="2hU-qf-MXe"/>
+                    <constraint firstItem="clI-0b-Gsp" firstAttribute="leading" secondItem="0jV-cH-O7y" secondAttribute="trailing" constant="8" id="4u2-9W-Kki"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="0jV-cH-O7y" secondAttribute="bottom" constant="6" id="C0T-yS-uLg"/>
+                    <constraint firstItem="Q8d-J4-617" firstAttribute="leading" secondItem="WZz-8M-lY4" secondAttribute="leadingMargin" id="g4u-Kw-Pmp"/>
+                    <constraint firstItem="clI-0b-Gsp" firstAttribute="trailing" secondItem="WZz-8M-lY4" secondAttribute="trailingMargin" id="s0n-jc-PeU"/>
+                    <constraint firstItem="clI-0b-Gsp" firstAttribute="top" secondItem="WZz-8M-lY4" secondAttribute="topMargin" constant="14" id="sW4-S0-qv0"/>
+                    <constraint firstItem="Q8d-J4-617" firstAttribute="trailing" secondItem="WZz-8M-lY4" secondAttribute="trailingMargin" id="w9J-Ae-gr3"/>
+                    <constraint firstItem="0jV-cH-O7y" firstAttribute="top" secondItem="Q8d-J4-617" secondAttribute="bottom" constant="8" id="yiY-iV-XNQ"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
