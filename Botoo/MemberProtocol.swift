@@ -16,4 +16,6 @@ protocol MemberProtocol {
     func changeName(userID: String, userName: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
     func changeMsg(userID: String, userMsg: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
     func updateDate(userID: String, loverID: String, userDate: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
+    func sendAlert(myEmail: String, loverEmail: String, completionHandler: (AnyObject!, NSError?) -> Void)-> NSURLSessionTask?
+
 }
