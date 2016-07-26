@@ -61,6 +61,7 @@
 		D632BF001D46882C0029D6C1 /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = D632BEF61D46882C0029D6C1 /* 7.png */; };
 		D632BF011D46882C0029D6C1 /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = D632BEF71D46882C0029D6C1 /* 8.png */; };
 		D632BF021D46882C0029D6C1 /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = D632BEF81D46882C0029D6C1 /* 9.png */; };
+		D632BF041D470E4D0029D6C1 /* chatBubbleL.png in Resources */ = {isa = PBXBuildFile; fileRef = D632BF031D470E4D0029D6C1 /* chatBubbleL.png */; };
 		D63A11CC1D34CA6C00AD6989 /* chatBGdefault.png in Resources */ = {isa = PBXBuildFile; fileRef = D63A11CB1D34CA6C00AD6989 /* chatBGdefault.png */; };
 		D63A11CE1D3521E800AD6989 /* homeBG.png in Resources */ = {isa = PBXBuildFile; fileRef = D63A11CD1D3521E800AD6989 /* homeBG.png */; };
 		D63A11EC1D374E1100AD6989 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63A11EB1D374E1100AD6989 /* SocketIOManager.swift */; };
@@ -176,6 +177,7 @@
 		D632BEF61D46882C0029D6C1 /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 7.png; path = img/num/7.png; sourceTree = "<group>"; };
 		D632BEF71D46882C0029D6C1 /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 8.png; path = img/num/8.png; sourceTree = "<group>"; };
 		D632BEF81D46882C0029D6C1 /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 9.png; path = img/num/9.png; sourceTree = "<group>"; };
+		D632BF031D470E4D0029D6C1 /* chatBubbleL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chatBubbleL.png; path = img/chatBubbleL.png; sourceTree = "<group>"; };
 		D63A11CB1D34CA6C00AD6989 /* chatBGdefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chatBGdefault.png; path = img/chatBGdefault.png; sourceTree = "<group>"; };
 		D63A11CD1D3521E800AD6989 /* homeBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = homeBG.png; path = img/homeBG.png; sourceTree = "<group>"; };
 		D63A11EB1D374E1100AD6989 /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 		D600A96D1D228854005F9130 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				D632BF031D470E4D0029D6C1 /* chatBubbleL.png */,
 				D632BEEE1D4688220029D6C1 /* num */,
 				D632BEEC1D465BC90029D6C1 /* chatBubble.png */,
 				C050D5BD1D45B5E000D7114F /* messageBubble.png */,
@@ -602,6 +605,7 @@
 				D600A96C1D2287B2005F9130 /* Icon-60@2x.png in Resources */,
 				C050D5C21D46FCCA00D7114F /* UIChatTableViewCellm.xib in Resources */,
 				D632BEFD1D46882C0029D6C1 /* 4.png in Resources */,
+				D632BF041D470E4D0029D6C1 /* chatBubbleL.png in Resources */,
 				D632BEFC1D46882C0029D6C1 /* 3.png in Resources */,
 				D632BEED1D465BC90029D6C1 /* chatBubble.png in Resources */,
 				D632BEFB1D46882C0029D6C1 /* 2.png in Resources */,
