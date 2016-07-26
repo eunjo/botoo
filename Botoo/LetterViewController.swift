@@ -18,7 +18,7 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
 
     
     var letterList:[letterTableVO] = []
-    let userId =  NSUserDefaults.standardUserDefaults().stringForKey("userId")!
+    let userId =  NSUserDefaults.standardUserDefaults().stringForKey("userId")
     
     var isReadCount:Int = 0
     

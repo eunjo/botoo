@@ -32,22 +32,7 @@ class connectSceneViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    override func viewDidAppear(animated: Bool) {
-        self.alert2()
-    }
-    
-    func alert2() {
-
-        let alert=UIAlertController(title: "연결 신청", message: "수락하시겠습니까?", preferredStyle: .ActionSheet);
-        alert.addAction(UIAlertAction(title: "네", style: UIAlertActionStyle.Default, handler: nil));
-        alert.addAction(UIAlertAction(title: "아니오", style: UIAlertActionStyle.Cancel, handler: nil));
-
         
-        self.presentViewController(alert, animated: true, completion: nil);
-       
-        
-    }
-    
     func backButtonTapped(sender: AnyObject) {
         
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -121,17 +106,23 @@ class connectSceneViewController: UIViewController {
             print("연결시도")
             
             let myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+//
+//            MemberConstruct().connect(myEmail!, loverEmail: loverEmailStored!, completionHandler: { (json, error) -> Void in
+//                
+//                    dispatch_async(dispatch_get_main_queue()) {
+//                    
+//                        self.dismissViewControllerAnimated(true, completion: nil)
+//                    }
+//                
+//                NSUserDefaults.standardUserDefaults().setObject(self.loverEmailStored, forKey: "userLover")
+//                NSUserDefaults.standardUserDefaults().setObject(self.connectId, forKey: "userConnectId")
+//            })
             
-            MemberConstruct().connect(myEmail!, loverEmail: loverEmailStored!, completionHandler: { (json, error) -> Void in
-                
-                    dispatch_async(dispatch_get_main_queue()) {
-                    
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                    }
-                
-                NSUserDefaults.standardUserDefaults().setObject(self.loverEmailStored, forKey: "userLover")
-                NSUserDefaults.standardUserDefaults().setObject(self.connectId, forKey: "userConnectId")
+            MemberConstruct().sendAlert(myEmail!, loverEmail: loverEmail!, completionHandler: { (json, error) -> Void in
+                print(json)
             })
+            
+
         }
     }
 
