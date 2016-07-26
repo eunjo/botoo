@@ -15,6 +15,8 @@
 		C050D5BA1D45AF5F00D7114F /* UIChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C050D5B91D45AF5F00D7114F /* UIChatTableViewCell.xib */; };
 		C050D5BC1D45B01700D7114F /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5BB1D45B01700D7114F /* ChatTableViewCell.swift */; };
 		C050D5BE1D45B5E000D7114F /* messageBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = C050D5BD1D45B5E000D7114F /* messageBubble.png */; };
+		C050D5C01D46FBF200D7114F /* ChatTableViewCellm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5BF1D46FBF200D7114F /* ChatTableViewCellm.swift */; };
+		C050D5C21D46FCCA00D7114F /* UIChatTableViewCellm.xib in Resources */ = {isa = PBXBuildFile; fileRef = C050D5C11D46FCCA00D7114F /* UIChatTableViewCellm.xib */; };
 		C0D47AEE1D22A25500637EAB /* ChatTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */; };
 		C0D47AF21D22AEFB00637EAB /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */; };
 		C0D47AF41D237C8A00637EAB /* SettingNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */; };
@@ -127,6 +129,8 @@
 		C050D5B91D45AF5F00D7114F /* UIChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIChatTableViewCell.xib; sourceTree = "<group>"; };
 		C050D5BB1D45B01700D7114F /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		C050D5BD1D45B5E000D7114F /* messageBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = messageBubble.png; sourceTree = "<group>"; };
+		C050D5BF1D46FBF200D7114F /* ChatTableViewCellm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCellm.swift; sourceTree = "<group>"; };
+		C050D5C11D46FCCA00D7114F /* UIChatTableViewCellm.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIChatTableViewCellm.xib; sourceTree = "<group>"; };
 		C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTabViewController.swift; sourceTree = "<group>"; };
 		C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNavViewController.swift; sourceTree = "<group>"; };
@@ -277,9 +281,9 @@
 				C0D47B021D2758A200637EAB /* ChatNavViewController.swift */,
 				D6C0EFF61D2760FF00798E2B /* alarmSetViewController.swift */,
 				D607C5D71D277B4E00542804 /* msgEditViewController.swift */,
-				D607C5D91D279F5A00542804 /* connectSceneViewController.swift */,
 				D607C5DB1D27AEE100542804 /* nameEditViewController.swift */,
 				D607C5DD1D27B14100542804 /* byebyeViewController.swift */,
+				D607C5D91D279F5A00542804 /* connectSceneViewController.swift */,
 				D607C5E11D27DC5700542804 /* dateSetViewController.swift */,
 				D607C5E51D2A04D400542804 /* imageZoomViewController.swift */,
 				D607C5E71D2A18A600542804 /* chatDrawerViewController.swift */,
@@ -316,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				C050D5BB1D45B01700D7114F /* ChatTableViewCell.swift */,
+				C050D5BF1D46FBF200D7114F /* ChatTableViewCellm.swift */,
 			);
 			name = TableCell;
 			sourceTree = "<group>";
@@ -439,6 +444,7 @@
 				C0D47AEB1D22A1D800637EAB /* Controller */,
 				D69322A91D20FB6A003E9147 /* AppDelegate.swift */,
 				C050D5B91D45AF5F00D7114F /* UIChatTableViewCell.xib */,
+				C050D5C11D46FCCA00D7114F /* UIChatTableViewCellm.xib */,
 				D69322AD1D20FB6A003E9147 /* Main.storyboard */,
 				D69322B01D20FB6A003E9147 /* Assets.xcassets */,
 				D600A96D1D228854005F9130 /* Image */,
@@ -594,6 +600,7 @@
 				D632BF021D46882C0029D6C1 /* 9.png in Resources */,
 				D680FADA1D314D6200A84986 /* Default-iPhone6.png in Resources */,
 				D600A96C1D2287B2005F9130 /* Icon-60@2x.png in Resources */,
+				C050D5C21D46FCCA00D7114F /* UIChatTableViewCellm.xib in Resources */,
 				D632BEFD1D46882C0029D6C1 /* 4.png in Resources */,
 				D632BEFC1D46882C0029D6C1 /* 3.png in Resources */,
 				D632BEED1D465BC90029D6C1 /* chatBubble.png in Resources */,
@@ -713,6 +720,7 @@
 				D63A12171D37504D00AD6989 /* SocketPacket.swift in Sources */,
 				C007CBAD1D430C0700FA5A4C /* LetterProtocol.swift in Sources */,
 				C0D47AFF1D239EB600637EAB /* LockViewController.swift in Sources */,
+				C050D5C01D46FBF200D7114F /* ChatTableViewCellm.swift in Sources */,
 				D607C5DE1D27B14100542804 /* byebyeViewController.swift in Sources */,
 				D63A12161D37504D00AD6989 /* SocketLogger.swift in Sources */,
 				D63A120C1D37504D00AD6989 /* SocketEngineClient.swift in Sources */,

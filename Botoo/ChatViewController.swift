@@ -523,24 +523,56 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
+        let message = self.chatMessages[indexPath.row]["message"] as? String
+        let name = self.chatMessages[indexPath.row]["nickname"] as? String
+        let date = self.chatMessages[indexPath.row]["date"] as? String
         
-        if cell == nil {
-            tableView.registerNib(UINib(nibName: "UIChatTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatTableViewCell")
-            cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
+        if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
+            var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
+            
+            if cell == nil {
+                tableView.registerNib(UINib(nibName: "UIChatTableViewCellm", bundle: nil), forCellReuseIdentifier: "ChatTableViewCellm")
+                cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
+            }
+            
+            cell?.messageBubble.text = message
+            cell?.nameLabel.text = name
+            cell?.dateLabel.text = dateToString(date!)
+            
+            return cell!
+            
+        } else { // 상대방 메세지
+            var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
+            
+            if cell == nil {
+                tableView.registerNib(UINib(nibName: "UIChatTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatTableViewCell")
+                cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
+            }
+            
+            cell?.messageBubble.text = message
+            cell?.nameLabel.text = name
+            cell?.dateLabel.text = dateToString(date!)
+            
+            return cell!
         }
-        
-        cell?.messageBubble.text = self.chatMessages[indexPath.row]["message"] as? String
-        
-        cell?.nameLabel.text = self.chatMessages[indexPath.row]["name"] as? String
-        
-        var date = self.chatMessages[indexPath.row]["date"] as? String
-        date!.replaceRange(date!.startIndex.advancedBy(24)..<date!.startIndex.advancedBy(24 + 15), with: "")
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func dateToString(dateString: String) -> String {
+        var date = dateString
+        date.replaceRange(date.startIndex.advancedBy(24)..<date.startIndex.advancedBy(24 + 15), with: "")
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.timeZone = NSTimeZone(name: "KST")
         dateFormatter.dateFormat = "EEE MMM dd yyyy HH:mm:ss"
-        let Date = dateFormatter.dateFromString(date!)
+        let Date = dateFormatter.dateFromString(date)
         
         
         // 날짜 년 월 일 로 포맷변환
@@ -555,16 +587,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         }
         let dateToString:String = "\(comp.hour):\(new_minute)"
         
-        cell?.dateLabel.text = dateToString
-        
-        return cell!
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-    
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return dateToString
     }
 }
