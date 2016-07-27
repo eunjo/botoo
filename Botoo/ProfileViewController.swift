@@ -168,7 +168,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                     print("탈퇴 success")
                 })
             }
-
             
             NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "gender")
             NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userEmail")

@@ -44,6 +44,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private var currentKeyboardHeight: CGFloat?
     
     private let userName = NSUserDefaults.standardUserDefaults().stringForKey("userName")!
+    private var userSocketId = ""
     private let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
     private var chatMessages:[[String : AnyObject]] = []
     
@@ -75,8 +76,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         if !NSUserDefaults.standardUserDefaults().boolForKey("isOnline") {
             print("connected...")
             //유저 소켓 연결
-            initSocket()
+            
         }
+        initSocket()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -108,8 +110,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         SocketIOManager.sharedInstance.connectToServerWithNickname(self.userName, completionHandler: { (userList) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if userList != nil {
-                    print(userList)
                     print("채팅 입장.")
+                    print(userList)
                     
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isOnline")
                     
@@ -500,7 +502,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         
         
         if chatInputTextField.text!.characters.count > 0 {
-            SocketIOManager.sharedInstance.sendMessage(chatInputTextField.text!, withNickname: self.userName)
+            SocketIOManager.sharedInstance.sendMessage(chatInputTextField.text!, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
             chatInputTextField.text = ""
             chatInputTextField.resignFirstResponder()
         }
