@@ -47,7 +47,7 @@ class HomeViewController: UIViewController {
     var loverProPicStored:String?
     
     var firstDateStored:String?
-    var alert:String?
+
     
     var isGot:Bool?
     
@@ -99,8 +99,7 @@ class HomeViewController: UIViewController {
                     self.isGot = true
                     
                     
-                    self.alert = json["alert"] as? String
-                    if self.alert != nil {
+                    if  self.loverEmailStored != nil {
                         self.alert2()
                     }
                     
@@ -296,7 +295,7 @@ class HomeViewController: UIViewController {
             
             let myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
             
-            MemberConstruct().connect(myEmail!, loverEmail: self.alert!, completionHandler: { (json, error) -> Void in
+            MemberConstruct().connect(myEmail!, loverEmail: self.loverEmailStored!, completionHandler: { (json, error) -> Void in
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     
@@ -307,7 +306,7 @@ class HomeViewController: UIViewController {
                 NSUserDefaults.standardUserDefaults().setObject(self.connectId, forKey: "userConnectId")
             })
         
-        MemberConstruct().acceptAlert(myEmail!, loverEmail: self.alert!, completionHandler: { (json, error) -> Void in
+            MemberConstruct().acceptAlert(myEmail!, loverEmail: self.loverEmailStored!, completionHandler: { (json, error) -> Void in
             
              dispatch_async(dispatch_get_main_queue()) {
                 
@@ -320,7 +319,7 @@ class HomeViewController: UIViewController {
             
         let myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
             
-            MemberConstruct().acceptAlert(myEmail!, loverEmail: self.alert!, completionHandler: { (json, error) -> Void in
+            MemberConstruct().acceptAlert(myEmail!, loverEmail:self.loverEmailStored!, completionHandler: { (json, error) -> Void in
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     

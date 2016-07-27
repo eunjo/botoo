@@ -333,7 +333,7 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
     func acceptAlert(myEmail:String, loverEmail:String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
         //파라미터를 추가한 URL 생성
         let postString = "myEmail=\(myEmail)&loverEmail=\(loverEmail)"
-        let URL = NSURL(string: "\(urlInfo.sendAlert)?\(postString)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
+        let URL = NSURL(string: "\(urlInfo.acceptAlert)?\(postString)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
         
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.HTTPMethod = "PUT"
