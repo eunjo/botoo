@@ -292,10 +292,13 @@ class HomeViewController: UIViewController {
         let alert=UIAlertController(title: "연결 신청", message: "수락하시겠습니까?", preferredStyle: .ActionSheet);
         alert.addAction(UIAlertAction(title: "네", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
             //thread
-            
             let myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
             
+
+
             MemberConstruct().connect(myEmail!, loverEmail: self.loverEmailStored!, completionHandler: { (json, error) -> Void in
+
+                
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     
@@ -305,6 +308,7 @@ class HomeViewController: UIViewController {
                 NSUserDefaults.standardUserDefaults().setObject(self.loverEmailStored, forKey: "userLover")
                 NSUserDefaults.standardUserDefaults().setObject(self.connectId, forKey: "userConnectId")
             })
+
         
             MemberConstruct().acceptAlert(myEmail!, loverEmail: self.loverEmailStored!, completionHandler: { (json, error) -> Void in
             
@@ -313,6 +317,7 @@ class HomeViewController: UIViewController {
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
         })
+            
         }))
         
         alert.addAction(UIAlertAction(title: "아니오", style: UIAlertActionStyle.Cancel, handler: { (action)-> Void in
@@ -325,12 +330,13 @@ class HomeViewController: UIViewController {
                     
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
-
-            
             })
             }))
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
+        alert.addAction(UIAlertAction(title: "아니오", style: UIAlertActionStyle.Cancel, handler: nil));
+        self.presentViewController(alert, animated: true, completion: nil);
+        
+
+}
 
 
     override func viewDidAppear(animated: Bool) {
@@ -344,7 +350,6 @@ class HomeViewController: UIViewController {
                 LockViewController.getSender.sender = 0
                 self.performSegueWithIdentifier("toLockView", sender: self)
             }
-            
             _ = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
             
             
@@ -354,5 +359,6 @@ class HomeViewController: UIViewController {
         
     }
 
-}
 
+
+}
