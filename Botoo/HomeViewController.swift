@@ -295,26 +295,45 @@ class HomeViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "네", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
             //thread
             
+            let myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
             
-        }))
-        alert.addAction(UIAlertAction(title: "아니오", style: UIAlertActionStyle.Cancel, handler: nil));
-        self.presentViewController(alert, animated: true, completion: nil);
+            MemberConstruct().connect(myEmail!, loverEmail: self.alert!, completionHandler: { (json, error) -> Void in
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+                
+                NSUserDefaults.standardUserDefaults().setObject(self.loverEmailStored, forKey: "userLover")
+                NSUserDefaults.standardUserDefaults().setObject(self.connectId, forKey: "userConnectId")
+            })
         
-        let myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
-        
-        MemberConstruct().connect(myEmail!, loverEmail: self.alert!, completionHandler: { (json, error) -> Void in
+        MemberConstruct().acceptAlert(myEmail!, loverEmail: self.alert!, completionHandler: { (json, error) -> Void in
             
-            dispatch_async(dispatch_get_main_queue()) {
+             dispatch_async(dispatch_get_main_queue()) {
                 
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
-            
-            NSUserDefaults.standardUserDefaults().setObject(self.loverEmailStored, forKey: "userLover")
-            NSUserDefaults.standardUserDefaults().setObject(self.connectId, forKey: "userConnectId")
         })
+        }))
+        
+        alert.addAction(UIAlertAction(title: "아니오", style: UIAlertActionStyle.Cancel, handler: { (action)-> Void in
+            
+        let myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+            
+            MemberConstruct().acceptAlert(myEmail!, loverEmail: self.alert!, completionHandler: { (json, error) -> Void in
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+
+            
+            })
+            }))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
-    
 
     override func viewDidAppear(animated: Bool) {
         
@@ -328,7 +347,7 @@ class HomeViewController: UIViewController {
                 self.performSegueWithIdentifier("toLockView", sender: self)
             }
             
-            let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+            _ = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
             
             
         }

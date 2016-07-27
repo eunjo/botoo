@@ -26,8 +26,10 @@ public class URLInfo {
     public var deleteLetter: String
     public var updateLetter: String
     public var sendAlert: String
+    public var acceptAlert: String
 
     init() {
+        acceptAlert = WEB_SERVER_IP + "/member/acceptAlert"
         sendAlert = WEB_SERVER_IP + "/member/sendAlert"
         updateDate = WEB_SERVER_IP + "/member/updateDate"
         changeMsg = WEB_SERVER_IP + "/member/changeMsg"
