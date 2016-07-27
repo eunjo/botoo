@@ -295,22 +295,22 @@ class HomeViewController: UIViewController {
             //thread
             
             
+            let myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+            
+            MemberConstruct().connect(myEmail!, loverEmail: self.alert!, completionHandler: { (json, error) -> Void in
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+                
+                NSUserDefaults.standardUserDefaults().setObject(self.loverEmailStored, forKey: "userLover")
+                NSUserDefaults.standardUserDefaults().setObject(self.connectId, forKey: "userConnectId")
+            })
         }))
         alert.addAction(UIAlertAction(title: "아니오", style: UIAlertActionStyle.Cancel, handler: nil));
         self.presentViewController(alert, animated: true, completion: nil);
         
-        let myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
-        
-        MemberConstruct().connect(myEmail!, loverEmail: self.alert!, completionHandler: { (json, error) -> Void in
-            
-            dispatch_async(dispatch_get_main_queue()) {
-                
-                self.dismissViewControllerAnimated(true, completion: nil)
-            }
-            
-            NSUserDefaults.standardUserDefaults().setObject(self.loverEmailStored, forKey: "userLover")
-            NSUserDefaults.standardUserDefaults().setObject(self.connectId, forKey: "userConnectId")
-        })
     }
 
     
@@ -326,10 +326,6 @@ class HomeViewController: UIViewController {
                 LockViewController.getSender.sender = 0
                 self.performSegueWithIdentifier("toLockView", sender: self)
             }
-            
-            let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
-            
-            
         }
         
         profileInit()
