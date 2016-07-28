@@ -44,6 +44,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private var currentKeyboardHeight: CGFloat?
     
     private let userName = NSUserDefaults.standardUserDefaults().stringForKey("userName")!
+    private var userSocketId = ""
     private let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
     private var chatMessages:[[String : AnyObject]] = []
     
@@ -72,11 +73,12 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
         
-        if !NSUserDefaults.standardUserDefaults().boolForKey("isOnline") {
-            print("connected...")
-            //유저 소켓 연결
-            initSocket()
-        }
+        
+        
+        // 소켓은 실시간 통신을 위한 것
+        // 실시간 대화가 아닌 경우 파일에 저장해 놓은 것을 뿌려주기
+        
+        initSocket()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -108,8 +110,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         SocketIOManager.sharedInstance.connectToServerWithNickname(self.userName, completionHandler: { (userList) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if userList != nil {
-                    print(userList)
                     print("채팅 입장.")
+                    print(userList)
                     
                     NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isOnline")
                     
@@ -500,7 +502,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         
         
         if chatInputTextField.text!.characters.count > 0 {
-            SocketIOManager.sharedInstance.sendMessage(chatInputTextField.text!, withNickname: self.userName)
+            SocketIOManager.sharedInstance.sendMessage(chatInputTextField.text!, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
             chatInputTextField.text = ""
             chatInputTextField.resignFirstResponder()
         }

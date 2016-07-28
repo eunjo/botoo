@@ -29,8 +29,8 @@ class SocketIOManager: NSObject {
     }
     
     // 대망의 메세지 보내기
-    func sendMessage(message: String, withNickname nickname: String) {
-        socket.emit("chatMessage", nickname, message)
+    func sendMessage(message: String, withNickname nickname: String, to: String) {
+        socket.emit("chatMessage", nickname, message, to)
     }
     
     // 대망의 메세지 받기

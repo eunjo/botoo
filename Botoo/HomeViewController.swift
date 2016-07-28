@@ -45,8 +45,10 @@ class HomeViewController: UIViewController {
     var loverGenderStored:String?
     var loverMsgStored:String?
     var loverProPicStored:String?
+    var alert:String?
     
     var firstDateStored:String?
+
     
     var isGot:Bool?
     
@@ -96,6 +98,14 @@ class HomeViewController: UIViewController {
                     self.loverEmailStored = json["lover"] as? String
                     self.connectId = json["connect_id"] as? String
                     self.isGot = true
+                    
+                    
+                    self.alert = json["alert"] as? String
+                    
+                    if  self.alert != nil {
+                        self.alert2()
+                    }
+                    
                     
                     var loverTemp = "nil"
                     if json["lover"] as? String != nil {
@@ -158,7 +168,6 @@ class HomeViewController: UIViewController {
                         }
                     }
                 })
-
             }
         }
     }
@@ -281,6 +290,35 @@ class HomeViewController: UIViewController {
         }
     }
     
+    func alert2() {
+        
+        let alert=UIAlertController(title: "연결 신청", message: "수락하시겠습니까?", preferredStyle: .ActionSheet);
+        
+        alert.addAction(UIAlertAction(title: "네", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            //thread
+            let myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+            
+            MemberConstruct().connect(myEmail!, loverEmail: self.alert!, completionHandler: { (json, error) -> Void in
+                NSUserDefaults.standardUserDefaults().setObject(self.alert, forKey: "userLover")
+            })
+
+        
+            MemberConstruct().acceptAlert(myEmail!, loverEmail: self.loverEmailStored!, completionHandler: { (json, error) -> Void in
+                print(json)
+            })
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "아니오", style: UIAlertActionStyle.Cancel, handler: { (action)-> Void in
+            
+        let myEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+            
+            MemberConstruct().acceptAlert(myEmail!, loverEmail:self.alert!, completionHandler: { (json, error) -> Void in
+            })
+        }))
+        self.presentViewController(alert, animated: true, completion: nil);
+    }
+
 
     override func viewDidAppear(animated: Bool) {
         
@@ -293,8 +331,7 @@ class HomeViewController: UIViewController {
                 LockViewController.getSender.sender = 0
                 self.performSegueWithIdentifier("toLockView", sender: self)
             }
-            
-            let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
+            _ = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
             
             
         }
@@ -302,6 +339,4 @@ class HomeViewController: UIViewController {
         profileInit()
         
     }
-
 }
-
