@@ -22,7 +22,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     // 이미지픽커 선언
     var imagePicker = UIImagePickerController()
     
-    @IBOutlet weak var bgPic: UIImageView!
     @IBOutlet var messageTableView: UITableView!
     
     private var SETTING = 0
@@ -64,7 +63,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         initContainers()
         
         // 배경 설정 //
-        bgPic.layer.zPosition = -1;
         initBackGround()
         
         currentKeyboardHeight = 0.0
@@ -91,7 +89,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.chatMessages.append(messageInfo)
                 self.messageTableView.reloadData()
-//                self.scrollToBottom()
+                self.scrollToBottom()
             })
         }
     }
@@ -155,9 +153,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     func initBackGround(){
         
         if ( !(NSUserDefaults.standardUserDefaults().boolForKey("ischatBgColor")) || !(NSUserDefaults.standardUserDefaults().boolForKey("ischatBgPic")) ){
-//            bgPic.image = UIImage(named: "chatBGdefault.png")
-//            bgPic.hidden = false
-            
 
             messageTableView.backgroundColor = UIColor(patternImage: UIImage(named: "chatBGdefault.png")!)
         }
@@ -166,49 +161,39 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBgColor")){
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="white"){
                 messageTableView.backgroundColor = UIColor.whiteColor()
-                bgPic.hidden = true
             }
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="grey"){
                 messageTableView.backgroundColor = UIColor.grayColor()
-                bgPic.hidden = true
             }
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightgrey"){
                 messageTableView.backgroundColor = UIColor(red:0.92, green:0.92, blue:0.95, alpha:1.0)
-                bgPic.hidden = true
             }
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="black"){
                 messageTableView.backgroundColor = UIColor.blackColor()
-                bgPic.hidden = true
             }
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightPink"){
                 messageTableView.backgroundColor = UIColor(red:0.99, green:0.89, blue:0.93, alpha:1.0)
-                bgPic.hidden = true
             }
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightBlue"){
                 messageTableView.backgroundColor = UIColor(red:0.77, green:0.99, blue:1.00, alpha:1.0)
-                bgPic.hidden = true
             }
             
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightPurple"){
                 messageTableView.backgroundColor = UIColor(red:0.91, green:0.85, blue:1.00, alpha:1.0)
-                bgPic.hidden = true
             }
             
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="lightYellow"){
                 messageTableView.backgroundColor = UIColor(red:1.00, green:0.98, blue:0.85, alpha:1.0)
-                bgPic.hidden = true
             }
             
         } else if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBgPic")){
             
             let imgData = NSUserDefaults.standardUserDefaults().objectForKey("chatBgPic") as! NSData
             messageTableView.backgroundColor = UIColor(patternImage: UIImage(data: imgData)!)
-            bgPic.hidden = false
             
         } else if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBGdefalut")){
             
             messageTableView.backgroundColor = UIColor(patternImage: UIImage(named: "chatBGdefault.png")!)
-            bgPic.hidden = false
         }
     }
     
@@ -599,5 +584,15 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         let dateToString:String = "\(comp.hour):\(new_minute)"
         
         return dateToString
+    }
+    
+    func scrollToBottom() {
+        let numberOfSections = self.messageTableView.numberOfSections
+        let numberOfRows = self.messageTableView.numberOfRowsInSection(numberOfSections-1)
+        
+        print(numberOfRows)
+        let indexPath = NSIndexPath(forRow: numberOfRows-1, inSection: numberOfSections-1)
+        self.messageTableView.scrollToRowAtIndexPath(indexPath,
+                                              atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
     }
 }

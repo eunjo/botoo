@@ -79,8 +79,8 @@ class chatDrawerViewController: UIViewController {
     
     func onClickRemove(sender: UITapGestureRecognizer){
         
-        let myAlert = UIAlertController(title:"Alert", message: "대화내용을 모두 삭제합니다.", preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.Default, handler:nil)
+        let myAlert = UIAlertController(title:"알림", message: "대화내용을 모두 삭제합니다.", preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title:"확인", style:UIAlertActionStyle.Default, handler:nil)
         
         myAlert.addAction(okAction)
         self.presentViewController(myAlert, animated: true, completion: nil)
