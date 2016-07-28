@@ -73,11 +73,11 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
         
-        if !NSUserDefaults.standardUserDefaults().boolForKey("isOnline") {
-            print("connected...")
-            //유저 소켓 연결
-            
-        }
+        
+        
+        // 소켓은 실시간 통신을 위한 것
+        // 실시간 대화가 아닌 경우 파일에 저장해 놓은 것을 뿌려주기
+        
         initSocket()
     }
     
