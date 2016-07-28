@@ -1664,7 +1664,7 @@
                                 <rect key="frame" x="0.0" y="203" width="240" height="32"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="대화내용 삭제" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvJ-eO-43Z">
-                                        <rect key="frame" x="8" y="4" width="97" height="24"/>
+                                        <rect key="frame" x="8" y="4" width="224" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1677,6 +1677,7 @@
                     </view>
                     <connections>
                         <outlet property="albumCollectionView" destination="Zjh-IK-qzN" id="0dj-Zo-IWe"/>
+                        <outlet property="removeFile" destination="FvJ-eO-43Z" id="ILS-UH-wWs"/>
                         <outlet property="settingView" destination="MIc-Yn-hii" id="pk1-tI-anr"/>
                     </connections>
                 </viewController>
