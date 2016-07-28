@@ -9,6 +9,7 @@
 //http://stackoverflow.com/questions/33420253/how-to-convert-string-array-to-nsdata-nsdata-to-string-array
 
 import Foundation
+import UIKit
 
 class FileManager{
     
@@ -19,11 +20,23 @@ class FileManager{
     
     init(){
         
-        filePath = NSHomeDirectory() + "/Library/Caches/chat.txt"
+        filePath = NSHomeDirectory() + "/Library/Caches/botoo_chat.txt"
+    }
+    
+    func initFile(){
+        
+        let writeString = ""
+        do {
+            _ = try writeString.writeToFile(filePath, atomically: true, encoding: NSUTF8StringEncoding)
+        } catch let error as NSError {
+            print(error.description)
+        }
+        
     }
     
 
     func writeFile(text:String, sender:String, date:String){
+        
         
         let data_array = [text, sender, date]
         let data_NSData = stringArrayToNSData(data_array)
@@ -35,7 +48,7 @@ class FileManager{
             fileHandle?.seekToEndOfFile()
             fileHandle?.writeData(data_NSData)
         }
-
+        
         if (fileHandle != nil) {
             fileHandle?.seekToEndOfFile()
             fileHandle?.writeData(NewLine.dataUsingEncoding(NSUTF8StringEncoding)!)
@@ -49,11 +62,22 @@ class FileManager{
         
         do {
             readString = try NSString(contentsOfFile: filePath, encoding: NSUTF8StringEncoding) as String
-            print("Read:\(readString)")
+            print(readString)
+            
+            var readStringData = readString.dataUsingEncoding(NSUTF8StringEncoding)
+            var json = try NSJSONSerialization.JSONObjectWithData(readStringData!, options: []) as? [String: AnyObject]
+            
+            print(json)
+            print(json!["message"] as? String)
+            
         } catch let error as NSError {
             print(error.description)
         }
         
+        
+    }
+    
+    func  removeFile(){
         
     }
 
@@ -61,15 +85,16 @@ class FileManager{
     func stringArrayToNSData(array: [String]) -> NSData {
         let data = NSMutableData()
         let terminator = [0]
-        for string in array {
-            if let encodedString = string.dataUsingEncoding(NSUTF8StringEncoding) {
-                data.appendData(encodedString)
-                data.appendBytes(terminator, length: 1)
-            }
-            else {
-                NSLog("Cannot encode string \"\(string)\"")
-            }
-        }
+        
+        //"{\"name\":\"Fred\",\"age\":\"40\"}"
+        
+        data.appendData("{".dataUsingEncoding(NSUTF8StringEncoding)!)
+        data.appendData("\"message\":\"\(array[0])\"".dataUsingEncoding(NSUTF8StringEncoding)!)
+        data.appendData("\"name\" = \"\(array[1])\";\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+        data.appendData("\"date\" = \"\(array[2])\";\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+        data.appendData("}".dataUsingEncoding(NSUTF8StringEncoding)!)
+        data.appendBytes(terminator, length: 1)
+        
         return data
     }
     

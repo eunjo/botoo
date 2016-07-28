@@ -22,6 +22,11 @@ class chatDrawerViewController: UIViewController {
         let tap_2 = UITapGestureRecognizer(target: self, action: #selector(chatDrawerViewController.onClickSetting(_:)))
         settingView.userInteractionEnabled = true
         settingView.addGestureRecognizer(tap_2)
+        
+        let tap_3 = UITapGestureRecognizer(target: self, action: #selector(chatDrawerViewController.onClickRemove(_:)))
+        removeFile.userInteractionEnabled = true
+        removeFile.addGestureRecognizer(tap_3)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,6 +74,22 @@ class chatDrawerViewController: UIViewController {
         }
         
     }
+    
+    @IBOutlet weak var removeFile: UILabel!
+    
+    func onClickRemove(sender: UITapGestureRecognizer){
+        
+        let myAlert = UIAlertController(title:"Alert", message: "대화내용을 모두 삭제합니다.", preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.Default, handler:nil)
+        
+        myAlert.addAction(okAction)
+        self.presentViewController(myAlert, animated: true, completion: nil)
+        
+        FileManager.sharedInstance.initFile()
+        
+    }
+    
+    
     
 
     /*

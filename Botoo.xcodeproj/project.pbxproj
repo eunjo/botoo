@@ -17,6 +17,7 @@
 		C050D5BE1D45B5E000D7114F /* messageBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = C050D5BD1D45B5E000D7114F /* messageBubble.png */; };
 		C050D5C01D46FBF200D7114F /* ChatTableViewCellm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5BF1D46FBF200D7114F /* ChatTableViewCellm.swift */; };
 		C050D5C21D46FCCA00D7114F /* UIChatTableViewCellm.xib in Resources */ = {isa = PBXBuildFile; fileRef = C050D5C11D46FCCA00D7114F /* UIChatTableViewCellm.xib */; };
+		C050D5C41D49EDB000D7114F /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5C31D49EDB000D7114F /* TabBarViewController.swift */; };
 		C0D47AEE1D22A25500637EAB /* ChatTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */; };
 		C0D47AF21D22AEFB00637EAB /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */; };
 		C0D47AF41D237C8A00637EAB /* SettingNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */; };
@@ -133,6 +134,7 @@
 		C050D5BD1D45B5E000D7114F /* messageBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = messageBubble.png; sourceTree = "<group>"; };
 		C050D5BF1D46FBF200D7114F /* ChatTableViewCellm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCellm.swift; sourceTree = "<group>"; };
 		C050D5C11D46FCCA00D7114F /* UIChatTableViewCellm.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIChatTableViewCellm.xib; sourceTree = "<group>"; };
+		C050D5C31D49EDB000D7114F /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTabViewController.swift; sourceTree = "<group>"; };
 		C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNavViewController.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				D607C5EB1D2A3CAF00542804 /* chatTabSettingViewController.swift */,
 				D607C5ED1D2A41AF00542804 /* chatBGcolorViewController.swift */,
 				C007CBAA1D3F54FA00FA5A4C /* LetterDetailViewController.swift */,
+				C050D5C31D49EDB000D7114F /* TabBarViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -739,6 +742,7 @@
 				C007CBAB1D3F54FA00FA5A4C /* LetterDetailViewController.swift in Sources */,
 				D63A11EC1D374E1100AD6989 /* SocketIOManager.swift in Sources */,
 				D69322AC1D20FB6A003E9147 /* HomeViewController.swift in Sources */,
+				C050D5C41D49EDB000D7114F /* TabBarViewController.swift in Sources */,
 				D63A120A1D37504D00AD6989 /* SocketClientManager.swift in Sources */,
 				C0D47B0B1D31717900637EAB /* ExtensionForUIDevice.swift in Sources */,
 				C0D47AFA1D23840900637EAB /* ProfileViewController.swift in Sources */,
