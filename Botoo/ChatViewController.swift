@@ -47,6 +47,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
     private var chatMessages:[[String : AnyObject]] = []
     
+    struct removeChats {
+        static var isRemove = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
@@ -91,7 +95,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 message.removeAtIndex(message.endIndex.predecessor())
     
                 let result = convertStringToDictionary(message)
-                print(result)
                 self.chatMessages.append(result!)
             }
         }
@@ -117,15 +120,14 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     override func viewDidAppear(animated: Bool) {
+        self.scrollToBottom()
         SocketIOManager.sharedInstance.getChatMessage { (messageInfo) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.chatMessages.append(messageInfo)
                 self.messageTableView.reloadData()
                 self.scrollToBottom()
                 
-                print(messageInfo["message"]! as! String)
-                // write file
-                FileManager.sharedInstance.writeFile(messageInfo["message"]! as! String, sender: messageInfo["nickname"] as! String, date: messageInfo["date"] as! String)
+//                print(messageInfo["message"]! as! String)
             })
         }
     }
@@ -133,7 +135,21 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     override func viewWillDisappear(animated: Bool) {
         //유저 소켓 연결 끊기
         exitSocket()
+        
+        //스레드 돌려 돌려~~ ㅠㅠ
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            if !removeChats.isRemove {
+                FileManager.sharedInstance.initFile()
+                // write file
+                for messageInfo in self.chatMessages {
+                    FileManager.sharedInstance.writeFile(messageInfo["message"]! as! String, sender: messageInfo["nickname"] as! String, date: messageInfo["date"] as! String)
+                }
+            } else {
+                removeChats.isRemove = false
+            }
+        }
     }
+    
     
     func initSocket() {
         // 유저 네임 서버로 보내기
