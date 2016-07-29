@@ -48,11 +48,6 @@ class FileManager{
             initFile()
         }
         
-//        if (fileHandle != nil && data_array.count == 1) {
-//            fileHandle?.seekToEndOfFile()
-//            fileHandle?.writeData("[\n".dataUsingEncoding(NSUTF8StringEncoding)!)
-//        }
-        
         if (fileHandle != nil) {
             fileHandle?.seekToEndOfFile()
             fileHandle?.writeData(data_NSData)

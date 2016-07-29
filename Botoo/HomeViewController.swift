@@ -34,9 +34,6 @@ class HomeViewController: UIViewController {
     var userEmail:String?
     
     var userEmailStored:String?
-    var userNameStored:String?
-    var userGenderStored:String?
-    var userMsgStored:String?
     var userProPicStored:String?
     var connectId:String?
     
@@ -90,15 +87,21 @@ class HomeViewController: UIViewController {
             userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
             MemberConstruct().checkEmail(userEmail!, completionHandler: { (json, error) -> Void in
                 if json != nil {
-                    self.userNameStored = json["name"] as? String
-                    self.userGenderStored = json["gender"] as? String
                     self.firstDateStored = json["date"] as? String
-                    self.userMsgStored = json["msg"] as? String
                     self.userProPicStored = json["proPic"] as? String
                     self.loverEmailStored = json["lover"] as? String
                     self.connectId = json["connect_id"] as? String
                     self.isGot = true
                     
+                    if self.loverEmailStored != nil {
+                        self.getLover()
+                    } else {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.loverProPic.image = UIImage(named: "tp_default_grey.png")
+                            self.loverUserName.text = "연결하러 가기"
+                            self.loverStateMsg.text = ""
+                        }
+                    }
                     
                     self.alert = json["alert"] as? String
                     
@@ -126,12 +129,12 @@ class HomeViewController: UIViewController {
                     NSUserDefaults.standardUserDefaults().setObject(connectIdTemp, forKey: "userConnectId")
                     NSUserDefaults.standardUserDefaults().setObject(proPicTemp, forKey: "userProfile")
                     NSUserDefaults.standardUserDefaults().setObject(json["_id"] as? String, forKey: "userId")
-                    NSUserDefaults.standardUserDefaults().setObject(self.userNameStored, forKey: "userName")
+                    NSUserDefaults.standardUserDefaults().setObject(json["name"] as? String, forKey: "userName")
                     
                     dispatch_async(dispatch_get_main_queue()) {
                         // 내 프사 로드
                         if (self.userProPicStored == nil){
-                            if (self.userGenderStored == "1") {
+                            if (json["gender"] as? String == "1") {
                                 self.myProPic.image = UIImage(named: "tp_default_female.png")
                             }
                             else {
@@ -140,35 +143,14 @@ class HomeViewController: UIViewController {
                         }
                         
                         // 내 이름 로드
-                        self.myUserName.text = self.userNameStored
+                        self.myUserName.text = json["name"] as? String
                         
                         // 내 상메 로드
-                        self.myStateMsg.text = self.userMsgStored
+                        self.myStateMsg.text = json["msg"] as? String
                         self.myStateMsg.numberOfLines = 3;
                     }
                 }
-                
-                self.threadIsAlive = 1
             })
-            
-            while self.threadIsAlive == 0 {}
-            
-            if loverEmailStored != nil {
-                MemberConstruct().checkEmail(loverEmailStored!, completionHandler: { (json, error) -> Void in
-                    if json != nil {
-                        self.loverNameStored = json["name"] as? String
-                        self.loverGenderStored = json["gender"] as? String
-                        self.loverMsgStored = json["msg"] as? String
-                        self.loverProPicStored = json["proPic"] as? String
-                        
-                        NSUserDefaults.standardUserDefaults().setObject(self.loverNameStored, forKey: "loverName")
-                        
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.profileInit()
-                        }
-                    }
-                })
-            }
         }
     }
     
@@ -181,6 +163,23 @@ class HomeViewController: UIViewController {
             let svc = segue.destinationViewController as! imageZoomViewController
             svc.newImage = loverProPic.image
         }
+    }
+    
+    func getLover() {
+        MemberConstruct().checkEmail(loverEmailStored!, completionHandler: { (json, error) -> Void in
+            if json != nil {
+                self.loverNameStored = json["name"] as? String
+                self.loverGenderStored = json["gender"] as? String
+                self.loverMsgStored = json["msg"] as? String
+                self.loverProPicStored = json["proPic"] as? String
+                
+                NSUserDefaults.standardUserDefaults().setObject(self.loverNameStored, forKey: "loverName")
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.profileInit()
+                }
+            }
+        })
     }
 
     func onClickLoverPic(sender:UITapGestureRecognizer) {
@@ -214,26 +213,16 @@ class HomeViewController: UIViewController {
     
     func profileInit() {
         // 상대방 로드
-        if (loverEmailStored == nil) {
-            
-            loverProPic.image = UIImage(named: "tp_default_grey.png")
-            loverUserName.text = "연결하러 가기"
-            loverStateMsg.text = ""
-            
-        } else {
-            
-            if (loverProPicStored == nil){
-            
-                if (loverGenderStored == "1") {
-                    loverProPic.image = UIImage(named: "tp_default_female.png")
-                }
-                else {
-                    loverProPic.image = UIImage(named: "tp_default_male.png")
-                }
+        if (loverProPicStored == nil) {
+            if (loverGenderStored == "1") {
+                loverProPic.image = UIImage(named: "tp_default_female.png")
             }
+            else {
+                loverProPic.image = UIImage(named: "tp_default_male.png")
+            }
+        }
             loverUserName.text = loverNameStored
             loverStateMsg.text = loverMsgStored
-        }
         
         // 일수 계산
         if ((firstDateStored != "") && (firstDateStored != nil)){

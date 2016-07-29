@@ -42,9 +42,6 @@ class nameEditViewController: UIViewController {
         
         NSUserDefaults.standardUserDefaults().synchronize()
         navigationController?.popViewControllerAnimated(true)
-        
-        
-        
     }
 
     /*
