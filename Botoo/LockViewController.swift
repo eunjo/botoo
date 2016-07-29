@@ -88,7 +88,7 @@ class LockViewController: UIViewController {
             count -= 1
             pass_bts[count].backgroundColor = UIColor.clearColor()
             
-            print(enteredPw)
+          //  print(enteredPw)
         }
     }
     

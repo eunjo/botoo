@@ -304,7 +304,7 @@ class HomeViewController: UIViewController {
 
         
             MemberConstruct().acceptAlert(myEmail!, loverEmail: self.loverEmailStored!, completionHandler: { (json, error) -> Void in
-                print(json)
+              //  print(json)
             })
             
         }))

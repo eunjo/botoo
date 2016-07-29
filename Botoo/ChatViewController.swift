@@ -91,6 +91,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 message.removeAtIndex(message.endIndex.predecessor())
     
                 let result = convertStringToDictionary(message)
+                print(result)
                 self.chatMessages.append(result!)
             }
         }
@@ -99,6 +100,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func convertStringToDictionary(text: String) -> [String:AnyObject]? {
+        
         if let data = text.dataUsingEncoding(NSUTF8StringEncoding) {
             do {
                 return try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [String:AnyObject]
