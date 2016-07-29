@@ -457,9 +457,6 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BEl-a4-7rI">
-                                <rect key="frame" x="0.0" y="32" width="375" height="603"/>
-                            </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="92Y-Q6-G81">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
@@ -616,7 +613,6 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="bgPic" destination="BEl-a4-7rI" id="uDw-Zo-dAE"/>
                         <outlet property="chatInputTextField" destination="Ml7-Kj-9Cp" id="hkL-Bk-jhh"/>
                         <outlet property="drawerContainer" destination="J3h-k7-gJ4" id="MKg-PE-Srq"/>
                         <outlet property="drawerLeadingConstraint" destination="JuJ-Me-8gr" id="IUZ-0c-sU9"/>

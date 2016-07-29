@@ -21,28 +21,29 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jV-cH-O7y">
-                        <rect key="frame" x="27" y="37" width="42" height="13"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="clI-0b-Gsp">
                         <rect key="frame" x="77" y="22" width="235" height="34"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jV-cH-O7y">
+                        <rect key="frame" x="27" y="37" width="42" height="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="Q8d-J4-617" firstAttribute="top" secondItem="WZz-8M-lY4" secondAttribute="topMargin" id="2hU-qf-MXe"/>
-                    <constraint firstItem="clI-0b-Gsp" firstAttribute="leading" secondItem="0jV-cH-O7y" secondAttribute="trailing" constant="8" id="4u2-9W-Kki"/>
                     <constraint firstAttribute="bottomMargin" secondItem="0jV-cH-O7y" secondAttribute="bottom" constant="6" id="C0T-yS-uLg"/>
+                    <constraint firstItem="0jV-cH-O7y" firstAttribute="leading" secondItem="WZz-8M-lY4" secondAttribute="leadingMargin" constant="19" id="WFI-2T-gdK"/>
                     <constraint firstItem="Q8d-J4-617" firstAttribute="leading" secondItem="WZz-8M-lY4" secondAttribute="leadingMargin" id="g4u-Kw-Pmp"/>
                     <constraint firstItem="clI-0b-Gsp" firstAttribute="trailing" secondItem="WZz-8M-lY4" secondAttribute="trailingMargin" id="s0n-jc-PeU"/>
                     <constraint firstItem="clI-0b-Gsp" firstAttribute="top" secondItem="WZz-8M-lY4" secondAttribute="topMargin" constant="14" id="sW4-S0-qv0"/>
                     <constraint firstItem="Q8d-J4-617" firstAttribute="trailing" secondItem="WZz-8M-lY4" secondAttribute="trailingMargin" id="w9J-Ae-gr3"/>
+                    <constraint firstItem="clI-0b-Gsp" firstAttribute="leading" secondItem="0jV-cH-O7y" secondAttribute="trailing" constant="8" id="whg-hq-ZAG"/>
                     <constraint firstItem="0jV-cH-O7y" firstAttribute="top" secondItem="Q8d-J4-617" secondAttribute="bottom" constant="8" id="yiY-iV-XNQ"/>
                 </constraints>
             </tableViewCellContentView>
