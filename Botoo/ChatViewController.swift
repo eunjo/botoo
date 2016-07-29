@@ -53,7 +53,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         messageTableView.delegate = self
         messageTableView.dataSource = self
         
-        messageTableView.estimatedRowHeight = 68.0
+        messageTableView.estimatedRowHeight = 73.0
         messageTableView.rowHeight = UITableViewAutomaticDimension
         
         //디바이스 모델 체크 및 키보드 높이 설정
@@ -593,7 +593,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         
         
         // 날짜 년 월 일 로 포맷변환
-        let cal = NSCalendar(calendarIdentifier:NSGregorianCalendar)!
+        let cal = NSCalendar(calendarIdentifier:NSCalendarIdentifierGregorian)!
         let comp = cal.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate:Date!)
         let new_minute:String
         
