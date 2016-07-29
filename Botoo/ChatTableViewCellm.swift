@@ -19,12 +19,15 @@ class ChatTableViewCellm: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
+        
+        messageBubble.sizeToFit()
+        
         let myImage = UIImage(named: "chatBubble.png")
-        let myImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: messageBubble.frame.width, height: messageBubble.frame.height))
+        let myImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: messageBubble.intrinsicContentSize().width+20, height: messageBubble.intrinsicContentSize().height+20))
         myImageView.image = myImage
         view.addSubview(myImageView)
+        view.addSubview(messageBubble)
         
-    //    messageBubble.backgroundColor = UIColor(patternImage: UIImage(named: "chatBubble.png")!)
     }
     
     override func setSelected(selected: Bool, animated: Bool) {

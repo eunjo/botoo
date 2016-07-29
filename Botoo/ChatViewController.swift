@@ -47,6 +47,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
     private var chatMessages:[[String : AnyObject]] = []
     
+    struct removeChats {
+        static var isRemove = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
@@ -99,6 +103,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func convertStringToDictionary(text: String) -> [String:AnyObject]? {
+        
         if let data = text.dataUsingEncoding(NSUTF8StringEncoding) {
             do {
                 return try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [String:AnyObject]
@@ -121,17 +126,30 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 self.messageTableView.reloadData()
                 self.scrollToBottom()
                 
-                print(messageInfo["message"]! as! String)
-                // write file
-                FileManager.sharedInstance.writeFile(messageInfo["message"]! as! String, sender: messageInfo["nickname"] as! String, date: messageInfo["date"] as! String)
+//                print(messageInfo["message"]! as! String)
             })
         }
+        self.scrollToBottom()
     }
     
     override func viewWillDisappear(animated: Bool) {
         //유저 소켓 연결 끊기
         exitSocket()
+        
+        //스레드 돌려 돌려~~ ㅠㅠ
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            if !removeChats.isRemove {
+                FileManager.sharedInstance.initFile()
+                // write file
+                for messageInfo in self.chatMessages {
+                    FileManager.sharedInstance.writeFile(messageInfo["message"]! as! String, sender: messageInfo["nickname"] as! String, date: messageInfo["date"] as! String)
+                }
+            } else {
+                removeChats.isRemove = false
+            }
+        }
     }
+    
     
     func initSocket() {
         // 유저 네임 서버로 보내기
@@ -611,8 +629,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         let numberOfSections = self.messageTableView.numberOfSections
         let numberOfRows = self.messageTableView.numberOfRowsInSection(numberOfSections-1)
         
-        let indexPath = NSIndexPath(forRow: numberOfRows-1, inSection: numberOfSections-1)
-        self.messageTableView.scrollToRowAtIndexPath(indexPath,
-                                              atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
+        if numberOfRows > 0 {
+            let indexPath = NSIndexPath(forRow: numberOfRows-1, inSection: (numberOfSections-1))
+            self.messageTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+        }
     }
 }

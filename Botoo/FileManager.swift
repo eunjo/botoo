@@ -42,16 +42,12 @@ class FileManager{
         let data_NSData = stringArrayToNSData(data_array)
         let NewLine = "\n"
         
-        let fileHandle = NSFileHandle(forWritingAtPath: filePath)
+        var fileHandle = NSFileHandle(forWritingAtPath: filePath)
         
         if (fileHandle == nil) {
             initFile()
+            fileHandle = NSFileHandle(forWritingAtPath: filePath)
         }
-        
-//        if (fileHandle != nil && data_array.count == 1) {
-//            fileHandle?.seekToEndOfFile()
-//            fileHandle?.writeData("[\n".dataUsingEncoding(NSUTF8StringEncoding)!)
-//        }
         
         if (fileHandle != nil) {
             fileHandle?.seekToEndOfFile()
