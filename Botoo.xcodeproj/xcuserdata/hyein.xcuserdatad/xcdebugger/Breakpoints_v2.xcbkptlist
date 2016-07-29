@@ -730,11 +730,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Botoo/SocketIOManager.swift"
-            timestampString = "491417984.647092"
+            timestampString = "491463269.945079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "connectToServerWithNickname(_:completionHandler:)"
             landmarkType = "5">
          </BreakpointContent>
