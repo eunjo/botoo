@@ -53,7 +53,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         messageTableView.delegate = self
         messageTableView.dataSource = self
         
-        messageTableView.estimatedRowHeight = 68.0
+        messageTableView.estimatedRowHeight = 73.0
         messageTableView.rowHeight = UITableViewAutomaticDimension
         
         //디바이스 모델 체크 및 키보드 높이 설정
