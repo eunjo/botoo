@@ -44,6 +44,15 @@ class FileManager{
         
         let fileHandle = NSFileHandle(forWritingAtPath: filePath)
         
+        if (fileHandle == nil) {
+            initFile()
+        }
+        
+//        if (fileHandle != nil && data_array.count == 1) {
+//            fileHandle?.seekToEndOfFile()
+//            fileHandle?.writeData("[\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+//        }
+        
         if (fileHandle != nil) {
             fileHandle?.seekToEndOfFile()
             fileHandle?.writeData(data_NSData)
@@ -56,25 +65,22 @@ class FileManager{
         
     }
         
-    func readFile(){
+    func readFile() -> [String] {
         
         var readString: String
         
         do {
-            readString = try NSString(contentsOfFile: filePath, encoding: NSUTF8StringEncoding) as String
-            print(readString)
             
-            var readStringData = readString.dataUsingEncoding(NSUTF8StringEncoding)
-            var json = try NSJSONSerialization.JSONObjectWithData(readStringData!, options: []) as? [String: AnyObject]
+            readString = try String(contentsOfFile: filePath, encoding: NSUTF8StringEncoding)
+            let array = readString.componentsSeparatedByString("\n")
             
-            print(json)
-            print(json!["message"] as? String)
+            return array
             
         } catch let error as NSError {
             print(error.description)
+            
+            return [""]
         }
-        
-        
     }
     
     func  removeFile(){
@@ -86,13 +92,9 @@ class FileManager{
         let data = NSMutableData()
         let terminator = [0]
         
-        //"{\"name\":\"Fred\",\"age\":\"40\"}"
+        let str = "{\"message\":\"\(array[0])\",\"nickname\":\"\(array[1])\",\"date\":\"\(array[2])\"}"
         
-        data.appendData("{".dataUsingEncoding(NSUTF8StringEncoding)!)
-        data.appendData("\"message\":\"\(array[0])\"".dataUsingEncoding(NSUTF8StringEncoding)!)
-        data.appendData("\"name\" = \"\(array[1])\";\n".dataUsingEncoding(NSUTF8StringEncoding)!)
-        data.appendData("\"date\" = \"\(array[2])\";\n".dataUsingEncoding(NSUTF8StringEncoding)!)
-        data.appendData("}".dataUsingEncoding(NSUTF8StringEncoding)!)
+        data.appendData(str.dataUsingEncoding(NSUTF8StringEncoding)!)
         data.appendBytes(terminator, length: 1)
         
         return data

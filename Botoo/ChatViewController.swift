@@ -77,6 +77,36 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         // 실시간 대화가 아닌 경우 파일에 저장해 놓은 것을 뿌려주기
         
         initSocket()
+        getChatMessage()
+        
+    }
+    
+    func getChatMessage() {
+        let messageList = FileManager.sharedInstance.readFile()
+        
+        if messageList == [] { return }
+        
+        for var message in messageList {
+            if message != "" {
+                message.removeAtIndex(message.endIndex.predecessor())
+    
+                let result = convertStringToDictionary(message)
+                self.chatMessages.append(result!)
+            }
+        }
+        
+        self.messageTableView.reloadData()
+    }
+    
+    func convertStringToDictionary(text: String) -> [String:AnyObject]? {
+        if let data = text.dataUsingEncoding(NSUTF8StringEncoding) {
+            do {
+                return try NSJSONSerialization.JSONObjectWithData(data, options: []) as? [String:AnyObject]
+            } catch let error as NSError {
+                print(error)
+            }
+        }
+        return nil
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -90,6 +120,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 self.chatMessages.append(messageInfo)
                 self.messageTableView.reloadData()
                 self.scrollToBottom()
+                
+                print(messageInfo["message"]! as! String)
+                // write file
+                FileManager.sharedInstance.writeFile(messageInfo["message"]! as! String, sender: messageInfo["nickname"] as! String, date: messageInfo["date"] as! String)
             })
         }
     }
@@ -97,10 +131,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     override func viewWillDisappear(animated: Bool) {
         //유저 소켓 연결 끊기
         exitSocket()
-        
-        for item in self.chatMessages {
-            print("\(item["nickname"]!) : \(item["message"]!)")
-        }
     }
     
     func initSocket() {
@@ -110,8 +140,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 if userList != nil {
                     print("채팅 입장.")
                     print(userList)
-                    
-                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isOnline")
                     
                     // 요런 식으로 접근 가능
 //                    users = userList
@@ -485,9 +513,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     // 전송 버튼
     @IBAction func sendButtonTapped(sender: AnyObject) {
         
-        
         if chatInputTextField.text!.characters.count > 0 {
             SocketIOManager.sharedInstance.sendMessage(chatInputTextField.text!, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
+            
             chatInputTextField.text = ""
             chatInputTextField.resignFirstResponder()
         }
@@ -511,17 +539,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         return self.chatMessages.count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print(self.chatMessages[indexPath.row]["message"])
-    }
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let message = self.chatMessages[indexPath.row]["message"] as? String
         let name = self.chatMessages[indexPath.row]["nickname"] as? String
         let date = self.chatMessages[indexPath.row]["date"] as? String
-        
-        FileManager.sharedInstance.writeFile(message!, sender: self.userEmail, date: date!)
-        FileManager.sharedInstance.readFile()
         
         if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
             var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
@@ -590,7 +611,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         let numberOfSections = self.messageTableView.numberOfSections
         let numberOfRows = self.messageTableView.numberOfRowsInSection(numberOfSections-1)
         
-        print(numberOfRows)
         let indexPath = NSIndexPath(forRow: numberOfRows-1, inSection: numberOfSections-1)
         self.messageTableView.scrollToRowAtIndexPath(indexPath,
                                               atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
