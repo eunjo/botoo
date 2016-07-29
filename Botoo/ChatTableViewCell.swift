@@ -13,15 +13,19 @@ class ChatTableViewCell: UITableViewCell {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var messageBubble: UILabel!
     @IBOutlet var dateLabel: UILabel!
+    @IBOutlet weak var view: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
+        messageBubble.sizeToFit()
+        
         let myImage = UIImage(named: "chatBubbleL.png")
-        let myImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: messageBubble.frame.width, height: messageBubble.frame.height))
+        let myImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: messageBubble.intrinsicContentSize().width+20, height: messageBubble.intrinsicContentSize().height+20))
         myImageView.image = myImage
-        messageBubble.addSubview(myImageView)
+        view.addSubview(myImageView)
+        view.addSubview(messageBubble)
 
     
     }
