@@ -114,6 +114,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     override func viewWillAppear(animated: Bool) {
         // 배경 초기화
         initBackGround()
+        scrollToBottom()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -615,6 +616,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         
         let indexPath = NSIndexPath(forRow: numberOfRows-1, inSection: numberOfSections-1)
         self.messageTableView.scrollToRowAtIndexPath(indexPath,
-                                              atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
+                                              atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
     }
 }

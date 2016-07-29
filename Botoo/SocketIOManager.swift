@@ -49,14 +49,9 @@ class SocketIOManager: NSObject {
     func connectToServerWithNickname(nickname: String, completionHandler: (userList: [[String: AnyObject]]!) -> Void) {
         socket.emit("connectUser", nickname)
         
-        var returnedUserList:[[String: AnyObject]] = []
         //유저 리스트 반환
         socket.on("userList") { ( dataArray, ack) -> Void in
-            if returnedUserList != dataArray[0] as! Array<NSDictionary> {
-                completionHandler(userList: dataArray[0] as! [[String : AnyObject]])
-            }
-            
-            returnedUserList = (dataArray[0] as? [[String : AnyObject]])!
+            completionHandler(userList: dataArray[0] as! [[String : AnyObject]])
         }
     }
     

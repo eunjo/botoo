@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,10 +18,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Default-iPhone6.png" translatesAutoresizingMaskIntoConstraints="NO" id="Fvp-p4-rW2">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Default-iPhone6.png" translatesAutoresizingMaskIntoConstraints="NO" id="Fvp-p4-rW2">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="Fvp-p4-rW2" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="BAi-bd-41x"/>
+                            <constraint firstItem="Fvp-p4-rW2" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="gyA-35-DT2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Fvp-p4-rW2" secondAttribute="trailing" constant="-20" id="pPY-Ox-XDP"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Fvp-p4-rW2" secondAttribute="bottom" id="v2U-8k-vd0"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
