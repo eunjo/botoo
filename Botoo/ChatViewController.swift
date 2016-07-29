@@ -117,11 +117,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     override func viewWillAppear(animated: Bool) {
         // 배경 초기화
         initBackGround()
-        scrollToBottom()
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.scrollToBottom()
         SocketIOManager.sharedInstance.getChatMessage { (messageInfo) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.chatMessages.append(messageInfo)
@@ -131,6 +129,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 //                print(messageInfo["message"]! as! String)
             })
         }
+        self.scrollToBottom()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -630,8 +629,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         let numberOfSections = self.messageTableView.numberOfSections
         let numberOfRows = self.messageTableView.numberOfRowsInSection(numberOfSections-1)
         
-        let indexPath = NSIndexPath(forRow: numberOfRows-1, inSection: numberOfSections-1)
-        self.messageTableView.scrollToRowAtIndexPath(indexPath,
-                                              atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+        if numberOfRows > 0 {
+            let indexPath = NSIndexPath(forRow: numberOfRows-1, inSection: (numberOfSections-1))
+            self.messageTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+        }
     }
 }
