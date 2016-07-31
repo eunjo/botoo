@@ -192,15 +192,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(true) { (_) in
             self.profile_iv_profile.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-            _ = self.profile_iv_profile.image
             
-            /*
-            MemberConstruct().saveProPic(self.userEmailStored!, proPic: proPic!, completionHandler: { (json, error) -> Void in
-                    print("프사 성공 :: \(json)")
-                
-            })
- */
- 
+//            MemberConstruct().saveProPic(self.userEmailStored!, proPic: proPic!, completionHandler: { (json, error) -> Void in
+//                    print("프사 성공 :: \(json)")
+//                
+//            })
         }
     }
     
