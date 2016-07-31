@@ -118,7 +118,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             //사진 라이브러리 소스를 선택
             picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
             //수정 가능 옵션
-            picker.allowsEditing = true
+            picker.allowsEditing = false
             //델리게이트 지정
             picker.delegate = self
             //화면에 표시
