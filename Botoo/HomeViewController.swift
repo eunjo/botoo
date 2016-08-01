@@ -238,7 +238,7 @@ class HomeViewController: UIViewController {
             let cal = NSCalendar(calendarIdentifier:NSGregorianCalendar)!
             let comp = cal.components([.Year, .Month, .Day], fromDate:firstDate!)
             
-            let dateToString:String = "\(comp.year)년 \(comp.month)월 \(comp.day)일부터"
+            let dateString :String = "\(comp.year)년 \(comp.month)월 \(comp.day)일부터"
             //
         
             fromDate.text = ""

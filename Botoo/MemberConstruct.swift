@@ -264,17 +264,17 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
     
     func saveProPic(userEmail: String, proPic: UIImage, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
         //파라미터를 추가한 URL 생성
- 
+        
         let URL = NSURL(string: "\(urlInfo.saveProPic)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
-
+        
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.HTTPMethod = "POST"
         request.URL = URL
         
         let imageData = UIImagePNGRepresentation(proPic)
         let base64String = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
-    
-        var params = ["file_data": base64String, "test": "TEST", "userEmail": userEmail]
+        
+        let params = ["file_data": base64String, "test": "TEST", "userEmail": userEmail]
         
         request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(params, options: [])
         
