@@ -27,7 +27,6 @@ class ChatTableViewCell: UITableViewCell {
         view.addSubview(myImageView)
         view.addSubview(messageBubble)
 
-    
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
