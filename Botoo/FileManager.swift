@@ -42,10 +42,11 @@ class FileManager{
         let data_NSData = stringArrayToNSData(data_array)
         let NewLine = "\n"
         
-        let fileHandle = NSFileHandle(forWritingAtPath: filePath)
+        var fileHandle = NSFileHandle(forWritingAtPath: filePath)
         
         if (fileHandle == nil) {
             initFile()
+            fileHandle = NSFileHandle(forWritingAtPath: filePath)
         }
         
         if (fileHandle != nil) {

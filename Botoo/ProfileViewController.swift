@@ -118,7 +118,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             //사진 라이브러리 소스를 선택
             picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
             //수정 가능 옵션
-            picker.allowsEditing = true
+            picker.allowsEditing = false
             //델리게이트 지정
             picker.delegate = self
             //화면에 표시
@@ -192,15 +192,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(true) { (_) in
             self.profile_iv_profile.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-            _ = self.profile_iv_profile.image
             
-            /*
-            MemberConstruct().saveProPic(self.userEmailStored!, proPic: proPic!, completionHandler: { (json, error) -> Void in
-                    print("프사 성공 :: \(json)")
-                
-            })
- */
- 
+//            MemberConstruct().saveProPic(self.userEmailStored!, proPic: proPic!, completionHandler: { (json, error) -> Void in
+//                    print("프사 성공 :: \(json)")
+//                
+//            })
         }
     }
     
