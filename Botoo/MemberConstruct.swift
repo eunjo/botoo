@@ -274,6 +274,7 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
         let imageData = UIImagePNGRepresentation(proPic)
         let base64String = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
         
+        
         let params = ["file_data": base64String, "test": "TEST", "userEmail": userEmail]
         
         request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(params, options: [])
@@ -288,7 +289,7 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
             if (statusCode == 200) {
                 do{
                     completionHandler(NSString(data: data!, encoding: NSUTF8StringEncoding)!, nil)
-                }catch {
+                } catch {
                     print("Error with Json: \(error)")
                 }
             }

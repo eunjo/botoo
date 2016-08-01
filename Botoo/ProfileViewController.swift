@@ -145,6 +145,19 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         presentViewController(alert, animated: true, completion:nil)
     }
     
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        picker.dismissViewControllerAnimated(true) { (_) in
+            self.profile_iv_profile.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+            
+           // MemberConstruct().saveProPic(self.userEmailStored!, proPic!, completionHandler: { (json, error) -> Void in
+              //                  print("프사 성공 :: \(json)")
+            
+               //      })
+        }
+    }
+    
+
+    
     @IBAction func onClickDrop(sender: UIButton) {
         
         alterMessage("정말 탈퇴 하시겠습니까?")
@@ -187,17 +200,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         myAlert.addAction(okAction)
         self.presentViewController(myAlert, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        picker.dismissViewControllerAnimated(true) { (_) in
-            self.profile_iv_profile.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-            
-//            MemberConstruct().saveProPic(self.userEmailStored!, proPic: proPic!, completionHandler: { (json, error) -> Void in
-//                    print("프사 성공 :: \(json)")
-//                
-//            })
-        }
     }
     
     
