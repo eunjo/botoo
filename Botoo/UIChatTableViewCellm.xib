@@ -31,7 +31,7 @@
                         <rect key="frame" x="242" y="31" width="78" height="49.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="clI-0b-Gsp">
-                                <rect key="frame" x="20" y="6" width="46" height="34"/>
+                                <rect key="frame" x="16" y="7" width="46" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -40,8 +40,8 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="clI-0b-Gsp" secondAttribute="trailing" constant="12" id="1e6-A5-9ag"/>
-                            <constraint firstItem="clI-0b-Gsp" firstAttribute="leading" secondItem="aLe-9j-qT9" secondAttribute="leading" constant="10" id="664-zp-MHo"/>
+                            <constraint firstItem="clI-0b-Gsp" firstAttribute="leading" secondItem="aLe-9j-qT9" secondAttribute="leading" constant="16" id="Oza-y8-kOc"/>
+                            <constraint firstAttribute="trailing" secondItem="clI-0b-Gsp" secondAttribute="trailing" constant="16" id="njE-Vd-ylv"/>
                         </constraints>
                     </view>
                 </subviews>

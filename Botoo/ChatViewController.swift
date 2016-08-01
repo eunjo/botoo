@@ -575,6 +575,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             cell?.nameLabel.text = name
             cell?.dateLabel.text = dateToString(date!)
             
+            cell?.setSize((cell?.messageBubble.intrinsicContentSize().width)!, bubbleHeight: (cell?.messageBubble.intrinsicContentSize().height)!)
+        
+            
             return cell!
             
         } else { // 상대방 메세지
