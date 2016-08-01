@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JiY-j1-OUZ" id="WZz-8M-lY4">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jV-cH-O7y">
@@ -31,7 +31,7 @@
                         <rect key="frame" x="242" y="31" width="78" height="50"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="clI-0b-Gsp">
-                                <rect key="frame" x="16" y="7" width="46" height="34"/>
+                                <rect key="frame" x="16" y="7" width="46" height="35"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -50,8 +50,6 @@
                     <constraint firstItem="Q8d-J4-617" firstAttribute="trailing" secondItem="WZz-8M-lY4" secondAttribute="trailingMargin" id="5ga-wy-did"/>
                     <constraint firstAttribute="bottomMargin" secondItem="0jV-cH-O7y" secondAttribute="bottom" constant="18.5" id="63q-db-knj"/>
                     <constraint firstItem="aLe-9j-qT9" firstAttribute="bottom" secondItem="WZz-8M-lY4" secondAttribute="bottomMargin" id="8xx-93-pe8"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="aLe-9j-qT9" secondAttribute="trailing" constant="-8" id="AdA-yP-on3"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="aLe-9j-qT9" secondAttribute="trailing" constant="10" id="Lis-kv-vuq"/>
                     <constraint firstAttribute="bottomMargin" secondItem="0jV-cH-O7y" secondAttribute="bottom" constant="18.5" id="Qb9-b5-ZHj"/>
                     <constraint firstItem="aLe-9j-qT9" firstAttribute="bottom" secondItem="WZz-8M-lY4" secondAttribute="bottomMargin" id="QiD-mr-Ls8"/>
                     <constraint firstItem="aLe-9j-qT9" firstAttribute="trailing" secondItem="WZz-8M-lY4" secondAttribute="trailingMargin" id="RbA-0C-rYg"/>
@@ -69,7 +67,7 @@
                 <outlet property="nameLabel" destination="Q8d-J4-617" id="O42-ga-a3U"/>
                 <outlet property="view" destination="aLe-9j-qT9" id="deh-be-ANq"/>
             </connections>
-            <point key="canvasLocation" x="652" y="305"/>
+            <point key="canvasLocation" x="945" y="325"/>
         </tableViewCell>
     </objects>
 </document>
