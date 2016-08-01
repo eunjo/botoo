@@ -85,7 +85,7 @@ class chatDrawerViewController: UIViewController {
         self.presentViewController(myAlert, animated: true, completion: nil)
         
         FileManager.sharedInstance.initFile()
-        
+
         ChatViewController.removeChats.isRemove = true
     }
     

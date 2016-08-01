@@ -574,6 +574,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             cell?.nameLabel.text = name
             cell?.dateLabel.text = dateToString(date!)
             
+            cell?.messageBubble.sizeToFit()
             cell?.setSize((cell?.messageBubble.intrinsicContentSize().width)!, bubbleHeight: (cell?.messageBubble.intrinsicContentSize().height)!)
         
             
@@ -590,6 +591,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             cell?.messageBubble.text = message
             cell?.nameLabel.text = name
             cell?.dateLabel.text = dateToString(date!)
+            
+            cell?.messageBubble.sizeToFit()
+            cell?.setSize((cell?.messageBubble.intrinsicContentSize().width)!, bubbleHeight: (cell?.messageBubble.intrinsicContentSize().height)!)
             
             return cell!
         }

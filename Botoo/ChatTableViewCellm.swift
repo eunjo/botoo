@@ -44,6 +44,8 @@ class ChatTableViewCellm: UITableViewCell {
         
         })
         
+        print("\(bubbleWidth) \(bubbleHeight)")
+        
         view.addSubview(myImageView)
         view.addSubview(messageBubble)
 
