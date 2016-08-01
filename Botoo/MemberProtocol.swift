@@ -19,5 +19,5 @@ protocol MemberProtocol {
     func sendAlert(myEmail: String, loverEmail: String, completionHandler: (AnyObject!, NSError?) -> Void)-> NSURLSessionTask?
     func acceptAlert(myEmail: String, loverEmail: String, completionHandler: (AnyObject!, NSError?) -> Void)-> NSURLSessionTask?
     func setProPicDefault(myEmail: String, completionHandler: (AnyObject!, NSError?) -> Void)-> NSURLSessionTask?
-
+     
 }
