@@ -31,6 +31,12 @@ class byebyeViewController: UIViewController {
     @IBAction func disconnectButtonTapped(sender: AnyObject) {
         
         if NSUserDefaults.standardUserDefaults().stringForKey("userConnectId") != "nil" {
+            
+            FileManager.sharedInstance.initFile()
+            
+            ChatViewController.removeChats.isRemove = true
+            
+            
             let loverEmailStored =  NSUserDefaults.standardUserDefaults().stringForKey("userLover")
             MemberConstruct().disconnect(myEmail!, loverEmail: loverEmailStored!, completionHandler: { (json, error) -> Void in
                 dispatch_async(dispatch_get_main_queue()) {
