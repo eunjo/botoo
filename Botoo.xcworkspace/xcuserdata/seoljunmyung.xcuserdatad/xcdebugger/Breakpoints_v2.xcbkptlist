@@ -146,7 +146,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Botoo/MemberConstruct.swift"
@@ -159,33 +159,33 @@
             landmarkType = "5">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Botoo.MemberConstruct.saveProPic (Swift.String, proPic : __ObjC.UIImage, completionHandler : (Swift.ImplicitlyUnwrappedOptional&lt;Swift.AnyObject&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; Swift.Optional&lt;__ObjC.NSURLSessionTask&gt;"
                   moduleName = "Botoo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/seoljunmyung/Desktop/botoo/Botoo/MemberConstruct.swift"
-                  timestampString = "491730357.566646"
+                  timestampString = "491732389.701708"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "295"
-                  endingLineNumber = "295"
+                  startingLineNumber = "296"
+                  endingLineNumber = "296"
                   offsetFromSymbolStart = "2671">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Botoo.MemberConstruct.(saveProPic (Swift.String, proPic : __ObjC.UIImage, completionHandler : (Swift.ImplicitlyUnwrappedOptional&lt;Swift.AnyObject&gt;, Swift.Optional&lt;__ObjC.NSError&gt;) -&gt; ()) -&gt; Swift.Optional&lt;__ObjC.NSURLSessionTask&gt;).(closure #1)"
                   moduleName = "Botoo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/seoljunmyung/Desktop/botoo/Botoo/MemberConstruct.swift"
-                  timestampString = "491730357.566836"
+                  timestampString = "491732389.702016"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "295"
-                  endingLineNumber = "295"
+                  startingLineNumber = "296"
+                  endingLineNumber = "296"
                   offsetFromSymbolStart = "742">
                </Location>
             </Locations>
