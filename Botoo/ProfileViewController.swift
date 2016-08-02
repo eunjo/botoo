@@ -176,6 +176,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             HomeViewController.getUserInfo.userInfo = UserInfo()
            
             if text.containsString("탈퇴") {
+                
+                FileManager.sharedInstance.initFile()
+                
+                ChatViewController.removeChats.isRemove = true
+                
                 MemberConstruct().drop(NSUserDefaults.standardUserDefaults().stringForKey("userId")!, loverEmail: NSUserDefaults.standardUserDefaults().stringForKey("userLover")!, completionHandler: { (json, error) -> Void in
                     
                     print("탈퇴 success")
