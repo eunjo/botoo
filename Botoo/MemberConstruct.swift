@@ -30,7 +30,6 @@ class MemberConstruct: MemberProtocol {
             if (statusCode == 200) {
                 do{
                     let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
-                    print(json)
                     completionHandler(json, nil)
                 }catch {
 //                    print("Error with Json: \(error)")
@@ -66,7 +65,6 @@ class MemberConstruct: MemberProtocol {
             //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
             if (statusCode == 200) {
                 do{
-                    print(data)
                     let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
                     //핸들러를 이용하여 json을 return 한다.
                     completionHandler(json, nil)
@@ -91,7 +89,6 @@ class MemberConstruct: MemberProtocol {
             let httpResponse = response as! NSHTTPURLResponse
             let statusCode = httpResponse.statusCode
             
-            print(response)
             //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
             if (statusCode == 200) {
                     // 받아오는 데이터가 json 형식이 아닌 경우
@@ -116,8 +113,6 @@ class MemberConstruct: MemberProtocol {
             (data, response, error) -> Void in
             let httpResponse = response as! NSHTTPURLResponse
             let statusCode = httpResponse.statusCode
-            
-            print(response)
             
             //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
             if (statusCode == 200) {
@@ -148,8 +143,6 @@ class MemberConstruct: MemberProtocol {
             (data, response, error) -> Void in
             let httpResponse = response as! NSHTTPURLResponse
             let statusCode = httpResponse.statusCode
-            
-            print(response)
             
             //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
             if (statusCode == 200) {
@@ -182,7 +175,6 @@ class MemberConstruct: MemberProtocol {
             let httpResponse = response as! NSHTTPURLResponse
             let statusCode = httpResponse.statusCode
             
-            print(response)
             //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
             if (statusCode == 200) {
                 do{
@@ -212,8 +204,6 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
         (data, response, error) -> Void in
         let httpResponse = response as! NSHTTPURLResponse
         let statusCode = httpResponse.statusCode
-        
-        print(response)
         
         //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
         if (statusCode == 200) {
@@ -245,7 +235,6 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
             let httpResponse = response as! NSHTTPURLResponse
             let statusCode = httpResponse.statusCode
             
-            print(response)
             //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
             if (statusCode == 200) {
                 do{
@@ -256,7 +245,6 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
             }
         }
         
-        
         //task 실행
         task.resume()
         return task
@@ -264,18 +252,15 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
     
     func saveProPic(userEmail: String, proPic: UIImage, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
         //파라미터를 추가한 URL 생성
-        
         let URL = NSURL(string: "\(urlInfo.saveProPic)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
         
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.HTTPMethod = "POST"
         request.URL = URL
         
-        let imageData = UIImagePNGRepresentation(proPic)
-        let base64String = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+        let base64String = encodeImage(proPic)
         
-        
-        let params = ["file_data": base64String, "test": "TEST", "userEmail": userEmail]
+        let params = ["file_data": base64String, "userEmail": userEmail]
         
         request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(params, options: [])
         
@@ -283,9 +268,7 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
             (data, response, error) -> Void in
             let httpResponse = response as! NSHTTPURLResponse
             let statusCode = httpResponse.statusCode
-            
-            print(response)
-            //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
+                        //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
             if (statusCode == 200) {
                 do{
                     completionHandler(NSString(data: data!, encoding: NSUTF8StringEncoding)!, nil)
@@ -298,6 +281,11 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
         //task 실행
         task.resume()
         return task
+    }
+    
+    func encodeImage(dataImage:UIImage) -> String{
+        let Imagedata = UIImageJPEGRepresentation(dataImage, 0.5)
+        return Imagedata!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
     }
     
     func sendAlert(myEmail:String, loverEmail:String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
@@ -314,7 +302,6 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
             let httpResponse = response as! NSHTTPURLResponse
             let statusCode = httpResponse.statusCode
             
-            print(response)
             //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
             if (statusCode == 200) {
                 do{
@@ -345,7 +332,6 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
             let httpResponse = response as! NSHTTPURLResponse
             let statusCode = httpResponse.statusCode
             
-            print(response)
             //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
             if (statusCode == 200) {
                 do{
@@ -378,7 +364,6 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
             let httpResponse = response as! NSHTTPURLResponse
             let statusCode = httpResponse.statusCode
             
-            print(response)
             //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
             if (statusCode == 200) {
                 do{

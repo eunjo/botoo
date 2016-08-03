@@ -12,34 +12,23 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="crL-9T-zMu" id="c7h-6i-NuS">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OsI-0B-QnW">
-                        <rect key="frame" x="8" y="8" width="304" height="21"/>
+                        <rect key="frame" x="16" y="14" width="287" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Nq-aH-Kp1">
-                        <rect key="frame" x="8" y="35" width="64" height="46.5"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9E-rF-BR6">
-                                <rect key="frame" x="8" y="8" width="46" height="30.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="B9E-rF-BR6" secondAttribute="bottom" constant="10" id="jKD-Of-9RV"/>
-                            <constraint firstItem="B9E-rF-BR6" firstAttribute="leading" secondItem="2Nq-aH-Kp1" secondAttribute="leading" constant="8" id="n9w-la-cyG"/>
-                            <constraint firstItem="B9E-rF-BR6" firstAttribute="top" secondItem="2Nq-aH-Kp1" secondAttribute="top" constant="8" id="pMe-FW-R89"/>
-                            <constraint firstAttribute="trailing" secondItem="B9E-rF-BR6" secondAttribute="trailing" constant="10" id="pny-Wq-BDB"/>
-                        </constraints>
-                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9E-rF-BR6" customClass="BubbleLabel" customModule="Botoo" customModuleProvider="target">
+                        <rect key="frame" x="16" y="43" width="46" height="31"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQC-uu-sdk">
-                        <rect key="frame" x="80" y="52" width="32" height="13"/>
+                        <rect key="frame" x="80" y="52" width="223" height="13"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -47,16 +36,16 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="gQC-uu-sdk" firstAttribute="leading" secondItem="2Nq-aH-Kp1" secondAttribute="trailing" constant="8" id="4sC-c3-r1S"/>
-                    <constraint firstItem="gQC-uu-sdk" firstAttribute="top" secondItem="OsI-0B-QnW" secondAttribute="bottom" constant="14" id="97U-rA-ss5"/>
-                    <constraint firstItem="OsI-0B-QnW" firstAttribute="leading" secondItem="c7h-6i-NuS" secondAttribute="leadingMargin" id="9Ih-SU-wEi"/>
-                    <constraint firstItem="gQC-uu-sdk" firstAttribute="leading" secondItem="2Nq-aH-Kp1" secondAttribute="trailing" constant="8" id="Otb-1F-s7q"/>
-                    <constraint firstItem="gQC-uu-sdk" firstAttribute="bottom" secondItem="c7h-6i-NuS" secondAttribute="bottomMargin" id="QOZ-In-4uS"/>
-                    <constraint firstItem="2Nq-aH-Kp1" firstAttribute="leading" secondItem="c7h-6i-NuS" secondAttribute="leadingMargin" constant="5" id="Qen-lT-dvm"/>
-                    <constraint firstItem="OsI-0B-QnW" firstAttribute="trailing" secondItem="c7h-6i-NuS" secondAttribute="trailingMargin" id="jF6-bm-ozR"/>
-                    <constraint firstItem="2Nq-aH-Kp1" firstAttribute="top" secondItem="OsI-0B-QnW" secondAttribute="bottom" constant="5" id="m3i-ga-SJP"/>
-                    <constraint firstItem="OsI-0B-QnW" firstAttribute="top" secondItem="c7h-6i-NuS" secondAttribute="topMargin" id="u7y-vN-4bd"/>
-                    <constraint firstItem="2Nq-aH-Kp1" firstAttribute="bottom" secondItem="c7h-6i-NuS" secondAttribute="bottomMargin" id="ua6-17-DsB"/>
+                    <constraint firstItem="OsI-0B-QnW" firstAttribute="top" secondItem="c7h-6i-NuS" secondAttribute="topMargin" constant="6" id="BLR-Mk-6Lp"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="OsI-0B-QnW" secondAttribute="trailing" constant="9" id="Dc4-1g-1V6"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="gQC-uu-sdk" secondAttribute="bottom" constant="16" id="K8J-qx-0Tn"/>
+                    <constraint firstItem="B9E-rF-BR6" firstAttribute="top" secondItem="OsI-0B-QnW" secondAttribute="bottom" constant="8" id="QDd-Vp-qCR"/>
+                    <constraint firstItem="OsI-0B-QnW" firstAttribute="leading" secondItem="c7h-6i-NuS" secondAttribute="leadingMargin" constant="8" id="Srq-LV-CNd"/>
+                    <constraint firstItem="gQC-uu-sdk" firstAttribute="leading" secondItem="B9E-rF-BR6" secondAttribute="trailing" constant="18" id="cuo-Bw-fiE"/>
+                    <constraint firstItem="gQC-uu-sdk" firstAttribute="top" secondItem="OsI-0B-QnW" secondAttribute="bottom" constant="17" id="fdx-cS-czG"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="B9E-rF-BR6" secondAttribute="bottom" constant="7" id="jKY-ZA-Eg5"/>
+                    <constraint firstItem="B9E-rF-BR6" firstAttribute="leading" secondItem="c7h-6i-NuS" secondAttribute="leadingMargin" constant="8" id="q8Q-x8-xaG"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="gQC-uu-sdk" secondAttribute="trailing" constant="9" id="xgu-vp-07y"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -64,7 +53,6 @@
                 <outlet property="dateLabel" destination="gQC-uu-sdk" id="RTP-By-kFa"/>
                 <outlet property="messageBubble" destination="B9E-rF-BR6" id="ib9-Yq-PWl"/>
                 <outlet property="nameLabel" destination="OsI-0B-QnW" id="Wsx-s8-z8r"/>
-                <outlet property="view" destination="2Nq-aH-Kp1" id="ZZT-Tx-ep3"/>
             </connections>
             <point key="canvasLocation" x="504" y="249"/>
         </tableViewCell>

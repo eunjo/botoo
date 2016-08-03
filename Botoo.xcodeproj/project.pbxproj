@@ -18,6 +18,8 @@
 		C050D5C01D46FBF200D7114F /* ChatTableViewCellm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5BF1D46FBF200D7114F /* ChatTableViewCellm.swift */; };
 		C050D5C21D46FCCA00D7114F /* UIChatTableViewCellm.xib in Resources */ = {isa = PBXBuildFile; fileRef = C050D5C11D46FCCA00D7114F /* UIChatTableViewCellm.xib */; };
 		C050D5C41D49EDB000D7114F /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5C31D49EDB000D7114F /* TabBarViewController.swift */; };
+		C050D5C81D51D3F100D7114F /* BubbleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5C71D51D3F100D7114F /* BubbleLabel.swift */; };
+		C050D5CA1D523ECD00D7114F /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5C91D523ECD00D7114F /* ProgressView.swift */; };
 		C0D47AEE1D22A25500637EAB /* ChatTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */; };
 		C0D47AF21D22AEFB00637EAB /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */; };
 		C0D47AF41D237C8A00637EAB /* SettingNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */; };
@@ -135,6 +137,8 @@
 		C050D5BF1D46FBF200D7114F /* ChatTableViewCellm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCellm.swift; sourceTree = "<group>"; };
 		C050D5C11D46FCCA00D7114F /* UIChatTableViewCellm.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIChatTableViewCellm.xib; sourceTree = "<group>"; };
 		C050D5C31D49EDB000D7114F /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		C050D5C71D51D3F100D7114F /* BubbleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleLabel.swift; sourceTree = "<group>"; };
+		C050D5C91D523ECD00D7114F /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTabViewController.swift; sourceTree = "<group>"; };
 		C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNavViewController.swift; sourceTree = "<group>"; };
@@ -311,6 +315,8 @@
 				C0D47B0A1D31717900637EAB /* ExtensionForUIDevice.swift */,
 				C0D47B0C1D32AF2600637EAB /* URLInfo.swift */,
 				D632BF051D473A600029D6C1 /* FileManager.swift */,
+				C050D5C71D51D3F100D7114F /* BubbleLabel.swift */,
+				C050D5C91D523ECD00D7114F /* ProgressView.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -721,6 +727,7 @@
 			files = (
 				D63A12141D37504D00AD6989 /* SocketIOClientSpec.swift in Sources */,
 				C0D47B011D23A04900637EAB /* LockSetViewController.swift in Sources */,
+				C050D5C81D51D3F100D7114F /* BubbleLabel.swift in Sources */,
 				D63A121A1D37504D00AD6989 /* SocketTypes.swift in Sources */,
 				D6C0EFF71D2760FF00798E2B /* alarmSetViewController.swift in Sources */,
 				D600A9681D227C8D005F9130 /* LoginViewController.swift in Sources */,
@@ -752,6 +759,7 @@
 				D607C5EE1D2A41AF00542804 /* chatBGcolorViewController.swift in Sources */,
 				D600A97B1D23A869005F9130 /* LetterrWriteViewController.swift in Sources */,
 				D607C5EA1D2A1A2D00542804 /* albumViewController.swift in Sources */,
+				C050D5CA1D523ECD00D7114F /* ProgressView.swift in Sources */,
 				C0D47AF41D237C8A00637EAB /* SettingNavViewController.swift in Sources */,
 				D63A12101D37504D00AD6989 /* SocketEngineWebsocket.swift in Sources */,
 				C0D47AF21D22AEFB00637EAB /* ChatViewController.swift in Sources */,
