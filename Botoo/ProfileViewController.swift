@@ -158,11 +158,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         picker.dismissViewControllerAnimated(true) { (_) in
             self.profile_iv_profile.image = info[UIImagePickerControllerOriginalImage] as? UIImage
             let proPic = info[UIImagePickerControllerOriginalImage] as? UIImage
-            
-            MemberConstruct().saveProPic(self.userEmailStored!, proPic: proPic!, completionHandler: { (json, error) -> Void in
-                                print(json)
-            
-            })
+           
+        
+           MemberConstruct().saveProPic(self.userEmailStored!, proPic: proPic!, completionHandler: { (json, error) -> Void in
+                    
+           })
         }
     }
     
