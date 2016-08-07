@@ -159,7 +159,6 @@ class HomeViewController: UIViewController {
                                 self.myProPic.image = UIImage(named: "tp_default_male.png")
                             }
                         } else {
-                            
                             let dataDecoded:NSData = NSData(base64EncodedString: (json["image_base64String"] as? String)!, options: NSDataBase64DecodingOptions(rawValue: 0))!
                             let decodedimage:UIImage = UIImage(data: dataDecoded)!
                             
