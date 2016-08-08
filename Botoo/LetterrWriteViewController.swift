@@ -64,6 +64,15 @@ class LetterrWriteViewController: UIViewController {
             }
         })
         
+        let notification = UILocalNotification()
+        notification.alertBody = "Todo Item \"\(title)\" Is Overdue" // text that will be displayed in the notification
+        notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+        notification.fireDate = NSDate(timeIntervalSinceNow: 1)
+        notification.soundName = UILocalNotificationDefaultSoundName // play default sound
+        notification.userInfo = ["title": title!, "body": body] // assign a unique identifier to the notification so that we can retrieve it later
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        
     }
 }
 

@@ -155,7 +155,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "292"
             endingLineNumber = "292"
-            landmarkName = "saveProPic(_:proPic:completionHandler:)"
+            landmarkName = "sendAlert(_:loverEmail:completionHandler:)"
             landmarkType = "5">
             <Locations>
                <Location
