@@ -27,6 +27,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var num4: UIImageView!
     
     
+    let backView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height))
+    var progressView:ProgressView?
+    
     let isLock = NSUserDefaults.standardUserDefaults().boolForKey("lock")
     
     var threadIsAlive = 0
@@ -45,7 +48,6 @@ class HomeViewController: UIViewController {
     var alert:String?
     
     var firstDateStored:String?
-
     
     var isGot:Bool?
     
@@ -80,6 +82,22 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        initProgress()
+        initProfile()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "myPicZoom") {
+            let svc = segue.destinationViewController as! imageZoomViewController
+            svc.newImage = myProPic.image
+        }
+        else if (segue.identifier == "loverPicZoom"){
+            let svc = segue.destinationViewController as! imageZoomViewController
+            svc.newImage = loverProPic.image
+        }
+    }
+    
+    func initProfile() {
         let isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn")
         
         if (isUserLoggedIn) {
@@ -140,6 +158,11 @@ class HomeViewController: UIViewController {
                             else {
                                 self.myProPic.image = UIImage(named: "tp_default_male.png")
                             }
+                        } else {
+                            let dataDecoded:NSData = NSData(base64EncodedString: (json["image_base64String"] as? String)!, options: NSDataBase64DecodingOptions(rawValue: 0))!
+                            let decodedimage:UIImage = UIImage(data: dataDecoded)!
+                            
+                            self.myProPic.image = decodedimage
                         }
                         
                         // 내 이름 로드
@@ -148,21 +171,23 @@ class HomeViewController: UIViewController {
                         // 내 상메 로드
                         self.myStateMsg.text = json["msg"] as? String
                         self.myStateMsg.numberOfLines = 3;
+                        
+                        self.progressView?.removeFromSuperview()
+                        self.backView.removeFromSuperview()
+                        self.progressView = nil
                     }
                 }
             })
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "myPicZoom") {
-            let svc = segue.destinationViewController as! imageZoomViewController
-            svc.newImage = myProPic.image
-        }
-        else if (segue.identifier == "loverPicZoom"){
-            let svc = segue.destinationViewController as! imageZoomViewController
-            svc.newImage = loverProPic.image
-        }
+    func initProgress() {
+        self.progressView = ProgressView(frame: CGRect(x: self.view.frame.width/2 - 60.0, y: self.view.frame.height/2 - 60.0, width: 120.0, height: 120.0))
+        self.progressView!.animateProgressView()
+        self.backView.backgroundColor = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 0.5)
+        
+        self.backView.addSubview(progressView!)
+        self.view.addSubview(backView)
     }
     
     func getLover() {

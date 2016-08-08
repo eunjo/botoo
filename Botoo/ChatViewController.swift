@@ -19,6 +19,7 @@ import AVFoundation
 
 class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CNContactPickerDelegate, UITableViewDelegate, UITableViewDataSource {
     
+    private let bubbleColor = UIColor(red: 250.0/255, green: 212.0/255, blue: 40.0/255, alpha: 1)
     // 이미지픽커 선언
     var imagePicker = UIImagePickerController()
     
@@ -574,9 +575,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             cell?.nameLabel.text = name
             cell?.dateLabel.text = dateToString(date!)
             
-            cell?.messageBubble.sizeToFit()
-            cell?.setSize((cell?.messageBubble.intrinsicContentSize().width)!, bubbleHeight: (cell?.messageBubble.intrinsicContentSize().height)!)
-        
+            cell?.messageBubble.backgroundColor = bubbleColor
             
             return cell!
             
@@ -592,8 +591,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             cell?.nameLabel.text = name
             cell?.dateLabel.text = dateToString(date!)
             
-            cell?.messageBubble.sizeToFit()
-            cell?.setSize((cell?.messageBubble.intrinsicContentSize().width)!, bubbleHeight: (cell?.messageBubble.intrinsicContentSize().height)!)
+            cell?.messageBubble.backgroundColor = bubbleColor
             
             return cell!
         }
@@ -606,6 +604,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndeerxPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
+    
     
     func dateToString(dateString: String) -> String {
         var date = dateString

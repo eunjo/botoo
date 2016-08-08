@@ -26,6 +26,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     var userEmailStored:String?
     var userGenderStored:String?
+    var userImageString:String?
     var userNameStored:String?
     var userMsgStored:String?
     var userProPicStored:String?
@@ -61,12 +62,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.userNameStored = json["name"] as? String
             self.userMsgStored = json["msg"] as? String
             self.userProPicStored = json["proPic"] as? String
-            
+            self.userImageString = json["image_base64String"] as? String
             
             dispatch_async(dispatch_get_main_queue()) {
                 self.initProfile()
             }
-            
         })
     }
     
@@ -81,12 +81,21 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func initProfileImage() {
-        if (userProPicStored == nil){
-            if (userGender == "0") {
-                self.profile_iv_profile.image = UIImage(named: "default_male")
-            } else if (userGender == "1") {
-                self.profile_iv_profile.image = UIImage(named: "default_female")
+        
+        // 내 프사 로드
+        if (self.userProPicStored == nil){
+            if (userGender == "1") {
+                self.profile_iv_profile.image = UIImage(named: "tp_default_female.png")
             }
+            else {
+                self.profile_iv_profile.image = UIImage(named: "tp_default_male.png")
+            }
+        } else {
+            
+            let dataDecoded:NSData = NSData(base64EncodedString: self.userImageString!, options: NSDataBase64DecodingOptions(rawValue: 0))!
+            let decodedimage:UIImage = UIImage(data: dataDecoded)!
+            
+            self.profile_iv_profile.image = decodedimage
         }
     }
     
@@ -149,11 +158,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         picker.dismissViewControllerAnimated(true) { (_) in
             self.profile_iv_profile.image = info[UIImagePickerControllerOriginalImage] as? UIImage
             let proPic = info[UIImagePickerControllerOriginalImage] as? UIImage
-            
-          // MemberConstruct().saveProPic(self.userEmailStored!, proPic: proPic!, completionHandler: { (json, error) -> Void in
-                                //print("프사 성공 :: \(json)")
-            
-                 // })
+           
+        
+           MemberConstruct().saveProPic(self.userEmailStored!, proPic: proPic!, completionHandler: { (json, error) -> Void in
+                    
+           })
         }
     }
     
