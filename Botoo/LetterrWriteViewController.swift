@@ -60,20 +60,19 @@ class LetterrWriteViewController: UIViewController {
         LetterConstruct().writeLetter(letterParams, completionHandler: { (json, error) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 LetterrWriteViewController.getNewLetterInfo.letterInfo = letterTableVO(writerId: letterParams["sender_id"]!, title: letterParams["title"]!, writerImage: letterParams["sender"]!, letterId: json["_id"] as! String, date: letterParams["date"]!, body: letterParams["body"]!, isRead: 0)
+                // create a corresponding local notification
+                let notification = UILocalNotification()
+                notification.alertBody = "New letter" // text that will be displayed in the notification
+                notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+                notification.fireDate = NSDate(timeIntervalSinceNow: 1)// todo item due date (when notification will be fired)
+                notification.soundName = UILocalNotificationDefaultSoundName // play default sound
+                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+
                 self.navigationController?.popViewControllerAnimated(true)
             }
         })
         
-        let notification = UILocalNotification()
-        notification.alertBody = "Todo Item \"\(title)\" Is Overdue" // text that will be displayed in the notification
-        notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
-        notification.fireDate = NSDate(timeIntervalSinceNow: 1)
-        notification.soundName = UILocalNotificationDefaultSoundName // play default sound
-        notification.userInfo = ["title": title!, "body": body] // assign a unique identifier to the notification so that we can retrieve it later
-        
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
-        
-    }
+           }
 }
 
 
