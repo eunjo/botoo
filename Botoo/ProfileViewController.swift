@@ -161,7 +161,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
            
         
            MemberConstruct().saveProPic(self.userEmailStored!, proPic: proPic!, completionHandler: { (json, error) -> Void in
-                    
+            
            })
         }
     }
