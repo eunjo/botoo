@@ -82,6 +82,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func initProfileImage() {
         
+        /*
         // 내 프사 로드
         if (self.userProPicStored == nil){
             if (userGender == "1") {
@@ -91,12 +92,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 self.profile_iv_profile.image = UIImage(named: "tp_default_male.png")
             }
         } else {
-            
+            */
             let dataDecoded:NSData = NSData(base64EncodedString: self.userImageString!, options: NSDataBase64DecodingOptions(rawValue: 0))!
             let decodedimage:UIImage = UIImage(data: dataDecoded)!
             
             self.profile_iv_profile.image = decodedimage
-        }
+        //}
     }
     
     func setViewBorder() {
