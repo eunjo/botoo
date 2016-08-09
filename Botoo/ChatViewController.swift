@@ -144,7 +144,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 FileManager.sharedInstance.initFile()
                 // write file
                 for messageInfo in self.chatMessages {
-                    FileManager.sharedInstance.writeFile(messageInfo["message"]! as! String, sender: messageInfo["nickname"] as! String, date: messageInfo["date"] as! String)
+                    FileManager.sharedInstance.writeFile("text", text: messageInfo["message"]! as! String, sender: messageInfo["nickname"] as! String, date: messageInfo["date"] as! String)
                 }
             } else {
                 removeChats.isRemove = false
@@ -537,7 +537,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func contactPicker(picker: CNContactPickerViewController, didSelectContact contact: CNContact) {
-        let selectedContactID = contact
+        
+
+ 
     }
 
     // 전송 버튼
@@ -574,38 +576,46 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         let name = self.chatMessages[indexPath.row]["nickname"] as? String
         let date = self.chatMessages[indexPath.row]["date"] as? String
         
-        if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
-            var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
+        if ((self.chatMessages[indexPath.row]["type"] as? String)! == "text"){
+            if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
+                var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
             
-            if cell == nil {
-                tableView.registerNib(UINib(nibName: "UIChatTableViewCellm", bundle: nil), forCellReuseIdentifier: "ChatTableViewCellm")
-                cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
+                if cell == nil {
+                    tableView.registerNib(UINib(nibName: "UIChatTableViewCellm", bundle: nil), forCellReuseIdentifier: "ChatTableViewCellm")
+                    cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
+                }
+            
+                cell?.messageBubble.text = message
+                cell?.nameLabel.text = name
+                cell?.dateLabel.text = dateToString(date!)
+            
+                cell?.messageBubble.backgroundColor = bubbleColor
+            
+                return cell!
+            
+            } else { // 상대방 메세지
+                var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
+            
+                if cell == nil {
+                    tableView.registerNib(UINib(nibName: "UIChatTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatTableViewCell")
+                    cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
+                }
+            
+                cell?.messageBubble.text = message
+                cell?.nameLabel.text = name
+                cell?.dateLabel.text = dateToString(date!)
+            
+                cell?.messageBubble.backgroundColor = bubbleColor
+            
+                return cell!
             }
+        } else {
             
-            cell?.messageBubble.text = message
-            cell?.nameLabel.text = name
-            cell?.dateLabel.text = dateToString(date!)
-            
-            cell?.messageBubble.backgroundColor = bubbleColor
-            
-            return cell!
-            
-        } else { // 상대방 메세지
-            var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
-            
-            if cell == nil {
-                tableView.registerNib(UINib(nibName: "UIChatTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatTableViewCell")
-                cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
-            }
-            
-            cell?.messageBubble.text = message
-            cell?.nameLabel.text = name
-            cell?.dateLabel.text = dateToString(date!)
-            
-            cell?.messageBubble.backgroundColor = bubbleColor
+            var cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCell") as? ChatContactTableViewCell
             
             return cell!
         }
+        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
