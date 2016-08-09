@@ -84,6 +84,7 @@ class HomeViewController: UIViewController {
         
         initProgress()
         profileInit()
+
         initProfile()
     }
     

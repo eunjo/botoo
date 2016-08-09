@@ -512,8 +512,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     @IBAction func onClickPlusCam(sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            imagePicker.delegate = self
             imagePicker.sourceType = UIImagePickerControllerSourceType.Camera;
             imagePicker.allowsEditing = false
+            imagePicker.mediaTypes = NSArray(object: kUTTypeImage) as! [String]
             self.presentViewController(imagePicker, animated: true, completion: nil)
         }
     }
