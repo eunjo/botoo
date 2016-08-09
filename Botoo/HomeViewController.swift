@@ -129,7 +129,6 @@ class HomeViewController: UIViewController {
                         self.alert2()
                     }
                     
-                    
                     var loverTemp = "nil"
                     if json["lover"] as? String != nil {
                         loverTemp = json["lover"] as! String
@@ -167,16 +166,7 @@ class HomeViewController: UIViewController {
                             
                             self.myProPic.image = decodedimage
                         }
- 
-                        
-                        // 임시방편
-//                        if (json["gender"] as? String == "1") {
-//                            self.myProPic.image = UIImage(named: "tp_default_female.png")
-//                        }
-//                        else {
-//                            self.myProPic.image = UIImage(named: "tp_default_male.png")
-//                        }
-                        
+
                         
                         // 내 이름 로드
                         self.myUserName.text = json["name"] as? String
