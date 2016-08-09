@@ -59,8 +59,8 @@ class ProgressView: UIView {
         
         gradientLayer.locations = [0.0, 1.0]
         
-        let colorTop: AnyObject = UIColor(red: 255.0/255.0, green: 213.0/255.0, blue: 63.0/255.0, alpha: 1.0).CGColor
-        let colorBottom: AnyObject = UIColor(red: 255.0/255.0, green: 198.0/255.0, blue: 5.0/255.0, alpha: 1.0).CGColor
+        let colorTop: AnyObject = UIColor.grayColor().CGColor
+        let colorBottom: AnyObject = UIColor.grayColor().CGColor
         let arrayOfColors: [AnyObject] = [colorTop, colorBottom]
         gradientLayer.colors = arrayOfColors
         
