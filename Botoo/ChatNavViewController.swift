@@ -23,8 +23,9 @@ class ChatNavViewController: UINavigationController {
         self.navigationBar.tintColor = UIColor.blackColor()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(animated: Bool) {
+        if !Reachability.isConnectedToNetwork() {
+            self.presentViewController(Reachability.alert(), animated: true, completion: nil)
+        }
     }
 }

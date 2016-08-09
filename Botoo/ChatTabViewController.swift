@@ -21,26 +21,30 @@ class ChatTabViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.tabBarController!.selectedIndex = 0
-        
-        if NSUserDefaults.standardUserDefaults().stringForKey("userLover") == "nil" {
-            if idx2 {
-                if let connectingViewController =   self.storyboard?.instantiateViewControllerWithIdentifier("ConnectingViewController") {
-                    connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-                    self.parentViewController!.presentViewController(connectingViewController, animated: true, completion: nil)
-                }
-                idx2 = false
-            } else {
-                idx2 = true
-            }
+        if !Reachability.isConnectedToNetwork() {
+            self.presentViewController(Reachability.alert(), animated: true, completion: nil)
         } else {
-            if idx {
-                let chatNavViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ChatNavViewController")
-                chatNavViewController!.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-                self.parentViewController!.presentViewController(chatNavViewController!, animated: true, completion: nil)
-                idx = false
+            self.tabBarController!.selectedIndex = 0
+            
+            if NSUserDefaults.standardUserDefaults().stringForKey("userLover") == "nil" {
+                if idx2 {
+                    if let connectingViewController =   self.storyboard?.instantiateViewControllerWithIdentifier("ConnectingViewController") {
+                        connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+                        self.parentViewController!.presentViewController(connectingViewController, animated: true, completion: nil)
+                    }
+                    idx2 = false
+                } else {
+                    idx2 = true
+                }
             } else {
-                idx = true
+                if idx {
+                    let chatNavViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ChatNavViewController")
+                    chatNavViewController!.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+                    self.parentViewController!.presentViewController(chatNavViewController!, animated: true, completion: nil)
+                    idx = false
+                } else {
+                    idx = true
+                }
             }
         }
     }

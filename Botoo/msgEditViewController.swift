@@ -23,8 +23,12 @@ class msgEditViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        if msg != nil {
-            msgLabel.text = msg
+        if !Reachability.isConnectedToNetwork() {
+            self.presentViewController(Reachability.alert(), animated: true, completion: nil)
+        } else {
+            if msg != nil {
+                msgLabel.text = msg
+            }
         }
     }
     

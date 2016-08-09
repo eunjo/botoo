@@ -21,6 +21,12 @@ class LoginViewController: UIViewController {
         userEmailTextField.becomeFirstResponder()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        if !Reachability.isConnectedToNetwork() {
+            self.presentViewController(Reachability.alert(), animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func loginButtonTapped(sender: AnyObject) {
         let userEmail = userEmailTextField.text
         let userPW = userPWTextField.text
