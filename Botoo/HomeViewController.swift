@@ -83,6 +83,7 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         
         initProgress()
+        profileInit()
         initProfile()
     }
     
