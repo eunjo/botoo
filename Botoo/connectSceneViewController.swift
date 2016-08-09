@@ -31,6 +31,12 @@ class connectSceneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        if !Reachability.isConnectedToNetwork() {
+            self.presentViewController(Reachability.alert(), animated: true, completion: nil)
+        }
+    }
 
         
     func backButtonTapped(sender: AnyObject) {

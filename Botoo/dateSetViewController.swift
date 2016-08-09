@@ -24,6 +24,12 @@ class dateSetViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        if !Reachability.isConnectedToNetwork() {
+            self.presentViewController(Reachability.alert(), animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func dateTextFieldEditing(sender: UITextField) {
         
         let datePickerView:UIDatePicker = UIDatePicker()

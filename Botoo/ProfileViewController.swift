@@ -54,20 +54,23 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     override func viewWillAppear(animated: Bool) {
-        
-        MemberConstruct().checkEmail(userEmail, completionHandler: { (json, error) -> Void in
-
-            self.userEmailStored = json["email"] as? String
-            self.userGenderStored = json["gender"] as? String
-            self.userNameStored = json["name"] as? String
-            self.userMsgStored = json["msg"] as? String
-            self.userProPicStored = json["proPic"] as? String
-            self.userImageString = json["image_base64String"] as? String
-            
-            dispatch_async(dispatch_get_main_queue()) {
-                self.initProfile()
-            }
-        })
+        if !Reachability.isConnectedToNetwork() {
+            self.presentViewController(Reachability.alert(), animated: true, completion: nil)
+        } else {
+            MemberConstruct().checkEmail(userEmail, completionHandler: { (json, error) -> Void in
+                
+                self.userEmailStored = json["email"] as? String
+                self.userGenderStored = json["gender"] as? String
+                self.userNameStored = json["name"] as? String
+                self.userMsgStored = json["msg"] as? String
+                self.userProPicStored = json["proPic"] as? String
+                self.userImageString = json["image_base64String"] as? String
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.initProfile()
+                }
+            })
+        }
     }
     
     func initProfile() {
@@ -166,7 +169,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(true) { (_) in
             self.profile_iv_profile.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-            let proPic = self.resizeImage((info[UIImagePickerControllerOriginalImage] as? UIImage)!, newWidth: CGFloat(600))
+            let proPic = self.resizeImage((info[UIImagePickerControllerOriginalImage] as? UIImage)!, newWidth: CGFloat(400))
            
         
            MemberConstruct().saveProPic(self.userEmailStored!, proPic: proPic, completionHandler: { (json, error) -> Void in

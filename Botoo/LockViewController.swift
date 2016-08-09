@@ -29,8 +29,10 @@ class LockViewController: UIViewController {
         setBtList()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    override func viewWillAppear(animated: Bool) {
+        if !Reachability.isConnectedToNetwork() {
+            self.presentViewController(Reachability.alert(), animated: true, completion: nil)
+        }
     }
     
     func setBtList() {

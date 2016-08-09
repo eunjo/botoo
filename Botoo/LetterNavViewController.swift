@@ -27,19 +27,23 @@ class LetterNavViewController: UINavigationController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        if NSUserDefaults.standardUserDefaults().stringForKey("userLover") == "nil" {
-            self.tabBarController!.selectedIndex = 0
-            if idx {
-                if let connectingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ConnectingViewController") {
-                    connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-                    self.parentViewController!.presentViewController(connectingViewController, animated: true, completion: nil)
+        if !Reachability.isConnectedToNetwork() {
+            self.presentViewController(Reachability.alert(), animated: true, completion: nil)
+        } else {
+            if NSUserDefaults.standardUserDefaults().stringForKey("userLover") == "nil" {
+                self.tabBarController!.selectedIndex = 0
+                if idx {
+                    if let connectingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ConnectingViewController") {
+                        connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+                        self.parentViewController!.presentViewController(connectingViewController, animated: true, completion: nil)
+                    }
+                    idx = false
+                } else {
+                    idx = true
                 }
-                idx = false
-            } else {
-                idx = true
             }
+            self.resetBadge(NSUserDefaults.standardUserDefaults().integerForKey("letterBadge"))
         }
-        self.resetBadge(NSUserDefaults.standardUserDefaults().integerForKey("letterBadge"))
 
     }
 
