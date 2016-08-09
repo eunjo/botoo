@@ -20,6 +20,7 @@
 		C050D5C41D49EDB000D7114F /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5C31D49EDB000D7114F /* TabBarViewController.swift */; };
 		C050D5C81D51D3F100D7114F /* BubbleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5C71D51D3F100D7114F /* BubbleLabel.swift */; };
 		C050D5CA1D523ECD00D7114F /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5C91D523ECD00D7114F /* ProgressView.swift */; };
+		C050D5CC1D59CB2B00D7114F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5CB1D59CB2B00D7114F /* Reachability.swift */; };
 		C0D47AEE1D22A25500637EAB /* ChatTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */; };
 		C0D47AF21D22AEFB00637EAB /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */; };
 		C0D47AF41D237C8A00637EAB /* SettingNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */; };
@@ -141,6 +142,7 @@
 		C050D5C31D49EDB000D7114F /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		C050D5C71D51D3F100D7114F /* BubbleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleLabel.swift; sourceTree = "<group>"; };
 		C050D5C91D523ECD00D7114F /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		C050D5CB1D59CB2B00D7114F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTabViewController.swift; sourceTree = "<group>"; };
 		C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNavViewController.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				D632BF051D473A600029D6C1 /* FileManager.swift */,
 				C050D5C71D51D3F100D7114F /* BubbleLabel.swift */,
 				C050D5C91D523ECD00D7114F /* ProgressView.swift */,
+				C050D5CB1D59CB2B00D7114F /* Reachability.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -770,6 +773,7 @@
 				C050D5CA1D523ECD00D7114F /* ProgressView.swift in Sources */,
 				C0D47AF41D237C8A00637EAB /* SettingNavViewController.swift in Sources */,
 				D63A12101D37504D00AD6989 /* SocketEngineWebsocket.swift in Sources */,
+				C050D5CC1D59CB2B00D7114F /* Reachability.swift in Sources */,
 				C0D47AF21D22AEFB00637EAB /* ChatViewController.swift in Sources */,
 				C0D47B071D2A076300637EAB /* KeyboardProtocol.swift in Sources */,
 				D63A12081D37504D00AD6989 /* SocketAckManager.swift in Sources */,

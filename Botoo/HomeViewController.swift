@@ -46,6 +46,7 @@ class HomeViewController: UIViewController {
     var loverMsgStored:String?
     var loverProPicStored:String?
     var alert:String?
+    var _loverProPic:String?
     
     var firstDateStored:String?
     
@@ -82,10 +83,13 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        initProgress()
-        profileInit()
-
-        initProfile()
+        if !Reachability.isConnectedToNetwork() {
+            self.presentViewController(Reachability.alert(), animated: true, completion: nil)
+        } else {
+            initProgress()
+            profileInit()
+            initProfile()
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -200,6 +204,9 @@ class HomeViewController: UIViewController {
                 self.loverGenderStored = json["gender"] as? String
                 self.loverMsgStored = json["msg"] as? String
                 self.loverProPicStored = json["proPic"] as? String
+                if (self.loverProPicStored != nil){
+                    self._loverProPic = json["image_base64String"] as? String!
+                }
                 
                 NSUserDefaults.standardUserDefaults().setObject(self.loverNameStored, forKey: "loverName")
                 
@@ -248,6 +255,14 @@ class HomeViewController: UIViewController {
             else {
                 loverProPic.image = UIImage(named: "tp_default_male.png")
             }
+        } else {
+            
+            let dataDecoded:NSData = NSData(base64EncodedString: self._loverProPic!, options: NSDataBase64DecodingOptions(rawValue: 0))!
+            let decodedimage:UIImage = UIImage(data: dataDecoded)!
+            
+            self.loverProPic.image = decodedimage
+
+            
         }
             loverUserName.text = loverNameStored
             loverStateMsg.text = loverMsgStored

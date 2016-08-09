@@ -38,6 +38,12 @@ class RegisterPageViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        if !Reachability.isConnectedToNetwork() {
+            self.presentViewController(Reachability.alert(), animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func onClickHaveAcc(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }

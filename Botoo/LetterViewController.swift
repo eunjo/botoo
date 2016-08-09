@@ -36,38 +36,42 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     override func viewDidAppear(animated: Bool) {
-        
-        if (NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn")){
-            self.userId =  NSUserDefaults.standardUserDefaults().stringForKey("userId")!
-        }
-        if NSUserDefaults.standardUserDefaults().stringForKey("userConnectId") != "nil" {
-            LetterConstruct().callLetter(NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")!,
-                                         completionHandler: { (json, error) -> Void in
-                                            let JsonData = json as! [[String: AnyObject]]
-                                            
-                                            self.isReadCount = 0
-                                            self.letterList = []
-                                            for data in JsonData {
-                                                self.letterList.append(letterTableVO(writerId: data["senderId"] as! String, title: data["title"] as! String, writerImage: data["sender"] as! String, letterId: data["_id"] as! String, date: data["date"] as! String, body: data["body"] as! String, isRead: Int(data["isRead"] as! String)!))
+        if !Reachability.isConnectedToNetwork() {
+            self.presentViewController(Reachability.alert(), animated: true, completion: nil)
+        } else {
+            if (NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn")){
+                self.userId =  NSUserDefaults.standardUserDefaults().stringForKey("userId")!
+            }
+            if NSUserDefaults.standardUserDefaults().stringForKey("userConnectId") != "nil" {
+                LetterConstruct().callLetter(NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")!,
+                                             completionHandler: { (json, error) -> Void in
+                                                let JsonData = json as! [[String: AnyObject]]
                                                 
-                                                if(Int(data["isRead"] as! String) == 0 && self.userId != data["senderId"] as! String){
-                                                    self.isReadCount += 1
-                                                    NSUserDefaults.standardUserDefaults().setObject(self.isReadCount, forKey: "letterBadge")
+                                                self.isReadCount = 0
+                                                self.letterList = []
+                                                for data in JsonData {
+                                                    self.letterList.append(letterTableVO(writerId: data["senderId"] as! String, title: data["title"] as! String, writerImage: data["sender"] as! String, letterId: data["_id"] as! String, date: data["date"] as! String, body: data["body"] as! String, isRead: Int(data["isRead"] as! String)!))
+                                                    
+                                                    if(Int(data["isRead"] as! String) == 0 && self.userId != data["senderId"] as! String){
+                                                        self.isReadCount += 1
+                                                        NSUserDefaults.standardUserDefaults().setObject(self.isReadCount, forKey: "letterBadge")
+                                                    }
                                                 }
-                                            }
-                                            
-                                            dispatch_async(dispatch_get_main_queue()) {
                                                 
-                                                self.letterTable.reloadData()
-                                            }
-            })
-        }
-        
-        // write 한 편지 reload
-        if LetterrWriteViewController.getNewLetterInfo.letterInfo != nil {
-            self.letterList.append(LetterrWriteViewController.getNewLetterInfo.letterInfo!)
-            LetterrWriteViewController.getNewLetterInfo.letterInfo = nil
-            self.letterTable.reloadData()
+                                                dispatch_async(dispatch_get_main_queue()) {
+                                                    
+                                                    self.letterTable.reloadData()
+                                                }
+                })
+            }
+            
+            // write 한 편지 reload
+            if LetterrWriteViewController.getNewLetterInfo.letterInfo != nil {
+                self.letterList.append(LetterrWriteViewController.getNewLetterInfo.letterInfo!)
+                LetterrWriteViewController.getNewLetterInfo.letterInfo = nil
+                self.letterTable.reloadData()
+            }
+
         }
     }
     
