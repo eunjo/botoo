@@ -10,6 +10,7 @@
 
 import Foundation
 import UIKit
+import ContactsUI
 
 class FileManager{
     
@@ -60,7 +61,30 @@ class FileManager{
         }
         
     }
+    
+    func writeContact(contact:CNContact){
+     
+        let contactsData: NSData = NSKeyedArchiver.archivedDataWithRootObject(contact)
+        let NewLine = "\n"
         
+        var fileHandle = NSFileHandle(forWritingAtPath: filePath)
+        
+        if (fileHandle == nil) {
+            initFile()
+            fileHandle = NSFileHandle(forWritingAtPath: filePath)
+        }
+        
+        if (fileHandle != nil) {
+            fileHandle?.seekToEndOfFile()
+            fileHandle?.writeData(contactsData)
+        }
+        
+        if (fileHandle != nil) {
+            fileHandle?.seekToEndOfFile()
+            fileHandle?.writeData(NewLine.dataUsingEncoding(NSUTF8StringEncoding)!)
+        }
+    }
+    
     func readFile() -> [String] {
         
         var readString: String
@@ -77,6 +101,11 @@ class FileManager{
             
             return [""]
         }
+    }
+    
+    func readContact() {
+        
+        
     }
     
     func  removeFile(){

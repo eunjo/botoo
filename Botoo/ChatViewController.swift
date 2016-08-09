@@ -526,11 +526,18 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         let peoplePicker = CNContactPickerViewController()
         
         peoplePicker.delegate = self
+        
+       // var store = CNContactStore()
+       // let selectedContact:CNMutableContact?
         self.presentViewController(peoplePicker, animated: true, completion: nil)
     }
     
     func contactPickerDidCancel(picker: CNContactPickerViewController) {
         picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func contactPicker(picker: CNContactPickerViewController, didSelectContact contact: CNContact) {
+        let selectedContactID = contact
     }
 
     // 전송 버튼
