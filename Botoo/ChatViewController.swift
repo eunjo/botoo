@@ -518,7 +518,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             imagePicker.allowsEditing = false
             imagePicker.mediaTypes = NSArray(object: kUTTypeImage) as! [String]
             self.presentViewController(imagePicker, animated: true, completion: nil)
-            newMedia = true
+            newMedia = false
         }
     }
     
