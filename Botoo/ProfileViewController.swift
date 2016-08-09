@@ -99,13 +99,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             else {
                 self.profile_iv_profile.image = UIImage(named: "tp_default_male.png")
             }
-            /*
+            
  
             let dataDecoded:NSData = NSData(base64EncodedString: self.userImageString!, options: NSDataBase64DecodingOptions(rawValue: 0))!
             let decodedimage:UIImage = UIImage(data: dataDecoded)!
             
             self.profile_iv_profile.image = decodedimage
- */
         }
     }
     
@@ -167,10 +166,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(true) { (_) in
             self.profile_iv_profile.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-            let proPic = info[UIImagePickerControllerOriginalImage] as? UIImage
+            let proPic = self.resizeImage((info[UIImagePickerControllerOriginalImage] as? UIImage)!, newWidth: CGFloat(600))
            
         
-           MemberConstruct().saveProPic(self.userEmailStored!, proPic: proPic!, completionHandler: { (json, error) -> Void in
+           MemberConstruct().saveProPic(self.userEmailStored!, proPic: proPic, completionHandler: { (json, error) -> Void in
             
            })
         }
@@ -248,6 +247,18 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         viewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         //navigationController 의 하위 뷰로 전환
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
     
 }

@@ -152,7 +152,7 @@ class HomeViewController: UIViewController {
                     NSUserDefaults.standardUserDefaults().setObject(json["name"] as? String, forKey: "userName")
                     
                     dispatch_async(dispatch_get_main_queue()) {
-                        /*
+                        
                         // 내 프사 로드
                         if (self.userProPicStored == nil){
                             if (json["gender"] as? String == "1") {
@@ -167,15 +167,15 @@ class HomeViewController: UIViewController {
                             
                             self.myProPic.image = decodedimage
                         }
-                        */
+ 
                         
                         // 임시방편
-                        if (json["gender"] as? String == "1") {
-                            self.myProPic.image = UIImage(named: "tp_default_female.png")
-                        }
-                        else {
-                            self.myProPic.image = UIImage(named: "tp_default_male.png")
-                        }
+//                        if (json["gender"] as? String == "1") {
+//                            self.myProPic.image = UIImage(named: "tp_default_female.png")
+//                        }
+//                        else {
+//                            self.myProPic.image = UIImage(named: "tp_default_male.png")
+//                        }
                         
                         
                         // 내 이름 로드
