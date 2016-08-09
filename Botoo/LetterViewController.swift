@@ -124,7 +124,8 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
             //letter 읽음 처리
             LetterConstruct().updateLetter( NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")!, letterID: letterList[indexPath.row].letterId, isRead: "1", completionHandler: { (json, error) -> Void in
                 print(json)
-            })
+                
+                           })
         }
         
         if let letterDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("letterDetail") as? LetterDetailViewController {
