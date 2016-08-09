@@ -22,6 +22,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private let bubbleColor = UIColor(red: 250.0/255, green: 212.0/255, blue: 40.0/255, alpha: 1)
     // 이미지픽커 선언
     var imagePicker = UIImagePickerController()
+    var newMedia = Bool?()
     
     @IBOutlet var messageTableView: UITableView!
     
@@ -512,9 +513,12 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     @IBAction func onClickPlusCam(sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            imagePicker.delegate = self
             imagePicker.sourceType = UIImagePickerControllerSourceType.Camera;
             imagePicker.allowsEditing = false
+            imagePicker.mediaTypes = NSArray(object: kUTTypeImage) as! [String]
             self.presentViewController(imagePicker, animated: true, completion: nil)
+            newMedia = true
         }
     }
     
