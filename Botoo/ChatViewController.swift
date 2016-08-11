@@ -654,7 +654,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             cell?.nameLabel.text = name
             cell?.contactButton.setTitle("\(givenName) \(familyName)", forState: .Normal)
             cell?.setData(givenName as! String, fN: familyName as! String, pN: MobNumVar as! String)
-            
+
             return cell!
         }
         

@@ -8,9 +8,7 @@
 
 import UIKit
 import Contacts
-import ContactsUI
-import AddressBook
-import AddressBookUI
+
 
 class ChatContactTableViewCell: UITableViewCell {
 
@@ -22,7 +20,6 @@ class ChatContactTableViewCell: UITableViewCell {
     var phoneNum:String?
     
     var childView = contactDetailViewController()
-    var parentView = ChatViewController()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,6 +33,7 @@ class ChatContactTableViewCell: UITableViewCell {
     }
 
     @IBAction func contactButtonTapped(sender: AnyObject) {
+
         
         let Contact = CNMutableContact()
         
@@ -45,12 +43,20 @@ class ChatContactTableViewCell: UITableViewCell {
         Contact.phoneNumbers = [phone]
         
         self.childView.contact = Contact
-        
-        
-        dispatch_async(dispatch_get_main_queue(), {
-            self.window?.rootViewController!.presentViewController(self.childView, animated: true, completion: nil)
+    
+        dispatch_sync(dispatch_get_main_queue(), {
+//            if let delegate = UIApplication.sharedApplication().delegate {
+//                delegate.window!!.rootViewController?.presentViewController(self.childView, animated: true, completion: { () -> Void in
+//                    // optional completion code
+//                })
+//            }
+            
+            if let connectingViewController = self.childView.storyboard?.instantiateViewControllerWithIdentifier("contactDetail") {
+                connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+                self.childView.presentViewController(connectingViewController, animated: true, completion: nil)
+            }
         })
-        
+    
     }
     
     func setData(gN:String, fN:String, pN:String){
