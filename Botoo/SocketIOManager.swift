@@ -37,7 +37,7 @@ class SocketIOManager: NSObject {
     func getChatMessage(completionHandler: (messageInfo: [String: AnyObject]) -> Void) {
         socket.on("newChatMessage") { (dataArray, socketAck) -> Void in
             var messageDictionary = [String: AnyObject]()
-            messageDictionary["type"] = dataArray[0] as! String //시간
+            messageDictionary["type"] = dataArray[0] as! String //타입
             messageDictionary["nickname"] = dataArray[1] as! String //센더
             messageDictionary["message"] = dataArray[2] as! String //내용
             messageDictionary["date"] = dataArray[3] as! String //시간
@@ -48,8 +48,8 @@ class SocketIOManager: NSObject {
     }
     
     // 유저 네임 서버에 보내기 // 유저 연결 Online
-    func connectToServerWithNickname(nickname: String, completionHandler: (userList: [[String: AnyObject]]!) -> Void) {
-        socket.emit("connectUser", nickname)
+    func connectToServerWithNickname(clientId: String, nickname: String, completionHandler: (userList: [[String: AnyObject]]!) -> Void) {
+        socket.emit("connectUser", clientId, nickname)
         
         //유저 리스트 반환
         socket.on("userList") { ( dataArray, ack) -> Void in
