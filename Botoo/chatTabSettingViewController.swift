@@ -98,7 +98,6 @@ class chatTabSettingViewController: UIViewController, UIImagePickerControllerDel
             imagePicker.dismissViewControllerAnimated(false) { (_) in
             let image = info[UIImagePickerControllerOriginalImage] as? UIImage
             let data = UIImagePNGRepresentation(image!)
-           //image.contentMode = .ScaleAspectFill
             NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgPic")
             NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgColor")
             NSUserDefaults.standardUserDefaults().setObject(data, forKey: "chatBgPic")
