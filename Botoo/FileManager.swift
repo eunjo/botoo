@@ -36,10 +36,10 @@ class FileManager{
     }
     
 
-    func writeFile(text:String, sender:String, date:String){
+    func writeFile(type:String, text:String, sender:String, date:String){
         
         
-        let data_array = ["text", text, sender, date]
+        let data_array = [type, text, sender, date]
         let data_NSData = stringArrayToNSData(data_array)
         let NewLine = "\n"
         
