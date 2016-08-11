@@ -31,7 +31,6 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     override func viewWillAppear(animated: Bool) {
-        
         NSUserDefaults.standardUserDefaults().setObject(self.isReadCount, forKey: "letterBadge")
     }
     
@@ -85,12 +84,10 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
         (cell.viewWithTag(100) as! UILabel).text = letterList[indexPath.row].title
         (cell.viewWithTag(200) as! UILabel).text = letterList[indexPath.row].date
         
-        if letterList[indexPath.row].writerImage == "nil1" {
+        if letterList[indexPath.row].writerImage == "1" {
             (cell.viewWithTag(101) as! UIImageView).image = UIImage(named: "default_female.png")
-        } else if letterList[indexPath.row].writerImage == "nil0" {
-            (cell.viewWithTag(101) as! UIImageView).image = UIImage(named: "default_male.png")
         } else {
-            // image 적용
+            (cell.viewWithTag(101) as! UIImageView).image = UIImage(named: "default_male.png")
         }
         
         if letterList[indexPath.row].isRead == 0 { // 안 읽은 경우

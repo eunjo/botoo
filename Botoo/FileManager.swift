@@ -36,10 +36,10 @@ class FileManager{
     }
     
 
-    func writeFile(text:String, sender:String, date:String){
+    func writeFile(type:String, text:String, sender:String, date:String){
         
         
-        let data_array = [text, sender, date]
+        let data_array = [type, text, sender, date]
         let data_NSData = stringArrayToNSData(data_array)
         let NewLine = "\n"
         
@@ -62,9 +62,10 @@ class FileManager{
         
     }
     
-    func writeContact(contact:CNContact){
+    func writeContact(contact:String, sender:String, date:String){
      
-        let contactsData: NSData = NSKeyedArchiver.archivedDataWithRootObject(contact)
+        let data_array = ["contact", contact, sender, date]
+        let data_NSData = stringArrayToNSData(data_array)
         let NewLine = "\n"
         
         var fileHandle = NSFileHandle(forWritingAtPath: filePath)
@@ -76,7 +77,7 @@ class FileManager{
         
         if (fileHandle != nil) {
             fileHandle?.seekToEndOfFile()
-            fileHandle?.writeData(contactsData)
+            fileHandle?.writeData(data_NSData)
         }
         
         if (fileHandle != nil) {
@@ -117,7 +118,7 @@ class FileManager{
         let data = NSMutableData()
         let terminator = [0]
         
-        let str = "{\"message\":\"\(array[0])\",\"nickname\":\"\(array[1])\",\"date\":\"\(array[2])\"}"
+        let str = "{\"type\":\"\(array[0])\",\"message\":\"\(array[1])\",\"nickname\":\"\(array[2])\",\"date\":\"\(array[3])\"}"
         
         data.appendData(str.dataUsingEncoding(NSUTF8StringEncoding)!)
         data.appendBytes(terminator, length: 1)
