@@ -9,6 +9,8 @@
 import UIKit
 import Contacts
 import ContactsUI
+import AddressBook
+import AddressBookUI
 
 class ChatContactTableViewCell: UITableViewCell {
 
@@ -18,6 +20,9 @@ class ChatContactTableViewCell: UITableViewCell {
     var givenName:String?
     var familyName:String?
     var phoneNum:String?
+    
+    var childView = contactDetailViewController()
+    var parentView = ChatViewController()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,6 +44,13 @@ class ChatContactTableViewCell: UITableViewCell {
         let phone = CNLabeledValue(label: CNLabelWork, value:CNPhoneNumber(stringValue: self.phoneNum!))
         Contact.phoneNumbers = [phone]
         
+        self.childView.contact = Contact
+        
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            self.window?.rootViewController!.presentViewController(self.childView, animated: true, completion: nil)
+        })
+        
     }
     
     func setData(gN:String, fN:String, pN:String){
@@ -47,5 +59,6 @@ class ChatContactTableViewCell: UITableViewCell {
         self.familyName = fN
         self.phoneNum = pN
     }
+    
     
 }
