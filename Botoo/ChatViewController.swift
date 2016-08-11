@@ -538,9 +538,13 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func contactPicker(picker: CNContactPickerViewController, didSelectContact contact: CNContact) {
         
+        print(contact.givenName)
+        print(contact.familyName)
+        let MobNumVar = (contact.phoneNumbers[0].value as! CNPhoneNumber).valueForKey("digits") as! String
+        print(MobNumVar)
 
- 
     }
+ 
 
     // 전송 버튼
     @IBAction func sendButtonTapped(sender: AnyObject) {
@@ -575,8 +579,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         let message = self.chatMessages[indexPath.row]["message"] as? String
         let name = self.chatMessages[indexPath.row]["nickname"] as? String
         let date = self.chatMessages[indexPath.row]["date"] as? String
+        let type = self.chatMessages[indexPath.row]["type"] as? String
         
-        if ((self.chatMessages[indexPath.row]["type"] as? String)! == "text"){
+        if (type == "text"){
             if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
                 var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
             
@@ -612,6 +617,11 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         } else {
             
             var cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCell") as? ChatContactTableViewCell
+            
+            if cell == nil {
+                tableView.registerNib(UINib(nibName: "UIChatContactCell", bundle: nil), forCellReuseIdentifier: "ChatContactTableViewCell")
+                cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCell") as? ChatContactTableViewCell
+            }
             
             return cell!
         }
