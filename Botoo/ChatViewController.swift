@@ -91,6 +91,11 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func getChatMessage() {
+        
+        ChatConstruct().getMessage(userId, completionHandler: { (json, error) -> Void in
+            print(json)
+        })
+        
         let messageList = FileManager.sharedInstance.readFile()
         
         if messageList == [] { return }
@@ -130,8 +135,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 self.chatMessages.append(messageInfo)
                 self.messageTableView.reloadData()
                 self.scrollToBottom()
-                
-//                print(messageInfo["message"]! as! String)
             })
         }
         self.scrollToBottom()
@@ -161,17 +164,15 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         SocketIOManager.sharedInstance.connectToServerWithNickname(self.userId, nickname: self.userName, completionHandler: { (userList) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if userList != nil {
+                    self.users.removeAll()
                     print("채팅 입장.")
                     print(userList)
                     
                     for data in userList {
                         self.users.append("\(data["clientId"]),\(data["isConnected"])")
                     }
-                    
 //                    users[indexPath.row]["nickname"] as? String
 //                    users[indexPath.row]["isConnected"] as! Bool
-                    
-                    self.findUser(self.users, find: self.loverId)
                 }
             })
         })
@@ -543,25 +544,34 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func contactPicker(picker: CNContactPickerViewController, didSelectContact contact: CNContact) {
-        
-        print(contact.givenName)
-        print(contact.familyName)
         let MobNumVar = (contact.phoneNumbers[0].value as! CNPhoneNumber).valueForKey("digits") as! String
-        print(MobNumVar)
-        
         let ContactString = "{\"givenName\":\"\(contact.givenName)\",\"familyName\":\"\(contact.familyName)\",\"MobNumVar\":\"\(MobNumVar)\"}"
         SocketIOManager.sharedInstance.sendMessage("contact", message: ContactString, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
-
     }
  
 
     // 전송 버튼
     @IBAction func sendButtonTapped(sender: AnyObject) {
         if chatInputTextField.text!.characters.count > 0 {
-            SocketIOManager.sharedInstance.sendMessage("text", message: chatInputTextField.text!, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
+            let message = chatInputTextField.text!
+            SocketIOManager.sharedInstance.sendMessage("text", message: message, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
             
             chatInputTextField.text = ""
             chatInputTextField.resignFirstResponder()
+            
+            if !self.findUser(self.users, find: self.loverId) {
+                
+                let messageInfo = [
+                    "senderId": self.userId as String,
+                    "receiverId": self.loverId as String,
+                    "message": message,
+                    "type": "text"
+                ]
+                
+                ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
+                    
+                })
+            }
         }
     }
     
@@ -630,7 +640,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCell") as? ChatContactTableViewCell
             }
             
-            
             let messageDic = convertStringToDictionary(message!)
             
             let givenName = messageDic!["givenName"]!
@@ -692,7 +701,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func findUser(users: [String], find: String) -> Bool! {
         
-        if users.count < 2 {
+        print(users)
+        print("find::\(find)")
+        
+        if users.count < 1 {
             print("NOT FIND!")
             return false
         }
@@ -700,6 +712,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         //리스트 정렬
         let usersTemp = users.sort()
         let usersTempMiddleId = usersTemp[usersTemp.count/2].componentsSeparatedByString(",")
+        
+        print("usersTempMiddleId:: \(usersTempMiddleId[0])")
         
         //가운데 요소와 비교
         if usersTempMiddleId[0] > find {
@@ -715,6 +729,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             }
         }
         
-        return true
+        return false
     }
 }
