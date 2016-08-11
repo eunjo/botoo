@@ -132,6 +132,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     override func viewWillAppear(animated: Bool) {
         // 배경 초기화
         initBackGround()
+        
+        FileManager.sharedInstance.initFile()
     }
     
     override func viewDidAppear(animated: Bool) {
