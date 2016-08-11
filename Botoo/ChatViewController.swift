@@ -77,8 +77,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
         
-        
-        
+        FileManager.sharedInstance.initFile()
         // 소켓은 실시간 통신을 위한 것
         // 실시간 대화가 아닌 경우 파일에 저장해 놓은 것을 뿌려주기
         
@@ -550,7 +549,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     @IBAction func sendButtonTapped(sender: AnyObject) {
         
         if chatInputTextField.text!.characters.count > 0 {
-            SocketIOManager.sharedInstance.sendMessage(chatInputTextField.text!, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
+            SocketIOManager.sharedInstance.sendMessage("text", message: chatInputTextField.text!, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
             
             chatInputTextField.text = ""
             chatInputTextField.resignFirstResponder()
