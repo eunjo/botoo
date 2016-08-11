@@ -209,6 +209,7 @@ class HomeViewController: UIViewController {
                 }
                 
                 NSUserDefaults.standardUserDefaults().setObject(self.loverNameStored, forKey: "loverName")
+                NSUserDefaults.standardUserDefaults().setObject(json["_id"] as? String, forKey: "loverId")
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     self.profileInit()

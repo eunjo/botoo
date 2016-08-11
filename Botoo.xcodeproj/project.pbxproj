@@ -21,6 +21,8 @@
 		C050D5C81D51D3F100D7114F /* BubbleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5C71D51D3F100D7114F /* BubbleLabel.swift */; };
 		C050D5CA1D523ECD00D7114F /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5C91D523ECD00D7114F /* ProgressView.swift */; };
 		C050D5CC1D59CB2B00D7114F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5CB1D59CB2B00D7114F /* Reachability.swift */; };
+		C050D5D01D5C54F000D7114F /* ChatProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5CF1D5C54F000D7114F /* ChatProtocol.swift */; };
+		C050D5D21D5C562C00D7114F /* ChatConstruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5D11D5C562C00D7114F /* ChatConstruct.swift */; };
 		C0D47AEE1D22A25500637EAB /* ChatTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */; };
 		C0D47AF21D22AEFB00637EAB /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */; };
 		C0D47AF41D237C8A00637EAB /* SettingNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */; };
@@ -144,6 +146,8 @@
 		C050D5C71D51D3F100D7114F /* BubbleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleLabel.swift; sourceTree = "<group>"; };
 		C050D5C91D523ECD00D7114F /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		C050D5CB1D59CB2B00D7114F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		C050D5CF1D5C54F000D7114F /* ChatProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatProtocol.swift; sourceTree = "<group>"; };
+		C050D5D11D5C562C00D7114F /* ChatConstruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatConstruct.swift; sourceTree = "<group>"; };
 		C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTabViewController.swift; sourceTree = "<group>"; };
 		C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNavViewController.swift; sourceTree = "<group>"; };
@@ -336,6 +340,7 @@
 			children = (
 				C0D47B0F1D32AFCF00637EAB /* MemberProtocol.swift */,
 				C007CBAC1D430C0700FA5A4C /* LetterProtocol.swift */,
+				C050D5CF1D5C54F000D7114F /* ChatProtocol.swift */,
 			);
 			name = Protocol;
 			sourceTree = "<group>";
@@ -355,6 +360,7 @@
 			children = (
 				C0D47B111D32AFF600637EAB /* MemberConstruct.swift */,
 				C007CBAE1D430C0F00FA5A4C /* LetterConstruct.swift */,
+				C050D5D11D5C562C00D7114F /* ChatConstruct.swift */,
 			);
 			name = Construct;
 			sourceTree = "<group>";
@@ -761,6 +767,7 @@
 				D63A120D1D37504D00AD6989 /* SocketEnginePacketType.swift in Sources */,
 				C007CBAB1D3F54FA00FA5A4C /* LetterDetailViewController.swift in Sources */,
 				D63A11EC1D374E1100AD6989 /* SocketIOManager.swift in Sources */,
+				C050D5D01D5C54F000D7114F /* ChatProtocol.swift in Sources */,
 				D69322AC1D20FB6A003E9147 /* HomeViewController.swift in Sources */,
 				C050D5C41D49EDB000D7114F /* TabBarViewController.swift in Sources */,
 				D63A120A1D37504D00AD6989 /* SocketClientManager.swift in Sources */,
@@ -770,6 +777,7 @@
 				D63A120E1D37504D00AD6989 /* SocketEnginePollable.swift in Sources */,
 				D69322AA1D20FB6A003E9147 /* AppDelegate.swift in Sources */,
 				D63A12061D37504D00AD6989 /* NSCharacterSet.swift in Sources */,
+				C050D5D21D5C562C00D7114F /* ChatConstruct.swift in Sources */,
 				D607C5EE1D2A41AF00542804 /* chatBGcolorViewController.swift in Sources */,
 				D600A97B1D23A869005F9130 /* LetterrWriteViewController.swift in Sources */,
 				D607C5EA1D2A1A2D00542804 /* albumViewController.swift in Sources */,

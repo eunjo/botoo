@@ -48,8 +48,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private var userSocketId = ""
     private let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
     private let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")!
+    private let loverId = NSUserDefaults.standardUserDefaults().stringForKey("loverId")!
     private var chatMessages:[[String : AnyObject]] = []
-    private var users:[[String : AnyObject]] = []
+    private var users = [String]()
     
     struct removeChats {
         static var isRemove = false
@@ -78,8 +79,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         //키보드에 대한 노티피케이션 생성
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
-        
-         FileManager.sharedInstance.initFile()
 
         // 소켓은 실시간 통신을 위한 것
         // 실시간 대화가 아닌 경우 파일에 저장해 놓은 것을 뿌려주기
@@ -90,6 +89,18 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func getChatMessage() {
+        
+//        ChatConstruct().getMessage(loverId, userId: userId, completionHandler: { (json, error) -> Void in
+//            if json != nil {
+//                let JsonData = json as! [[String: AnyObject]]
+//                
+//                print(json)
+//                for data in JsonData {
+//                    FileManager.sharedInstance.writeFile(data["type"]! as! String, text: data["message"]! as! String, sender: data["senderName"] as! String, date: data["date"] as! String)
+//                }
+//            }
+//        })
+        
         let messageList = FileManager.sharedInstance.readFile()
         
         if messageList == [] { return }
@@ -129,8 +140,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 self.chatMessages.append(messageInfo)
                 self.messageTableView.reloadData()
                 self.scrollToBottom()
-                
-//                print(messageInfo["message"]! as! String)
             })
         }
         self.scrollToBottom()
@@ -160,11 +169,13 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         SocketIOManager.sharedInstance.connectToServerWithNickname(self.userId, nickname: self.userName, completionHandler: { (userList) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if userList != nil {
+                    self.users.removeAll()
                     print("채팅 입장.")
                     print(userList)
                     
-                    // 요런 식으로 접근 가능
-                    self.users = userList
+                    for data in userList {
+                        self.users.append("\(data["clientId"]),\(data["isConnected"])")
+                    }
 //                    users[indexPath.row]["nickname"] as? String
 //                    users[indexPath.row]["isConnected"] as! Bool
                 }
@@ -538,27 +549,35 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func contactPicker(picker: CNContactPickerViewController, didSelectContact contact: CNContact) {
-        
-        print(contact.givenName)
-        print(contact.familyName)
         let MobNumVar = (contact.phoneNumbers[0].value as! CNPhoneNumber).valueForKey("digits") as! String
-        print(MobNumVar)
-        
         let ContactString = "{\"givenName\":\"\(contact.givenName)\",\"familyName\":\"\(contact.familyName)\",\"MobNumVar\":\"\(MobNumVar)\"}"
         SocketIOManager.sharedInstance.sendMessage("contact", message: ContactString, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
-
     }
  
 
     // 전송 버튼
     @IBAction func sendButtonTapped(sender: AnyObject) {
         if chatInputTextField.text!.characters.count > 0 {
-            SocketIOManager.sharedInstance.sendMessage("text", message: chatInputTextField.text!, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
+            let message = chatInputTextField.text!
+            SocketIOManager.sharedInstance.sendMessage("text", message: message, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
             
             chatInputTextField.text = ""
             chatInputTextField.resignFirstResponder()
+            
+            if !self.findUser(self.users, find: self.loverId) {
+                
+                let messageInfo = [
+                    "senderId": self.userId as String,
+                    "receiverId": self.loverId as String,
+                    "message": message,
+                    "type": "text"
+                ]
+                
+                ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
+                    
+                })
+            }
         }
-        
     }
     
     
@@ -626,7 +645,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCell") as? ChatContactTableViewCell
             }
             
-            
             let messageDic = convertStringToDictionary(message!)
             
             let givenName = messageDic!["givenName"]!
@@ -684,5 +702,38 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             let indexPath = NSIndexPath(forRow: numberOfRows-1, inSection: (numberOfSections-1))
             self.messageTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
         }
+    }
+    
+    func findUser(users: [String], find: String) -> Bool! {
+        
+        print(users)
+        print("find::\(find)")
+        
+        if users.count < 1 {
+            print("NOT FIND!")
+            return false
+        }
+        
+        //리스트 정렬
+        let usersTemp = users.sort()
+        let usersTempMiddleId = usersTemp[usersTemp.count/2].componentsSeparatedByString(",")
+        
+        print("usersTempMiddleId:: \(usersTempMiddleId[0])")
+        
+        //가운데 요소와 비교
+        if usersTempMiddleId[0] > find {
+            findUser(Array(usersTemp[0 ..< usersTemp.count/2]), find: find)
+        } else if usersTempMiddleId[0] < find {
+            findUser(Array(usersTemp[usersTemp.count/2 ..< usersTemp.count]), find: find)
+        } else if usersTempMiddleId[0] == find {
+            print("FIND! : \(usersTempMiddleId[0])")
+            if usersTempMiddleId[1] == "1" {
+                return true
+            } else {
+                return false
+            }
+        }
+        
+        return false
     }
 }
