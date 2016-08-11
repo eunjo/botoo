@@ -11,5 +11,5 @@ import Foundation
 protocol ChatProtocol {
     
     func saveMessage(messageInfo: Dictionary<String,String>?, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
-    func getMessage(userId: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
+    func getMessage(senderId: String, userId: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
 }

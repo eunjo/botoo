@@ -79,8 +79,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         //키보드에 대한 노티피케이션 생성
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
-        
-         FileManager.sharedInstance.initFile()
 
         // 소켓은 실시간 통신을 위한 것
         // 실시간 대화가 아닌 경우 파일에 저장해 놓은 것을 뿌려주기
@@ -92,9 +90,16 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func getChatMessage() {
         
-        ChatConstruct().getMessage(userId, completionHandler: { (json, error) -> Void in
-            print(json)
-        })
+//        ChatConstruct().getMessage(loverId, userId: userId, completionHandler: { (json, error) -> Void in
+//            if json != nil {
+//                let JsonData = json as! [[String: AnyObject]]
+//                
+//                print(json)
+//                for data in JsonData {
+//                    FileManager.sharedInstance.writeFile(data["type"]! as! String, text: data["message"]! as! String, sender: data["senderName"] as! String, date: data["date"] as! String)
+//                }
+//            }
+//        })
         
         let messageList = FileManager.sharedInstance.readFile()
         
