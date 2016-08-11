@@ -47,7 +47,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private let userName = NSUserDefaults.standardUserDefaults().stringForKey("userName")!
     private var userSocketId = ""
     private let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
+    private let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")!
     private var chatMessages:[[String : AnyObject]] = []
+    private var users:[[String : AnyObject]] = []
     
     struct removeChats {
         static var isRemove = false
@@ -78,6 +80,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
         
         // FileManager.sharedInstance.initFile()
+
         // 소켓은 실시간 통신을 위한 것
         // 실시간 대화가 아닌 경우 파일에 저장해 놓은 것을 뿌려주기
         
@@ -154,16 +157,15 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func initSocket() {
         // 유저 네임 서버로 보내기
-        SocketIOManager.sharedInstance.connectToServerWithNickname(self.userName, completionHandler: { (userList) -> Void in
+        SocketIOManager.sharedInstance.connectToServerWithNickname(self.userId, nickname: self.userName, completionHandler: { (userList) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if userList != nil {
                     print("채팅 입장.")
                     print(userList)
                     
                     // 요런 식으로 접근 가능
-//                    users = userList
+                    self.users = userList
 //                    users[indexPath.row]["nickname"] as? String
-//                    users[indexPath.row]["isConnected"] as! Bool
 //                    users[indexPath.row]["isConnected"] as! Bool
                 }
             })
@@ -550,7 +552,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 
     // 전송 버튼
     @IBAction func sendButtonTapped(sender: AnyObject) {
-        
         if chatInputTextField.text!.characters.count > 0 {
             SocketIOManager.sharedInstance.sendMessage("text", message: chatInputTextField.text!, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
             
