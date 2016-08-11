@@ -119,6 +119,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     override func viewWillAppear(animated: Bool) {
         // 배경 초기화
         initBackGround()
+
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -144,7 +145,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 FileManager.sharedInstance.initFile()
                 // write file
                 for messageInfo in self.chatMessages {
-                    FileManager.sharedInstance.writeFile("text", text: messageInfo["message"]! as! String, sender: messageInfo["nickname"] as! String, date: messageInfo["date"] as! String)
+                    FileManager.sharedInstance.writeFile(messageInfo["message"]! as! String, sender: messageInfo["nickname"] as! String, date: messageInfo["date"] as! String)
                 }
             } else {
                 removeChats.isRemove = false
@@ -611,7 +612,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             }
         } else {
             
-            var cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCell") as? ChatContactTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCell") as? ChatContactTableViewCell
             
             return cell!
         }
