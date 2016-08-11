@@ -106,6 +106,7 @@
 		D69322CA1D20FB6A003E9147 /* BotooUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69322C91D20FB6A003E9147 /* BotooUITests.swift */; };
 		D6B271381D59A67600E61792 /* UIChatContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6B271371D59A67600E61792 /* UIChatContactCell.xib */; };
 		D6B2713A1D59A6B600E61792 /* ChatContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B271391D59A6B600E61792 /* ChatContactTableViewCell.swift */; };
+		D6B2713C1D5C6DDC00E61792 /* contactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2713B1D5C6DDC00E61792 /* contactDetailViewController.swift */; };
 		D6C0EFF71D2760FF00798E2B /* alarmSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C0EFF61D2760FF00798E2B /* alarmSetViewController.swift */; };
 		D6E2AF521D3E1D3F00C01509 /* tp_default_female.png in Resources */ = {isa = PBXBuildFile; fileRef = D6E2AF4F1D3E1D3F00C01509 /* tp_default_female.png */; };
 		D6E2AF531D3E1D3F00C01509 /* tp_default_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = D6E2AF501D3E1D3F00C01509 /* tp_default_grey.png */; };
@@ -237,6 +238,7 @@
 		D69322CB1D20FB6A003E9147 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6B271371D59A67600E61792 /* UIChatContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIChatContactCell.xib; sourceTree = "<group>"; };
 		D6B271391D59A6B600E61792 /* ChatContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatContactTableViewCell.swift; sourceTree = "<group>"; };
+		D6B2713B1D5C6DDC00E61792 /* contactDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = contactDetailViewController.swift; sourceTree = "<group>"; };
 		D6C0EFF61D2760FF00798E2B /* alarmSetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = alarmSetViewController.swift; sourceTree = "<group>"; };
 		D6E2AF4F1D3E1D3F00C01509 /* tp_default_female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tp_default_female.png; path = img/tp_default_female.png; sourceTree = "<group>"; };
 		D6E2AF501D3E1D3F00C01509 /* tp_default_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tp_default_grey.png; path = img/tp_default_grey.png; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				D607C5ED1D2A41AF00542804 /* chatBGcolorViewController.swift */,
 				C007CBAA1D3F54FA00FA5A4C /* LetterDetailViewController.swift */,
 				C050D5C31D49EDB000D7114F /* TabBarViewController.swift */,
+				D6B2713B1D5C6DDC00E61792 /* contactDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -795,6 +798,7 @@
 				D607C5DA1D279F5A00542804 /* connectSceneViewController.swift in Sources */,
 				D63A12091D37504D00AD6989 /* SocketAnyEvent.swift in Sources */,
 				D600A97D1D23B395005F9130 /* letterTableVO.swift in Sources */,
+				D6B2713C1D5C6DDC00E61792 /* contactDetailViewController.swift in Sources */,
 				D600A9701D237D24005F9130 /* LetterViewController.swift in Sources */,
 				C0D47AEE1D22A25500637EAB /* ChatTabViewController.swift in Sources */,
 				D63A12181D37504D00AD6989 /* SocketParsable.swift in Sources */,

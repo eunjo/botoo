@@ -1805,6 +1805,25 @@
             </objects>
             <point key="canvasLocation" x="2182.5" y="879.5"/>
         </scene>
+        <!--Contact Detail View Controller-->
+        <scene sceneID="vRj-3L-Euy">
+            <objects>
+                <viewController storyboardIdentifier="contactDetail" id="Anx-bA-Fcp" customClass="contactDetailViewController" customModule="Botoo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="w1i-9Y-pP7"/>
+                        <viewControllerLayoutGuide type="bottom" id="bGp-eB-T4W"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4Rc-lL-bwM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A4q-xG-a9p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1312.5" y="1612.5"/>
+        </scene>
         <!--Chat Tab Setting View Controller-->
         <scene sceneID="hvO-G3-EJJ">
             <objects>
