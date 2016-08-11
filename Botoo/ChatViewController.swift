@@ -48,8 +48,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private var userSocketId = ""
     private let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
     private let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")!
+    private let loverId = NSUserDefaults.standardUserDefaults().stringForKey("loverId")!
     private var chatMessages:[[String : AnyObject]] = []
-    private var users:[[String : AnyObject]] = []
+    private var users = [String]()
     
     struct removeChats {
         static var isRemove = false
@@ -161,10 +162,14 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     print("채팅 입장.")
                     print(userList)
                     
-                    // 요런 식으로 접근 가능
-                    self.users = userList
+                    for data in userList {
+                        self.users.append("\(data["clientId"]),\(data["isConnected"])")
+                    }
+                    
 //                    users[indexPath.row]["nickname"] as? String
 //                    users[indexPath.row]["isConnected"] as! Bool
+                    
+                    self.findUser(self.users, find: self.loverId)
                 }
             })
         })
@@ -553,7 +558,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             chatInputTextField.text = ""
             chatInputTextField.resignFirstResponder()
         }
-        
     }
     
     
@@ -668,5 +672,33 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             let indexPath = NSIndexPath(forRow: numberOfRows-1, inSection: (numberOfSections-1))
             self.messageTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
         }
+    }
+    
+    func findUser(users: [String], find: String) -> Bool! {
+        
+        if users.count < 2 {
+            print("NOT FIND!")
+            return false
+        }
+        
+        //리스트 정렬
+        let usersTemp = users.sort()
+        let usersTempMiddleId = usersTemp[usersTemp.count/2].componentsSeparatedByString(",")
+        
+        //가운데 요소와 비교
+        if usersTempMiddleId[0] > find {
+            findUser(Array(usersTemp[0 ..< usersTemp.count/2]), find: find)
+        } else if usersTempMiddleId[0] < find {
+            findUser(Array(usersTemp[usersTemp.count/2 ..< usersTemp.count]), find: find)
+        } else if usersTempMiddleId[0] == find {
+            print("FIND! : \(usersTempMiddleId[0])")
+            if usersTempMiddleId[1] == "1" {
+                return true
+            } else {
+                return false
+            }
+        }
+        
+        return true
     }
 }
