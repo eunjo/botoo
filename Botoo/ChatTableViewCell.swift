@@ -18,7 +18,7 @@ class ChatTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         messageBubble.lineBreakMode = NSLineBreakMode.ByWordWrapping
-
+        messageBubble.preferredMaxLayoutWidth = 200;
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
