@@ -47,8 +47,8 @@ class ChatConstruct: ChatProtocol {
         return task
     }
     
-    func getMessage(userId: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
-        let postString = "receiverId=\(userId)"
+    func getMessage(senderId: String, userId: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
+        let postString = "receiverId=\(userId)&senderId=\(senderId)"
         let URL = NSURL(string: "\(urlInfo.getMessage)?\(postString)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
         
         let task = session.dataTaskWithRequest(NSMutableURLRequest(URL: URL!)) {
