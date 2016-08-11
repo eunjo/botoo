@@ -66,6 +66,7 @@ class chatTabSettingViewController: UIViewController, UIImagePickerControllerDel
             self.imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
             //수정 가능 옵션
             self.imagePicker.allowsEditing = true
+            
           
             
             //델리게이트 지정
@@ -95,14 +96,16 @@ class chatTabSettingViewController: UIViewController, UIImagePickerControllerDel
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
-            imagePicker.dismissViewControllerAnimated(false) { (_) in
             let image = info[UIImagePickerControllerOriginalImage] as? UIImage
             let data = UIImagePNGRepresentation(image!)
-            image.contentMode = .ScaleAspectFill
+            self.myImageView.contentMode = UIViewContentMode.ScaleAspectFill
+            self.myImageView.clipsToBounds = true
+            
             NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgPic")
             NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgColor")
             NSUserDefaults.standardUserDefaults().setObject(data, forKey: "chatBgPic")
             NSUserDefaults.standardUserDefaults().synchronize()
+            dismissViewControllerAnimated(true, completion: nil)
             
         }
     }
@@ -118,4 +121,4 @@ class chatTabSettingViewController: UIViewController, UIImagePickerControllerDel
     }
     */
 
-}
+
