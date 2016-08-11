@@ -90,16 +90,16 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func getChatMessage() {
         
-//        ChatConstruct().getMessage(loverId, userId: userId, completionHandler: { (json, error) -> Void in
-//            if json != nil {
-//                let JsonData = json as! [[String: AnyObject]]
-//                
-//                print(json)
-//                for data in JsonData {
-//                    FileManager.sharedInstance.writeFile(data["type"]! as! String, text: data["message"]! as! String, sender: data["senderName"] as! String, date: data["date"] as! String)
-//                }
-//            }
-//        })
+        ChatConstruct().getMessage(loverId, userId: userId, completionHandler: { (json, error) -> Void in
+            if json != nil {
+                let JsonData = json as! [[String: AnyObject]]
+                
+                print(json)
+                for data in JsonData {
+                    FileManager.sharedInstance.writeFile(data["type"]! as! String, text: data["message"]! as! String, sender: data["senderName"] as! String, date: data["date"] as! String)
+                }
+            }
+        })
         
         let messageList = FileManager.sharedInstance.readFile()
         
