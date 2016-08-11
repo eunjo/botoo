@@ -15,19 +15,32 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnm-A9-cIk">
-                        <rect key="frame" x="8" y="8" width="304" height="21"/>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2y-tt-3ka">
+                        <rect key="frame" x="240" y="37" width="72" height="30"/>
+                        <state key="normal" title="Contact"/>
+                        <connections>
+                            <action selector="contactButtonTapped:" destination="vKE-CS-doE" eventType="touchUpInside" id="Cud-KJ-xaz"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnm-A9-cIk">
+                        <rect key="frame" x="13" y="8" width="295" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="gnm-A9-cIk" firstAttribute="trailing" secondItem="vlH-vS-Gr8" secondAttribute="trailingMargin" id="JiZ-vb-8AA"/>
-                    <constraint firstItem="gnm-A9-cIk" firstAttribute="leading" secondItem="vlH-vS-Gr8" secondAttribute="leadingMargin" id="pr7-nz-Yah"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="gnm-A9-cIk" secondAttribute="trailing" constant="4" id="0tu-t9-Co9"/>
+                    <constraint firstItem="x2y-tt-3ka" firstAttribute="top" secondItem="gnm-A9-cIk" secondAttribute="bottom" constant="8" id="Apj-xu-QiA"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="x2y-tt-3ka" secondAttribute="bottom" constant="14.5" id="Gkk-0g-eL7"/>
+                    <constraint firstItem="gnm-A9-cIk" firstAttribute="top" secondItem="vlH-vS-Gr8" secondAttribute="topMargin" id="NOg-fk-p5x"/>
+                    <constraint firstItem="x2y-tt-3ka" firstAttribute="leading" secondItem="vlH-vS-Gr8" secondAttribute="leadingMargin" constant="232" id="cbN-pa-DqC"/>
+                    <constraint firstItem="gnm-A9-cIk" firstAttribute="leading" secondItem="vlH-vS-Gr8" secondAttribute="leadingMargin" constant="5" id="q4W-Fr-gfP"/>
+                    <constraint firstItem="x2y-tt-3ka" firstAttribute="trailing" secondItem="vlH-vS-Gr8" secondAttribute="trailingMargin" id="zWB-tD-52i"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="contactButton" destination="x2y-tt-3ka" id="PKl-yI-5sb"/>
                 <outlet property="nameLabel" destination="gnm-A9-cIk" id="dN8-Qt-QG3"/>
             </connections>
             <point key="canvasLocation" x="875" y="-242"/>

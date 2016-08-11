@@ -27,6 +27,8 @@ public class URLInfo {
     public var updateLetter: String
     public var sendAlert: String
     public var acceptAlert: String
+    public var saveMessage: String
+    public var getMessage: String
 
     init() {
         acceptAlert = WEB_SERVER_IP + "/member/acceptAlert"
@@ -45,5 +47,7 @@ public class URLInfo {
         setProPicDefault = WEB_SERVER_IP + "/member/setProPicDefault"
         deleteLetter = WEB_SERVER_IP + "/letter/deleteLetter"
         updateLetter = WEB_SERVER_IP + "/letter/updateLetter"
+        saveMessage = WEB_SERVER_IP + "/chat/saveMessage"
+        getMessage = WEB_SERVER_IP + "/chat/getMessage"
     }
 }
