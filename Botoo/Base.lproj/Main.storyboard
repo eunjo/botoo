@@ -395,7 +395,7 @@
                             <constraint firstItem="E0Z-GP-LLl" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottomMargin" id="lCB-cc-1bZ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="홈" id="ayI-df-irD"/>
+                    <tabBarItem key="tabBarItem" title="홈" image="tab_home" selectedImage="tab_home" id="ayI-df-irD"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -434,7 +434,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="채팅" id="rz3-Mg-zQr"/>
+                    <tabBarItem key="tabBarItem" title="채팅" image="tab_chat" selectedImage="tab_chat" id="rz3-Mg-zQr"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="chatTabBarItem" destination="rz3-Mg-zQr" id="Bfp-sl-olX"/>
@@ -1598,7 +1598,7 @@
         <scene sceneID="nM5-vV-4fC">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5UB-2U-NnB" customClass="SettingNavViewController" customModule="Botoo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="설정" id="rte-9F-r1r"/>
+                    <tabBarItem key="tabBarItem" title="설정" image="tab_settings" selectedImage="tab_settings" id="rte-9F-r1r"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VRg-Za-7Of">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1617,7 +1617,7 @@
         <scene sceneID="66j-wY-4xM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qJl-9V-jo3" customClass="LetterNavViewController" customModule="Botoo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="편지" id="yaI-tb-dKj"/>
+                    <tabBarItem key="tabBarItem" title="편지" image="tab_letter" selectedImage="tab_letter" id="yaI-tb-dKj"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Mv-sb-fIl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1927,6 +1927,10 @@
         <image name="dolphin_only.png" width="120" height="120"/>
         <image name="homeBG.png" width="750" height="1334"/>
         <image name="red_circle.png" width="60" height="60"/>
+        <image name="tab_chat" width="24" height="24"/>
+        <image name="tab_home" width="24" height="24"/>
+        <image name="tab_letter" width="24" height="24"/>
+        <image name="tab_settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jZk-yp-nUi"/>

@@ -61,30 +61,8 @@ class FileManager{
         }
         
     }
+
     
-    func writeContact(contact:String, sender:String, date:String){
-     
-        let data_array = ["contact", contact, sender, date]
-        let data_NSData = stringArrayToNSData(data_array)
-        let NewLine = "\n"
-        
-        var fileHandle = NSFileHandle(forWritingAtPath: filePath)
-        
-        if (fileHandle == nil) {
-            initFile()
-            fileHandle = NSFileHandle(forWritingAtPath: filePath)
-        }
-        
-        if (fileHandle != nil) {
-            fileHandle?.seekToEndOfFile()
-            fileHandle?.writeData(data_NSData)
-        }
-        
-        if (fileHandle != nil) {
-            fileHandle?.seekToEndOfFile()
-            fileHandle?.writeData(NewLine.dataUsingEncoding(NSUTF8StringEncoding)!)
-        }
-    }
     
     func readFile() -> [String] {
         
