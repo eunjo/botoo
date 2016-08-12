@@ -706,9 +706,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func findUser(users: [String], find: String) -> Bool! {
         
-        print(users)
-        print("find::\(find)")
-        
         if users.count < 1 {
             print("NOT FIND!")
             return false
