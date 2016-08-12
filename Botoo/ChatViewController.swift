@@ -59,19 +59,17 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
-        messageTableView.delegate = self
-        messageTableView.dataSource = self
         
-        messageTableView.estimatedRowHeight = 73.0
-        messageTableView.rowHeight = UITableViewAutomaticDimension
-        
+        //messageTableView 초기화
+        initMessageTableView()
+
         //디바이스 모델 체크 및 키보드 높이 설정
         checkDevice()
         
         //컨테이너 초기화 (unvisible)
         initContainers()
         
-        // 배경 설정 //
+        //배경 설정
         initBackGround()
         
         currentKeyboardHeight = 0.0
@@ -79,13 +77,22 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         //키보드에 대한 노티피케이션 생성
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
-
-        // 소켓은 실시간 통신을 위한 것
-        // 실시간 대화가 아닌 경우 파일에 저장해 놓은 것을 뿌려주기
         
         initSocket()
         getChatMessage()
         
+    }
+    
+    func initMessageTableView() -> Void {
+        messageTableView.delegate = self
+        messageTableView.dataSource = self
+        
+        messageTableView.estimatedRowHeight = 73.0
+        messageTableView.rowHeight = UITableViewAutomaticDimension
+        
+        let messageTableViewTapped = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.messageTableViewTapped))
+        messageTableView.userInteractionEnabled = true
+        messageTableView.addGestureRecognizer(messageTableViewTapped)
     }
     
     func getChatMessage() {
@@ -221,6 +228,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 
         // color 설정
         if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBgColor")){
+            self.messageTableView.backgroundView = nil
+            
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="white"){
                 messageTableView.backgroundColor = UIColor.whiteColor()
             }
@@ -262,6 +271,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         } else if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBGdefalut")){
             
             messageTableView.backgroundColor = UIColor(patternImage: UIImage(named: "chatBGdefault.png")!)
+            self.messageTableView.backgroundView = nil
         }
     }
     
@@ -343,6 +353,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     //빈 공간 클릭 시 키보드 하이드
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
+        
         if drawerIsOpen {
             hideDrawer()
         }
@@ -740,5 +751,21 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         }
         
         return false
+    }
+    
+    func messageTableViewTapped() {
+        self.view.endEditing(true)
+        
+        if drawerIsOpen {
+            hideDrawer()
+        }
+        
+        if plusIsOpen {
+            adjustingHeightForPlus(plusIsOpen)
+        }
+        
+        if emoIsOpen {
+            adjustingHeightForEmo(emoIsOpen)
+        }
     }
 }
