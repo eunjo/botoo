@@ -549,6 +549,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             let base64String = Imagedata!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
             
             SocketIOManager.sharedInstance.sendMessage("pic", message: base64String, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
+            
+            self.saveMessage(base64String, type: "pic")
         }
     }
     
@@ -605,19 +607,23 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             chatInputTextField.text = ""
             chatInputTextField.resignFirstResponder()
             
-            if !self.findUser(self.users, find: self.loverId) {
+            self.saveMessage(message, type: "text")
+        }
+    }
+    
+    func saveMessage(message: String, type: String) {
+        if !self.findUser(self.users, find: self.loverId) {
+            
+            let messageInfo = [
+                "senderId": self.userId as String,
+                "receiverId": self.loverId as String,
+                "message": message,
+                "type": type
+            ]
+            
+            ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
                 
-                let messageInfo = [
-                    "senderId": self.userId as String,
-                    "receiverId": self.loverId as String,
-                    "message": message,
-                    "type": "text"
-                ]
-                
-                ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
-                    
-                })
-            }
+            })
         }
     }
     
@@ -685,27 +691,58 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             
             return cell!
         case "pic":
-            var cell = tableView.dequeueReusableCellWithIdentifier("ChatPicTabelViewCell") as? ChatPicTabelViewCell
-            
-            if cell == nil {
-                tableView.registerNib(UINib(nibName: "UIChatPicCell", bundle: nil), forCellReuseIdentifier: "ChatPicTabelViewCell")
-                cell = tableView.dequeueReusableCellWithIdentifier("ChatPicTabelViewCell") as? ChatPicTabelViewCell
-            }
-            
-            cell?.name.text = name
-            cell?.date.text = dateToString(date!)
-            
-            //이미지 디코딩
-            let dataDecoded:NSData = NSData(base64EncodedString: message!, options: NSDataBase64DecodingOptions(rawValue: 0))!
-            let decodedimage:UIImage = UIImage(data: dataDecoded)!
-            cell?.pic.image = decodedimage
-            
-            let tap_2 = UITapGestureRecognizer(target:self, action: #selector(ChatViewController.picTapped(_:)))
-            cell?.pic.userInteractionEnabled = true
-            cell?.pic.addGestureRecognizer(tap_2)
-            
-            return cell!
-        default:
+            if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
+                var cell = tableView.dequeueReusableCellWithIdentifier("ChatPicTabelViewCell") as? ChatPicTabelViewCell
+                
+                if cell == nil {
+                    tableView.registerNib(UINib(nibName: "UIChatPicCell", bundle: nil), forCellReuseIdentifier: "ChatPicTabelViewCell")
+                    cell = tableView.dequeueReusableCellWithIdentifier("ChatPicTabelViewCell") as? ChatPicTabelViewCell
+                }
+                
+                cell?.name.text = name
+                cell?.date.text = dateToString(date!)
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    //이미지 디코딩
+                    let dataDecoded:NSData = NSData(base64EncodedString: message!, options: NSDataBase64DecodingOptions(rawValue: 0))!
+                    let decodedimage:UIImage = UIImage(data: dataDecoded)!
+                    cell?.pic.image = decodedimage
+                    
+                    //이미지 확대
+                    let tap_2 = UITapGestureRecognizer(target:self, action: #selector(ChatViewController.picTapped(_:)))
+                    cell?.pic.userInteractionEnabled = true
+                    cell?.pic.addGestureRecognizer(tap_2)
+                }
+                
+                return cell!
+
+                
+            } else { // 상대방 메세지
+                var cell = tableView.dequeueReusableCellWithIdentifier("ChatPicTabelViewCellm") as? ChatPicTabelViewCellm
+                
+                if cell == nil {
+                    tableView.registerNib(UINib(nibName: "UIChatPicCellm", bundle: nil), forCellReuseIdentifier: "ChatPicTabelViewCellm")
+                    cell = tableView.dequeueReusableCellWithIdentifier("ChatPicTabelViewCellm") as? ChatPicTabelViewCellm
+                }
+                
+                cell?.name.text = name
+                cell?.date.text = dateToString(date!)
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    //이미지 디코딩
+                    let dataDecoded:NSData = NSData(base64EncodedString: message!, options: NSDataBase64DecodingOptions(rawValue: 0))!
+                    let decodedimage:UIImage = UIImage(data: dataDecoded)!
+                    cell?.pic.image = decodedimage
+                    
+                    //이미지 확대
+                    let tap_2 = UITapGestureRecognizer(target:self, action: #selector(ChatViewController.picTapped(_:)))
+                    cell?.pic.userInteractionEnabled = true
+                    cell?.pic.addGestureRecognizer(tap_2)
+                }
+                
+                return cell!
+
+            }        default:
             return UITableViewCell()
         }
     }

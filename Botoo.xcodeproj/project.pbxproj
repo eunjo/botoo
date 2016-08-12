@@ -38,6 +38,8 @@
 		C0D47B0D1D32AF2600637EAB /* URLInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47B0C1D32AF2600637EAB /* URLInfo.swift */; };
 		C0D47B101D32AFCF00637EAB /* MemberProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47B0F1D32AFCF00637EAB /* MemberProtocol.swift */; };
 		C0D47B121D32AFF600637EAB /* MemberConstruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47B111D32AFF600637EAB /* MemberConstruct.swift */; };
+		C0FFBC3B1D5DFE3F003C4C7F /* UIChatPicCellm.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0FFBC3A1D5DFE3F003C4C7F /* UIChatPicCellm.xib */; };
+		C0FFBC3D1D5DFEA9003C4C7F /* ChatPicTabelViewCellm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFBC3C1D5DFEA9003C4C7F /* ChatPicTabelViewCellm.swift */; };
 		D600A9661D226F06005F9130 /* RegisterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A9651D226F06005F9130 /* RegisterPageViewController.swift */; };
 		D600A9681D227C8D005F9130 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A9671D227C8D005F9130 /* LoginViewController.swift */; };
 		D600A96C1D2287B2005F9130 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D600A96B1D2287B2005F9130 /* Icon-60@2x.png */; };
@@ -162,6 +164,8 @@
 		C0D47B0C1D32AF2600637EAB /* URLInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLInfo.swift; sourceTree = "<group>"; };
 		C0D47B0F1D32AFCF00637EAB /* MemberProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberProtocol.swift; sourceTree = "<group>"; };
 		C0D47B111D32AFF600637EAB /* MemberConstruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberConstruct.swift; sourceTree = "<group>"; };
+		C0FFBC3A1D5DFE3F003C4C7F /* UIChatPicCellm.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIChatPicCellm.xib; path = ../UIChatPicCellm.xib; sourceTree = "<group>"; };
+		C0FFBC3C1D5DFEA9003C4C7F /* ChatPicTabelViewCellm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatPicTabelViewCellm.swift; sourceTree = "<group>"; };
 		CC75A78849B5A4C7DB472BE2 /* Pods_Botoo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Botoo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D600A9651D226F06005F9130 /* RegisterPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
 		D600A9671D227C8D005F9130 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -350,6 +354,7 @@
 				C050D5BF1D46FBF200D7114F /* ChatTableViewCellm.swift */,
 				D6B271391D59A6B600E61792 /* ChatContactTableViewCell.swift */,
 				C050D5D71D5DC5BC00D7114F /* ChatPicTabelViewCell.swift */,
+				C0FFBC3C1D5DFEA9003C4C7F /* ChatPicTabelViewCellm.swift */,
 			);
 			name = TableCell;
 			sourceTree = "<group>";
@@ -473,6 +478,7 @@
 				D69322A91D20FB6A003E9147 /* AppDelegate.swift */,
 				D6B271371D59A67600E61792 /* UIChatContactCell.xib */,
 				C050D5D51D5DC39C00D7114F /* UIChatPicCell.xib */,
+				C0FFBC3A1D5DFE3F003C4C7F /* UIChatPicCellm.xib */,
 				C050D5B91D45AF5F00D7114F /* UIChatTableViewCell.xib */,
 				C050D5C11D46FCCA00D7114F /* UIChatTableViewCellm.xib */,
 				D69322AD1D20FB6A003E9147 /* Main.storyboard */,
@@ -628,6 +634,7 @@
 				D607C5E01D27DA5E00542804 /* dolphin_only.png in Resources */,
 				C050D5D61D5DC39C00D7114F /* UIChatPicCell.xib in Resources */,
 				D632BF001D46882C0029D6C1 /* 7.png in Resources */,
+				C0FFBC3B1D5DFE3F003C4C7F /* UIChatPicCellm.xib in Resources */,
 				D632BF021D46882C0029D6C1 /* 9.png in Resources */,
 				D680FADA1D314D6200A84986 /* Default-iPhone6.png in Resources */,
 				D600A96C1D2287B2005F9130 /* Icon-60@2x.png in Resources */,
@@ -757,6 +764,7 @@
 				D63A120C1D37504D00AD6989 /* SocketEngineClient.swift in Sources */,
 				C0D47B121D32AFF600637EAB /* MemberConstruct.swift in Sources */,
 				D607C5E21D27DC5700542804 /* dateSetViewController.swift in Sources */,
+				C0FFBC3D1D5DFEA9003C4C7F /* ChatPicTabelViewCellm.swift in Sources */,
 				D63A12201D37507400AD6989 /* WebSocket.swift in Sources */,
 				C0D47B0D1D32AF2600637EAB /* URLInfo.swift in Sources */,
 				D63A120D1D37504D00AD6989 /* SocketEnginePacketType.swift in Sources */,

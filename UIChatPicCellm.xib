@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="286" id="Yuc-XM-wcg" customClass="ChatPicTabelViewCellm" customModule="Botoo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yuc-XM-wcg" id="0Lq-pD-Ef0">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="249"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fhg-Cl-sm7">
+                        <rect key="frame" x="16" y="15" width="289" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tp_default_grey.png" translatesAutoresizingMaskIntoConstraints="NO" id="PM0-nV-VEx">
+                        <rect key="frame" x="16" y="44" width="155" height="195"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="155" id="smD-VS-RNy"/>
+                            <constraint firstAttribute="height" constant="195" id="xBb-49-nHW"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WO2-ne-Xx1">
+                        <rect key="frame" x="179" y="226" width="126" height="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="Fhg-Cl-sm7" firstAttribute="leading" secondItem="0Lq-pD-Ef0" secondAttribute="leadingMargin" constant="8" id="3ER-G9-2n4"/>
+                    <constraint firstItem="Fhg-Cl-sm7" firstAttribute="top" secondItem="0Lq-pD-Ef0" secondAttribute="topMargin" constant="7" id="9dJ-GH-4yR"/>
+                    <constraint firstItem="WO2-ne-Xx1" firstAttribute="top" secondItem="Fhg-Cl-sm7" secondAttribute="bottom" constant="190" id="NZl-9s-k61"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="WO2-ne-Xx1" secondAttribute="trailing" constant="7" id="bFt-49-8cD"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="WO2-ne-Xx1" secondAttribute="bottom" constant="2" id="cNv-Qb-8Iu"/>
+                    <constraint firstItem="PM0-nV-VEx" firstAttribute="top" secondItem="Fhg-Cl-sm7" secondAttribute="bottom" constant="8" id="cOt-rB-bgV"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="PM0-nV-VEx" secondAttribute="bottom" constant="2" id="jpC-1w-XWi"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Fhg-Cl-sm7" secondAttribute="trailing" constant="7" id="uwU-er-6es"/>
+                    <constraint firstItem="PM0-nV-VEx" firstAttribute="leading" secondItem="0Lq-pD-Ef0" secondAttribute="leadingMargin" constant="8" id="wb0-WW-KtW"/>
+                    <constraint firstItem="WO2-ne-Xx1" firstAttribute="leading" secondItem="PM0-nV-VEx" secondAttribute="trailing" constant="8" id="xBw-tl-k6A"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="date" destination="WO2-ne-Xx1" id="cmb-m3-JXw"/>
+                <outlet property="name" destination="Fhg-Cl-sm7" id="R21-zG-6Sg"/>
+                <outlet property="pic" destination="PM0-nV-VEx" id="fuG-V8-RCm"/>
+            </connections>
+            <point key="canvasLocation" x="308" y="320"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="tp_default_grey.png" width="120" height="120"/>
+    </resources>
+</document>

@@ -201,8 +201,8 @@ class HomeViewController: UIViewController {
                 self.loverGenderStored = json["gender"] as? String
                 self.loverMsgStored = json["msg"] as? String
                 self.loverProPicStored = json["proPic"] as? String
-                if (self.loverProPicStored != nil){
-                    self._loverProPic = json["image_base64String"] as? String!
+                if (self.loverProPicStored != nil && json["image_base64String"] != nil){
+                    self._loverProPic = json["image_base64String"] as? String
                 }
                 
                 NSUserDefaults.standardUserDefaults().setObject(self.loverNameStored, forKey: "loverName")
@@ -246,7 +246,7 @@ class HomeViewController: UIViewController {
     
     func profileInit() {
         // 상대방 로드
-        if (loverProPicStored == nil) {
+        if (loverProPicStored == nil || self._loverProPic == nil) {
             if (loverGenderStored == "1") {
                 loverProPic.image = UIImage(named: "tp_default_female.png")
             }
