@@ -205,8 +205,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 })
             }
             
-            FileManager.sharedInstance.initFile()
-            
             ChatViewController.removeChats.isRemove = true
             
             NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "gender")
