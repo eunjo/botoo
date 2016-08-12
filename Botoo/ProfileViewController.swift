@@ -47,10 +47,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let tap_2 = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoNameEdit(_:)))
         profile_lb_name.userInteractionEnabled = true
         profile_lb_name.addGestureRecognizer(tap_2)
-        
-        initProfile()
-        
-        
     }
     
     override func viewWillAppear(animated: Bool) {

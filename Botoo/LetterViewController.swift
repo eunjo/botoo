@@ -44,22 +44,27 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
             if NSUserDefaults.standardUserDefaults().stringForKey("userConnectId") != "nil" {
                 LetterConstruct().callLetter(NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")!,
                                              completionHandler: { (json, error) -> Void in
-                                                let JsonData = json as! [[String: AnyObject]]
                                                 
-                                                self.isReadCount = 0
-                                                self.letterList = []
-                                                for data in JsonData {
-                                                    self.letterList.append(letterTableVO(writerId: data["senderId"] as! String, title: data["title"] as! String, writerImage: data["sender"] as! String, letterId: data["_id"] as! String, date: data["date"] as! String, body: data["body"] as! String, isRead: Int(data["isRead"] as! String)!))
+                                                if json == nil || json.count == 0 {
                                                     
-                                                    if(Int(data["isRead"] as! String) == 0 && self.userId != data["senderId"] as! String){
-                                                        self.isReadCount += 1
-                                                        NSUserDefaults.standardUserDefaults().setObject(self.isReadCount, forKey: "letterBadge")
+                                                } else {
+                                                    let JsonData = json as! [[String: AnyObject]]
+                                                    
+                                                    self.isReadCount = 0
+                                                    self.letterList = []
+                                                    for data in JsonData {
+                                                        self.letterList.append(letterTableVO(writerId: data["senderId"] as! String, title: data["title"] as! String, writerImage: data["sender"] as! String, letterId: data["_id"] as! String, date: data["date"] as! String, body: data["body"] as! String, isRead: Int(data["isRead"] as! String)!))
+                                                        
+                                                        if(Int(data["isRead"] as! String) == 0 && self.userId != data["senderId"] as! String){
+                                                            self.isReadCount += 1
+                                                            NSUserDefaults.standardUserDefaults().setObject(self.isReadCount, forKey: "letterBadge")
+                                                        }
                                                     }
-                                                }
-                                                
-                                                dispatch_async(dispatch_get_main_queue()) {
                                                     
-                                                    self.letterTable.reloadData()
+                                                    dispatch_async(dispatch_get_main_queue()) {
+                                                        
+                                                        self.letterTable.reloadData()
+                                                    }
                                                 }
                 })
             }
