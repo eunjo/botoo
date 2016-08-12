@@ -22,6 +22,8 @@
 		C050D5CC1D59CB2B00D7114F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5CB1D59CB2B00D7114F /* Reachability.swift */; };
 		C050D5D01D5C54F000D7114F /* ChatProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5CF1D5C54F000D7114F /* ChatProtocol.swift */; };
 		C050D5D21D5C562C00D7114F /* ChatConstruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5D11D5C562C00D7114F /* ChatConstruct.swift */; };
+		C050D5D61D5DC39C00D7114F /* UIChatPicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C050D5D51D5DC39C00D7114F /* UIChatPicCell.xib */; };
+		C050D5D81D5DC5BC00D7114F /* ChatPicTabelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5D71D5DC5BC00D7114F /* ChatPicTabelViewCell.swift */; };
 		C0D47AEE1D22A25500637EAB /* ChatTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */; };
 		C0D47AF21D22AEFB00637EAB /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */; };
 		C0D47AF41D237C8A00637EAB /* SettingNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */; };
@@ -144,6 +146,8 @@
 		C050D5CB1D59CB2B00D7114F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		C050D5CF1D5C54F000D7114F /* ChatProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatProtocol.swift; sourceTree = "<group>"; };
 		C050D5D11D5C562C00D7114F /* ChatConstruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatConstruct.swift; sourceTree = "<group>"; };
+		C050D5D51D5DC39C00D7114F /* UIChatPicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIChatPicCell.xib; sourceTree = "<group>"; };
+		C050D5D71D5DC5BC00D7114F /* ChatPicTabelViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatPicTabelViewCell.swift; sourceTree = "<group>"; };
 		C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTabViewController.swift; sourceTree = "<group>"; };
 		C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNavViewController.swift; sourceTree = "<group>"; };
@@ -345,6 +349,7 @@
 				C050D5BB1D45B01700D7114F /* ChatTableViewCell.swift */,
 				C050D5BF1D46FBF200D7114F /* ChatTableViewCellm.swift */,
 				D6B271391D59A6B600E61792 /* ChatContactTableViewCell.swift */,
+				C050D5D71D5DC5BC00D7114F /* ChatPicTabelViewCell.swift */,
 			);
 			name = TableCell;
 			sourceTree = "<group>";
@@ -467,6 +472,7 @@
 				C0D47AEB1D22A1D800637EAB /* Controller */,
 				D69322A91D20FB6A003E9147 /* AppDelegate.swift */,
 				D6B271371D59A67600E61792 /* UIChatContactCell.xib */,
+				C050D5D51D5DC39C00D7114F /* UIChatPicCell.xib */,
 				C050D5B91D45AF5F00D7114F /* UIChatTableViewCell.xib */,
 				C050D5C11D46FCCA00D7114F /* UIChatTableViewCellm.xib */,
 				D69322AD1D20FB6A003E9147 /* Main.storyboard */,
@@ -620,6 +626,7 @@
 				D632BEFE1D46882C0029D6C1 /* 5.png in Resources */,
 				D69322AF1D20FB6A003E9147 /* Main.storyboard in Resources */,
 				D607C5E01D27DA5E00542804 /* dolphin_only.png in Resources */,
+				C050D5D61D5DC39C00D7114F /* UIChatPicCell.xib in Resources */,
 				D632BF001D46882C0029D6C1 /* 7.png in Resources */,
 				D632BF021D46882C0029D6C1 /* 9.png in Resources */,
 				D680FADA1D314D6200A84986 /* Default-iPhone6.png in Resources */,
@@ -778,6 +785,7 @@
 				D63A12081D37504D00AD6989 /* SocketAckManager.swift in Sources */,
 				D607C5D81D277B4E00542804 /* msgEditViewController.swift in Sources */,
 				D607C5E81D2A18A600542804 /* chatDrawerViewController.swift in Sources */,
+				C050D5D81D5DC5BC00D7114F /* ChatPicTabelViewCell.swift in Sources */,
 				D632BF061D473A600029D6C1 /* FileManager.swift in Sources */,
 				C050D5BC1D45B01700D7114F /* ChatTableViewCell.swift in Sources */,
 				D63A12151D37504D00AD6989 /* SocketIOClientStatus.swift in Sources */,

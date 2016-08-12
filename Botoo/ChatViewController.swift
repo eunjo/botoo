@@ -101,7 +101,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             if json != nil && json.count != 0 {
                 let JsonData = json as! [[String: AnyObject]]
                 
-                print(json)
                 for data in JsonData {
                     FileManager.sharedInstance.writeFile(data["type"]! as! String, text: data["message"]! as! String, sender: data["senderName"] as! String, date: data["date"] as! String)
                 }
@@ -529,7 +528,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             self.imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
             //수정 가능 옵션
             self.imagePicker.allowsEditing = true
-            self.imagePicker.mediaTypes = [kUTTypeMovie as String]
+//            self.imagePicker.mediaTypes = [kUTTypeMovie as String]
             self.presentViewController(self.imagePicker, animated: false, completion: nil)
         }
         
@@ -540,6 +539,29 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         alert.addAction(secondAction)
         
         presentViewController(alert, animated: true, completion:nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        picker.dismissViewControllerAnimated(true) { (_) in
+            let resiziedImage = self.resizeImage((info[UIImagePickerControllerOriginalImage] as? UIImage)!, newWidth: CGFloat(600))
+            
+            let Imagedata = UIImageJPEGRepresentation(resiziedImage, 0.5)
+            let base64String = Imagedata!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
+            
+            SocketIOManager.sharedInstance.sendMessage("pic", message: base64String, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
+        }
+    }
+    
+    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
     
     @IBAction func onClickPlusCam(sender: UIButton) {
@@ -599,19 +621,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         }
     }
     
-    
-    // tableView set
-    /** 
-        테이블뷰셀     이름 안뜨고 (constraint 설정 문제인 것 같은데 잘 모르겠다 흑흑)
-                    날짜 형식 / 한국 기준으로 바꿔서 집어 넣기..
-                    메세지 버블 길어졌을 때 날짜 라벨 위치 (이것도 constraint 문제 같아)
-                    너무 배고파
-                    테이블뷰 때문에 빈 공간 클릭 시 키보드 안내려감! (드로어두)
-                    메세지 버블 이미지 (말풍선 이미지) 나인 패치 -----
-     
-        키보드        키보드 .......
-    **/
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.chatMessages.count
     }
@@ -620,43 +629,43 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         let message = self.chatMessages[indexPath.row]["message"] as? String
         let name = self.chatMessages[indexPath.row]["nickname"] as? String
         let date = self.chatMessages[indexPath.row]["date"] as? String
-        let type = self.chatMessages[indexPath.row]["type"] as? String
+        let type = self.chatMessages[indexPath.row]["type"] as! String
         
-        if (type == "text"){
+        switch type {
+        case "text":
             if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
                 var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
-            
+                
                 if cell == nil {
                     tableView.registerNib(UINib(nibName: "UIChatTableViewCellm", bundle: nil), forCellReuseIdentifier: "ChatTableViewCellm")
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
                 }
-            
+                
                 cell?.messageBubble.text = message
                 cell?.nameLabel.text = name
                 cell?.dateLabel.text = dateToString(date!)
-            
+                
                 cell?.messageBubble.backgroundColor = bubbleColor
-            
+                
                 return cell!
-            
+                
             } else { // 상대방 메세지
                 var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
-            
+                
                 if cell == nil {
                     tableView.registerNib(UINib(nibName: "UIChatTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatTableViewCell")
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
                 }
-            
+                
                 cell?.messageBubble.text = message
                 cell?.nameLabel.text = name
                 cell?.dateLabel.text = dateToString(date!)
-            
+                
                 cell?.messageBubble.backgroundColor = bubbleColor
-            
+                
                 return cell!
             }
-        } else {
-            
+        case "contact":
             var cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCell") as? ChatContactTableViewCell
             
             if cell == nil {
@@ -673,10 +682,26 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             cell?.nameLabel.text = name
             cell?.contactButton.setTitle("\(givenName) \(familyName)", forState: .Normal)
             cell?.setData(givenName as! String, fN: familyName as! String, pN: MobNumVar as! String)
-
+            
             return cell!
+        case "pic":
+            var cell = tableView.dequeueReusableCellWithIdentifier("ChatPicTabelViewCell") as? ChatPicTabelViewCell
+            
+            if cell == nil {
+                tableView.registerNib(UINib(nibName: "UIChatPicCell", bundle: nil), forCellReuseIdentifier: "ChatPicTabelViewCell")
+                cell = tableView.dequeueReusableCellWithIdentifier("ChatPicTabelViewCell") as? ChatPicTabelViewCell
+            }
+            
+//            let messageDic = convertStringToDictionary(message!)
+            
+            cell?.name.text = name
+            cell?.date.text = dateToString(date!)
+//            cell?.pic.image = UIImage(named: "")
+            
+            return cell!
+        default:
+            return UITableViewCell()
         }
-        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

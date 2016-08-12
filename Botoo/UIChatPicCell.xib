@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="209" id="YVR-NR-ej0" customClass="ChatPicTabelViewCell" customModule="Botoo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="173"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YVR-NR-ej0" id="jiR-CL-73C">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="172"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wss-2b-60J">
+                        <rect key="frame" x="16" y="15" width="289" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="tp_default_grey.png" translatesAutoresizingMaskIntoConstraints="NO" id="fKv-0T-O1Z">
+                        <rect key="frame" x="215" y="44" width="90" height="120"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gHa-s9-0Pw">
+                        <rect key="frame" x="16" y="151" width="191" height="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="fKv-0T-O1Z" firstAttribute="top" secondItem="Wss-2b-60J" secondAttribute="bottom" constant="8" id="9j3-gN-AhK"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Wss-2b-60J" secondAttribute="trailing" constant="7" id="OHd-jf-gUS"/>
+                    <constraint firstItem="gHa-s9-0Pw" firstAttribute="leading" secondItem="jiR-CL-73C" secondAttribute="leadingMargin" constant="8" id="QPU-3c-TRF"/>
+                    <constraint firstItem="Wss-2b-60J" firstAttribute="leading" secondItem="jiR-CL-73C" secondAttribute="leadingMargin" constant="8" id="TX7-17-bYm"/>
+                    <constraint firstItem="gHa-s9-0Pw" firstAttribute="bottom" secondItem="jiR-CL-73C" secondAttribute="bottomMargin" id="UA9-8L-QIM"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="fKv-0T-O1Z" secondAttribute="trailing" constant="7" id="baF-gE-F18"/>
+                    <constraint firstItem="Wss-2b-60J" firstAttribute="top" secondItem="jiR-CL-73C" secondAttribute="topMargin" constant="7" id="gfl-FC-apz"/>
+                    <constraint firstItem="fKv-0T-O1Z" firstAttribute="leading" secondItem="gHa-s9-0Pw" secondAttribute="trailing" constant="8" id="kdZ-p3-wWz"/>
+                    <constraint firstItem="fKv-0T-O1Z" firstAttribute="bottom" secondItem="jiR-CL-73C" secondAttribute="bottomMargin" id="oMu-H2-MDG"/>
+                    <constraint firstItem="gHa-s9-0Pw" firstAttribute="top" secondItem="Wss-2b-60J" secondAttribute="bottom" constant="115" id="xkZ-ex-wwd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="date" destination="gHa-s9-0Pw" id="MhS-mi-ct3"/>
+                <outlet property="name" destination="Wss-2b-60J" id="3uo-vV-Ks5"/>
+                <outlet property="pic" destination="fKv-0T-O1Z" id="DOM-gF-WZV"/>
+            </connections>
+            <point key="canvasLocation" x="308" y="281.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="tp_default_grey.png" width="120" height="120"/>
+    </resources>
+</document>
