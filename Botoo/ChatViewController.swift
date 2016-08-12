@@ -91,7 +91,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     func getChatMessage() {
         
         ChatConstruct().getMessage(loverId, userId: userId, completionHandler: { (json, error) -> Void in
-            if json != nil {
+            if json != nil && json.count != 0 {
                 let JsonData = json as! [[String: AnyObject]]
                 
                 print(json)
@@ -99,22 +99,24 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     FileManager.sharedInstance.writeFile(data["type"]! as! String, text: data["message"]! as! String, sender: data["senderName"] as! String, date: data["date"] as! String)
                 }
             }
-        })
-        
-        let messageList = FileManager.sharedInstance.readFile()
-        
-        if messageList == [] { return }
-        
-        for var message in messageList {
-            if message != "" {
-                message.removeAtIndex(message.endIndex.predecessor())
-    
-                let result = convertStringToDictionary(message)
-                self.chatMessages.append(result!)
+            
+            let messageList = FileManager.sharedInstance.readFile()
+            
+            if messageList == [] { return }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                for var message in messageList {
+                    if message != "" {
+                        message.removeAtIndex(message.endIndex.predecessor())
+                        
+                        let result = self.convertStringToDictionary(message)
+                        self.chatMessages.append(result!)
+                    }
+                }
+                
+                self.messageTableView.reloadData()
             }
-        }
-        
-        self.messageTableView.reloadData()
+        })
     }
     
     func convertStringToDictionary(text: String) -> [String:AnyObject]? {
@@ -132,8 +134,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     override func viewWillAppear(animated: Bool) {
         // 배경 초기화
         initBackGround()
-        
-        FileManager.sharedInstance.initFile()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -251,7 +251,13 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         } else if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBgPic")){
             
             let imgData = NSUserDefaults.standardUserDefaults().objectForKey("chatBgPic") as! NSData
-            messageTableView.backgroundColor = UIColor(patternImage: UIImage(data: imgData)!)
+            let image = UIImage(data: imgData)!
+            let imageView = UIImageView(frame: CGRectZero)
+            
+            imageView.contentMode = .ScaleAspectFill
+            imageView.image = image
+            
+            self.messageTableView.backgroundView = imageView
             
         } else if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBGdefalut")){
             

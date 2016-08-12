@@ -18,9 +18,6 @@ class HomeViewController: UIViewController {
     @IBOutlet var loverUserName: UILabel!
     @IBOutlet weak var loverStateMsg: UILabel!
     
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var fromDate: UILabel!
-    
     @IBOutlet weak var num1: UIImageView!
     @IBOutlet weak var num2: UIImageView!
     @IBOutlet weak var num3: UIImageView!
@@ -111,6 +108,7 @@ class HomeViewController: UIViewController {
             userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
             MemberConstruct().checkEmail(userEmail!, completionHandler: { (json, error) -> Void in
                 if json != nil {
+                    print(json)
                     self.firstDateStored = json["date"] as? String
                     self.userProPicStored = json["proPic"] as? String
                     self.loverEmailStored = json["lover"] as? String
@@ -157,7 +155,7 @@ class HomeViewController: UIViewController {
                     dispatch_async(dispatch_get_main_queue()) {
                         
                         // 내 프사 로드
-                        if (self.userProPicStored == nil){
+                        if (self.userProPicStored == nil || json["image_base64String"] as? String == nil){
                             if (json["gender"] as? String == "1") {
                                 self.myProPic.image = UIImage(named: "tp_default_female.png")
                             }
@@ -265,8 +263,9 @@ class HomeViewController: UIViewController {
 
             
         }
-            loverUserName.text = loverNameStored
-            loverStateMsg.text = loverMsgStored
+        
+        loverUserName.text = loverNameStored
+        loverStateMsg.text = loverMsgStored
         
         // 일수 계산
         if ((firstDateStored != "") && (firstDateStored != nil)){
@@ -280,20 +279,10 @@ class HomeViewController: UIViewController {
             
             // 날짜 년 월 일 로 포맷변환
             let cal = NSCalendar(calendarIdentifier:NSGregorianCalendar)!
-            let comp = cal.components([.Year, .Month, .Day], fromDate:firstDate!)
-            
-            let dateString :String = "\(comp.year)년 \(comp.month)월 \(comp.day)일부터"
-            //
-        
-            fromDate.text = ""
             
             // 날짜 계산
-            
             let calendar = NSCalendar.currentCalendar()
-            
             let components = calendar.components([.Day], fromDate: firstDate!, toDate: currentDate, options: [])
-            //dateLabel.text = "\(components.day+1)일째"
-            dateLabel.text = ""
             
             let date_num:Int = components.day+1
             let thousand:Int = date_num/1000
@@ -315,11 +304,8 @@ class HomeViewController: UIViewController {
             if (date_num < 10){
                 num3.image = nil
             }
-
-
         } else {
-            fromDate.text = ""
-            dateLabel.text = ""
+            num4.image = UIImage(named: "0.png")
         }
     }
     
