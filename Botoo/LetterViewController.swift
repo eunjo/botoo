@@ -114,7 +114,6 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
             let letter_ID = letterList[indexPath.row].letterId
             
             LetterConstruct().deleteLetter(connect_ID!, letterID: letter_ID, completionHandler: { (json, error) -> Void in
-                print(json)
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     self.letterList.removeAtIndex(indexPath.row)
@@ -129,7 +128,6 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
         if letterList[indexPath.row].writerId != NSUserDefaults.standardUserDefaults().stringForKey("userId")! { // 내가 쓴 경우 X
             //letter 읽음 처리
             LetterConstruct().updateLetter( NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")!, letterID: letterList[indexPath.row].letterId, isRead: "1", completionHandler: { (json, error) -> Void in
-                print(json)
                 
                            })
         }
@@ -165,9 +163,7 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
             profileViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
             //navigationController 의 하위 뷰로 전환
             self.navigationController?.pushViewController(profileViewController, animated: true)
-            
-            
-                   }
+            }
         }
     }
 

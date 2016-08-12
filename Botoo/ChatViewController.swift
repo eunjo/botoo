@@ -692,11 +692,17 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 cell = tableView.dequeueReusableCellWithIdentifier("ChatPicTabelViewCell") as? ChatPicTabelViewCell
             }
             
-//            let messageDic = convertStringToDictionary(message!)
-            
             cell?.name.text = name
             cell?.date.text = dateToString(date!)
-//            cell?.pic.image = UIImage(named: "")
+            
+            //이미지 디코딩
+            let dataDecoded:NSData = NSData(base64EncodedString: message!, options: NSDataBase64DecodingOptions(rawValue: 0))!
+            let decodedimage:UIImage = UIImage(data: dataDecoded)!
+            cell?.pic.image = decodedimage
+            
+            let tap_2 = UITapGestureRecognizer(target:self, action: #selector(ChatViewController.picTapped(_:)))
+            cell?.pic.userInteractionEnabled = true
+            cell?.pic.addGestureRecognizer(tap_2)
             
             return cell!
         default:
@@ -791,6 +797,21 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         
         if emoIsOpen {
             adjustingHeightForEmo(emoIsOpen)
+        }
+    }
+    
+    func picTapped(sender:UITapGestureRecognizer) {
+        self.performSegueWithIdentifier("picZoomSeg", sender: sender.view)
+        if let connectingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("imageZoomViewController") {
+            connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+            self.presentViewController(connectingViewController, animated: true, completion: nil)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "picZoomSeg") {
+            let svc = segue.destinationViewController as! imageZoomViewController
+            svc.newImage = sender!.image
         }
     }
 }
