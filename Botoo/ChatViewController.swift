@@ -132,6 +132,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     override func viewWillAppear(animated: Bool) {
         // 배경 초기화
         initBackGround()
+        
+        FileManager.sharedInstance.initFile()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -654,7 +656,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             cell?.nameLabel.text = name
             cell?.contactButton.setTitle("\(givenName) \(familyName)", forState: .Normal)
             cell?.setData(givenName as! String, fN: familyName as! String, pN: MobNumVar as! String)
-            
+
             return cell!
         }
         
