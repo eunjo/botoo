@@ -108,7 +108,6 @@ class HomeViewController: UIViewController {
             userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
             MemberConstruct().checkEmail(userEmail!, completionHandler: { (json, error) -> Void in
                 if json != nil {
-                    print(json)
                     self.firstDateStored = json["date"] as? String
                     self.userProPicStored = json["proPic"] as? String
                     self.loverEmailStored = json["lover"] as? String

@@ -74,7 +74,39 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Botoo/ChatViewController.swift"
-            timestampString = "492676957.213594"
+            timestampString = "492677187.332449"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "312"
+            endingLineNumber = "312"
+            landmarkName = "adjustingHeight(_:notification:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Botoo/ChatViewController.swift"
+            timestampString = "492677187.332449"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "315"
+            endingLineNumber = "315"
+            landmarkName = "adjustingHeight(_:notification:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Botoo/ChatViewController.swift"
+            timestampString = "492677187.332449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "321"
@@ -90,43 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Botoo/ChatViewController.swift"
-            timestampString = "492676957.213594"
+            timestampString = "492677187.332449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "324"
-            endingLineNumber = "324"
-            landmarkName = "adjustingHeight(_:notification:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Botoo/ChatViewController.swift"
-            timestampString = "492676957.213594"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "330"
-            endingLineNumber = "330"
-            landmarkName = "adjustingHeight(_:notification:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Botoo/ChatViewController.swift"
-            timestampString = "492676957.213594"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "307"
-            endingLineNumber = "307"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
             landmarkName = "ChatViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Botoo/ChatViewController.swift"
-            timestampString = "492676957.213594"
+            timestampString = "492677187.332449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "430"
-            endingLineNumber = "430"
+            startingLineNumber = "421"
+            endingLineNumber = "421"
             landmarkName = "adjustingHeightForPlus(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Botoo/ChatViewController.swift"
-            timestampString = "492676957.213594"
+            timestampString = "492677187.332449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "320"
-            endingLineNumber = "320"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
             landmarkName = "adjustingHeight(_:notification:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Botoo/ChatViewController.swift"
-            timestampString = "492676957.213594"
+            timestampString = "492677187.332449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
+            startingLineNumber = "310"
+            endingLineNumber = "310"
             landmarkName = "adjustingHeight(_:notification:)"
             landmarkType = "5">
             <Locations>
@@ -602,11 +602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Botoo/ChatViewController.swift"
-            timestampString = "492676957.213594"
+            timestampString = "492677187.332449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "556"
-            endingLineNumber = "556"
+            startingLineNumber = "547"
+            endingLineNumber = "547"
             landmarkName = "onClickPlusContact(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -666,11 +666,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Botoo/HomeViewController.swift"
-            timestampString = "492676401.546574"
+            timestampString = "492677187.332449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "initProfile()"
             landmarkType = "5">
          </BreakpointContent>
@@ -682,43 +682,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Botoo/ChatViewController.swift"
-            timestampString = "492676957.213594"
+            timestampString = "492677187.332449"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "573"
+            endingLineNumber = "573"
+            landmarkName = "sendButtonTapped(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Botoo/ChatViewController.swift"
+            timestampString = "492677187.332449"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "574"
+            endingLineNumber = "574"
+            landmarkName = "sendButtonTapped(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Botoo/ChatViewController.swift"
+            timestampString = "492677187.332449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "582"
             endingLineNumber = "582"
-            landmarkName = "sendButtonTapped(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Botoo/ChatViewController.swift"
-            timestampString = "492676957.213594"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "583"
-            endingLineNumber = "583"
-            landmarkName = "sendButtonTapped(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Botoo/ChatViewController.swift"
-            timestampString = "492676957.213594"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "591"
-            endingLineNumber = "591"
             landmarkName = "sendButtonTapped(_:)"
             landmarkType = "5">
             <Locations>
@@ -762,11 +762,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Botoo/ChatViewController.swift"
-            timestampString = "492676957.213594"
+            timestampString = "492677187.332449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "592"
-            endingLineNumber = "592"
+            startingLineNumber = "583"
+            endingLineNumber = "583"
             landmarkName = "sendButtonTapped(_:)"
             landmarkType = "5">
             <Locations>
@@ -826,11 +826,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Botoo/HomeViewController.swift"
-            timestampString = "492676401.546574"
+            timestampString = "492677187.332449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "272"
-            endingLineNumber = "272"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
             landmarkName = "profileInit()"
             landmarkType = "5">
          </BreakpointContent>
@@ -842,11 +842,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Botoo/HomeViewController.swift"
-            timestampString = "492676401.546574"
+            timestampString = "492677187.332449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
             landmarkName = "profileInit()"
             landmarkType = "5">
          </BreakpointContent>

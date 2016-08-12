@@ -87,7 +87,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         
         // 내 프사 로드
-        if (self.userProPicStored == nil){
+        if (self.userProPicStored == nil || self.userImageString == nil){
             if (userGender == "1") {
                 self.profile_iv_profile.image = UIImage(named: "tp_default_female.png")
             }
@@ -229,7 +229,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.tabBarController!.selectedIndex = 0
         }
         
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .Cancel, handler: nil)
+        
         myAlert.addAction(okAction)
+        myAlert.addAction(cancelAction)
+        
         self.presentViewController(myAlert, animated: true, completion: nil)
     }
     
