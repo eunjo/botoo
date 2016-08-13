@@ -77,18 +77,6 @@ class HomeViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if !Reachability.isConnectedToNetwork() {
-            self.presentViewController(Reachability.alert(), animated: true, completion: nil)
-        } else {
-            initProgress()
-            profileInit()
-            initProfile()
-        }
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "myPicZoom") {
             let svc = segue.destinationViewController as! imageZoomViewController
@@ -336,8 +324,17 @@ class HomeViewController: UIViewController {
         }))
         self.presentViewController(alert, animated: true, completion: nil);
     }
-
-
+    
+    override func viewWillAppear(animated: Bool) {
+        if !Reachability.isConnectedToNetwork() {
+            self.presentViewController(Reachability.alert(), animated: true, completion: nil)
+        } else {
+            initProgress()
+            profileInit()
+            initProfile()
+        }
+    }
+    
     override func viewDidAppear(animated: Bool) {
         
         let isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn")
@@ -350,11 +347,6 @@ class HomeViewController: UIViewController {
                 self.performSegueWithIdentifier("toLockView", sender: self)
             }
             _ = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
-            
-            
         }
-        
-        profileInit()
-        
     }
 }

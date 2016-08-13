@@ -15,6 +15,7 @@ class TabBarViewController: UITabBarController {
     }
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         let connectIdTemp = NSUserDefaults.standardUserDefaults().stringForKey("userConnectId")
         let userId =  NSUserDefaults.standardUserDefaults().stringForKey("userId")

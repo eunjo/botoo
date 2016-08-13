@@ -649,7 +649,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 
                 cell?.messageBubble.text = message
                 cell?.nameLabel.text = name
-                cell?.dateLabel.text = dateToString(date!)
+//                cell?.dateLabel.text = dateToString(date!)
+                cell?.dateLabel.text = "00:00"
                 
                 cell?.messageBubble.backgroundColor = bubbleColor
                 
@@ -665,7 +666,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 
                 cell?.messageBubble.text = message
                 cell?.nameLabel.text = name
-                cell?.dateLabel.text = dateToString(date!)
+//                cell?.dateLabel.text = dateToString(date!)
+                cell?.dateLabel.text = "00:00"
                 
                 cell?.messageBubble.backgroundColor = bubbleColor
                 
@@ -700,7 +702,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 }
                 
                 cell?.name.text = name
-                cell?.date.text = dateToString(date!)
+//                cell?.date.text = dateToString(date!)
+                cell?.date.text = "00:00"
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     //이미지 디코딩
@@ -726,7 +729,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 }
                 
                 cell?.name.text = name
-                cell?.date.text = dateToString(date!)
+//                cell?.date.text = dateToString(date!)
+                cell?.date.text = "00:00"
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     //이미지 디코딩
@@ -765,6 +769,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         dateFormatter.dateFormat = "EEE MMM dd yyyy HH:mm:ss"
         let Date = dateFormatter.dateFromString(date)
         
+        print(date)
         
         // 날짜 년 월 일 로 포맷변환
         let cal = NSCalendar(calendarIdentifier:NSCalendarIdentifierGregorian)!

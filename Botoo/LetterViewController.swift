@@ -34,6 +34,10 @@ class LetterViewController: UIViewController, UITableViewDataSource, UITableView
         NSUserDefaults.standardUserDefaults().setObject(self.isReadCount, forKey: "letterBadge")
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     override func viewDidAppear(animated: Bool) {
         if !Reachability.isConnectedToNetwork() {
             self.presentViewController(Reachability.alert(), animated: true, completion: nil)
