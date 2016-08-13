@@ -62,7 +62,6 @@ class LetterConstruct: LetterProtocol {
             if (statusCode == 200) {
                 do{
                     let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
-                    print(json)
                     completionHandler(json, nil)
                 }catch {
                     print("Error with Json: \(error)")

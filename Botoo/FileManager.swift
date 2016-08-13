@@ -59,7 +59,6 @@ class FileManager{
             fileHandle?.seekToEndOfFile()
             fileHandle?.writeData(NewLine.dataUsingEncoding(NSUTF8StringEncoding)!)
         }
-        
     }
 
     
