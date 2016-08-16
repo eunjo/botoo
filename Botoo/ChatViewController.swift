@@ -273,6 +273,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             imageView.image = image
             
             self.messageTableView.backgroundView = imageView
+
             
         } else if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBGdefalut")){
             
