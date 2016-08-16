@@ -58,9 +58,21 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                             </button>
+<<<<<<< HEAD
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sXb-Au-jAA">
+
+                                                <rect key="frame" x="99" y="0.0" width="86" height="80"/>
+
+                                                <rect key="frame" x="98" y="0.0" width="87" height="80"/>
+
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="c4Z-OL-Sjl"/>
+                                                </constraints>
+=======
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sXb-Au-jAA">
                                                 <rect key="frame" x="98" y="0.0" width="87" height="80"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+>>>>>>> 46d5e6c794d68ff27ec952f1589c7a3472a1893f
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="2">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -88,9 +100,21 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                             </button>
+<<<<<<< HEAD
+                                            <button opaque="NO" tag="5" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Typ-ie-m2i">
+
+                                                <rect key="frame" x="99" y="0.0" width="86" height="80"/>
+
+                                                <rect key="frame" x="98" y="0.0" width="87" height="80"/>
+
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="kPw-xK-ivM"/>
+                                                </constraints>
+=======
                                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Typ-ie-m2i">
                                                 <rect key="frame" x="98" y="0.0" width="87" height="80"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+>>>>>>> 46d5e6c794d68ff27ec952f1589c7a3472a1893f
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="5">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -118,9 +142,21 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                             </button>
+<<<<<<< HEAD
+                                            <button opaque="NO" tag="8" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wht-z7-GAe">
+
+                                                <rect key="frame" x="99" y="0.0" width="86" height="80"/>
+
+                                                <rect key="frame" x="98" y="0.0" width="87" height="80"/>
+
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="tyb-WE-jpZ"/>
+                                                </constraints>
+=======
                                             <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wht-z7-GAe">
                                                 <rect key="frame" x="98" y="0.0" width="87" height="80"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+>>>>>>> 46d5e6c794d68ff27ec952f1589c7a3472a1893f
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="8">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -148,9 +184,20 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                             </button>
+<<<<<<< HEAD
+                                            <button opaque="NO" tag="10" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wrs-dX-8UF">
+
+
+                                                <rect key="frame" x="98" y="0.0" width="87" height="80"/>
+
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="viy-8a-AXS"/>
+                                                </constraints>
+=======
                                             <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Wrs-dX-8UF">
                                                 <rect key="frame" x="98" y="0.0" width="87" height="80"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+>>>>>>> 46d5e6c794d68ff27ec952f1589c7a3472a1893f
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="0">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
