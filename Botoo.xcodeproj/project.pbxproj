@@ -108,6 +108,8 @@
 		D6B271381D59A67600E61792 /* UIChatContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6B271371D59A67600E61792 /* UIChatContactCell.xib */; };
 		D6B2713A1D59A6B600E61792 /* ChatContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B271391D59A6B600E61792 /* ChatContactTableViewCell.swift */; };
 		D6B2713C1D5C6DDC00E61792 /* contactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2713B1D5C6DDC00E61792 /* contactDetailViewController.swift */; };
+		D6B2713E1D62F79500E61792 /* ChatContactTableViewCellL.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2713D1D62F79500E61792 /* ChatContactTableViewCellL.swift */; };
+		D6B271401D62F7C500E61792 /* UIChatContactCellL.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6B2713F1D62F7C500E61792 /* UIChatContactCellL.xib */; };
 		D6C0EFF71D2760FF00798E2B /* alarmSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C0EFF61D2760FF00798E2B /* alarmSetViewController.swift */; };
 		D6E2AF521D3E1D3F00C01509 /* tp_default_female.png in Resources */ = {isa = PBXBuildFile; fileRef = D6E2AF4F1D3E1D3F00C01509 /* tp_default_female.png */; };
 		D6E2AF531D3E1D3F00C01509 /* tp_default_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = D6E2AF501D3E1D3F00C01509 /* tp_default_grey.png */; };
@@ -241,6 +243,8 @@
 		D6B271371D59A67600E61792 /* UIChatContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIChatContactCell.xib; sourceTree = "<group>"; };
 		D6B271391D59A6B600E61792 /* ChatContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatContactTableViewCell.swift; sourceTree = "<group>"; };
 		D6B2713B1D5C6DDC00E61792 /* contactDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = contactDetailViewController.swift; sourceTree = "<group>"; };
+		D6B2713D1D62F79500E61792 /* ChatContactTableViewCellL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatContactTableViewCellL.swift; sourceTree = "<group>"; };
+		D6B2713F1D62F7C500E61792 /* UIChatContactCellL.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIChatContactCellL.xib; sourceTree = "<group>"; };
 		D6C0EFF61D2760FF00798E2B /* alarmSetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = alarmSetViewController.swift; sourceTree = "<group>"; };
 		D6E2AF4F1D3E1D3F00C01509 /* tp_default_female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tp_default_female.png; path = img/tp_default_female.png; sourceTree = "<group>"; };
 		D6E2AF501D3E1D3F00C01509 /* tp_default_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tp_default_grey.png; path = img/tp_default_grey.png; sourceTree = "<group>"; };
@@ -353,6 +357,7 @@
 				C050D5BB1D45B01700D7114F /* ChatTableViewCell.swift */,
 				C050D5BF1D46FBF200D7114F /* ChatTableViewCellm.swift */,
 				D6B271391D59A6B600E61792 /* ChatContactTableViewCell.swift */,
+				D6B2713D1D62F79500E61792 /* ChatContactTableViewCellL.swift */,
 				C050D5D71D5DC5BC00D7114F /* ChatPicTabelViewCell.swift */,
 				C0FFBC3C1D5DFEA9003C4C7F /* ChatPicTabelViewCellm.swift */,
 			);
@@ -477,6 +482,7 @@
 				C0D47AEB1D22A1D800637EAB /* Controller */,
 				D69322A91D20FB6A003E9147 /* AppDelegate.swift */,
 				D6B271371D59A67600E61792 /* UIChatContactCell.xib */,
+				D6B2713F1D62F7C500E61792 /* UIChatContactCellL.xib */,
 				C050D5D51D5DC39C00D7114F /* UIChatPicCell.xib */,
 				C0FFBC3A1D5DFE3F003C4C7F /* UIChatPicCellm.xib */,
 				C050D5B91D45AF5F00D7114F /* UIChatTableViewCell.xib */,
@@ -644,6 +650,7 @@
 				D632BEFC1D46882C0029D6C1 /* 3.png in Resources */,
 				D632BEFB1D46882C0029D6C1 /* 2.png in Resources */,
 				D6E2AF521D3E1D3F00C01509 /* tp_default_female.png in Resources */,
+				D6B271401D62F7C500E61792 /* UIChatContactCellL.xib in Resources */,
 				C050D5BA1D45AF5F00D7114F /* UIChatTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -789,6 +796,7 @@
 				C0D47AF41D237C8A00637EAB /* SettingNavViewController.swift in Sources */,
 				D63A12101D37504D00AD6989 /* SocketEngineWebsocket.swift in Sources */,
 				C050D5CC1D59CB2B00D7114F /* Reachability.swift in Sources */,
+				D6B2713E1D62F79500E61792 /* ChatContactTableViewCellL.swift in Sources */,
 				C0D47AF21D22AEFB00637EAB /* ChatViewController.swift in Sources */,
 				C0D47B071D2A076300637EAB /* KeyboardProtocol.swift in Sources */,
 				D63A12081D37504D00AD6989 /* SocketAckManager.swift in Sources */,
