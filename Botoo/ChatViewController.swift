@@ -32,7 +32,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     @IBOutlet var toolbar: UIToolbar!
     @IBOutlet var drawerContainer: UIView!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet var drawerLeadingConstraint: NSLayoutConstraint!
     @IBOutlet var toolbarDrawer: UIView!
     @IBOutlet var plusView: UIView!
     @IBOutlet var emoticonView: UIView!
@@ -343,7 +342,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
             
             UIView.animateWithDuration(animationDurarion, animations: { () -> Void in
-                self.toolbarBottomConstraint.constant += changeInHeight
+//                self.toolbarBottomConstraint.constant += changeInHeight
+                self.toolbar.frame.origin.y += changeInHeight
             })
         } else {
             // 키보드가 텍스트 필드를 가리는지 확인
