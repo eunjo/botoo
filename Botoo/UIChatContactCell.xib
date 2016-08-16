@@ -12,33 +12,43 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vKE-CS-doE" id="vlH-vS-Gr8">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnm-A9-cIk">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnm-A9-cIk">
                         <rect key="frame" x="16" y="15" width="289" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2y-tt-3ka">
-                        <rect key="frame" x="240" y="44" width="72" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2y-tt-3ka">
+                        <rect key="frame" x="248" y="44" width="57" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="57" id="LD8-nd-ep9"/>
+                        </constraints>
                         <state key="normal" title="Contact"/>
                         <connections>
                             <action selector="contactButtonTapped:" destination="vKE-CS-doE" eventType="touchUpInside" id="Cud-KJ-xaz"/>
                         </connections>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_no_person" translatesAutoresizingMaskIntoConstraints="NO" id="aMz-ds-R7a">
+                        <rect key="frame" x="217" y="44" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="8vt-TF-99F"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="gnm-A9-cIk" firstAttribute="leading" secondItem="vlH-vS-Gr8" secondAttribute="leadingMargin" constant="8" id="KUV-zb-857"/>
-                    <constraint firstItem="x2y-tt-3ka" firstAttribute="trailing" secondItem="vlH-vS-Gr8" secondAttribute="trailingMargin" id="LRF-Vz-7h2"/>
-                    <constraint firstItem="gnm-A9-cIk" firstAttribute="top" secondItem="vlH-vS-Gr8" secondAttribute="topMargin" constant="7" id="P8J-rK-SwO"/>
-                    <constraint firstItem="x2y-tt-3ka" firstAttribute="leading" secondItem="vlH-vS-Gr8" secondAttribute="leadingMargin" constant="232" id="PbD-Ms-vhG"/>
-                    <constraint firstItem="x2y-tt-3ka" firstAttribute="top" secondItem="gnm-A9-cIk" secondAttribute="bottom" constant="8" id="hn1-ex-GC4"/>
-                    <constraint firstItem="x2y-tt-3ka" firstAttribute="trailing" secondItem="vlH-vS-Gr8" secondAttribute="trailingMargin" id="ig4-xk-MFg"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="gnm-A9-cIk" secondAttribute="trailing" constant="7" id="j1q-KG-CSh"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="x2y-tt-3ka" secondAttribute="bottom" constant="7" id="sM8-rh-j0F"/>
+                    <constraint firstItem="aMz-ds-R7a" firstAttribute="top" secondItem="x2y-tt-3ka" secondAttribute="top" id="Aqr-Po-98P"/>
+                    <constraint firstItem="gnm-A9-cIk" firstAttribute="centerX" secondItem="vlH-vS-Gr8" secondAttribute="centerX" id="HbX-N4-rhT"/>
+                    <constraint firstItem="gnm-A9-cIk" firstAttribute="trailing" secondItem="x2y-tt-3ka" secondAttribute="trailing" id="NQM-FY-PKG"/>
+                    <constraint firstItem="x2y-tt-3ka" firstAttribute="leading" secondItem="aMz-ds-R7a" secondAttribute="trailing" constant="1" id="TWn-nl-rZQ"/>
+                    <constraint firstItem="gnm-A9-cIk" firstAttribute="top" secondItem="vlH-vS-Gr8" secondAttribute="topMargin" constant="7" id="dRu-mx-WJ7"/>
+                    <constraint firstItem="aMz-ds-R7a" firstAttribute="bottom" secondItem="x2y-tt-3ka" secondAttribute="bottom" id="fJW-iz-bCI"/>
+                    <constraint firstItem="gnm-A9-cIk" firstAttribute="leading" secondItem="vlH-vS-Gr8" secondAttribute="leadingMargin" constant="8" id="gYg-EA-hKU"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="aMz-ds-R7a" secondAttribute="bottom" constant="7" id="m1K-nv-EPq"/>
+                    <constraint firstItem="aMz-ds-R7a" firstAttribute="top" secondItem="gnm-A9-cIk" secondAttribute="bottom" constant="8" symbolic="YES" id="uHS-18-miY"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -49,4 +59,7 @@
             <point key="canvasLocation" x="875" y="-242"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="default_no_person" width="18" height="18"/>
+    </resources>
 </document>

@@ -114,7 +114,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 for var message in messageList {
                     if message != "" {
                         message.removeAtIndex(message.endIndex.predecessor())
-                        
                         let result = self.convertStringToDictionary(message)
                         self.chatMessages.append(result!)
                     }
@@ -552,14 +551,27 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(true) { (_) in
-            let resiziedImage = self.resizeImage((info[UIImagePickerControllerOriginalImage] as? UIImage)!, newWidth: CGFloat(600))
+            let resiziedImage = self.resizeImage((info[UIImagePickerControllerOriginalImage] as? UIImage)!, newWidth: CGFloat(700))
             
             let Imagedata = UIImageJPEGRepresentation(resiziedImage, 0.5)
             let base64String = Imagedata!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
             
             SocketIOManager.sharedInstance.sendMessage("pic", message: base64String, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
             
-            self.saveMessage(base64String, type: "pic")
+            dispatch_async(dispatch_get_main_queue()) {
+                
+                /**
+                 테이블뷰에 추가
+                 //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
+                 **/
+                self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"pic\",\"message\":\"\(base64String)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)\"}")!)
+                self.messageTableView.reloadData()
+                
+                //메세지 서버에 저장
+                self.saveMessage(base64String, type: "pic")
+                
+                self.scrollToBottom()
+            }
         }
     }
     
@@ -602,8 +614,24 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func contactPicker(picker: CNContactPickerViewController, didSelectContact contact: CNContact) {
         let MobNumVar = (contact.phoneNumbers[0].value as! CNPhoneNumber).valueForKey("digits") as! String
-        let ContactString = "{\"givenName\":\"\(contact.givenName)\",\"familyName\":\"\(contact.familyName)\",\"MobNumVar\":\"\(MobNumVar)\"}"
+        let ContactString = "{\'givenName\':\'\(contact.givenName)\',\'familyName\':\'\(contact.familyName)\',\'MobNumVar\':\'\(MobNumVar)\'}"
+        
         SocketIOManager.sharedInstance.sendMessage("contact", message: ContactString, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
+        
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            /**
+             테이블뷰에 추가
+             //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
+             **/
+            self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"contact\",\"message\":\"\(ContactString)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)\"}")!)
+            
+            //메세지 서버에 저장
+            self.saveMessage(ContactString, type: "contact")
+            
+            self.messageTableView.reloadData()
+            self.scrollToBottom()
+        }
     }
  
 
@@ -617,7 +645,17 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             chatInputTextField.resignFirstResponder()
             
             dispatch_async(dispatch_get_main_queue()) {
+                /**
+                    테이블뷰에 추가
+                    //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
+                **/
+                self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"text\",\"message\":\"\(message)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)\"}")!)
+                
+                //메세지 서버에 저장
                 self.saveMessage(message, type: "text")
+                
+                self.messageTableView.reloadData()
+                self.scrollToBottom()
             }
         }
     }
@@ -694,7 +732,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCell") as? ChatContactTableViewCell
                 }
                 
-                let messageDic = convertStringToDictionary(message!)
+                let replacedMsg = message!.stringByReplacingOccurrencesOfString("\'", withString: "\"")
+                
+                let messageDic = convertStringToDictionary(replacedMsg)
                 
                 let givenName = messageDic!["givenName"]!
                 let familyName = messageDic!["familyName"]!
