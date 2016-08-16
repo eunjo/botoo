@@ -9,7 +9,6 @@
 import UIKit
 
 class chatTabSettingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var colorBGset: UILabel!
     @IBOutlet weak var picBGset: UILabel!
     
@@ -95,17 +94,15 @@ class chatTabSettingViewController: UIViewController, UIImagePickerControllerDel
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
+            imagePicker.dismissViewControllerAnimated(false) { (_) in
             let image = info[UIImagePickerControllerOriginalImage] as? UIImage
             let data = UIImagePNGRepresentation(image!)
-            self.myImageView.contentMode = UIViewContentMode.ScaleAspectFill
-            self.myImageView.clipsToBounds = true
-            
+
             NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgPic")
             NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgColor")
             NSUserDefaults.standardUserDefaults().setObject(data, forKey: "chatBgPic")
             NSUserDefaults.standardUserDefaults().synchronize()
-            dismissViewControllerAnimated(true, completion: nil)
+            
             
         }
     }
@@ -122,3 +119,4 @@ class chatTabSettingViewController: UIViewController, UIImagePickerControllerDel
     */
 
 
+}
