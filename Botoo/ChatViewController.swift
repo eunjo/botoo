@@ -141,7 +141,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         // 배경 초기화
         initBackGround()
         
-        FileManager.sharedInstance.initFile()
+//        FileManager.sharedInstance.initFile()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -616,7 +616,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             chatInputTextField.text = ""
             chatInputTextField.resignFirstResponder()
             
-            self.saveMessage(message, type: "text")
+            dispatch_async(dispatch_get_main_queue()) {
+                self.saveMessage(message, type: "text")
+            }
         }
     }
     
@@ -831,33 +833,35 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         }
     }
     
-    func findUser(users: [String], find: String) -> Bool! {
-        
-        if users.count < 1 {
-            print("NOT FIND!")
-            return false
-        }
+    func findUser(users: [String]!, find: String!) -> Bool! {
         
         //리스트 정렬
-        let usersTemp = users.sort()
-        let usersTempMiddleId = usersTemp[usersTemp.count/2].componentsSeparatedByString(",")
+        var usersTemp = users.sort()
+        var usersTempMiddleId:[String]! = []
+        let find = "Optional(\(find))"
         
-        print("usersTempMiddleId:: \(usersTempMiddleId[0])")
-        
-        //가운데 요소와 비교
-        if usersTempMiddleId[0] > find {
-            findUser(Array(usersTemp[0 ..< usersTemp.count/2]), find: find)
-        } else if usersTempMiddleId[0] < find {
-            findUser(Array(usersTemp[usersTemp.count/2 ..< usersTemp.count]), find: find)
-        } else if usersTempMiddleId[0] == find {
-            print("FIND! : \(usersTempMiddleId[0])")
-            if usersTempMiddleId[1] == "1" {
-                return true
-            } else {
-                return false
+        while usersTemp.count > 1 {
+            
+            usersTempMiddleId = usersTemp[usersTemp.count/2].componentsSeparatedByString(",")
+            
+            //가운데 요소와 비교
+            if usersTempMiddleId[0] > find {
+                usersTemp = Array(usersTemp[0 ..< usersTemp.count/2])
+            } else if usersTempMiddleId[0] < find {
+                usersTemp = Array(usersTemp[usersTemp.count/2 ..< usersTemp.count])
+            } else if usersTempMiddleId[0] == find {
+                print("FIND! : \(usersTempMiddleId[0])")
+                if usersTempMiddleId[1] == "1" {
+                    print("ONLINE")
+                    return true
+                } else {
+                    print("OFFLINE")
+                    return false
+                }
             }
         }
         
+        print("OFFLINE")
         return false
     }
     
