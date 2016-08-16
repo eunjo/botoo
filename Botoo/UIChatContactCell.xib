@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vKE-CS-doE" id="vlH-vS-Gr8">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnm-A9-cIk">
@@ -36,6 +36,7 @@
                     <constraint firstItem="gnm-A9-cIk" firstAttribute="top" secondItem="vlH-vS-Gr8" secondAttribute="topMargin" constant="7" id="P8J-rK-SwO"/>
                     <constraint firstItem="x2y-tt-3ka" firstAttribute="leading" secondItem="vlH-vS-Gr8" secondAttribute="leadingMargin" constant="232" id="PbD-Ms-vhG"/>
                     <constraint firstItem="x2y-tt-3ka" firstAttribute="top" secondItem="gnm-A9-cIk" secondAttribute="bottom" constant="8" id="hn1-ex-GC4"/>
+                    <constraint firstItem="x2y-tt-3ka" firstAttribute="trailing" secondItem="vlH-vS-Gr8" secondAttribute="trailingMargin" id="ig4-xk-MFg"/>
                     <constraint firstAttribute="trailingMargin" secondItem="gnm-A9-cIk" secondAttribute="trailing" constant="7" id="j1q-KG-CSh"/>
                     <constraint firstAttribute="bottomMargin" secondItem="x2y-tt-3ka" secondAttribute="bottom" constant="7" id="sM8-rh-j0F"/>
                 </constraints>
