@@ -9,7 +9,6 @@
 import UIKit
 
 class chatTabSettingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var colorBGset: UILabel!
     @IBOutlet weak var picBGset: UILabel!
     
@@ -66,6 +65,7 @@ class chatTabSettingViewController: UIViewController, UIImagePickerControllerDel
             self.imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
             //수정 가능 옵션
             self.imagePicker.allowsEditing = true
+            
           
             
             //델리게이트 지정
@@ -94,14 +94,18 @@ class chatTabSettingViewController: UIViewController, UIImagePickerControllerDel
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
             imagePicker.dismissViewControllerAnimated(false) { (_) in
             let image = info[UIImagePickerControllerOriginalImage] as? UIImage
             let data = UIImagePNGRepresentation(image!)
+<<<<<<< HEAD
+
+=======
+>>>>>>> 2768e6d5c5e610c2868283b8de0c5afe2bd7155f
             NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgPic")
             NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgColor")
             NSUserDefaults.standardUserDefaults().setObject(data, forKey: "chatBgPic")
             NSUserDefaults.standardUserDefaults().synchronize()
+            
             
         }
     }
@@ -116,5 +120,6 @@ class chatTabSettingViewController: UIViewController, UIImagePickerControllerDel
         // Pass the selected object to the new view controller.
     }
     */
+
 
 }
