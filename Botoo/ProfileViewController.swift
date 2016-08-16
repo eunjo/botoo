@@ -47,10 +47,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let tap_2 = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoNameEdit(_:)))
         profile_lb_name.userInteractionEnabled = true
         profile_lb_name.addGestureRecognizer(tap_2)
-        
-        initProfile()
-        
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -87,7 +83,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         
         // 내 프사 로드
-        if (self.userProPicStored == nil){
+        if (self.userProPicStored == nil || self.userImageString == nil){
             if (userGender == "1") {
                 self.profile_iv_profile.image = UIImage(named: "tp_default_female.png")
             }
@@ -209,8 +205,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 })
             }
             
-            FileManager.sharedInstance.initFile()
-            
             ChatViewController.removeChats.isRemove = true
             
             NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "gender")
@@ -223,13 +217,24 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "lockPw")
             NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userId")
             NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "letterBadge")
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userLover")
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userConnectId")
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "userProfile")
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "loverName")
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "loverId")
+            
             NSUserDefaults.standardUserDefaults().synchronize()
             
             
             self.tabBarController!.selectedIndex = 0
         }
         
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .Cancel, handler: nil)
+        
         myAlert.addAction(okAction)
+        myAlert.addAction(cancelAction)
+        
         self.presentViewController(myAlert, animated: true, completion: nil)
     }
     

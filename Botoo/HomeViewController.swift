@@ -18,9 +18,6 @@ class HomeViewController: UIViewController {
     @IBOutlet var loverUserName: UILabel!
     @IBOutlet weak var loverStateMsg: UILabel!
     
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var fromDate: UILabel!
-    
     @IBOutlet weak var num1: UIImageView!
     @IBOutlet weak var num2: UIImageView!
     @IBOutlet weak var num3: UIImageView!
@@ -78,18 +75,6 @@ class HomeViewController: UIViewController {
         // 무한 루프 방지
         getUserInfo.checkLock = isLock
         
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if !Reachability.isConnectedToNetwork() {
-            self.presentViewController(Reachability.alert(), animated: true, completion: nil)
-        } else {
-            initProgress()
-            profileInit()
-            initProfile()
-        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -157,7 +142,7 @@ class HomeViewController: UIViewController {
                     dispatch_async(dispatch_get_main_queue()) {
                         
                         // 내 프사 로드
-                        if (self.userProPicStored == nil){
+                        if (self.userProPicStored == nil || json["image_base64String"] as? String == nil){
                             if (json["gender"] as? String == "1") {
                                 self.myProPic.image = UIImage(named: "tp_default_female.png")
                             }
@@ -204,8 +189,8 @@ class HomeViewController: UIViewController {
                 self.loverGenderStored = json["gender"] as? String
                 self.loverMsgStored = json["msg"] as? String
                 self.loverProPicStored = json["proPic"] as? String
-                if (self.loverProPicStored != nil){
-                    self._loverProPic = json["image_base64String"] as? String!
+                if (self.loverProPicStored != nil && json["image_base64String"] != nil){
+                    self._loverProPic = json["image_base64String"] as? String
                 }
                 
                 NSUserDefaults.standardUserDefaults().setObject(self.loverNameStored, forKey: "loverName")
@@ -249,7 +234,7 @@ class HomeViewController: UIViewController {
     
     func profileInit() {
         // 상대방 로드
-        if (loverProPicStored == nil) {
+        if (loverProPicStored == nil || self._loverProPic == nil) {
             if (loverGenderStored == "1") {
                 loverProPic.image = UIImage(named: "tp_default_female.png")
             }
@@ -265,8 +250,9 @@ class HomeViewController: UIViewController {
 
             
         }
-            loverUserName.text = loverNameStored
-            loverStateMsg.text = loverMsgStored
+        
+        loverUserName.text = loverNameStored
+        loverStateMsg.text = loverMsgStored
         
         // 일수 계산
         if ((firstDateStored != "") && (firstDateStored != nil)){
@@ -280,20 +266,10 @@ class HomeViewController: UIViewController {
             
             // 날짜 년 월 일 로 포맷변환
             let cal = NSCalendar(calendarIdentifier:NSGregorianCalendar)!
-            let comp = cal.components([.Year, .Month, .Day], fromDate:firstDate!)
-            
-            let dateString :String = "\(comp.year)년 \(comp.month)월 \(comp.day)일부터"
-            //
-        
-            fromDate.text = ""
             
             // 날짜 계산
-            
             let calendar = NSCalendar.currentCalendar()
-            
             let components = calendar.components([.Day], fromDate: firstDate!, toDate: currentDate, options: [])
-            //dateLabel.text = "\(components.day+1)일째"
-            dateLabel.text = ""
             
             let date_num:Int = components.day+1
             let thousand:Int = date_num/1000
@@ -315,11 +291,8 @@ class HomeViewController: UIViewController {
             if (date_num < 10){
                 num3.image = nil
             }
-
-
         } else {
-            fromDate.text = ""
-            dateLabel.text = ""
+            num4.image = UIImage(named: "0.png")
         }
     }
     
@@ -351,8 +324,17 @@ class HomeViewController: UIViewController {
         }))
         self.presentViewController(alert, animated: true, completion: nil);
     }
-
-
+    
+    override func viewWillAppear(animated: Bool) {
+        if !Reachability.isConnectedToNetwork() {
+            self.presentViewController(Reachability.alert(), animated: true, completion: nil)
+        } else {
+            initProgress()
+            profileInit()
+            initProfile()
+        }
+    }
+    
     override func viewDidAppear(animated: Bool) {
         
         let isUserLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("isUserLoggedIn")
@@ -365,11 +347,6 @@ class HomeViewController: UIViewController {
                 self.performSegueWithIdentifier("toLockView", sender: self)
             }
             _ = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")
-            
-            
         }
-        
-        profileInit()
-        
     }
 }

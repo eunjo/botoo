@@ -29,6 +29,7 @@ public class URLInfo {
     public var acceptAlert: String
     public var saveMessage: String
     public var getMessage: String
+    public var countMessage: String
 
     init() {
         acceptAlert = WEB_SERVER_IP + "/member/acceptAlert"
@@ -49,5 +50,6 @@ public class URLInfo {
         updateLetter = WEB_SERVER_IP + "/letter/updateLetter"
         saveMessage = WEB_SERVER_IP + "/chat/saveMessage"
         getMessage = WEB_SERVER_IP + "/chat/getMessage"
+        countMessage = WEB_SERVER_IP + "/chat/countMessage"
     }
 }

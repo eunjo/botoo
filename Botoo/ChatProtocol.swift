@@ -12,4 +12,5 @@ protocol ChatProtocol {
     
     func saveMessage(messageInfo: Dictionary<String,String>?, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
     func getMessage(senderId: String, userId: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
+    func countMessage(userId: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
 }

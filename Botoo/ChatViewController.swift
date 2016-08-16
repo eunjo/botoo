@@ -60,19 +60,17 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
-        messageTableView.delegate = self
-        messageTableView.dataSource = self
         
-        messageTableView.estimatedRowHeight = 73.0
-        messageTableView.rowHeight = UITableViewAutomaticDimension
-        
+        //messageTableView 초기화
+        initMessageTableView()
+
         //디바이스 모델 체크 및 키보드 높이 설정
         checkDevice()
         
         //컨테이너 초기화 (unvisible)
         initContainers()
         
-        // 배경 설정 //
+        //배경 설정
         initBackGround()
         
         currentKeyboardHeight = 0.0
@@ -80,42 +78,52 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         //키보드에 대한 노티피케이션 생성
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
-
-        // 소켓은 실시간 통신을 위한 것
-        // 실시간 대화가 아닌 경우 파일에 저장해 놓은 것을 뿌려주기
         
         initSocket()
         getChatMessage()
         
     }
     
+    func initMessageTableView() -> Void {
+        messageTableView.delegate = self
+        messageTableView.dataSource = self
+        
+        messageTableView.estimatedRowHeight = 73.0
+        messageTableView.rowHeight = UITableViewAutomaticDimension
+        
+        let messageTableViewTapped = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.messageTableViewTapped))
+        messageTableView.userInteractionEnabled = true
+        messageTableView.addGestureRecognizer(messageTableViewTapped)
+    }
+    
     func getChatMessage() {
         
-//        ChatConstruct().getMessage(loverId, userId: userId, completionHandler: { (json, error) -> Void in
-//            if json != nil {
-//                let JsonData = json as! [[String: AnyObject]]
-//                
-//                print(json)
-//                for data in JsonData {
-//                    FileManager.sharedInstance.writeFile(data["type"]! as! String, text: data["message"]! as! String, sender: data["senderName"] as! String, date: data["date"] as! String)
-//                }
-//            }
-//        })
-        
-        let messageList = FileManager.sharedInstance.readFile()
-        
-        if messageList == [] { return }
-        
-        for var message in messageList {
-            if message != "" {
-                message.removeAtIndex(message.endIndex.predecessor())
-    
-                let result = convertStringToDictionary(message)
-                self.chatMessages.append(result!)
+        ChatConstruct().getMessage(loverId, userId: userId, completionHandler: { (json, error) -> Void in
+            if json != nil && json.count != 0 {
+                let JsonData = json as! [[String: AnyObject]]
+                
+                for data in JsonData {
+                    FileManager.sharedInstance.writeFile(data["type"]! as! String, text: data["message"]! as! String, sender: data["senderName"] as! String, date: data["date"] as! String)
+                }
             }
-        }
-        
-        self.messageTableView.reloadData()
+            
+            let messageList = FileManager.sharedInstance.readFile()
+            
+            if messageList == [] { return }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                for var message in messageList {
+                    if message != "" {
+                        message.removeAtIndex(message.endIndex.predecessor())
+                        
+                        let result = self.convertStringToDictionary(message)
+                        self.chatMessages.append(result!)
+                    }
+                }
+                
+                self.messageTableView.reloadData()
+            }
+        })
     }
     
     func convertStringToDictionary(text: String) -> [String:AnyObject]? {
@@ -220,6 +228,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 
         // color 설정
         if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBgColor")){
+            self.messageTableView.backgroundView = nil
+            
             if (NSUserDefaults.standardUserDefaults().stringForKey("chatBgColor")=="white"){
                 messageTableView.backgroundColor = UIColor.whiteColor()
             }
@@ -250,12 +260,23 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         } else if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBgPic")){
             
             let imgData = NSUserDefaults.standardUserDefaults().objectForKey("chatBgPic") as! NSData
+<<<<<<< HEAD
             messageTableView.backgroundColor = UIColor(patternImage: UIImage(data: imgData)!)
             messageTableView.contentMode = .ScaleAspectFill
+=======
+            let image = UIImage(data: imgData)!
+            let imageView = UIImageView(frame: CGRectZero)
+            
+            imageView.contentMode = .ScaleAspectFill
+            imageView.image = image
+            
+            self.messageTableView.backgroundView = imageView
+>>>>>>> 2768e6d5c5e610c2868283b8de0c5afe2bd7155f
             
         } else if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBGdefalut")){
             
             messageTableView.backgroundColor = UIColor(patternImage: UIImage(named: "chatBGdefault.png")!)
+            self.messageTableView.backgroundView = nil
         }
     }
     
@@ -337,6 +358,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     //빈 공간 클릭 시 키보드 하이드
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
+        
         if drawerIsOpen {
             hideDrawer()
         }
@@ -512,7 +534,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             self.imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
             //수정 가능 옵션
             self.imagePicker.allowsEditing = true
-            self.imagePicker.mediaTypes = [kUTTypeMovie as String]
+//            self.imagePicker.mediaTypes = [kUTTypeMovie as String]
             self.presentViewController(self.imagePicker, animated: false, completion: nil)
         }
         
@@ -523,6 +545,31 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         alert.addAction(secondAction)
         
         presentViewController(alert, animated: true, completion:nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        picker.dismissViewControllerAnimated(true) { (_) in
+            let resiziedImage = self.resizeImage((info[UIImagePickerControllerOriginalImage] as? UIImage)!, newWidth: CGFloat(600))
+            
+            let Imagedata = UIImageJPEGRepresentation(resiziedImage, 0.5)
+            let base64String = Imagedata!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
+            
+            SocketIOManager.sharedInstance.sendMessage("pic", message: base64String, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
+            
+            self.saveMessage(base64String, type: "pic")
+        }
+    }
+    
+    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
+        
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
     
     @IBAction func onClickPlusCam(sender: UIButton) {
@@ -566,34 +613,25 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             chatInputTextField.text = ""
             chatInputTextField.resignFirstResponder()
             
-            if !self.findUser(self.users, find: self.loverId) {
-                
-                let messageInfo = [
-                    "senderId": self.userId as String,
-                    "receiverId": self.loverId as String,
-                    "message": message,
-                    "type": "text"
-                ]
-                
-                ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
-                    
-                })
-            }
+            self.saveMessage(message, type: "text")
         }
     }
     
-    
-    // tableView set
-    /** 
-        테이블뷰셀     이름 안뜨고 (constraint 설정 문제인 것 같은데 잘 모르겠다 흑흑)
-                    날짜 형식 / 한국 기준으로 바꿔서 집어 넣기..
-                    메세지 버블 길어졌을 때 날짜 라벨 위치 (이것도 constraint 문제 같아)
-                    너무 배고파
-                    테이블뷰 때문에 빈 공간 클릭 시 키보드 안내려감! (드로어두)
-                    메세지 버블 이미지 (말풍선 이미지) 나인 패치 -----
-     
-        키보드        키보드 .......
-    **/
+    func saveMessage(message: String, type: String) {
+        if !self.findUser(self.users, find: self.loverId) {
+            
+            let messageInfo = [
+                "senderId": self.userId as String,
+                "receiverId": self.loverId as String,
+                "message": message,
+                "type": type
+            ]
+            
+            ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
+                
+            })
+        }
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.chatMessages.count
@@ -603,43 +641,45 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         let message = self.chatMessages[indexPath.row]["message"] as? String
         let name = self.chatMessages[indexPath.row]["nickname"] as? String
         let date = self.chatMessages[indexPath.row]["date"] as? String
-        let type = self.chatMessages[indexPath.row]["type"] as? String
+        let type = self.chatMessages[indexPath.row]["type"] as! String
         
-        if (type == "text"){
+        switch type {
+        case "text":
             if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
                 var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
-            
+                
                 if cell == nil {
                     tableView.registerNib(UINib(nibName: "UIChatTableViewCellm", bundle: nil), forCellReuseIdentifier: "ChatTableViewCellm")
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
                 }
-            
+                
                 cell?.messageBubble.text = message
                 cell?.nameLabel.text = name
-                cell?.dateLabel.text = dateToString(date!)
-            
+//                cell?.dateLabel.text = dateToString(date!)
+                cell?.dateLabel.text = "00:00"
+                
                 cell?.messageBubble.backgroundColor = bubbleColor
-            
+                
                 return cell!
-            
+                
             } else { // 상대방 메세지
                 var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
-            
+                
                 if cell == nil {
                     tableView.registerNib(UINib(nibName: "UIChatTableViewCell", bundle: nil), forCellReuseIdentifier: "ChatTableViewCell")
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
                 }
-            
+                
                 cell?.messageBubble.text = message
                 cell?.nameLabel.text = name
-                cell?.dateLabel.text = dateToString(date!)
-            
+//                cell?.dateLabel.text = dateToString(date!)
+                cell?.dateLabel.text = "00:00"
+                
                 cell?.messageBubble.backgroundColor = bubbleColor
-            
+                
                 return cell!
             }
-        } else {
-            
+        case "contact":
             var cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCell") as? ChatContactTableViewCell
             
             if cell == nil {
@@ -658,8 +698,63 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             cell?.setData(givenName as! String, fN: familyName as! String, pN: MobNumVar as! String)
             
             return cell!
+        case "pic":
+            if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
+                var cell = tableView.dequeueReusableCellWithIdentifier("ChatPicTabelViewCell") as? ChatPicTabelViewCell
+                
+                if cell == nil {
+                    tableView.registerNib(UINib(nibName: "UIChatPicCell", bundle: nil), forCellReuseIdentifier: "ChatPicTabelViewCell")
+                    cell = tableView.dequeueReusableCellWithIdentifier("ChatPicTabelViewCell") as? ChatPicTabelViewCell
+                }
+                
+                cell?.name.text = name
+//                cell?.date.text = dateToString(date!)
+                cell?.date.text = "00:00"
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    //이미지 디코딩
+                    let dataDecoded:NSData = NSData(base64EncodedString: message!, options: NSDataBase64DecodingOptions(rawValue: 0))!
+                    let decodedimage:UIImage = UIImage(data: dataDecoded)!
+                    cell?.pic.image = decodedimage
+                    
+                    //이미지 확대
+                    let tap_2 = UITapGestureRecognizer(target:self, action: #selector(ChatViewController.picTapped(_:)))
+                    cell?.pic.userInteractionEnabled = true
+                    cell?.pic.addGestureRecognizer(tap_2)
+                }
+                
+                return cell!
+
+                
+            } else { // 상대방 메세지
+                var cell = tableView.dequeueReusableCellWithIdentifier("ChatPicTabelViewCellm") as? ChatPicTabelViewCellm
+                
+                if cell == nil {
+                    tableView.registerNib(UINib(nibName: "UIChatPicCellm", bundle: nil), forCellReuseIdentifier: "ChatPicTabelViewCellm")
+                    cell = tableView.dequeueReusableCellWithIdentifier("ChatPicTabelViewCellm") as? ChatPicTabelViewCellm
+                }
+                
+                cell?.name.text = name
+//                cell?.date.text = dateToString(date!)
+                cell?.date.text = "00:00"
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    //이미지 디코딩
+                    let dataDecoded:NSData = NSData(base64EncodedString: message!, options: NSDataBase64DecodingOptions(rawValue: 0))!
+                    let decodedimage:UIImage = UIImage(data: dataDecoded)!
+                    cell?.pic.image = decodedimage
+                    
+                    //이미지 확대
+                    let tap_2 = UITapGestureRecognizer(target:self, action: #selector(ChatViewController.picTapped(_:)))
+                    cell?.pic.userInteractionEnabled = true
+                    cell?.pic.addGestureRecognizer(tap_2)
+                }
+                
+                return cell!
+
+            }        default:
+            return UITableViewCell()
         }
-        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -680,6 +775,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         dateFormatter.dateFormat = "EEE MMM dd yyyy HH:mm:ss"
         let Date = dateFormatter.dateFromString(date)
         
+        print(date)
         
         // 날짜 년 월 일 로 포맷변환
         let cal = NSCalendar(calendarIdentifier:NSCalendarIdentifierGregorian)!
@@ -708,9 +804,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func findUser(users: [String], find: String) -> Bool! {
         
-        print(users)
-        print("find::\(find)")
-        
         if users.count < 1 {
             print("NOT FIND!")
             return false
@@ -737,5 +830,36 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         }
         
         return false
+    }
+    
+    func messageTableViewTapped() {
+        self.view.endEditing(true)
+        
+        if drawerIsOpen {
+            hideDrawer()
+        }
+        
+        if plusIsOpen {
+            adjustingHeightForPlus(plusIsOpen)
+        }
+        
+        if emoIsOpen {
+            adjustingHeightForEmo(emoIsOpen)
+        }
+    }
+    
+    func picTapped(sender:UITapGestureRecognizer) {
+        self.performSegueWithIdentifier("picZoomSeg", sender: sender.view)
+        if let connectingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("imageZoomViewController") {
+            connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+            self.presentViewController(connectingViewController, animated: true, completion: nil)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "picZoomSeg") {
+            let svc = segue.destinationViewController as! imageZoomViewController
+            svc.newImage = sender!.image
+        }
     }
 }

@@ -42,7 +42,6 @@ class SocketIOManager: NSObject {
             messageDictionary["message"] = dataArray[2] as! String //내용
             messageDictionary["date"] = dataArray[3] as! String //시간
             
-            print(messageDictionary)
             completionHandler(messageInfo: messageDictionary)
         }
     }

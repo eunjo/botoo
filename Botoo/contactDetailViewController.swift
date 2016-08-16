@@ -12,7 +12,7 @@ import Contacts
 
 class contactDetailViewController: UIViewController {
     
-    var contact:CNContact?
+    var contact:CNMutableContact?
 
     override func viewDidLoad() {
         super.viewDidLoad()
