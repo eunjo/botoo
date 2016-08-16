@@ -31,6 +31,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     @IBOutlet weak var chatInputTextField: UITextField!
     @IBOutlet var toolbar: UIToolbar!
     @IBOutlet var drawerContainer: UIView!
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet var drawerLeadingConstraint: NSLayoutConstraint!
     @IBOutlet var toolbarDrawer: UIView!
     @IBOutlet var plusView: UIView!
@@ -259,6 +260,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         } else if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBgPic")){
             
             let imgData = NSUserDefaults.standardUserDefaults().objectForKey("chatBgPic") as! NSData
+
+            messageTableView.backgroundColor = UIColor(patternImage: UIImage(data: imgData)!)
+            messageTableView.contentMode = .ScaleAspectFill
+
             let image = UIImage(data: imgData)!
             let imageView = UIImageView(frame: CGRectZero)
             
