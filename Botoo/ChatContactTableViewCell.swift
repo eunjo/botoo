@@ -8,7 +8,7 @@
 
 import UIKit
 import Contacts
-
+import ContactsUI
 
 class ChatContactTableViewCell: UITableViewCell {
 
@@ -20,6 +20,7 @@ class ChatContactTableViewCell: UITableViewCell {
     var phoneNum:String?
     
     var childView = contactDetailViewController()
+    var parentView = ChatViewController()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,7 +34,6 @@ class ChatContactTableViewCell: UITableViewCell {
     }
 
     @IBAction func contactButtonTapped(sender: AnyObject) {
-
         
         let Contact = CNMutableContact()
         
@@ -45,16 +45,23 @@ class ChatContactTableViewCell: UITableViewCell {
         self.childView.contact = Contact
     
         dispatch_sync(dispatch_get_main_queue(), {
-//            if let delegate = UIApplication.sharedApplication().delegate {
-//                delegate.window!!.rootViewController?.presentViewController(self.childView, animated: true, completion: { () -> Void in
-//                    // optional completion code
-//                })
-//            }
+
             
-            if let connectingViewController = self.childView.storyboard?.instantiateViewControllerWithIdentifier("contactDetail") {
-                connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-                self.childView.presentViewController(connectingViewController, animated: true, completion: nil)
-            }
+            let alertController = UIAlertController(title: "알림", message: "이 연락처를 저장하시겠습니까?", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            let okAction = UIAlertAction(title:"확인", style:UIAlertActionStyle.Default, handler: { action in
+                
+                self.OkAction()
+            
+            })
+            
+            alertController.addAction(okAction)
+            
+            let pushedViewControllers = (self.window?.rootViewController as! UINavigationController).viewControllers
+            let presentedViewController = pushedViewControllers[pushedViewControllers.count - 1]
+            
+            presentedViewController.presentViewController(alertController, animated: true, completion: nil)
+            
         })
     
     }
@@ -64,6 +71,25 @@ class ChatContactTableViewCell: UITableViewCell {
         self.givenName = gN
         self.familyName = fN
         self.phoneNum = pN
+    }
+    
+    func OkAction(){
+        
+        let newContact = CNMutableContact()
+        
+        newContact.givenName = self.givenName!
+        newContact.familyName = self.familyName!
+        
+        let store = CNContactStore()
+        let request = CNSaveRequest()
+        request.addContact(newContact, toContainerWithIdentifier: nil)
+        do{
+            try store.executeSaveRequest(request)
+            print("Successfully stored the contact")
+        } catch let err{
+            print("Failed to save the contact. \(err)")
+        }
+
     }
     
     
