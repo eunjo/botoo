@@ -260,10 +260,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         } else if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBgPic")){
             
             let imgData = NSUserDefaults.standardUserDefaults().objectForKey("chatBgPic") as! NSData
-<<<<<<< HEAD
+
             messageTableView.backgroundColor = UIColor(patternImage: UIImage(data: imgData)!)
             messageTableView.contentMode = .ScaleAspectFill
-=======
+
             let image = UIImage(data: imgData)!
             let imageView = UIImageView(frame: CGRectZero)
             
@@ -271,7 +271,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             imageView.image = image
             
             self.messageTableView.backgroundView = imageView
->>>>>>> 2768e6d5c5e610c2868283b8de0c5afe2bd7155f
             
         } else if (NSUserDefaults.standardUserDefaults().boolForKey("ischatBGdefalut")){
             
