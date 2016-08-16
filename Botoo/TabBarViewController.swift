@@ -21,6 +21,19 @@ class TabBarViewController: UITabBarController {
         let userId =  NSUserDefaults.standardUserDefaults().stringForKey("userId")
         let loveId = NSUserDefaults.standardUserDefaults().stringForKey("loverId")
         
+        if loveId != nil {
+            //메세지 개수 로드 (뱃지)
+            ChatConstruct().countMessage(userId!, completionHandler: { (json, error) -> Void in
+                dispatch_async(dispatch_get_main_queue()) {
+                    if json != nil && json.count != 0 {
+                        self.tabBar.items![1].badgeValue = String(json.count)
+                    } else {
+                        self.tabBar.items![1].badgeValue = nil
+                    }
+                }
+            })
+        }
+        
         if connectIdTemp != nil && userId != nil {
             //편지 개수 로드 (뱃지)
             LetterConstruct().callLetter(connectIdTemp!,
@@ -46,19 +59,6 @@ class TabBarViewController: UITabBarController {
                                                     }
                                                 }
                                             }
-            })
-        }
-        
-        if loveId != nil {
-            //메세지 개수 로드 (뱃지)
-            ChatConstruct().countMessage(userId!, completionHandler: { (json, error) -> Void in
-                dispatch_async(dispatch_get_main_queue()) {
-                    if json != nil && json.count != 0 {
-                        self.tabBar.items![1].badgeValue = String(json.count)
-                    } else {
-                        self.tabBar.items![1].badgeValue = nil
-                    }
-                }
             })
         }
     }
