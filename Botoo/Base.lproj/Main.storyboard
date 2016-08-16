@@ -351,7 +351,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="0q2-mC-S9t">
-                                <rect key="frame" x="48" y="210" width="70" height="70"/>
+                                <rect key="frame" x="46" y="210" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -1835,8 +1835,8 @@
         <image name="tab_settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oJk-S0-t2O"/>
-        <segue reference="inY-Zf-Fx1"/>
-        <segue reference="Igv-Vl-L6y"/>
+        <segue reference="UIt-JZ-bYR"/>
+        <segue reference="x39-vu-HcH"/>
+        <segue reference="jZk-yp-nUi"/>
     </inferredMetricsTieBreakers>
 </document>
