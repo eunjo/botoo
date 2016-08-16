@@ -343,7 +343,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             
             UIView.animateWithDuration(animationDurarion, animations: { () -> Void in
 //                self.toolbarBottomConstraint.constant += changeInHeight
-                self.toolbar.frame.origin.y += changeInHeight
+                
+                self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, -changeInHeight)
             })
         } else {
             // 키보드가 텍스트 필드를 가리는지 확인
