@@ -564,7 +564,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                  테이블뷰에 추가
                  //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
                  **/
-                self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"pic\",\"message\":\"\(base64String)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)\"}")!)
+                self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"pic\",\"message\":\"\(base64String)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(NSDate())\"}")!)
                 self.messageTableView.reloadData()
                 
                 //메세지 서버에 저장
@@ -624,7 +624,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
              테이블뷰에 추가
              //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
              **/
-            self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"contact\",\"message\":\"\(ContactString)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)\"}")!)
+            self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"contact\",\"message\":\"\(ContactString)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(NSDate())\"}")!)
             
             //메세지 서버에 저장
             self.saveMessage(ContactString, type: "contact")
@@ -649,7 +649,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     테이블뷰에 추가
                     //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
                 **/
-                self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"text\",\"message\":\"\(message)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)\"}")!)
+                self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"text\",\"message\":\"\(message)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(NSDate())\"}")!)
                 
                 //메세지 서버에 저장
                 self.saveMessage(message, type: "text")
@@ -698,8 +698,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 
                 cell?.messageBubble.text = message
                 cell?.nameLabel.text = name
-//                cell?.dateLabel.text = dateToString(date!)
-                cell?.dateLabel.text = "00:00"
+                cell?.dateLabel.text = date![date!.startIndex.advancedBy(11)...date!.startIndex.advancedBy(15)]
+//                cell?.dateLabel.text = "00:00"
                 
                 cell?.messageBubble.backgroundColor = bubbleColor
                 
@@ -779,8 +779,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 }
                 
                 cell?.name.text = name
-//                cell?.date.text = dateToString(date!)
-                cell?.date.text = "00:00"
+                cell?.date.text = date![date!.startIndex.advancedBy(11)...date!.startIndex.advancedBy(15)]
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     //이미지 디코딩
