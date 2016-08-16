@@ -155,7 +155,6 @@ class HomeViewController: UIViewController {
                             
                             self.myProPic.image = decodedimage
                         }
-
                         
                         // 내 이름 로드
                         self.myUserName.text = json["name"] as? String
