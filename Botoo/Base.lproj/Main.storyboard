@@ -193,8 +193,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="wAH-Yz-q7p" appends="YES" id="CSu-qi-Pok"/>
-                                    <outletCollection property="gestureRecognizers" destination="wAH-Yz-q7p" appends="YES" id="9Vg-ai-hqu"/>
+                                    <outletCollection property="gestureRecognizers" destination="qvj-or-edN" appends="YES" id="Iv8-9n-fOe"/>
                                 </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fXz-17-CD1">
@@ -216,9 +215,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SSO-PQ-Ymg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pinchGestureRecognizer id="wAH-Yz-q7p">
+                <pinchGestureRecognizer id="qvj-or-edN">
                     <connections>
-                        <action selector="imageZoom:" destination="vnq-Hu-44x" id="XaI-Id-FIb"/>
+                        <action selector="imageZoom:" destination="vnq-Hu-44x" id="HXw-xG-NPd"/>
                     </connections>
                 </pinchGestureRecognizer>
             </objects>
