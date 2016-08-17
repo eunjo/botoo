@@ -17,7 +17,7 @@ import MobileCoreServices
 import ContactsUI
 import AVFoundation
 
-class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CNContactPickerDelegate, UITableViewDelegate, UITableViewDataSource {
+class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CNContactPickerDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
     private let bubbleColor = UIColor(red: 250.0/255, green: 212.0/255, blue: 40.0/255, alpha: 1)
     // 이미지픽커 선언
@@ -28,8 +28,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     private var SETTING = 0
     @IBOutlet var toolbarBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var chatInputTextField: UITextField!
+    @IBOutlet var chatInputTextField: UITextView!
     @IBOutlet var toolbar: UIToolbar!
+    @IBOutlet var viewInToolbar: UIView!
     @IBOutlet var drawerContainer: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet var toolbarDrawer: UIView!
@@ -54,8 +55,13 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     //emoticon
     private let emoticonCollections = [UIImage(named: "baby.png")]
-    
     @IBOutlet var emo_baby: UIButton!
+    
+    //toolbar 크기 조정
+    private var TOOLBAR_FRAME = CGRect()
+    private var TOOLBARVIEW_FRAME = CGRect()
+    private var TOOLBARTEXT_FRAME = CGRect()
+    private var formerLine = 1
     
     struct removeChats {
         static var isRemove = false
@@ -64,6 +70,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
+        self.chatInputTextField.delegate = self
+        self.TOOLBAR_FRAME = self.toolbar.frame
+        self.TOOLBARVIEW_FRAME = self.viewInToolbar.frame
+        self.TOOLBARTEXT_FRAME = self.chatInputTextField.frame
         
         //messageTableView 초기화
         initMessageTableView()
@@ -92,7 +102,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         messageTableView.delegate = self
         messageTableView.dataSource = self
         
-        messageTableView.estimatedRowHeight = 70.0
+        messageTableView.estimatedRowHeight = 60.0
         messageTableView.rowHeight = UITableViewAutomaticDimension
         
         let messageTableViewTapped = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.messageTableViewTapped))
@@ -311,7 +321,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func keyboardWillHide(notification:NSNotification) {
-//        keyboardIsOpen = false
         adjustingHeight(false, notification: notification)
     }
 
@@ -349,6 +358,20 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 //                self.toolbarBottomConstraint.constant += changeInHeight
                 
                 self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, -changeInHeight)
+                
+                //툴바가 아래로 내려갈 때 && 작성 중이 아닐 때 (작성이 완료된 경우)
+                if !show && self.chatInputTextField.text == ""{
+                    //툴바 사이즈 변경되어 있을 경우
+                    //더 내려야 할 높이
+                    let extra = self.toolbar.frame.size.height - self.TOOLBAR_FRAME.size.height
+                    self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, extra)
+                    
+                    //툴바 사이즈 복구
+                    self.viewInToolbar.frame.size = self.TOOLBARVIEW_FRAME.size
+                    self.chatInputTextField.frame.size = self.TOOLBARTEXT_FRAME.size
+                    self.toolbar.frame.size = self.TOOLBAR_FRAME.size
+                }
+                
             })
         } else {
             // 키보드가 텍스트 필드를 가리는지 확인
@@ -666,6 +689,23 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 self.messageTableView.reloadData()
                 self.scrollToBottom()
             }
+            
+            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                
+                //툴바가 아래로 내려갈 때 && 작성 중이 아닐 때 (작성이 완료된 경우)
+                if self.chatInputTextField.text == ""{
+                    //툴바 사이즈 변경되어 있을 경우
+                    //더 내려야 할 높이
+                    let extra = self.toolbar.frame.size.height - self.TOOLBAR_FRAME.size.height
+                    self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, extra)
+                    
+                    //툴바 사이즈 복구
+                    self.viewInToolbar.frame.size = self.TOOLBARVIEW_FRAME.size
+                    self.chatInputTextField.frame.size = self.TOOLBARTEXT_FRAME.size
+                    self.toolbar.frame.size = self.TOOLBAR_FRAME.size
+                }
+                
+            })
         }
     }
     
@@ -953,7 +993,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         }
     }
     
-    func test() -> NSMutableAttributedString {
+    func test(str: String) -> NSMutableAttributedString {
         let iconsSize = CGRect(x: 0, y: 0, width: 24, height: 24)
         let attributedString = NSMutableAttributedString(string: "Your ")
         
@@ -1008,5 +1048,34 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         default:
             break
         }
+    }
+    
+    //텍스트뷰 길이 조정
+    func textViewDidChange(textView: UITextView) {
+        let currentLine = Int(self.chatInputTextField.contentSize.height / self.chatInputTextField.font!.lineHeight)
+        
+        print(currentLine)
+        
+        if (formerLine != currentLine) {
+            if (currentLine > 1 && currentLine < 4) {
+                
+                let yFlag = (currentLine - formerLine) > 0 ? CGFloat(1) : CGFloat(-1) //줄 ++
+                let toolbar_newY = self.toolbar.frame.origin.y - (yFlag * self.TOOLBAR_FRAME.size.height)
+                
+                let toolbar_newH = (currentLine - formerLine) > 0 ? self.TOOLBAR_FRAME.size.height * CGFloat(currentLine) : self.toolbar.frame.size.height - self.TOOLBAR_FRAME.size.height
+                let toolbarView_newH = (currentLine - formerLine) > 0 ? self.TOOLBARVIEW_FRAME.size.height * CGFloat(currentLine) : self.viewInToolbar.frame.size.height - self.TOOLBARVIEW_FRAME.size.height
+                let toolbarText_newH = (currentLine - formerLine) > 0 ? self.TOOLBARTEXT_FRAME.size.height * CGFloat(currentLine) : self.chatInputTextField.frame.size.height - self.TOOLBARTEXT_FRAME.size.height
+                
+                //텍스트뷰 길이 조정
+                self.toolbar.frame = CGRect(x: self.toolbar.frame.origin.x, y: toolbar_newY, width: self.toolbar.frame.size.width, height: toolbar_newH)
+                self.viewInToolbar.frame = CGRect(x: self.viewInToolbar.frame.origin.x, y: self.viewInToolbar.frame.origin.y, width: self.viewInToolbar.frame.size.width, height: toolbarView_newH)
+                self.chatInputTextField.frame = CGRect(x: self.chatInputTextField.frame.origin.x, y: 0, width: self.chatInputTextField.frame.size.width, height: toolbarText_newH)
+            }
+            
+            let newPosition = self.chatInputTextField.endOfDocument
+            self.chatInputTextField.selectedTextRange =  self.chatInputTextField.textRangeFromPosition(newPosition, toPosition: newPosition)
+        }
+        
+        formerLine = currentLine
     }
 }

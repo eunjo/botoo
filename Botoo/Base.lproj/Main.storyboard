@@ -435,19 +435,19 @@
                                     </barButtonItem>
                                     <barButtonItem style="plain" id="MjI-2j-dR7">
                                         <view key="customView" contentMode="scaleToFill" id="nWO-Qg-OEG">
-                                            <rect key="frame" x="43" y="6" width="321" height="33"/>
+                                            <rect key="frame" x="43" y="6" width="325" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="hzT-Nc-pGI">
-                                                    <rect key="frame" x="7" y="1" width="230" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="justified" id="xCq-d3-mWn">
+                                                    <rect key="frame" x="8" y="0.0" width="235" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2kQ-RG-M4F">
-                                                    <rect key="frame" x="244" y="2" width="22" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <rect key="frame" x="250" y="1" width="22" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="3" maxX="0.0" maxY="3"/>
                                                     <state key="normal" image="dolphin_only.png"/>
                                                     <connections>
@@ -455,8 +455,9 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pYB-xM-8JG">
-                                                    <rect key="frame" x="274" y="2" width="42" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <rect key="frame" x="283" y="0.0" width="42" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                                     <state key="normal" title="전송">
                                                         <color key="titleColor" red="0.84705882349999995" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -581,7 +582,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="chatInputTextField" destination="hzT-Nc-pGI" id="dlN-e0-sIG"/>
+                        <outlet property="chatInputTextField" destination="xCq-d3-mWn" id="3un-7a-Ylu"/>
                         <outlet property="drawerContainer" destination="J3h-k7-gJ4" id="MKg-PE-Srq"/>
                         <outlet property="emo_baby" destination="glw-Tc-VSr" id="xFI-CE-Cq2"/>
                         <outlet property="emoticonView" destination="UkL-Tn-e3y" id="ifA-NE-uQs"/>
@@ -589,6 +590,7 @@
                         <outlet property="plusView" destination="yI5-H9-ytG" id="7nZ-nc-juN"/>
                         <outlet property="toolbar" destination="92Y-Q6-G81" id="jop-l6-OoA"/>
                         <outlet property="toolbarDrawer" destination="F1l-Va-gN6" id="IQ4-Ts-lkb"/>
+                        <outlet property="viewInToolbar" destination="nWO-Qg-OEG" id="d1z-Bt-5gd"/>
                         <segue destination="vnq-Hu-44x" kind="modal" identifier="picZoomSeg" id="oJk-S0-t2O"/>
                     </connections>
                 </viewController>
