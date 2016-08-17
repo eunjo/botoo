@@ -24,7 +24,7 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z0x-Ga-NDn">
                         <rect key="frame" x="13" y="44" width="61" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="61" id="Ow4-Kl-lZs"/>
+                            <constraint firstAttribute="width" constant="61" id="fKy-SK-maO"/>
                         </constraints>
                         <state key="normal" title="Contact"/>
                         <connections>
@@ -34,19 +34,19 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_no_person" translatesAutoresizingMaskIntoConstraints="NO" id="Ixp-HJ-AAC">
                         <rect key="frame" x="77" y="44" width="30" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="EDm-Ft-bbO"/>
+                            <constraint firstAttribute="width" constant="30" id="ynJ-Me-qLm"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Ixp-HJ-AAC" firstAttribute="leading" secondItem="z0x-Ga-NDn" secondAttribute="trailing" constant="3" id="1n6-uL-YCe"/>
-                    <constraint firstItem="z0x-Ga-NDn" firstAttribute="top" secondItem="Q8H-jv-DsU" secondAttribute="bottom" constant="8" symbolic="YES" id="2nI-gy-EnF"/>
-                    <constraint firstItem="z0x-Ga-NDn" firstAttribute="top" secondItem="Ixp-HJ-AAC" secondAttribute="top" id="82F-U2-dxm"/>
-                    <constraint firstItem="Q8H-jv-DsU" firstAttribute="leading" secondItem="VVh-Cd-iL6" secondAttribute="leadingMargin" constant="5" id="GiE-8w-7WX"/>
-                    <constraint firstItem="Q8H-jv-DsU" firstAttribute="top" secondItem="VVh-Cd-iL6" secondAttribute="topMargin" constant="10" id="Gns-SJ-dse"/>
-                    <constraint firstItem="Q8H-jv-DsU" firstAttribute="leading" secondItem="z0x-Ga-NDn" secondAttribute="leading" id="gc1-Gr-2LG"/>
-                    <constraint firstItem="Q8H-jv-DsU" firstAttribute="centerX" secondItem="VVh-Cd-iL6" secondAttribute="centerX" id="xsL-Yh-9ov"/>
-                    <constraint firstItem="z0x-Ga-NDn" firstAttribute="bottom" secondItem="Ixp-HJ-AAC" secondAttribute="bottom" id="yNe-CW-UdS"/>
+                    <constraint firstItem="Q8H-jv-DsU" firstAttribute="leading" secondItem="VVh-Cd-iL6" secondAttribute="leadingMargin" constant="5" id="1YZ-gS-Y32"/>
+                    <constraint firstItem="Ixp-HJ-AAC" firstAttribute="leading" secondItem="z0x-Ga-NDn" secondAttribute="trailing" constant="3" id="H9L-KP-kD1"/>
+                    <constraint firstItem="z0x-Ga-NDn" firstAttribute="top" secondItem="Q8H-jv-DsU" secondAttribute="bottom" constant="8" symbolic="YES" id="IT4-Au-Mh4"/>
+                    <constraint firstItem="z0x-Ga-NDn" firstAttribute="top" secondItem="Ixp-HJ-AAC" secondAttribute="top" id="LoM-DT-VVg"/>
+                    <constraint firstItem="Q8H-jv-DsU" firstAttribute="top" secondItem="VVh-Cd-iL6" secondAttribute="topMargin" constant="10" id="het-Gf-6iM"/>
+                    <constraint firstItem="Q8H-jv-DsU" firstAttribute="leading" secondItem="z0x-Ga-NDn" secondAttribute="leading" id="kiH-iK-3m0"/>
+                    <constraint firstItem="z0x-Ga-NDn" firstAttribute="bottom" secondItem="Ixp-HJ-AAC" secondAttribute="bottom" id="pJh-Io-CQj"/>
+                    <constraint firstItem="Q8H-jv-DsU" firstAttribute="centerX" secondItem="VVh-Cd-iL6" secondAttribute="centerX" id="vct-ZV-CNK"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

@@ -87,7 +87,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         messageTableView.delegate = self
         messageTableView.dataSource = self
         
-        messageTableView.estimatedRowHeight = 73.0
+        messageTableView.estimatedRowHeight = 70.0
         messageTableView.rowHeight = UITableViewAutomaticDimension
         
         let messageTableViewTapped = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.messageTableViewTapped))
@@ -736,23 +736,23 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 return cell!
             }
         case "contact":
+            
+            let replacedMsg = message!.stringByReplacingOccurrencesOfString("\'", withString: "\"")
+            
+            let messageDic = convertStringToDictionary(replacedMsg)
+            
+            let givenName = messageDic!["givenName"]!
+            let familyName = messageDic!["familyName"]!
+            let MobNumVar = messageDic!["MobNumVar"]!
+            
             if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
-                
+            
                 var cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCell") as? ChatContactTableViewCell
                 
                 if cell == nil {
                     tableView.registerNib(UINib(nibName: "UIChatContactCell", bundle: nil), forCellReuseIdentifier: "ChatContactTableViewCell")
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCell") as? ChatContactTableViewCell
                 }
-                
-                let replacedMsg = message!.stringByReplacingOccurrencesOfString("\'", withString: "\"")
-                
-                let messageDic = convertStringToDictionary(replacedMsg)
-                
-                let givenName = messageDic!["givenName"]!
-                let familyName = messageDic!["familyName"]!
-                let MobNumVar = messageDic!["MobNumVar"]!
-                
                 cell?.nameLabel.text = name
                 cell?.contactButton.setTitle("\(givenName) \(familyName)", forState: .Normal)
                 cell?.setData(givenName as! String, fN: familyName as! String, pN: MobNumVar as! String)
@@ -764,23 +764,15 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 var cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCellL") as? ChatContactTableViewCellL
                 
                 if cell == nil {
-                    tableView.registerNib(UINib(nibName: "UIChatContactCell", bundle: nil), forCellReuseIdentifier: "ChatContactTableViewCellL")
+                    tableView.registerNib(UINib(nibName: "UIChatContactCellL", bundle: nil), forCellReuseIdentifier: "ChatContactTableViewCellL")
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCellL") as? ChatContactTableViewCellL
                 }
-                
-                let messageDic = convertStringToDictionary(message!)
-                
-                let givenName = messageDic!["givenName"]!
-                let familyName = messageDic!["familyName"]!
-                let MobNumVar = messageDic!["MobNumVar"]!
                 
                 cell?.nameLabel.text = name
                 cell?.contactButton.setTitle("\(givenName) \(familyName)", forState: .Normal)
                 cell?.setData(givenName as! String, fN: familyName as! String, pN: MobNumVar as! String)
                 
                 return cell!
-
-                
             }
         case "pic":
             if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
