@@ -40,6 +40,7 @@
 		C0D47B121D32AFF600637EAB /* MemberConstruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47B111D32AFF600637EAB /* MemberConstruct.swift */; };
 		C0FFBC3B1D5DFE3F003C4C7F /* UIChatPicCellm.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0FFBC3A1D5DFE3F003C4C7F /* UIChatPicCellm.xib */; };
 		C0FFBC3D1D5DFEA9003C4C7F /* ChatPicTabelViewCellm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFBC3C1D5DFEA9003C4C7F /* ChatPicTabelViewCellm.swift */; };
+		C0FFBC3F1D64053F003C4C7F /* UIChatContactCellL.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0FFBC3E1D64053F003C4C7F /* UIChatContactCellL.xib */; };
 		D600A9661D226F06005F9130 /* RegisterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A9651D226F06005F9130 /* RegisterPageViewController.swift */; };
 		D600A9681D227C8D005F9130 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D600A9671D227C8D005F9130 /* LoginViewController.swift */; };
 		D600A96C1D2287B2005F9130 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D600A96B1D2287B2005F9130 /* Icon-60@2x.png */; };
@@ -109,7 +110,6 @@
 		D6B2713A1D59A6B600E61792 /* ChatContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B271391D59A6B600E61792 /* ChatContactTableViewCell.swift */; };
 		D6B2713C1D5C6DDC00E61792 /* contactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2713B1D5C6DDC00E61792 /* contactDetailViewController.swift */; };
 		D6B2713E1D62F79500E61792 /* ChatContactTableViewCellL.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2713D1D62F79500E61792 /* ChatContactTableViewCellL.swift */; };
-		D6B271401D62F7C500E61792 /* UIChatContactCellL.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6B2713F1D62F7C500E61792 /* UIChatContactCellL.xib */; };
 		D6C0EFF71D2760FF00798E2B /* alarmSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C0EFF61D2760FF00798E2B /* alarmSetViewController.swift */; };
 		D6E2AF521D3E1D3F00C01509 /* tp_default_female.png in Resources */ = {isa = PBXBuildFile; fileRef = D6E2AF4F1D3E1D3F00C01509 /* tp_default_female.png */; };
 		D6E2AF531D3E1D3F00C01509 /* tp_default_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = D6E2AF501D3E1D3F00C01509 /* tp_default_grey.png */; };
@@ -168,6 +168,7 @@
 		C0D47B111D32AFF600637EAB /* MemberConstruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberConstruct.swift; sourceTree = "<group>"; };
 		C0FFBC3A1D5DFE3F003C4C7F /* UIChatPicCellm.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIChatPicCellm.xib; path = ../UIChatPicCellm.xib; sourceTree = "<group>"; };
 		C0FFBC3C1D5DFEA9003C4C7F /* ChatPicTabelViewCellm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatPicTabelViewCellm.swift; sourceTree = "<group>"; };
+		C0FFBC3E1D64053F003C4C7F /* UIChatContactCellL.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIChatContactCellL.xib; path = ../UIChatContactCellL.xib; sourceTree = "<group>"; };
 		CC75A78849B5A4C7DB472BE2 /* Pods_Botoo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Botoo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D600A9651D226F06005F9130 /* RegisterPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
 		D600A9671D227C8D005F9130 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -244,7 +245,6 @@
 		D6B271391D59A6B600E61792 /* ChatContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatContactTableViewCell.swift; sourceTree = "<group>"; };
 		D6B2713B1D5C6DDC00E61792 /* contactDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = contactDetailViewController.swift; sourceTree = "<group>"; };
 		D6B2713D1D62F79500E61792 /* ChatContactTableViewCellL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatContactTableViewCellL.swift; sourceTree = "<group>"; };
-		D6B2713F1D62F7C500E61792 /* UIChatContactCellL.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIChatContactCellL.xib; sourceTree = "<group>"; };
 		D6C0EFF61D2760FF00798E2B /* alarmSetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = alarmSetViewController.swift; sourceTree = "<group>"; };
 		D6E2AF4F1D3E1D3F00C01509 /* tp_default_female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tp_default_female.png; path = img/tp_default_female.png; sourceTree = "<group>"; };
 		D6E2AF501D3E1D3F00C01509 /* tp_default_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tp_default_grey.png; path = img/tp_default_grey.png; sourceTree = "<group>"; };
@@ -482,7 +482,7 @@
 				C0D47AEB1D22A1D800637EAB /* Controller */,
 				D69322A91D20FB6A003E9147 /* AppDelegate.swift */,
 				D6B271371D59A67600E61792 /* UIChatContactCell.xib */,
-				D6B2713F1D62F7C500E61792 /* UIChatContactCellL.xib */,
+				C0FFBC3E1D64053F003C4C7F /* UIChatContactCellL.xib */,
 				C050D5D51D5DC39C00D7114F /* UIChatPicCell.xib */,
 				C0FFBC3A1D5DFE3F003C4C7F /* UIChatPicCellm.xib */,
 				C050D5B91D45AF5F00D7114F /* UIChatTableViewCell.xib */,
@@ -648,9 +648,9 @@
 				C050D5C21D46FCCA00D7114F /* UIChatTableViewCellm.xib in Resources */,
 				D632BEFD1D46882C0029D6C1 /* 4.png in Resources */,
 				D632BEFC1D46882C0029D6C1 /* 3.png in Resources */,
+				C0FFBC3F1D64053F003C4C7F /* UIChatContactCellL.xib in Resources */,
 				D632BEFB1D46882C0029D6C1 /* 2.png in Resources */,
 				D6E2AF521D3E1D3F00C01509 /* tp_default_female.png in Resources */,
-				D6B271401D62F7C500E61792 /* UIChatContactCellL.xib in Resources */,
 				C050D5BA1D45AF5F00D7114F /* UIChatTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
