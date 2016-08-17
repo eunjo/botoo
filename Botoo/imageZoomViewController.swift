@@ -31,7 +31,7 @@ class imageZoomViewController: UIViewController {
 
     @IBAction func imageZoom(sender: UIPinchGestureRecognizer) {
         
-        self.ImageForZoom.transform = CGAffineTransformScale(self.ImageForZoom.transform, sender.scale, sender.scale)
+        self.view.transform = CGAffineTransformScale(self.view.transform, sender.scale, sender.scale)
         sender.scale = 1
         
     }
