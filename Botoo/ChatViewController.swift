@@ -28,8 +28,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     private var SETTING = 0
     @IBOutlet var toolbarBottomConstraint: NSLayoutConstraint!
-//    @IBOutlet weak var chatInputTextField: UITextField!
-    @IBOutlet var chatInputTextField: UITextView!
+    @IBOutlet weak var chatInputTextField: UITextField!
     @IBOutlet var toolbar: UIToolbar!
     @IBOutlet var drawerContainer: UIView!
     @IBOutlet weak var imageView: UIImageView!
@@ -650,10 +649,14 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     테이블뷰에 추가
                     //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
                 **/
-                self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"text\",\"message\":\"\(message)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(self.getCurrentDate_client())\"}")!)
+                var replacedMsg = message.stringByReplacingOccurrencesOfString("\"", withString: "/0x22")
+                replacedMsg = replacedMsg.stringByReplacingOccurrencesOfString("\\", withString: "/0x5c")
+                replacedMsg = replacedMsg.stringByReplacingOccurrencesOfString("\n", withString: "/0x0a")
+                
+                self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"text\",\"message\":\"\(replacedMsg)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(self.getCurrentDate_client())\"}")!)
                 
                 //메세지 서버에 저장
-                self.saveMessage(message, type: "text")
+                self.saveMessage(replacedMsg, type: "text")
                 
                 self.messageTableView.reloadData()
                 self.scrollToBottom()
@@ -702,6 +705,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         
         switch type {
         case "text":
+            var replacedMsg = message?.stringByReplacingOccurrencesOfString("/0x22", withString: "\"")
+            replacedMsg = replacedMsg!.stringByReplacingOccurrencesOfString("/0x5c", withString: "\\")
+            replacedMsg = replacedMsg!.stringByReplacingOccurrencesOfString("/0x0a", withString: "\n")
+            
             if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
                 var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
                 
@@ -710,7 +717,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
                 }
                 
-                cell?.messageBubble.text = message
+                cell?.messageBubble.text = replacedMsg
                 cell?.nameLabel.text = name
                 cell?.dateLabel.text = date!
 //                cell?.dateLabel.text = "00:00"
@@ -727,7 +734,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
                 }
                 
-                cell?.messageBubble.text = message
+                cell?.messageBubble.text = replacedMsg
                 cell?.nameLabel.text = name
 //                cell?.dateLabel.text = dateToString(date!)
                 cell?.dateLabel.text = "00:00"
