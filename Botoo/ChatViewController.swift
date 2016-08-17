@@ -52,6 +52,11 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private var chatMessages:[[String : AnyObject]] = []
     private var users = [String]()
     
+    //emoticon
+    private let emoticonCollections = [UIImage(named: "baby.png")]
+    
+    @IBOutlet var emo_baby: UIButton!
+    
     struct removeChats {
         static var isRemove = false
     }
@@ -953,7 +958,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         let attributedString = NSMutableAttributedString(string: "Your ")
         
         let loveAttachment = NSTextAttachment()
-        loveAttachment.image = UIImage(named: "tab_chat.png")
+        loveAttachment.image = emoticonCollections[0]
         loveAttachment.bounds = iconsSize
         attributedString.appendAttributedString(NSAttributedString(attachment: loveAttachment))
         
@@ -993,4 +998,15 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         return attributedString
     }
     
+    //emoticon
+    
+    @IBAction func selectEmoticon(sender: UIButton) {
+        switch sender.tag {
+        case 100:
+            self.chatInputTextField.text = self.chatInputTextField.text! + "(baby)"
+            break
+        default:
+            break
+        }
+    }
 }

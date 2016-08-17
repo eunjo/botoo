@@ -483,6 +483,21 @@
                                 <rect key="frame" x="0.0" y="431" width="375" height="236"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" id="UkL-Tn-e3y">
+                                        <rect key="frame" x="0.0" y="10" width="375" height="216"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="glw-Tc-VSr">
+                                                <rect key="frame" x="21" y="23" width="24" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="(baby).png"/>
+                                                <connections>
+                                                    <action selector="selectEmoticon:" destination="iws-kV-VAm" eventType="touchDown" id="dH1-te-rYF"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.98823529409999999" green="0.89411764709999997" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
                                     <view contentMode="scaleToFill" id="yI5-H9-ytG">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -536,18 +551,6 @@
                                                     <action selector="onClickPlusVideo:" destination="iws-kV-VAm" eventType="touchDown" id="JZ4-Ie-Afm"/>
                                                 </connections>
                                             </button>
-                                            <view contentMode="scaleToFill" id="UkL-Tn-e3y">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="glw-Tc-VSr">
-                                                        <rect key="frame" x="21" y="23" width="24" height="24"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <state key="normal" image="(baby).png"/>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" red="0.98823529409999999" green="0.89411764709999997" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" red="0.98823529409999999" green="0.89411764709999997" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
@@ -580,6 +583,7 @@
                     <connections>
                         <outlet property="chatInputTextField" destination="hzT-Nc-pGI" id="dlN-e0-sIG"/>
                         <outlet property="drawerContainer" destination="J3h-k7-gJ4" id="MKg-PE-Srq"/>
+                        <outlet property="emo_baby" destination="glw-Tc-VSr" id="xFI-CE-Cq2"/>
                         <outlet property="emoticonView" destination="UkL-Tn-e3y" id="ifA-NE-uQs"/>
                         <outlet property="messageTableView" destination="G8Y-0M-6SP" id="puW-uA-FLz"/>
                         <outlet property="plusView" destination="yI5-H9-ytG" id="7nZ-nc-juN"/>
