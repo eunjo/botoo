@@ -764,11 +764,12 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 var cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCellL") as? ChatContactTableViewCellL
                 
                 if cell == nil {
-                    tableView.registerNib(UINib(nibName: "UIChatContactCell", bundle: nil), forCellReuseIdentifier: "ChatContactTableViewCellL")
+                    tableView.registerNib(UINib(nibName: "UIChatContactCellL", bundle: nil), forCellReuseIdentifier: "ChatContactTableViewCellL")
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCellL") as? ChatContactTableViewCellL
                 }
+                let replacedMsg = message!.stringByReplacingOccurrencesOfString("\'", withString: "\"")
                 
-                let messageDic = convertStringToDictionary(message!)
+                let messageDic = convertStringToDictionary(replacedMsg)
                 
                 let givenName = messageDic!["givenName"]!
                 let familyName = messageDic!["familyName"]!
