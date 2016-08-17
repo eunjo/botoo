@@ -192,6 +192,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let okAction = UIAlertAction(title:"확인", style:UIAlertActionStyle.Default){ action in
             //Logout 구현
             HomeViewController.getUserInfo.userInfo = UserInfo()
+            FileManager.sharedInstance.initFile()
            
             if text.containsString("탈퇴") {
                 
