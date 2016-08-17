@@ -194,6 +194,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="wAH-Yz-q7p" appends="YES" id="CSu-qi-Pok"/>
+                                    <outletCollection property="gestureRecognizers" destination="wAH-Yz-q7p" appends="YES" id="9Vg-ai-hqu"/>
                                 </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fXz-17-CD1">
@@ -221,7 +222,7 @@
                     </connections>
                 </pinchGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-77.066666666666663" y="-619.59333333333336"/>
+            <point key="canvasLocation" x="-276.5" y="-665.5"/>
         </scene>
         <!--Connect Scene View Controller-->
         <scene sceneID="oV2-Qh-FG7">
@@ -1480,7 +1481,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yrl-r5-OMI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-77.066666666666663" y="116.91333333333333"/>
+            <point key="canvasLocation" x="-284.5" y="116.5"/>
         </scene>
         <!--Chat Nav View Controller-->
         <scene sceneID="Bkh-EI-FEB">
