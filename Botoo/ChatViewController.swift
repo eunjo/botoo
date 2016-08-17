@@ -114,7 +114,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 for var message in messageList {
                     if message != "" {
                         message.removeAtIndex(message.endIndex.predecessor())
-                        
                         let result = self.convertStringToDictionary(message)
                         self.chatMessages.append(result!)
                     }
@@ -141,7 +140,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         // 배경 초기화
         initBackGround()
         
-        FileManager.sharedInstance.initFile()
+//        FileManager.sharedInstance.initFile()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -343,7 +342,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             
             UIView.animateWithDuration(animationDurarion, animations: { () -> Void in
 //                self.toolbarBottomConstraint.constant += changeInHeight
-                self.toolbar.frame.origin.y += changeInHeight
+                
+                self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, -changeInHeight)
             })
         } else {
             // 키보드가 텍스트 필드를 가리는지 확인
@@ -551,14 +551,27 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(true) { (_) in
-            let resiziedImage = self.resizeImage((info[UIImagePickerControllerOriginalImage] as? UIImage)!, newWidth: CGFloat(600))
+            let resiziedImage = self.resizeImage((info[UIImagePickerControllerOriginalImage] as? UIImage)!, newWidth: CGFloat(700))
             
             let Imagedata = UIImageJPEGRepresentation(resiziedImage, 0.5)
             let base64String = Imagedata!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
             
             SocketIOManager.sharedInstance.sendMessage("pic", message: base64String, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
             
-            self.saveMessage(base64String, type: "pic")
+            dispatch_async(dispatch_get_main_queue()) {
+                
+                /**
+                 테이블뷰에 추가
+                 //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
+                 **/
+                self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"pic\",\"message\":\"\(base64String)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(self.getCurrentDate_client())\"}")!)
+                self.messageTableView.reloadData()
+                
+                //메세지 서버에 저장
+                self.saveMessage(base64String, type: "pic")
+                
+                self.scrollToBottom()
+            }
         }
     }
     
@@ -601,8 +614,24 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func contactPicker(picker: CNContactPickerViewController, didSelectContact contact: CNContact) {
         let MobNumVar = (contact.phoneNumbers[0].value as! CNPhoneNumber).valueForKey("digits") as! String
-        let ContactString = "{\"givenName\":\"\(contact.givenName)\",\"familyName\":\"\(contact.familyName)\",\"MobNumVar\":\"\(MobNumVar)\"}"
+        let ContactString = "{\'givenName\':\'\(contact.givenName)\',\'familyName\':\'\(contact.familyName)\',\'MobNumVar\':\'\(MobNumVar)\'}"
+        
         SocketIOManager.sharedInstance.sendMessage("contact", message: ContactString, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
+        
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            /**
+             테이블뷰에 추가
+             //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
+             **/
+            self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"contact\",\"message\":\"\(ContactString)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(self.getCurrentDate_client())\"}")!)
+            
+            //메세지 서버에 저장
+            self.saveMessage(ContactString, type: "contact")
+            
+            self.messageTableView.reloadData()
+            self.scrollToBottom()
+        }
     }
  
 
@@ -615,8 +644,33 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             chatInputTextField.text = ""
             chatInputTextField.resignFirstResponder()
             
-            self.saveMessage(message, type: "text")
+            dispatch_async(dispatch_get_main_queue()) {
+                /**
+                    테이블뷰에 추가
+                    //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
+                **/
+                self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"text\",\"message\":\"\(message)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(self.getCurrentDate_client())\"}")!)
+                
+                //메세지 서버에 저장
+                self.saveMessage(message, type: "text")
+                
+                self.messageTableView.reloadData()
+                self.scrollToBottom()
+            }
         }
+    }
+    
+    func getCurrentDate_client() -> String {
+        
+        let format = NSDateFormatter()
+        format.locale = NSLocale(localeIdentifier: "ko_kr")
+        format.timeZone = NSTimeZone(name: "KST")
+        format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        
+        let date = format.stringFromDate(NSDate())
+        
+        return date[date.startIndex.advancedBy(11)...date.startIndex.advancedBy(15)]
     }
     
     func saveMessage(message: String, type: String) {
@@ -657,8 +711,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 
                 cell?.messageBubble.text = message
                 cell?.nameLabel.text = name
-//                cell?.dateLabel.text = dateToString(date!)
-                cell?.dateLabel.text = "00:00"
+                cell?.dateLabel.text = date!
+//                cell?.dateLabel.text = "00:00"
                 
                 cell?.messageBubble.backgroundColor = bubbleColor
                 
@@ -691,7 +745,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCell") as? ChatContactTableViewCell
                 }
                 
-                let messageDic = convertStringToDictionary(message!)
+                let replacedMsg = message!.stringByReplacingOccurrencesOfString("\'", withString: "\"")
+                
+                let messageDic = convertStringToDictionary(replacedMsg)
                 
                 let givenName = messageDic!["givenName"]!
                 let familyName = messageDic!["familyName"]!
@@ -736,8 +792,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 }
                 
                 cell?.name.text = name
-//                cell?.date.text = dateToString(date!)
-                cell?.date.text = "00:00"
+                cell?.date.text = date!
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     //이미지 디코딩
@@ -830,33 +885,35 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         }
     }
     
-    func findUser(users: [String], find: String) -> Bool! {
-        
-        if users.count < 1 {
-            print("NOT FIND!")
-            return false
-        }
+    func findUser(users: [String]!, find: String!) -> Bool! {
         
         //리스트 정렬
-        let usersTemp = users.sort()
-        let usersTempMiddleId = usersTemp[usersTemp.count/2].componentsSeparatedByString(",")
+        var usersTemp = users.sort()
+        var usersTempMiddleId:[String]! = []
+        let find = "Optional(\(find))"
         
-        print("usersTempMiddleId:: \(usersTempMiddleId[0])")
-        
-        //가운데 요소와 비교
-        if usersTempMiddleId[0] > find {
-            findUser(Array(usersTemp[0 ..< usersTemp.count/2]), find: find)
-        } else if usersTempMiddleId[0] < find {
-            findUser(Array(usersTemp[usersTemp.count/2 ..< usersTemp.count]), find: find)
-        } else if usersTempMiddleId[0] == find {
-            print("FIND! : \(usersTempMiddleId[0])")
-            if usersTempMiddleId[1] == "1" {
-                return true
-            } else {
-                return false
+        while usersTemp.count > 1 {
+            
+            usersTempMiddleId = usersTemp[usersTemp.count/2].componentsSeparatedByString(",")
+            
+            //가운데 요소와 비교
+            if usersTempMiddleId[0] > find {
+                usersTemp = Array(usersTemp[0 ..< usersTemp.count/2])
+            } else if usersTempMiddleId[0] < find {
+                usersTemp = Array(usersTemp[usersTemp.count/2 ..< usersTemp.count])
+            } else if usersTempMiddleId[0] == find {
+                print("FIND! : \(usersTempMiddleId[0])")
+                if usersTempMiddleId[1] == "1" {
+                    print("ONLINE")
+                    return true
+                } else {
+                    print("OFFLINE")
+                    return false
+                }
             }
         }
         
+        print("OFFLINE")
         return false
     }
     
