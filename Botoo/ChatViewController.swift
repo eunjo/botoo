@@ -701,6 +701,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         
         switch type {
         case "text":
+            message?.containsString("(baby)")
             if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
                 var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
                 
