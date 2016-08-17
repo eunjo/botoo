@@ -28,7 +28,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     private var SETTING = 0
     @IBOutlet var toolbarBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var chatInputTextField: UITextField!
+//    @IBOutlet weak var chatInputTextField: UITextField!
+    @IBOutlet var chatInputTextField: UITextView!
     @IBOutlet var toolbar: UIToolbar!
     @IBOutlet var drawerContainer: UIView!
     @IBOutlet weak var imageView: UIImageView!
@@ -701,7 +702,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         
         switch type {
         case "text":
-            message?.containsString("(baby)")
             if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
                 var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
                 
@@ -940,4 +940,50 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             svc.newImage = sender!.image
         }
     }
+    
+    func test() -> NSMutableAttributedString {
+        let iconsSize = CGRect(x: 0, y: 0, width: 24, height: 24)
+        let attributedString = NSMutableAttributedString(string: "Your ")
+        
+        let loveAttachment = NSTextAttachment()
+        loveAttachment.image = UIImage(named: "tab_chat.png")
+        loveAttachment.bounds = iconsSize
+        attributedString.appendAttributedString(NSAttributedString(attachment: loveAttachment))
+        
+        attributedString.appendAttributedString(NSAttributedString(string: " was holdin'\n"))
+        attributedString.appendAttributedString(NSAttributedString(string: "Ripped "))
+        
+//        let jeansAttachment = NSTextAttachment()
+//        jeansAttachment.image = emojisCollection[1]
+//        jeansAttachment.bounds = iconsSize
+//        attributedString.appendAttributedString(NSAttributedString(attachment: jeansAttachment))
+//        
+//        attributedString.appendAttributedString(NSAttributedString(string: " ,\n"))
+//        attributedString.appendAttributedString(NSAttributedString(string: "skin was showin'\n"))
+//        
+//        let fireAttachment = NSTextAttachment()
+//        fireAttachment.image = emojisCollection[2]
+//        fireAttachment.bounds = iconsSize
+//        attributedString.appendAttributedString(NSAttributedString(attachment: fireAttachment))
+//        
+//        attributedString.appendAttributedString(NSAttributedString(string: " night, wind was "))
+//        
+//        let dashAttachment = NSTextAttachment()
+//        dashAttachment.image = emojisCollection[3]
+//        dashAttachment.bounds = iconsSize
+//        attributedString.appendAttributedString(NSAttributedString(attachment: dashAttachment))
+//        
+//        attributedString.appendAttributedString(NSAttributedString(string: "\nWhere you think\n"))
+//        attributedString.appendAttributedString(NSAttributedString(string: "you're going, "))
+//        
+//        let babyAttachment = NSTextAttachment()
+//        babyAttachment.image = emojisCollection[4]
+//        babyAttachment.bounds = iconsSize  
+//        attributedString.appendAttributedString(NSAttributedString(attachment: babyAttachment))
+//        
+//        attributedString.appendAttributedString(NSAttributedString(string: " ?"))
+        
+        return attributedString
+    }
+    
 }
