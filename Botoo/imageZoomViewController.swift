@@ -33,6 +33,5 @@ class imageZoomViewController: UIViewController {
         
         self.view.transform = CGAffineTransformScale(self.view.transform, sender.scale, sender.scale)
         sender.scale = 1
-        
     }
 }
