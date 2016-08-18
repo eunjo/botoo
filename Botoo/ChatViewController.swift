@@ -28,6 +28,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     var givenName:String?
     var familyName:String?
     var phoneNumber:String?
+    var tagIndex = 0
     
     @IBOutlet var messageTableView: UITableView!
     
@@ -162,6 +163,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         initBackGround()
         
        // FileManager.sharedInstance.initFile()
+        self.tempContact.insert(CNMutableContact(), atIndex: 0)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -823,7 +825,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 fake_tempContact.phoneNumbers = [phone]
                 
 
-                cell?.contactButton.tag = (indexPath.section*100)+indexPath.row
+                self.tagIndex++
+                cell?.contactButton.tag = self.tagIndex
                 tempContact.insert(fake_tempContact, atIndex: (cell?.contactButton.tag)!)
                 cell?.contactButton.addTarget(self, action: "contactButtonTapped:", forControlEvents: .TouchUpInside)
                 
@@ -849,7 +852,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 
                 tempContact.insert(fake_tempContact, atIndex: 1)
                 
-                cell?.contactButton.tag = (indexPath.section*100)+indexPath.row
+                self.tagIndex++
+                cell?.contactButton.tag = self.tagIndex
                 tempContact.insert(fake_tempContact, atIndex: (cell?.contactButton.tag)!)
                 cell?.contactButton.addTarget(self, action: "contactButtonTapped:", forControlEvents: .TouchUpInside)
                 

@@ -1912,13 +1912,10 @@
         <image name="tab_settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
         <segue reference="UIt-JZ-bYR"/>
         <segue reference="jZk-yp-nUi"/>
-=======
         <segue reference="oJk-S0-t2O"/>
         <segue reference="UIt-JZ-bYR"/>
->>>>>>> 5977b15757321629eaa32c9784d078e8f583f968
         <segue reference="x39-vu-HcH"/>
     </inferredMetricsTieBreakers>
 </document>
