@@ -12,8 +12,10 @@ import Contacts
 
 class contactDetailViewController: UIViewController {
     
-    var contact:CNMutableContact = CNMutableContact()
-
+    var contact:CNMutableContact?
+    
+    var gNforStore:String?
+    
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var phoneNum: UILabel!
     
@@ -21,13 +23,20 @@ class contactDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let gN = (contact.givenName)
-        let fN = (contact.familyName)
-        let pN = (contact.phoneNumbers[0].value as! CNPhoneNumber).valueForKey("digits") as! String
-
         
-        name.text = "\(gN) \(fN)"
-        phoneNum.text = "\(pN)"
+        if (contact != nil){
+            
+            let gN = (contact?.givenName)!
+            let fN = (contact?.familyName)!
+            
+            let pN = (contact?.phoneNumbers[0].value as! CNPhoneNumber).valueForKey("digits") as! String
+            
+            name.text = "\(gN) \(fN)"
+            phoneNum.text = "\(pN)"
+            
+            
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,6 +51,9 @@ class contactDetailViewController: UIViewController {
     }
     
     @IBAction func addButtonTapped(sender: AnyObject) {
+    
+        print(contact?.givenName)
+
     }
     /*
     // MARK: - Navigation

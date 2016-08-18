@@ -24,7 +24,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     var imagePicker = UIImagePickerController()
     var newMedia = Bool?()
     
-    var tempContact:CNMutableContact = CNMutableContact()
+    var tempContact:[CNMutableContact] = [CNMutableContact]()
     var givenName:String?
     var familyName:String?
     var phoneNumber:String?
@@ -822,8 +822,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 let phone = CNLabeledValue(label: CNLabelWork, value:CNPhoneNumber(stringValue: MobNumVar as! String))
                 fake_tempContact.phoneNumbers = [phone]
                 
-                tempContact = fake_tempContact
 
+                cell?.contactButton.tag = (indexPath.section*100)+indexPath.row
+                tempContact.insert(fake_tempContact, atIndex: (cell?.contactButton.tag)!)
                 cell?.contactButton.addTarget(self, action: "contactButtonTapped:", forControlEvents: .TouchUpInside)
                 
                 return cell!
@@ -846,8 +847,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 let phone = CNLabeledValue(label: CNLabelWork, value:CNPhoneNumber(stringValue: MobNumVar as! String))
                 fake_tempContact.phoneNumbers = [phone]
                 
-                tempContact = fake_tempContact
+                tempContact.insert(fake_tempContact, atIndex: 1)
                 
+                cell?.contactButton.tag = (indexPath.section*100)+indexPath.row
+                tempContact.insert(fake_tempContact, atIndex: (cell?.contactButton.tag)!)
                 cell?.contactButton.addTarget(self, action: "contactButtonTapped:", forControlEvents: .TouchUpInside)
                 
                 return cell!
@@ -1017,7 +1020,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             svc.newImage = sender!.image
         } else if (segue.identifier == "contact"){
             let svc = segue.destinationViewController as! contactDetailViewController
-            svc.contact = tempContact
+            svc.contact = tempContact[sender!.tag]
 
         }
     }
@@ -1119,9 +1122,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         formerLine = currentLine
     }
     
-    func contactButtonTapped(contact:CNContact){
+    func contactButtonTapped(sender:UIButton){
         
-        self.performSegueWithIdentifier("contact", sender: contact)
+        print(sender.tag)
+        self.performSegueWithIdentifier("contact", sender: sender)
         if let connectingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("contactDetail") {
             connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
             self.presentViewController(connectingViewController, animated: true, completion: nil)
