@@ -739,6 +739,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         }
     }
     
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.chatMessages.count
     }
@@ -769,7 +770,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 //                cell?.dateLabel.text = "00:00"
                 
                 cell?.messageBubble.backgroundColor = bubbleColor
-                
+
                 return cell!
                 
             } else { // 상대방 메세지
@@ -786,6 +787,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 cell?.dateLabel.text = "00:00"
                 
                 cell?.messageBubble.backgroundColor = bubbleColor
+                
                 
                 return cell!
             }
@@ -810,6 +812,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 cell?.nameLabel.text = name
                 cell?.contactButton.setTitle("\(givenName) \(familyName)", forState: .Normal)
                 cell?.setData(givenName as! String, fN: familyName as! String, pN: MobNumVar as! String)
+
                 
                 return cell!
                 
@@ -825,6 +828,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 cell?.nameLabel.text = name
                 cell?.contactButton.setTitle("\(givenName) \(familyName)", forState: .Normal)
                 cell?.setData(givenName as! String, fN: familyName as! String, pN: MobNumVar as! String)
+                
                 
                 return cell!
             }
