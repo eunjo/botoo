@@ -165,7 +165,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(true) { (_) in
             self.profile_iv_profile.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-            let proPic = self.resizeImage((info[UIImagePickerControllerOriginalImage] as? UIImage)!, newWidth: CGFloat(400))
+            let proPic = self.resizeImage((info[UIImagePickerControllerOriginalImage] as? UIImage)!, newWidth: CGFloat(800))
            
         
            MemberConstruct().saveProPic(self.userEmailStored!, proPic: proPic, completionHandler: { (json, error) -> Void in

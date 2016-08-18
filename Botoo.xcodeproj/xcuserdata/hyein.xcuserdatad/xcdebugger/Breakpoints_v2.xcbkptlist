@@ -1162,11 +1162,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Botoo/ChatViewController.swift"
-            timestampString = "493183133.179429"
+            timestampString = "493183408.810185"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1022"
-            endingLineNumber = "1022"
+            startingLineNumber = "1021"
+            endingLineNumber = "1021"
             landmarkName = "stringToAttributedString(_:)"
             landmarkType = "5">
          </BreakpointContent>
