@@ -825,10 +825,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 fake_tempContact.phoneNumbers = [phone]
                 
 
-                self.tagIndex++
+                self.tagIndex += 1
                 cell?.contactButton.tag = self.tagIndex
                 tempContact.insert(fake_tempContact, atIndex: (cell?.contactButton.tag)!)
-                cell?.contactButton.addTarget(self, action: "contactButtonTapped:", forControlEvents: .TouchUpInside)
+                cell?.contactButton.addTarget(self, action: #selector(ChatViewController.contactButtonTapped(_:)), forControlEvents: .TouchUpInside)
                 
                 return cell!
                 
@@ -852,10 +852,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 
                 tempContact.insert(fake_tempContact, atIndex: 1)
                 
-                self.tagIndex++
+                self.tagIndex += 1
                 cell?.contactButton.tag = self.tagIndex
                 tempContact.insert(fake_tempContact, atIndex: (cell?.contactButton.tag)!)
-                cell?.contactButton.addTarget(self, action: "contactButtonTapped:", forControlEvents: .TouchUpInside)
+                cell?.contactButton.addTarget(self, action: #selector(ChatViewController.contactButtonTapped(_:)), forControlEvents: .TouchUpInside)
                 
                 return cell!
             }
@@ -1030,7 +1030,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func stringToAttributedString(str: String) -> NSMutableAttributedString {
-        var attributedString = NSMutableAttributedString(string: "")
+        let attributedString = NSMutableAttributedString(string: "")
         var searchStartIndex = str.startIndex
         var searchRange = searchStartIndex..<str.endIndex
         var searchRangeString = NSMutableAttributedString(string: str)
