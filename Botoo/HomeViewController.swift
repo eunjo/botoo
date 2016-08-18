@@ -264,7 +264,7 @@ class HomeViewController: UIViewController {
             
             
             // 날짜 년 월 일 로 포맷변환
-            let cal = NSCalendar(calendarIdentifier:NSGregorianCalendar)!
+            _ = NSCalendar(calendarIdentifier:NSCalendarIdentifierGregorian)!
             
             // 날짜 계산
             let calendar = NSCalendar.currentCalendar()
