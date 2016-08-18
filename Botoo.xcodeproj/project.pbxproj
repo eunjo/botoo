@@ -112,6 +112,7 @@
 		D6B2713A1D59A6B600E61792 /* ChatContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B271391D59A6B600E61792 /* ChatContactTableViewCell.swift */; };
 		D6B2713C1D5C6DDC00E61792 /* contactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2713B1D5C6DDC00E61792 /* contactDetailViewController.swift */; };
 		D6B2713E1D62F79500E61792 /* ChatContactTableViewCellL.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B2713D1D62F79500E61792 /* ChatContactTableViewCellL.swift */; };
+		D6B271431D656F6E00E61792 /* (idle).png in Resources */ = {isa = PBXBuildFile; fileRef = D6B271421D656F6E00E61792 /* (idle).png */; };
 		D6C0EFF71D2760FF00798E2B /* alarmSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C0EFF61D2760FF00798E2B /* alarmSetViewController.swift */; };
 		D6E2AF521D3E1D3F00C01509 /* tp_default_female.png in Resources */ = {isa = PBXBuildFile; fileRef = D6E2AF4F1D3E1D3F00C01509 /* tp_default_female.png */; };
 		D6E2AF531D3E1D3F00C01509 /* tp_default_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = D6E2AF501D3E1D3F00C01509 /* tp_default_grey.png */; };
@@ -249,6 +250,7 @@
 		D6B271391D59A6B600E61792 /* ChatContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatContactTableViewCell.swift; sourceTree = "<group>"; };
 		D6B2713B1D5C6DDC00E61792 /* contactDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = contactDetailViewController.swift; sourceTree = "<group>"; };
 		D6B2713D1D62F79500E61792 /* ChatContactTableViewCellL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatContactTableViewCellL.swift; sourceTree = "<group>"; };
+		D6B271421D656F6E00E61792 /* (idle).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "(idle).png"; path = "emoticon/(idle).png"; sourceTree = "<group>"; };
 		D6C0EFF61D2760FF00798E2B /* alarmSetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = alarmSetViewController.swift; sourceTree = "<group>"; };
 		D6E2AF4F1D3E1D3F00C01509 /* tp_default_female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tp_default_female.png; path = img/tp_default_female.png; sourceTree = "<group>"; };
 		D6E2AF501D3E1D3F00C01509 /* tp_default_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tp_default_grey.png; path = img/tp_default_grey.png; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 		C06BC7591D640E0D00198001 /* emoticon */ = {
 			isa = PBXGroup;
 			children = (
+				D6B271421D656F6E00E61792 /* (idle).png */,
 				C06BC75E1D655E4A00198001 /* (moon).png */,
 				C06BC75C1D65584D00198001 /* (baby).png */,
 			);
@@ -649,6 +652,7 @@
 				D632BEFF1D46882C0029D6C1 /* 6.png in Resources */,
 				D632BF011D46882C0029D6C1 /* 8.png in Resources */,
 				C06BC75F1D655E4A00198001 /* (moon).png in Resources */,
+				D6B271431D656F6E00E61792 /* (idle).png in Resources */,
 				D632BEFA1D46882C0029D6C1 /* 1.png in Resources */,
 				D607C5E41D27F23A00542804 /* default_grey.png in Resources */,
 				D632BEFE1D46882C0029D6C1 /* 5.png in Resources */,
@@ -988,6 +992,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Botoo",
@@ -1006,6 +1011,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Botoo",
