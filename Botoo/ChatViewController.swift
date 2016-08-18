@@ -1067,7 +1067,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         let attributedString = NSMutableAttributedString(string: "")
         var searchStartIndex = str.startIndex
         var searchRange = searchStartIndex..<str.endIndex
-        var searchRangeString = NSMutableAttributedString(string: str)
+        var searchRangeString = str
         
         if str.containsString("(") {
             var iconsSize = CGRect(x: 0, y: -5, width: 24, height: 24)
@@ -1088,11 +1088,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                         
                         // 찾은 스트링 전까지 문자열 자르기
                         attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<resultStartIndex]))
-                        searchRangeString = attributedString
                         
-                        // 찾기 시작할 인덱스 = 찾은 스트링의 끝 인덱스
-                        searchStartIndex = resultEndIndex
-                        
+                        // 전체 스트링이 이모티콘 하나인 경우
                         if searchString == str {
                             iconsSize = CGRect(x: 0, y: -5, width: 95, height:95)
                         }
@@ -1102,6 +1099,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                         attachment.image = UIImage(named: "\(searchString).png")
                         attachment.bounds = iconsSize
                         attributedString.appendAttributedString(NSAttributedString(attachment: attachment))
+                        
+                        // 찾기 시작할 인덱스 = 찾은 스트링의 끝 인덱스
+                        searchStartIndex = resultEndIndex
                         
                         break
                     }
