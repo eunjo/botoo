@@ -16,7 +16,7 @@ class imageZoomViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
         // Do any additional setup after loading the view.
         
         // image 보여주기
@@ -32,6 +32,6 @@ class imageZoomViewController: UIViewController {
     @IBAction func imageZoom(sender: UIPinchGestureRecognizer) {
         
         self.view.transform = CGAffineTransformScale(self.view.transform, sender.scale, sender.scale)
-        sender.scale = 1
+        sender.scale = (self.ImageForZoom?.frame.size.width)! / (self.ImageForZoom?.bounds.size.width)!
     }
 }
