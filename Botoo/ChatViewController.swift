@@ -56,9 +56,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private var users = [String]()
 
     //emoticon
-    private let emoticonStrings = ["(baby)","(moon)"]
-    @IBOutlet var emo_baby: UIButton!
-    @IBOutlet var emo_moon: UIButton!
+    private let emoticonStrings = ["(idle)","(idle_fe)"]
+    @IBOutlet var emo_idle: UIButton!
+    @IBOutlet var emo_idle_fe: UIButton!
     
     //toolbar 크기 조정
     private var TOOLBAR_FRAME = CGRect()
@@ -769,7 +769,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 cell?.messageBubble.attributedText = stringToAttributedString(replacedMsg!)
                 cell?.nameLabel.text = name
                 cell?.dateLabel.text = date!
-//                cell?.dateLabel.text = "00:00"
                 
                 cell?.messageBubble.backgroundColor = bubbleColor
 
@@ -783,7 +782,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
                 }
                 
-                cell?.messageBubble.text = replacedMsg
+                cell?.messageBubble.attributedText = stringToAttributedString(replacedMsg!)
                 cell?.nameLabel.text = name
 //                cell?.dateLabel.text = dateToString(date!)
                 cell?.dateLabel.text = "00:00"
@@ -1022,43 +1021,54 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         var attributedString = NSMutableAttributedString(string: "")
         var searchStartIndex = str.startIndex
         var searchRange = searchStartIndex..<str.endIndex
+        var searchRangeString = NSMutableAttributedString(string: str)
         
-        let iconsSize = CGRect(x: 0, y: -5, width: 24, height: 24)
+        var iconsSize = CGRect(x: 0, y: -5, width: 24, height: 24)
+        
+        while searchStartIndex < str.endIndex {
+            searchRange = searchStartIndex..<str.endIndex
+            
+            for searchString in emoticonStrings {
+                let result = str.rangeOfString(searchString,
+                                               options: NSStringCompareOptions.LiteralSearch,
+                                               range: searchRange,
+                                               locale: nil)
+                
+                if (result != nil) {
+                    // 찾은 스트링의 처음과 끝 인덱스
+                    let resultStartIndex = result!.startIndex
+                    let resultEndIndex = result!.endIndex
+                    
+                    // 찾은 스트링 전까지 문자열 자르기
+                    attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<resultStartIndex]))
+                    
+                    // 찾기 시작할 인덱스 = 찾은 스트링의 끝 인덱스
+                    searchStartIndex = resultEndIndex
+                    
+                    if searchString == str {
+                        iconsSize = CGRect(x: 0, y: -5, width: 95, height:95)
+                    }
+                    
+                    // 찾은 스트링 부분에 이미지 붙이기
+                    let attachment = NSTextAttachment()
+                    attachment.image = UIImage(named: "\(searchString).png")
+                    attachment.bounds = iconsSize
+                    attributedString.appendAttributedString(NSAttributedString(attachment: attachment))
+                    
+                    break
+                }
+                
+                if (searchString == emoticonStrings[emoticonStrings.count-1]) { //아무 이모티콘도 찾지 못했다면
+                    attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<str.endIndex]))
+                    searchStartIndex = str.endIndex
+                    print(str[searchStartIndex..<str.endIndex])
+                }
+                
+//                searchRangeString = attributedString
+            }
 
-        searchRange = searchStartIndex..<str.endIndex
-        
-        for searchString in emoticonStrings {
-            let result = str.rangeOfString(searchString,
-                                           options: NSStringCompareOptions.LiteralSearch,
-                                           range: searchRange,
-                                           locale: nil)
-            
-            if (result != nil) {
-                // 찾은 스트링의 처음과 끝 인덱스
-                let resultStartIndex = result!.startIndex
-                let resultEndIndex = result!.endIndex
-                
-                // 찾은 스트링 전까지 문자열 자르기
-                attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<resultStartIndex]))
-                
-                // 찾기 시작할 인덱스 = 찾은 스트링의 끝 인덱스
-                searchStartIndex = resultEndIndex
-                
-                // 찾은 스트링 부분에 이미지 붙이기
-                let attachment = NSTextAttachment()
-                attachment.image = UIImage(named: "\(searchString).png")
-                attachment.bounds = iconsSize
-                attributedString.appendAttributedString(NSAttributedString(attachment: attachment))
-                
-                break
-            }
-            
-            if (searchString == emoticonStrings[emoticonStrings.count-1]) { //아무 이모티콘도 찾지 못했다면
-                attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<str.endIndex]))
-                print(str[searchStartIndex..<str.endIndex])
-            }
         }
-        
+
         return attributedString
     }
     
@@ -1067,10 +1077,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     @IBAction func selectEmoticon(sender: UIButton) {
         switch sender.tag {
         case 100:
-            self.chatInputTextField.text = self.chatInputTextField.text! + "(baby)"
+            self.chatInputTextField.text = self.chatInputTextField.text! + "(idle)"
             break
         case 101:
-            self.chatInputTextField.text = self.chatInputTextField.text! + "(moon)"
+            self.chatInputTextField.text = self.chatInputTextField.text! + "(idle_fe)"
             break
         default:
             break
