@@ -1041,7 +1041,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     
                     // 찾은 스트링 전까지 문자열 자르기
                     attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<resultStartIndex]))
-                    searchRangeString = NSMutableAttributedString(string: str[searchStartIndex..<resultStartIndex])
+                    searchRangeString = attributedString
                     
                     // 찾기 시작할 인덱스 = 찾은 스트링의 끝 인덱스
                     searchStartIndex = resultEndIndex
@@ -1066,6 +1066,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             }
 
         }
+        
+//        print(stringToAttributedString(str[searchStartIndex..<resultStartIndex]))
 
         return attributedString
     }
