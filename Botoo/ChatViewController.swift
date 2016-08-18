@@ -702,10 +702,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 self.scrollToBottom()
             }
             
-            UIView.animateWithDuration(0.1, animations: { () -> Void in
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
                 
                 //툴바가 아래로 내려갈 때 && 작성 중이 아닐 때 (작성이 완료된 경우)
-                if self.chatInputTextField.text == ""{
+                if self.chatInputTextField.text == "" {
                     //툴바 사이즈 변경되어 있을 경우
                     //더 내려야 할 높이
                     let extra = self.toolbar.frame.size.height - self.TOOLBAR_FRAME.size.height
@@ -767,6 +767,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             replacedMsg = replacedMsg!.stringByReplacingOccurrencesOfString("/0x5c", withString: "\\")
             replacedMsg = replacedMsg!.stringByReplacingOccurrencesOfString("/0x0a", withString: "\n")
             
+            let attributedString = stringToAttributedString(replacedMsg!)
+            
             if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
                 var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
                 
@@ -775,13 +777,12 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
                 }
                 
-                let attributedString = stringToAttributedString(replacedMsg!)
-                
                 cell?.messageBubble.attributedText = attributedString
                 cell?.nameLabel.text = name
                 cell?.dateLabel.text = date!
                 
-                if cell?.messageBubble.attributedText?.length == 1 {
+                if cell?.messageBubble.attributedText?.length == 1 &&
+                    "\(cell?.messageBubble.attributedText?.string.characters)".containsString("Optional(￼)") {
                     cell?.messageBubble.backgroundColor = UIColor.clearColor()
                 } else {
                     cell?.messageBubble.backgroundColor = bubbleColor
@@ -802,8 +803,12 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 //                cell?.dateLabel.text = dateToString(date!)
                 cell?.dateLabel.text = "00:00"
                 
-                cell?.messageBubble.backgroundColor = bubbleColor
-                
+                if cell?.messageBubble.attributedText?.length == 1 &&
+                    "\(cell?.messageBubble.attributedText?.string.characters)".containsString("Optional(￼)") {
+                    cell?.messageBubble.backgroundColor = UIColor.clearColor()
+                } else {
+                    cell?.messageBubble.backgroundColor = bubbleColor
+                }
                 
                 return cell!
             }
