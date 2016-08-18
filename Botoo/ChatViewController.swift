@@ -167,7 +167,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     override func viewDidAppear(animated: Bool) {
+        var writeMessage:[String : AnyObject]?
+        
         SocketIOManager.sharedInstance.getChatMessage { (messageInfo) -> Void in
+            writeMessage = messageInfo
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.chatMessages.append(messageInfo)
                 self.messageTableView.reloadData()
@@ -175,20 +178,27 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             })
         }
         self.scrollToBottom()
+        
+        //디바이스 파일에 쓰기
+        if writeMessage != nil {
+            FileManager.sharedInstance.writeFile(writeMessage!["type"]! as! String, text: writeMessage!["message"]! as! String, sender: writeMessage!["nickname"] as! String, date: writeMessage!["date"] as! String)
+        }
+
     }
     
     override func viewWillDisappear(animated: Bool) {
         //유저 소켓 연결 끊기
         exitSocket()
         
-        //스레드 돌려 돌려~~ ㅠㅠ
+        //대화 내용을 삭제했는지 확인
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             if !removeChats.isRemove {
-                FileManager.sharedInstance.initFile()
+//                FileManager.sharedInstance.initFile()
+                
                 // write file
-                for messageInfo in self.chatMessages {
-                    FileManager.sharedInstance.writeFile(messageInfo["type"]! as! String, text: messageInfo["message"]! as! String, sender: messageInfo["nickname"] as! String, date: messageInfo["date"] as! String)
-                }
+//                for messageInfo in self.chatMessages {
+//                    FileManager.sharedInstance.writeFile(messageInfo["type"]! as! String, text: messageInfo["message"]! as! String, sender: messageInfo["nickname"] as! String, date: messageInfo["date"] as! String)
+//                }
             } else {
                 removeChats.isRemove = false
             }
@@ -735,15 +745,21 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func saveMessage(message: String, type: String) {
+        
+        let messageInfo = [
+            "senderId": self.userId as String,
+            "receiverId": self.loverId as String,
+            "message": message,
+            "type": type,
+            "date": getCurrentDate_client(),
+            "nickname": self.userName as String
+        ]
+        
+        //디바이스 파일에 쓰기
+        FileManager.sharedInstance.writeFile(messageInfo["type"]!, text: messageInfo["message"]!, sender: messageInfo["nickname"]!, date: messageInfo["date"]!)
+        
+        //서버에 메세지 저장
         if !self.findUser(self.users, find: self.loverId) {
-            
-            let messageInfo = [
-                "senderId": self.userId as String,
-                "receiverId": self.loverId as String,
-                "message": message,
-                "type": type
-            ]
-            
             ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
                 
             })
