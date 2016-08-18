@@ -580,7 +580,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(true) { (_) in
-            let resiziedImage = self.resizeImage((info[UIImagePickerControllerOriginalImage] as? UIImage)!, newWidth: CGFloat(700))
+            let resiziedImage = self.resizeImage((info[UIImagePickerControllerOriginalImage] as? UIImage)!, newWidth: CGFloat(800))
             
             let Imagedata = UIImageJPEGRepresentation(resiziedImage, 0.5)
             let base64String = Imagedata!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
@@ -1035,6 +1035,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             
             if (searchString == emoticonStrings[emoticonStrings.count-1]) { //아무 이모티콘도 찾지 못했다면
                 attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<str.endIndex]))
+                print(str[searchStartIndex..<str.endIndex])
             }
         }
         
