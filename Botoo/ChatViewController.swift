@@ -768,7 +768,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 cell?.nameLabel.text = name
                 cell?.dateLabel.text = date!
                 
-                print(cell?.messageBubble.attributedText)
                 cell?.messageBubble.backgroundColor = bubbleColor
 
                 return cell!
@@ -781,7 +780,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
                 }
                 
-                cell?.messageBubble.text = replacedMsg
+                cell?.messageBubble.attributedText = stringToAttributedString(replacedMsg!)
                 cell?.nameLabel.text = name
 //                cell?.dateLabel.text = dateToString(date!)
                 cell?.dateLabel.text = "00:00"
