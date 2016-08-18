@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1475A2772683D1CBDB9CF705 /* Pods_BotooTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C04906F2127FB29A80CE91 /* Pods_BotooTests.framework */; };
+		19C708851D65709700C4C84E /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C708841D65709700C4C84E /* PhotoCollectionViewCell.swift */; };
 		37CB7AF5439E02A01100BFF4 /* Pods_BotooUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A318B1C7A6CAB18E12E4F9D /* Pods_BotooUITests.framework */; };
 		C007CBAB1D3F54FA00FA5A4C /* LetterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C007CBAA1D3F54FA00FA5A4C /* LetterDetailViewController.swift */; };
 		C007CBAD1D430C0700FA5A4C /* LetterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C007CBAC1D430C0700FA5A4C /* LetterProtocol.swift */; };
@@ -137,6 +138,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19C708841D65709700C4C84E /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoCollectionViewCell.swift; path = "../../../Downloads/SwiftUIDemo-master/Demo23-UICollectionView/Demo23-UICollectionView/PhotoCollectionViewCell.swift"; sourceTree = "<group>"; };
 		8A318B1C7A6CAB18E12E4F9D /* Pods_BotooUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BotooUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C04906F2127FB29A80CE91 /* Pods_BotooTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BotooTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C007CBAA1D3F54FA00FA5A4C /* LetterDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterDetailViewController.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				C0D47B0A1D31717900637EAB /* ExtensionForUIDevice.swift */,
 				C0D47B0C1D32AF2600637EAB /* URLInfo.swift */,
 				D632BF051D473A600029D6C1 /* FileManager.swift */,
+				19C708841D65709700C4C84E /* PhotoCollectionViewCell.swift */,
 				C050D5C71D51D3F100D7114F /* BubbleLabel.swift */,
 				C050D5C91D523ECD00D7114F /* ProgressView.swift */,
 				C050D5CB1D59CB2B00D7114F /* Reachability.swift */,
@@ -831,6 +834,7 @@
 				D600A9701D237D24005F9130 /* LetterViewController.swift in Sources */,
 				C0D47AEE1D22A25500637EAB /* ChatTabViewController.swift in Sources */,
 				D63A12181D37504D00AD6989 /* SocketParsable.swift in Sources */,
+				19C708851D65709700C4C84E /* PhotoCollectionViewCell.swift in Sources */,
 				D63A12191D37504D00AD6989 /* SocketStringReader.swift in Sources */,
 				C007CBAF1D430C0F00FA5A4C /* LetterConstruct.swift in Sources */,
 				D63A12121D37504D00AD6989 /* SocketIOClient.swift in Sources */,
