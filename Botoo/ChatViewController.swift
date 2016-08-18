@@ -366,6 +366,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 //                self.toolbarBottomConstraint.constant += changeInHeight
                 
                 self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, -changeInHeight)
+                self.messageTableView.transform = CGAffineTransformTranslate(self.messageTableView.transform, 0, -changeInHeight)
                 
                 //툴바가 아래로 내려갈 때 && 작성 중이 아닐 때 (작성이 완료된 경우)
                 if !show && self.chatInputTextField.text == ""{
@@ -502,6 +503,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 
                 if !(self.plusIsOpen && self.emoIsOpen) {
                     self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, containerHeight)
+                    self.messageTableView.transform = CGAffineTransformTranslate(self.messageTableView.transform, 0, containerHeight)
                 }
             }
             }, completion: { finish in
@@ -546,6 +548,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                         //갭 제거하기
                         self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0,
                             isUp ? -gap : gap)
+                        self.messageTableView.transform = CGAffineTransformTranslate(self.messageTableView.transform, 0, isUp ? -gap : gap)
+                        
                         self.view.layoutIfNeeded()
                 }
             )
@@ -673,7 +677,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 
     // 전송 버튼
     @IBAction func sendButtonTapped(sender: AnyObject) {
-        if chatInputTextField.text!.characters.count > 0 {
+        if chatInputTextField.text!.characters.count > 0 && chatInputTextField.text != " " {
             let message = chatInputTextField.text!
             SocketIOManager.sharedInstance.sendMessage("text", message: message, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
             
@@ -771,11 +775,17 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
                 }
                 
-                cell?.messageBubble.attributedText = stringToAttributedString(replacedMsg!)
+                let attributedString = stringToAttributedString(replacedMsg!)
+                
+                cell?.messageBubble.attributedText = attributedString
                 cell?.nameLabel.text = name
                 cell?.dateLabel.text = date!
                 
-                cell?.messageBubble.backgroundColor = bubbleColor
+                if cell?.messageBubble.attributedText?.length == 1 {
+                    cell?.messageBubble.backgroundColor = UIColor.clearColor()
+                } else {
+                    cell?.messageBubble.backgroundColor = bubbleColor
+                }
 
                 return cell!
                 
@@ -1030,53 +1040,58 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func stringToAttributedString(str: String) -> NSMutableAttributedString {
+        
         let attributedString = NSMutableAttributedString(string: "")
         var searchStartIndex = str.startIndex
         var searchRange = searchStartIndex..<str.endIndex
         var searchRangeString = NSMutableAttributedString(string: str)
         
-        var iconsSize = CGRect(x: 0, y: -5, width: 24, height: 24)
-        
-        while searchStartIndex < str.endIndex {
-            searchRange = searchStartIndex..<str.endIndex
+        if str.containsString("(") {
+            var iconsSize = CGRect(x: 0, y: -5, width: 24, height: 24)
             
-            for searchString in emoticonStrings {
-                let result = str.rangeOfString(searchString,
-                                               options: NSStringCompareOptions.LiteralSearch,
-                                               range: searchRange,
-                                               locale: nil)
+            while searchStartIndex < str.endIndex {
+                searchRange = searchStartIndex..<str.endIndex
                 
-                if (result != nil) {
-                    // 찾은 스트링의 처음과 끝 인덱스
-                    let resultStartIndex = result!.startIndex
-                    let resultEndIndex = result!.endIndex
+                for searchString in emoticonStrings {
+                    let result = str.rangeOfString(searchString,
+                                                   options: NSStringCompareOptions.LiteralSearch,
+                                                   range: searchRange,
+                                                   locale: nil)
                     
-                    // 찾은 스트링 전까지 문자열 자르기
-                    attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<resultStartIndex]))
-                    searchRangeString = attributedString
-                    
-                    // 찾기 시작할 인덱스 = 찾은 스트링의 끝 인덱스
-                    searchStartIndex = resultEndIndex
-                    
-                    if searchString == str {
-                        iconsSize = CGRect(x: 0, y: -5, width: 95, height:95)
+                    if (result != nil) {
+                        // 찾은 스트링의 처음과 끝 인덱스
+                        let resultStartIndex = result!.startIndex
+                        let resultEndIndex = result!.endIndex
+                        
+                        // 찾은 스트링 전까지 문자열 자르기
+                        attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<resultStartIndex]))
+                        searchRangeString = attributedString
+                        
+                        // 찾기 시작할 인덱스 = 찾은 스트링의 끝 인덱스
+                        searchStartIndex = resultEndIndex
+                        
+                        if searchString == str {
+                            iconsSize = CGRect(x: 0, y: -5, width: 95, height:95)
+                        }
+                        
+                        // 찾은 스트링 부분에 이미지 붙이기
+                        let attachment = NSTextAttachment()
+                        attachment.image = UIImage(named: "\(searchString).png")
+                        attachment.bounds = iconsSize
+                        attributedString.appendAttributedString(NSAttributedString(attachment: attachment))
+                        
+                        break
                     }
                     
-                    // 찾은 스트링 부분에 이미지 붙이기
-                    let attachment = NSTextAttachment()
-                    attachment.image = UIImage(named: "\(searchString).png")
-                    attachment.bounds = iconsSize
-                    attributedString.appendAttributedString(NSAttributedString(attachment: attachment))
-                    
-                    break
+                    if (searchString == emoticonStrings[emoticonStrings.count-1]) { //아무 이모티콘도 찾지 못했다면
+                        attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<str.endIndex]))
+                        searchStartIndex = str.endIndex
+                    }
                 }
                 
-                if (searchString == emoticonStrings[emoticonStrings.count-1]) { //아무 이모티콘도 찾지 못했다면
-                    attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<str.endIndex]))
-                    searchStartIndex = str.endIndex
-                }
             }
-
+        } else {
+            attributedString.appendAttributedString(NSAttributedString(string: str))
         }
 
         return attributedString
@@ -1100,11 +1115,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     //텍스트뷰 길이 조정
     func textViewDidChange(textView: UITextView) {
         let currentLine = Int(self.chatInputTextField.contentSize.height / self.chatInputTextField.font!.lineHeight)
-        
-        print(currentLine)
-
+    
         if (formerLine != currentLine) {
-            if (currentLine >= 1 && currentLine <= 3) {
+            if (currentLine > 1 && currentLine <= 3) {
                 
                 let yFlag = (currentLine - formerLine) > 0 ? CGFloat(1) : CGFloat(-1) //줄 ++
                 let toolbar_newY = self.toolbar.frame.origin.y - (yFlag * self.TOOLBAR_FRAME.size.height)
@@ -1135,9 +1148,5 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             self.presentViewController(connectingViewController, animated: true, completion: nil)
         }
     }
-    
-
-    
-    
 
 }
