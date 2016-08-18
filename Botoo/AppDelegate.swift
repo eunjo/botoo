@@ -14,7 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-                registerForPushNotifications(application)        // Override point for customization after application launch.
+                registerForPushNotifications(application)
+        // Override point for customization after application launch.
+        
+        
         
         application.applicationIconBadgeNumber = 7
         
