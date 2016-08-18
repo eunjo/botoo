@@ -24,7 +24,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     var imagePicker = UIImagePickerController()
     var newMedia = Bool?()
     
-    var tempContact:CNMutableContact?
+    var tempContact:CNMutableContact = CNMutableContact()
+    var givenName:String?
+    var familyName:String?
+    var phoneNumber:String?
     
     @IBOutlet var messageTableView: UITableView!
     
@@ -820,7 +823,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 fake_tempContact.phoneNumbers = [phone]
                 
                 tempContact = fake_tempContact
-                
+
                 cell?.contactButton.addTarget(self, action: "contactButtonTapped:", forControlEvents: .TouchUpInside)
                 
                 return cell!
@@ -837,12 +840,13 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 cell?.nameLabel.text = name
                 cell?.contactButton.setTitle("\(givenName) \(familyName)", forState: .Normal)
                 
-                tempContact?.givenName = givenName as! String
-                tempContact?.familyName = familyName as! String
+                let fake_tempContact:CNMutableContact = CNMutableContact()
+                fake_tempContact.givenName = givenName as! String
+                fake_tempContact.familyName = familyName as! String
                 let phone = CNLabeledValue(label: CNLabelWork, value:CNPhoneNumber(stringValue: MobNumVar as! String))
-                tempContact?.phoneNumbers = [phone]
+                fake_tempContact.phoneNumbers = [phone]
                 
-                print(tempContact?.givenName)
+                tempContact = fake_tempContact
                 
                 cell?.contactButton.addTarget(self, action: "contactButtonTapped:", forControlEvents: .TouchUpInside)
                 
@@ -1014,6 +1018,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         } else if (segue.identifier == "contact"){
             let svc = segue.destinationViewController as! contactDetailViewController
             svc.contact = tempContact
+
         }
     }
     

@@ -12,7 +12,7 @@ import Contacts
 
 class contactDetailViewController: UIViewController {
     
-    var contact:CNMutableContact?
+    var contact:CNMutableContact = CNMutableContact()
 
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var phoneNum: UILabel!
@@ -21,11 +21,12 @@ class contactDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let gN = (contact?.givenName)
-        let fN = (contact?.familyName)
-        let pN:String? = (contact?.phoneNumbers[0].value as! CNPhoneNumber).valueForKey("digits") as! String
+        let gN = (contact.givenName)
+        let fN = (contact.familyName)
+        let pN = (contact.phoneNumbers[0].value as! CNPhoneNumber).valueForKey("digits") as! String
+
         
-        name.text = "\(gN!) \(fN!)"
+        name.text = "\(gN) \(fN)"
         phoneNum.text = "\(pN)"
     }
 
