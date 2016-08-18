@@ -14,9 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        UIApplication.sharedApplication().applicationIconBadgeNumber = 0;
-        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
-        // Override point for customization after application launch.
+                registerForPushNotifications(application)        // Override point for customization after application launch.
+        
+        application.applicationIconBadgeNumber = 7
         
         return true
         
@@ -45,6 +45,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // app 비활성화시 disconnect
     func applicationDidEnterBackground(application: UIApplication) {
         SocketIOManager.sharedInstance.closeConnection()
+    }
+    
+    func registerForPushNotifications(application: UIApplication) {
+        let notificationSettings = UIUserNotificationSettings(
+            forTypes: [.Badge, .Sound, .Alert], categories: nil)
+        application.registerUserNotificationSettings(notificationSettings)
     }
     
     
