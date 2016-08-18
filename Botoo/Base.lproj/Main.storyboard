@@ -480,14 +480,6 @@
                                 </items>
                                 <color key="barTintColor" red="0.98823529409999999" green="0.89411764709999997" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
-
-                            <containerView opaque="NO" contentMode="scaleToFill" id="J3h-k7-gJ4">
-                                <rect key="frame" x="135" y="64" width="240" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <segue destination="s61-Gf-xOp" kind="embed" id="CBU-Uj-PrK"/>
-                                </connections>
-                            </containerView>
                             <view contentMode="scaleToFill" id="F1l-Va-gN6">
                                 <rect key="frame" x="0.0" y="431" width="375" height="236"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
@@ -571,7 +563,7 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.98823529409999999" green="0.89411764709999997" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <view contentMode="scaleToFill" id="UkL-Tn-e3y">
+<!--                                     <view contentMode="scaleToFill" id="UkL-Tn-e3y">
                                         <rect key="frame" x="0.0" y="10" width="375" height="216"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -593,7 +585,7 @@
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.98823529409999999" green="0.89411764709999997" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
+                                    </view> -->
                                 </subviews>
                                 <color key="backgroundColor" red="0.98823529409999999" green="0.89411764709999997" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
