@@ -25,6 +25,7 @@
 		C050D5D61D5DC39C00D7114F /* UIChatPicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C050D5D51D5DC39C00D7114F /* UIChatPicCell.xib */; };
 		C050D5D81D5DC5BC00D7114F /* ChatPicTabelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C050D5D71D5DC5BC00D7114F /* ChatPicTabelViewCell.swift */; };
 		C06BC75D1D65584D00198001 /* (baby).png in Resources */ = {isa = PBXBuildFile; fileRef = C06BC75C1D65584D00198001 /* (baby).png */; };
+		C06BC75F1D655E4A00198001 /* (moon).png in Resources */ = {isa = PBXBuildFile; fileRef = C06BC75E1D655E4A00198001 /* (moon).png */; };
 		C0D47AEE1D22A25500637EAB /* ChatTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */; };
 		C0D47AF21D22AEFB00637EAB /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */; };
 		C0D47AF41D237C8A00637EAB /* SettingNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */; };
@@ -154,6 +155,7 @@
 		C050D5D51D5DC39C00D7114F /* UIChatPicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIChatPicCell.xib; sourceTree = "<group>"; };
 		C050D5D71D5DC5BC00D7114F /* ChatPicTabelViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatPicTabelViewCell.swift; sourceTree = "<group>"; };
 		C06BC75C1D65584D00198001 /* (baby).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "(baby).png"; sourceTree = "<group>"; };
+		C06BC75E1D655E4A00198001 /* (moon).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "(moon).png"; sourceTree = "<group>"; };
 		C0D47AED1D22A25500637EAB /* ChatTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTabViewController.swift; sourceTree = "<group>"; };
 		C0D47AF11D22AEFB00637EAB /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C0D47AF31D237C8A00637EAB /* SettingNavViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingNavViewController.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 		C06BC7591D640E0D00198001 /* emoticon */ = {
 			isa = PBXGroup;
 			children = (
+				C06BC75E1D655E4A00198001 /* (moon).png */,
 				C06BC75C1D65584D00198001 /* (baby).png */,
 			);
 			name = emoticon;
@@ -645,6 +648,7 @@
 				D6E2AF531D3E1D3F00C01509 /* tp_default_grey.png in Resources */,
 				D632BEFF1D46882C0029D6C1 /* 6.png in Resources */,
 				D632BF011D46882C0029D6C1 /* 8.png in Resources */,
+				C06BC75F1D655E4A00198001 /* (moon).png in Resources */,
 				D632BEFA1D46882C0029D6C1 /* 1.png in Resources */,
 				D607C5E41D27F23A00542804 /* default_grey.png in Resources */,
 				D632BEFE1D46882C0029D6C1 /* 5.png in Resources */,

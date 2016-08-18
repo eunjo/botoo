@@ -54,8 +54,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private var users = [String]()
     
     //emoticon
-    private let emoticonStrings = ["(baby)"]
+    private let emoticonStrings = ["(baby)","(moon)"]
     @IBOutlet var emo_baby: UIButton!
+    @IBOutlet var emo_moon: UIButton!
     
     //toolbar 크기 조정
     private var TOOLBAR_FRAME = CGRect()
@@ -999,76 +1000,35 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         var searchRange = searchStartIndex..<str.endIndex
         
         let iconsSize = CGRect(x: 0, y: -5, width: 24, height: 24)
+
+        searchRange = searchStartIndex..<str.endIndex
         
-        while searchStartIndex < str.endIndex {
-            searchRange = searchStartIndex..<str.endIndex
+        for searchString in emoticonStrings {
+            let result = str.rangeOfString(searchString,
+                                           options: NSStringCompareOptions.LiteralSearch,
+                                           range: searchRange,
+                                           locale: nil)
             
-            for searchString in emoticonStrings {
-                let result = str.rangeOfString(searchString,
-                                               options: NSStringCompareOptions.LiteralSearch,
-                                               range: searchRange,
-                                               locale: nil)
+            if (result != nil) {
+                // 찾은 스트링의 처음과 끝 인덱스
+                let resultStartIndex = result!.startIndex
+                let resultEndIndex = result!.endIndex
                 
-                if (result != nil) {
-                    // 찾은 스트링의 처음과 끝 인덱스
-                    let resultStartIndex = result!.startIndex
-                    let resultEndIndex = result!.endIndex
-                    
-                    // 찾은 스트링 전까지 문자열 자르기
-                    attributedString = NSMutableAttributedString(string: str[searchStartIndex..<resultStartIndex])
-                    
-                    // 찾기 시작할 인덱스 = 찾은 스트링의 끝 인덱스
-                    searchStartIndex = resultEndIndex
-                    
-                    // 찾은 스트링 부분에 이미지 붙이기
-                    let attachment = NSTextAttachment()
-                    attachment.image = UIImage(named: "\(searchString).png")
-                    attachment.bounds = iconsSize
-                    attributedString.appendAttributedString(NSAttributedString(attachment: attachment))
-                }
+                // 찾은 스트링 전까지 문자열 자르기
+                attributedString = NSMutableAttributedString(string: str[searchStartIndex..<resultStartIndex])
+                
+                // 찾기 시작할 인덱스 = 찾은 스트링의 끝 인덱스
+                searchStartIndex = resultEndIndex
+                
+                // 찾은 스트링 부분에 이미지 붙이기
+                let attachment = NSTextAttachment()
+                attachment.image = UIImage(named: "\(searchString).png")
+                attachment.bounds = iconsSize
+                attributedString.appendAttributedString(NSAttributedString(attachment: attachment))
+                
+                break
             }
         }
-        
-//        let attributedString = NSMutableAttributedString(string: "Your ")
-        
-        
-//        let loveAttachment = NSTextAttachment()
-//        loveAttachment.image = emoticonCollections[0]
-//        loveAttachment.bounds = iconsSize
-//        attributedString.appendAttributedString(NSAttributedString(attachment: loveAttachment))
-        
-//        attributedString.appendAttributedString(NSAttributedString(string: " was holdin'\n"))
-//        attributedString.appendAttributedString(NSAttributedString(string: "Ripped "))
-        
-//        let jeansAttachment = NSTextAttachment()
-//        jeansAttachment.image = emojisCollection[1]
-//        jeansAttachment.bounds = iconsSize
-//        attributedString.appendAttributedString(NSAttributedString(attachment: jeansAttachment))
-//        
-//        attributedString.appendAttributedString(NSAttributedString(string: " ,\n"))
-//        attributedString.appendAttributedString(NSAttributedString(string: "skin was showin'\n"))
-//        
-//        let fireAttachment = NSTextAttachment()
-//        fireAttachment.image = emojisCollection[2]
-//        fireAttachment.bounds = iconsSize
-//        attributedString.appendAttributedString(NSAttributedString(attachment: fireAttachment))
-//        
-//        attributedString.appendAttributedString(NSAttributedString(string: " night, wind was "))
-//        
-//        let dashAttachment = NSTextAttachment()
-//        dashAttachment.image = emojisCollection[3]
-//        dashAttachment.bounds = iconsSize
-//        attributedString.appendAttributedString(NSAttributedString(attachment: dashAttachment))
-//        
-//        attributedString.appendAttributedString(NSAttributedString(string: "\nWhere you think\n"))
-//        attributedString.appendAttributedString(NSAttributedString(string: "you're going, "))
-//        
-//        let babyAttachment = NSTextAttachment()
-//        babyAttachment.image = emojisCollection[4]
-//        babyAttachment.bounds = iconsSize  
-//        attributedString.appendAttributedString(NSAttributedString(attachment: babyAttachment))
-//        
-//        attributedString.appendAttributedString(NSAttributedString(string: " ?"))
         
         return attributedString
     }
@@ -1079,6 +1039,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         switch sender.tag {
         case 100:
             self.chatInputTextField.text = self.chatInputTextField.text! + "(baby)"
+            break
+        case 101:
+            self.chatInputTextField.text = self.chatInputTextField.text! + "(moon)"
             break
         default:
             break
