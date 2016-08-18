@@ -44,13 +44,13 @@ class dateSetViewController: UIViewController {
     
     func datePickerValueChanged(sender:UIDatePicker) {
         
-        let dateFormatter = NSDateFormatter()
+        _ = NSDateFormatter()
         
         //dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
         //dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
         
         let pickedDate = sender.date
-        let cal = NSCalendar(calendarIdentifier:NSGregorianCalendar)!
+        let cal = NSCalendar(calendarIdentifier:NSCalendarIdentifierGregorian)!
         let comp = cal.components([.Year, .Month, .Day], fromDate:pickedDate)
         
         let dateToString:String = "\(comp.year)-\(comp.month)-\(comp.day)"
