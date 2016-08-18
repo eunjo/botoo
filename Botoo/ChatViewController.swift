@@ -739,6 +739,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         }
     }
     
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.chatMessages.count
     }
@@ -769,7 +770,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 //                cell?.dateLabel.text = "00:00"
                 
                 cell?.messageBubble.backgroundColor = bubbleColor
-                
+
                 return cell!
                 
             } else { // 상대방 메세지
@@ -786,6 +787,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 cell?.dateLabel.text = "00:00"
                 
                 cell?.messageBubble.backgroundColor = bubbleColor
+                
                 
                 return cell!
             }
@@ -810,6 +812,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 cell?.nameLabel.text = name
                 cell?.contactButton.setTitle("\(givenName) \(familyName)", forState: .Normal)
                 cell?.setData(givenName as! String, fN: familyName as! String, pN: MobNumVar as! String)
+
                 
                 return cell!
                 
@@ -825,6 +828,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 cell?.nameLabel.text = name
                 cell?.contactButton.setTitle("\(givenName) \(familyName)", forState: .Normal)
                 cell?.setData(givenName as! String, fN: familyName as! String, pN: MobNumVar as! String)
+                
                 
                 return cell!
             }
@@ -995,7 +999,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func stringToAttributedString(str: String) -> NSMutableAttributedString {
-        var attributedString = NSMutableAttributedString(string: str)
+        var attributedString = NSMutableAttributedString(string: "")
         var searchStartIndex = str.startIndex
         var searchRange = searchStartIndex..<str.endIndex
         
@@ -1015,7 +1019,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 let resultEndIndex = result!.endIndex
                 
                 // 찾은 스트링 전까지 문자열 자르기
-                attributedString = NSMutableAttributedString(string: str[searchStartIndex..<resultStartIndex])
+                attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<resultStartIndex]))
                 
                 // 찾기 시작할 인덱스 = 찾은 스트링의 끝 인덱스
                 searchStartIndex = resultEndIndex
@@ -1027,6 +1031,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 attributedString.appendAttributedString(NSAttributedString(attachment: attachment))
                 
                 break
+            }
+            
+            if (searchString == emoticonStrings[emoticonStrings.count-1]) { //아무 이모티콘도 찾지 못했다면
+                attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<str.endIndex]))
             }
         }
         

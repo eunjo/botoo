@@ -10,6 +10,7 @@ import UIKit
 import ContactsUI
 import Contacts
 
+
 class ChatContactTableViewCellL: UITableViewCell {
 
     
@@ -35,8 +36,9 @@ class ChatContactTableViewCellL: UITableViewCell {
         // Configure the view for the selected state
     }
 
+
     @IBAction func contactButtonTapped(sender: AnyObject) {
-        
+
         let Contact = CNMutableContact()
         
         Contact.givenName = self.givenName!
@@ -46,25 +48,21 @@ class ChatContactTableViewCellL: UITableViewCell {
         
         self.childView.contact = Contact
         
-        dispatch_sync(dispatch_get_main_queue(), {
-            
-            
-            let alertController = UIAlertController(title: "알림", message: "이 연락처를 저장하시겠습니까?", preferredStyle: UIAlertControllerStyle.Alert)
-            
-            let okAction = UIAlertAction(title:"확인", style:UIAlertActionStyle.Default, handler: { action in
-                
-                self.OkAction()
-                
-            })
-            
-            alertController.addAction(okAction)
-            
-            let pushedViewControllers = (self.window?.rootViewController as! UINavigationController).viewControllers
-            let presentedViewController = pushedViewControllers[pushedViewControllers.count - 1]
-            
-            presentedViewController.presentViewController(alertController, animated: true, completion: nil)
-            
-        })
+        
+//        let alertController = UIAlertController(title: "\(Contact.givenName) \(Contact.familyName)", message: "이 연락처를 저장하시겠습니까?", preferredStyle: UIAlertControllerStyle.Alert)
+//        
+//        let okAction = UIAlertAction(title:"확인", style:UIAlertActionStyle.Default, handler: { action in
+//            
+//            self.OkAction()
+//            
+//        })
+//        
+//        alertController.addAction(okAction)
+//        self.parentView.presentViewController(alertController, animated: true, completion: nil)
+        
+
+        
+        print("true")
 
     }
     
