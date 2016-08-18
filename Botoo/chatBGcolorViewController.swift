@@ -79,7 +79,6 @@ class chatBGcolorViewController: UIViewController {
 
     @IBOutlet weak var black: UIView!
     func blackTapped(sender: UITapGestureRecognizer){
-    
         NSUserDefaults.standardUserDefaults().setObject(true, forKey: "ischatBgColor")
         NSUserDefaults.standardUserDefaults().setObject(false, forKey: "ischatBgPic")
         NSUserDefaults.standardUserDefaults().setObject((false), forKey: "ischatBGdefault")

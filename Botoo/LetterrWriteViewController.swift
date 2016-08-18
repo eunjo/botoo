@@ -62,7 +62,7 @@ class LetterrWriteViewController: UIViewController {
                 notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
                 notification.fireDate = NSDate(timeIntervalSinceNow: 1)// todo item due date (when notification will be fired)
                 notification.soundName = UILocalNotificationDefaultSoundName // play default sound
-                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+               
 
                 self.navigationController?.popViewControllerAnimated(true)
             }
