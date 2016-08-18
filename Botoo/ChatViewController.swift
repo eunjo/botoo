@@ -54,10 +54,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private var users = [String]()
     
     //emoticon
-    private let emoticonStrings = ["(idle)","(baby)","(moon)"]
-    @IBOutlet var emo_baby: UIButton!
-    @IBOutlet var emo_moon: UIButton!
+    private let emoticonStrings = ["(idle)","(idle_fe)"]
     @IBOutlet var emo_idle: UIButton!
+    @IBOutlet var emo_idle_fe: UIButton!
     
     //toolbar 크기 조정
     private var TOOLBAR_FRAME = CGRect()
@@ -768,8 +767,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 cell?.messageBubble.attributedText = stringToAttributedString(replacedMsg!)
                 cell?.nameLabel.text = name
                 cell?.dateLabel.text = date!
-//                cell?.dateLabel.text = "00:00"
                 
+                print(cell?.messageBubble.attributedText)
                 cell?.messageBubble.backgroundColor = bubbleColor
 
                 return cell!
@@ -1003,11 +1002,11 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         var attributedString = NSMutableAttributedString(string: "")
         var searchStartIndex = str.startIndex
         var searchRange = searchStartIndex..<str.endIndex
+        var searchRangeString = NSMutableAttributedString(string: str)
         
         var iconsSize = CGRect(x: 0, y: -5, width: 24, height: 24)
         
         while searchStartIndex < str.endIndex {
-            
             searchRange = searchStartIndex..<str.endIndex
             
             for searchString in emoticonStrings {
@@ -1028,7 +1027,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     searchStartIndex = resultEndIndex
                     
                     if searchString == str {
-                        iconsSize = CGRect(x: 0, y: -5, width: 100, height:100)
+                        iconsSize = CGRect(x: 0, y: -5, width: 95, height:95)
                     }
                     
                     // 찾은 스트링 부분에 이미지 붙이기
@@ -1045,6 +1044,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     searchStartIndex = str.endIndex
                     print(str[searchStartIndex..<str.endIndex])
                 }
+                
+//                searchRangeString = attributedString
             }
 
         }
@@ -1057,13 +1058,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     @IBAction func selectEmoticon(sender: UIButton) {
         switch sender.tag {
         case 100:
-            self.chatInputTextField.text = self.chatInputTextField.text! + "(baby)"
+            self.chatInputTextField.text = self.chatInputTextField.text! + "(idle)"
             break
         case 101:
-            self.chatInputTextField.text = self.chatInputTextField.text! + "(moon)"
-            break
-        case 102:
-            self.chatInputTextField.text = self.chatInputTextField.text! + "(idle)"
+            self.chatInputTextField.text = self.chatInputTextField.text! + "(idle_fe)"
             break
         default:
             break
