@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Qcg-ez-qb3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Qcg-ez-qb3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -601,6 +601,7 @@
                         <outlet property="toolbarDrawer" destination="F1l-Va-gN6" id="IQ4-Ts-lkb"/>
                         <outlet property="viewInToolbar" destination="nWO-Qg-OEG" id="d1z-Bt-5gd"/>
                         <segue destination="vnq-Hu-44x" kind="modal" identifier="picZoomSeg" id="oJk-S0-t2O"/>
+                        <segue destination="Anx-bA-Fcp" kind="modal" identifier="contact" id="ybd-dc-sQT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hff-Qo-aru" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -712,7 +713,7 @@
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingTableViewCell" textLabel="7gA-zU-nBT" detailTextLabel="NlJ-ks-wRc" rowHeight="44" style="IBUITableViewCellStyleValue1" id="3Ea-Su-OIm">
-                                        <rect key="frame" x="0.0" y="92" width="383" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="383" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Ea-Su-OIm" id="VBk-Q5-fTI">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="43.5"/>
@@ -1513,7 +1514,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4TL-sX-qOW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="532.5333333333333" y="832.59333333333336"/>
+            <point key="canvasLocation" x="296.5" y="832.5"/>
         </scene>
         <!--설정-->
         <scene sceneID="nM5-vV-4fC">
@@ -1726,13 +1727,51 @@
                     <view key="view" contentMode="scaleToFill" id="4Rc-lL-bwM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_female" id="YTa-3z-faB">
+                                <rect key="frame" x="20" y="80" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Rzi-K4-25i">
+                                <rect key="frame" x="20" y="37" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.84705882349999995" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="닫기"/>
+                                <connections>
+                                    <action selector="closeButtonTapped:" destination="Anx-bA-Fcp" eventType="touchUpInside" id="di6-Ne-Y2f"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h14-d6-f5J">
+                                <rect key="frame" x="93" y="99" width="220" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DVy-8h-c5g">
+                                <rect key="frame" x="20" y="163" width="293" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" id="yxy-d8-T4x">
+                                <rect key="frame" x="321" y="103" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.84705882349999995" green="0.1058823529" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="name" destination="h14-d6-f5J" id="Snh-0a-Une"/>
+                        <outlet property="phoneNum" destination="DVy-8h-c5g" id="hY1-81-JXi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A4q-xG-a9p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="700" y="1526.5"/>
+            <point key="canvasLocation" x="492.5" y="1645.5"/>
         </scene>
         <!--Chat Tab Setting View Controller-->
         <scene sceneID="hvO-G3-EJJ">
@@ -1860,6 +1899,7 @@
         <image name="(idle).png" width="100" height="100"/>
         <image name="(idle_fe).png" width="100" height="100"/>
         <image name="chatBGdefault.png" width="750" height="1334"/>
+        <image name="default_female" width="60" height="60"/>
         <image name="dolphin_only.png" width="120" height="120"/>
         <image name="homeBG.png" width="750" height="1334"/>
         <image name="red_circle.png" width="60" height="60"/>
@@ -1869,8 +1909,8 @@
         <image name="tab_settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="oJk-S0-t2O"/>
         <segue reference="UIt-JZ-bYR"/>
-        <segue reference="jZk-yp-nUi"/>
         <segue reference="x39-vu-HcH"/>
     </inferredMetricsTieBreakers>
 </document>
