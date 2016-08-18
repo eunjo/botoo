@@ -907,6 +907,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     let dataDecoded:NSData = NSData(base64EncodedString: message!, options: NSDataBase64DecodingOptions(rawValue: 0))!
                     let decodedimage:UIImage = UIImage(data: dataDecoded)!
                     cell?.pic.image = decodedimage
+                    cell?.pic.backgroundColor = UIColor.clearColor()
                     
                     //이미지 확대
                     let tap_2 = UITapGestureRecognizer(target:self, action: #selector(ChatViewController.picTapped(_:)))
@@ -934,6 +935,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     let dataDecoded:NSData = NSData(base64EncodedString: message!, options: NSDataBase64DecodingOptions(rawValue: 0))!
                     let decodedimage:UIImage = UIImage(data: dataDecoded)!
                     cell?.pic.image = decodedimage
+                    cell?.pic.backgroundColor = UIColor.clearColor()
                     
                     //이미지 확대
                     let tap_2 = UITapGestureRecognizer(target:self, action: #selector(ChatViewController.picTapped(_:)))

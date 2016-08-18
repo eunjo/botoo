@@ -13,11 +13,16 @@ class albumViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet var collectionView: UICollectionView!
     
     var picCollectionList:[String] = []
+    var loadCount = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        //한 번에 불러올 개수
+        let cellHeight = self.view.frame.size.width / CGFloat(3.0) //width == height
+        loadCount = Int(self.view.frame.size.height / cellHeight) * 3 //한 화면에 보여지는 줄 * 한 줄 당 개수
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -29,12 +34,12 @@ class albumViewController: UIViewController, UICollectionViewDelegate, UICollect
             if messageList == [] { return }
             
             var startCount = 0
-            let endCount = startCount+10
+            let endCount = startCount + self.loadCount
             
             var messageListTemp = messageList
             
             if endCount < messageList.count {
-                messageListTemp = Array(messageList[startCount ..< endCount]) //10개 씩 읽어오기
+                messageListTemp = Array(messageList[startCount ..< endCount])
             }
             
             for var message in messageListTemp {
@@ -50,7 +55,7 @@ class albumViewController: UIViewController, UICollectionViewDelegate, UICollect
                 }
             }
             
-            startCount = startCount + 10
+            startCount = startCount + self.loadCount
             self.collectionView.reloadData()
         }
     }
@@ -67,7 +72,6 @@ class albumViewController: UIViewController, UICollectionViewDelegate, UICollect
         return nil
     }
     
-    
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -79,13 +83,18 @@ class albumViewController: UIViewController, UICollectionViewDelegate, UICollect
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! PhotoCollectionViewCell
         
+        let cellSize = self.view.frame.size.width / CGFloat(3.0)
+        cell.frame.size.height = cellSize
+        cell.frame.size.width = cellSize
+        
+//        cell.photoImageView.frame.size.height = cellSize
+//        cell.photoImageView.frame.size.width = cellSize
+        
         //이미지 디코딩
         let dataDecoded:NSData = NSData(base64EncodedString: self.picCollectionList[indexPath.row], options: NSDataBase64DecodingOptions(rawValue: 0))!
         let decodedimage:UIImage = UIImage(data: dataDecoded)!
         cell.photoImageView.image = decodedimage
     
-        
-
         return cell
     }
 }

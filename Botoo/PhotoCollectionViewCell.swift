@@ -14,4 +14,4 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet var photoImageView: UIImageView!
     
     // set corner radious for image view
-   }
+}
