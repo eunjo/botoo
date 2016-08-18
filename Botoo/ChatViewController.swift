@@ -1066,8 +1066,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             }
 
         }
-        
-//        print(stringToAttributedString(str[searchStartIndex..<resultStartIndex]))
 
         return attributedString
     }
