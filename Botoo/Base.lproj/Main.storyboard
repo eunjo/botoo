@@ -1869,8 +1869,8 @@
         <image name="tab_settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oJk-S0-t2O"/>
-        <segue reference="x39-vu-HcH"/>
         <segue reference="UIt-JZ-bYR"/>
+        <segue reference="jZk-yp-nUi"/>
+        <segue reference="x39-vu-HcH"/>
     </inferredMetricsTieBreakers>
 </document>
