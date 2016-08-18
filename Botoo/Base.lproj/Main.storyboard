@@ -475,7 +475,7 @@
                             </toolbar>
                             <containerView opaque="NO" contentMode="scaleToFill" id="J3h-k7-gJ4">
                                 <rect key="frame" x="135" y="64" width="240" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <segue destination="s61-Gf-xOp" kind="embed" id="CBU-Uj-PrK"/>
                                 </connections>
