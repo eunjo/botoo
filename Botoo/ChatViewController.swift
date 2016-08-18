@@ -54,7 +54,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private var users = [String]()
     
     //emoticon
-    private let emoticonCollections = [UIImage(named: "baby.png")]
     private let emoticonStrings = ["(baby)"]
     @IBOutlet var emo_baby: UIButton!
     
@@ -763,8 +762,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
                 }
                 
-//                cell?.messageBubble.text = replacedMsg
-                cell?.messageBubble.attributedText = test("안녕 (baby)")
+                cell?.messageBubble.attributedText = stringToAttributedString(replacedMsg!)
                 cell?.nameLabel.text = name
                 cell?.dateLabel.text = date!
 //                cell?.dateLabel.text = "00:00"
@@ -995,37 +993,40 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         }
     }
     
-    func test(str: String) -> NSMutableAttributedString {
+    func stringToAttributedString(str: String) -> NSMutableAttributedString {
         var attributedString = NSMutableAttributedString(string: str)
         var searchStartIndex = str.startIndex
         var searchRange = searchStartIndex..<str.endIndex
         
-        let iconsSize = CGRect(x: 0, y: 0, width: 24, height: 24)
+        let iconsSize = CGRect(x: 0, y: -5, width: 24, height: 24)
         
-        for i in 0..<emoticonStrings.count {
-            let result = str.rangeOfString(emoticonStrings[i],
-                              options: NSStringCompareOptions.LiteralSearch,
-                              range: searchRange,
-                              locale: nil)
+        while searchStartIndex < str.endIndex {
+            searchRange = searchStartIndex..<str.endIndex
             
-            if (result != nil) {
-                // 찾은 스트링의 처음과 끝 인덱스
-                let resultStartIndex = result!.startIndex
-                let resultEndIndex = result!.endIndex
+            for searchString in emoticonStrings {
+                let result = str.rangeOfString(searchString,
+                                               options: NSStringCompareOptions.LiteralSearch,
+                                               range: searchRange,
+                                               locale: nil)
                 
-                // 찾은 스트링 전까지 문자열 자르기
-                attributedString = NSMutableAttributedString(string: str[searchStartIndex..<resultStartIndex])
-                
-                // 찾기 시작할 인덱스 = 찾은 스트링의 끝 인덱스
-                searchStartIndex = result!.endIndex
-                
-                // 찾은 스트링 부분에 이미지 붙이기
-                let loveAttachment = NSTextAttachment()
-                loveAttachment.image = emoticonCollections[i]
-                loveAttachment.bounds = iconsSize
-                attributedString.appendAttributedString(NSAttributedString(attachment: loveAttachment))
+                if (result != nil) {
+                    // 찾은 스트링의 처음과 끝 인덱스
+                    let resultStartIndex = result!.startIndex
+                    let resultEndIndex = result!.endIndex
+                    
+                    // 찾은 스트링 전까지 문자열 자르기
+                    attributedString = NSMutableAttributedString(string: str[searchStartIndex..<resultStartIndex])
+                    
+                    // 찾기 시작할 인덱스 = 찾은 스트링의 끝 인덱스
+                    searchStartIndex = resultEndIndex
+                    
+                    // 찾은 스트링 부분에 이미지 붙이기
+                    let attachment = NSTextAttachment()
+                    attachment.image = UIImage(named: "\(searchString).png")
+                    attachment.bounds = iconsSize
+                    attributedString.appendAttributedString(NSAttributedString(attachment: attachment))
+                }
             }
-        
         }
         
 //        let attributedString = NSMutableAttributedString(string: "Your ")
