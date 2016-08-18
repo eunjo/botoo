@@ -54,8 +54,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private var users = [String]()
     
     //emoticon
-    private let emoticonStrings = ["(baby)"]
+    private let emoticonStrings = ["(baby)","(moon)"]
     @IBOutlet var emo_baby: UIButton!
+    @IBOutlet var emo_moon: UIButton!
     
     //toolbar 크기 조정
     private var TOOLBAR_FRAME = CGRect()
@@ -1024,11 +1025,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 attachment.image = UIImage(named: "\(searchString).png")
                 attachment.bounds = iconsSize
                 attributedString.appendAttributedString(NSAttributedString(attachment: attachment))
+                
+                break
             }
         }
-        
-//        while searchStartIndex < str.endIndex {
-//        }
         
         return attributedString
     }
@@ -1039,6 +1039,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         switch sender.tag {
         case 100:
             self.chatInputTextField.text = self.chatInputTextField.text! + "(baby)"
+            break
+        case 101:
+            self.chatInputTextField.text = self.chatInputTextField.text! + "(moon)"
             break
         default:
             break
