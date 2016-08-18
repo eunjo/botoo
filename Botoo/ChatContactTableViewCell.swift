@@ -44,25 +44,20 @@ class ChatContactTableViewCell: UITableViewCell {
         
         self.childView.contact = Contact
     
-        dispatch_sync(dispatch_get_main_queue(), {
-
+        let alertController = UIAlertController(title: "알림", message: "이 연락처를 저장하시겠습니까?", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title:"확인", style:UIAlertActionStyle.Default, handler: { action in
             
-            let alertController = UIAlertController(title: "알림", message: "이 연락처를 저장하시겠습니까?", preferredStyle: UIAlertControllerStyle.Alert)
-            
-            let okAction = UIAlertAction(title:"확인", style:UIAlertActionStyle.Default, handler: { action in
-                
-                self.OkAction()
-            
-            })
-            
-            alertController.addAction(okAction)
-            
-            let pushedViewControllers = (self.window?.rootViewController as! UINavigationController).viewControllers
-            let presentedViewController = pushedViewControllers[pushedViewControllers.count - 1]
-            
-            presentedViewController.presentViewController(alertController, animated: true, completion: nil)
+            self.OkAction()
             
         })
+        
+        alertController.addAction(okAction)
+        
+        let pushedViewControllers = (self.window?.rootViewController as! UITabBarController).viewControllers
+        let presentedViewController = pushedViewControllers![pushedViewControllers!.count - 1]
+        
+        presentedViewController.presentViewController(alertController, animated: true, completion: nil)
     
     }
     

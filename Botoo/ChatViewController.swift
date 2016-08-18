@@ -17,7 +17,7 @@ import MobileCoreServices
 import ContactsUI
 import AVFoundation
 
-class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CNContactPickerDelegate, UITableViewDelegate, UITableViewDataSource {
+class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CNContactPickerDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
     private let bubbleColor = UIColor(red: 250.0/255, green: 212.0/255, blue: 40.0/255, alpha: 1)
     // 이미지픽커 선언
@@ -28,8 +28,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     private var SETTING = 0
     @IBOutlet var toolbarBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var chatInputTextField: UITextField!
+    @IBOutlet var chatInputTextField: UITextView!
     @IBOutlet var toolbar: UIToolbar!
+    @IBOutlet var viewInToolbar: UIView!
     @IBOutlet var drawerContainer: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet var toolbarDrawer: UIView!
@@ -52,6 +53,16 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private var chatMessages:[[String : AnyObject]] = []
     private var users = [String]()
     
+    //emoticon
+    private let emoticonCollections = [UIImage(named: "baby.png")]
+    @IBOutlet var emo_baby: UIButton!
+    
+    //toolbar 크기 조정
+    private var TOOLBAR_FRAME = CGRect()
+    private var TOOLBARVIEW_FRAME = CGRect()
+    private var TOOLBARTEXT_FRAME = CGRect()
+    private var formerLine = 1
+    
     struct removeChats {
         static var isRemove = false
     }
@@ -59,6 +70,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
+        self.chatInputTextField.delegate = self
+        self.TOOLBAR_FRAME = self.toolbar.frame
+        self.TOOLBARVIEW_FRAME = self.viewInToolbar.frame
+        self.TOOLBARTEXT_FRAME = self.chatInputTextField.frame
         
         //messageTableView 초기화
         initMessageTableView()
@@ -87,7 +102,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         messageTableView.delegate = self
         messageTableView.dataSource = self
         
-        messageTableView.estimatedRowHeight = 73.0
+        messageTableView.estimatedRowHeight = 60.0
         messageTableView.rowHeight = UITableViewAutomaticDimension
         
         let messageTableViewTapped = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.messageTableViewTapped))
@@ -114,7 +129,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 for var message in messageList {
                     if message != "" {
                         message.removeAtIndex(message.endIndex.predecessor())
-                        
                         let result = self.convertStringToDictionary(message)
                         self.chatMessages.append(result!)
                     }
@@ -141,7 +155,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         // 배경 초기화
         initBackGround()
         
-        FileManager.sharedInstance.initFile()
+       // FileManager.sharedInstance.initFile()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -307,7 +321,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func keyboardWillHide(notification:NSNotification) {
-//        keyboardIsOpen = false
         adjustingHeight(false, notification: notification)
     }
 
@@ -343,7 +356,22 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             
             UIView.animateWithDuration(animationDurarion, animations: { () -> Void in
 //                self.toolbarBottomConstraint.constant += changeInHeight
-                self.toolbar.frame.origin.y += changeInHeight
+                
+                self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, -changeInHeight)
+                
+                //툴바가 아래로 내려갈 때 && 작성 중이 아닐 때 (작성이 완료된 경우)
+                if !show && self.chatInputTextField.text == ""{
+                    //툴바 사이즈 변경되어 있을 경우
+                    //더 내려야 할 높이
+                    let extra = self.toolbar.frame.size.height - self.TOOLBAR_FRAME.size.height
+                    self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, extra)
+                    
+                    //툴바 사이즈 복구
+                    self.viewInToolbar.frame.size = self.TOOLBARVIEW_FRAME.size
+                    self.chatInputTextField.frame.size = self.TOOLBARTEXT_FRAME.size
+                    self.toolbar.frame.size = self.TOOLBAR_FRAME.size
+                }
+                
             })
         } else {
             // 키보드가 텍스트 필드를 가리는지 확인
@@ -551,14 +579,27 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(true) { (_) in
-            let resiziedImage = self.resizeImage((info[UIImagePickerControllerOriginalImage] as? UIImage)!, newWidth: CGFloat(600))
+            let resiziedImage = self.resizeImage((info[UIImagePickerControllerOriginalImage] as? UIImage)!, newWidth: CGFloat(700))
             
             let Imagedata = UIImageJPEGRepresentation(resiziedImage, 0.5)
             let base64String = Imagedata!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
             
             SocketIOManager.sharedInstance.sendMessage("pic", message: base64String, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
             
-            self.saveMessage(base64String, type: "pic")
+            dispatch_async(dispatch_get_main_queue()) {
+                
+                /**
+                 테이블뷰에 추가
+                 //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
+                 **/
+                self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"pic\",\"message\":\"\(base64String)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(self.getCurrentDate_client())\"}")!)
+                self.messageTableView.reloadData()
+                
+                //메세지 서버에 저장
+                self.saveMessage(base64String, type: "pic")
+                
+                self.scrollToBottom()
+            }
         }
     }
     
@@ -601,8 +642,24 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func contactPicker(picker: CNContactPickerViewController, didSelectContact contact: CNContact) {
         let MobNumVar = (contact.phoneNumbers[0].value as! CNPhoneNumber).valueForKey("digits") as! String
-        let ContactString = "{\"givenName\":\"\(contact.givenName)\",\"familyName\":\"\(contact.familyName)\",\"MobNumVar\":\"\(MobNumVar)\"}"
+        let ContactString = "{\'givenName\':\'\(contact.givenName)\',\'familyName\':\'\(contact.familyName)\',\'MobNumVar\':\'\(MobNumVar)\'}"
+        
         SocketIOManager.sharedInstance.sendMessage("contact", message: ContactString, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
+        
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            /**
+             테이블뷰에 추가
+             //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
+             **/
+            self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"contact\",\"message\":\"\(ContactString)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(self.getCurrentDate_client())\"}")!)
+            
+            //메세지 서버에 저장
+            self.saveMessage(ContactString, type: "contact")
+            
+            self.messageTableView.reloadData()
+            self.scrollToBottom()
+        }
     }
  
 
@@ -615,8 +672,54 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             chatInputTextField.text = ""
             chatInputTextField.resignFirstResponder()
             
-            self.saveMessage(message, type: "text")
+            dispatch_async(dispatch_get_main_queue()) {
+                /**
+                    테이블뷰에 추가
+                    //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
+                **/
+                var replacedMsg = message.stringByReplacingOccurrencesOfString("\"", withString: "/0x22")
+                replacedMsg = replacedMsg.stringByReplacingOccurrencesOfString("\\", withString: "/0x5c")
+                replacedMsg = replacedMsg.stringByReplacingOccurrencesOfString("\n", withString: "/0x0a")
+                
+                self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"text\",\"message\":\"\(replacedMsg)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(self.getCurrentDate_client())\"}")!)
+                
+                //메세지 서버에 저장
+                self.saveMessage(replacedMsg, type: "text")
+                
+                self.messageTableView.reloadData()
+                self.scrollToBottom()
+            }
+            
+            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                
+                //툴바가 아래로 내려갈 때 && 작성 중이 아닐 때 (작성이 완료된 경우)
+                if self.chatInputTextField.text == ""{
+                    //툴바 사이즈 변경되어 있을 경우
+                    //더 내려야 할 높이
+                    let extra = self.toolbar.frame.size.height - self.TOOLBAR_FRAME.size.height
+                    self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, extra)
+                    
+                    //툴바 사이즈 복구
+                    self.viewInToolbar.frame.size = self.TOOLBARVIEW_FRAME.size
+                    self.chatInputTextField.frame.size = self.TOOLBARTEXT_FRAME.size
+                    self.toolbar.frame.size = self.TOOLBAR_FRAME.size
+                }
+                
+            })
         }
+    }
+    
+    func getCurrentDate_client() -> String {
+        
+        let format = NSDateFormatter()
+        format.locale = NSLocale(localeIdentifier: "ko_kr")
+        format.timeZone = NSTimeZone(name: "KST")
+        format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        
+        let date = format.stringFromDate(NSDate())
+        
+        return date[date.startIndex.advancedBy(11)...date.startIndex.advancedBy(15)]
     }
     
     func saveMessage(message: String, type: String) {
@@ -647,6 +750,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         
         switch type {
         case "text":
+            var replacedMsg = message?.stringByReplacingOccurrencesOfString("/0x22", withString: "\"")
+            replacedMsg = replacedMsg!.stringByReplacingOccurrencesOfString("/0x5c", withString: "\\")
+            replacedMsg = replacedMsg!.stringByReplacingOccurrencesOfString("/0x0a", withString: "\n")
+            
             if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
                 var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
                 
@@ -655,10 +762,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
                 }
                 
-                cell?.messageBubble.text = message
+                cell?.messageBubble.text = replacedMsg
                 cell?.nameLabel.text = name
-//                cell?.dateLabel.text = dateToString(date!)
-                cell?.dateLabel.text = "00:00"
+                cell?.dateLabel.text = date!
+//                cell?.dateLabel.text = "00:00"
                 
                 cell?.messageBubble.backgroundColor = bubbleColor
                 
@@ -672,7 +779,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCell") as? ChatTableViewCell
                 }
                 
-                cell?.messageBubble.text = message
+                cell?.messageBubble.text = replacedMsg
                 cell?.nameLabel.text = name
 //                cell?.dateLabel.text = dateToString(date!)
                 cell?.dateLabel.text = "00:00"
@@ -682,21 +789,23 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 return cell!
             }
         case "contact":
+            
+            let replacedMsg = message!.stringByReplacingOccurrencesOfString("\'", withString: "\"")
+            
+            let messageDic = convertStringToDictionary(replacedMsg)
+            
+            let givenName = messageDic!["givenName"]!
+            let familyName = messageDic!["familyName"]!
+            let MobNumVar = messageDic!["MobNumVar"]!
+            
             if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
-                
+            
                 var cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCell") as? ChatContactTableViewCell
                 
                 if cell == nil {
                     tableView.registerNib(UINib(nibName: "UIChatContactCell", bundle: nil), forCellReuseIdentifier: "ChatContactTableViewCell")
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCell") as? ChatContactTableViewCell
                 }
-                
-                let messageDic = convertStringToDictionary(message!)
-                
-                let givenName = messageDic!["givenName"]!
-                let familyName = messageDic!["familyName"]!
-                let MobNumVar = messageDic!["MobNumVar"]!
-                
                 cell?.nameLabel.text = name
                 cell?.contactButton.setTitle("\(givenName) \(familyName)", forState: .Normal)
                 cell?.setData(givenName as! String, fN: familyName as! String, pN: MobNumVar as! String)
@@ -708,23 +817,15 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 var cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCellL") as? ChatContactTableViewCellL
                 
                 if cell == nil {
-                    tableView.registerNib(UINib(nibName: "UIChatContactCell", bundle: nil), forCellReuseIdentifier: "ChatContactTableViewCellL")
+                    tableView.registerNib(UINib(nibName: "UIChatContactCellL", bundle: nil), forCellReuseIdentifier: "ChatContactTableViewCellL")
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCellL") as? ChatContactTableViewCellL
                 }
-                
-                let messageDic = convertStringToDictionary(message!)
-                
-                let givenName = messageDic!["givenName"]!
-                let familyName = messageDic!["familyName"]!
-                let MobNumVar = messageDic!["MobNumVar"]!
                 
                 cell?.nameLabel.text = name
                 cell?.contactButton.setTitle("\(givenName) \(familyName)", forState: .Normal)
                 cell?.setData(givenName as! String, fN: familyName as! String, pN: MobNumVar as! String)
                 
                 return cell!
-
-                
             }
         case "pic":
             if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
@@ -736,8 +837,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 }
                 
                 cell?.name.text = name
-//                cell?.date.text = dateToString(date!)
-                cell?.date.text = "00:00"
+                cell?.date.text = date!
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     //이미지 디코딩
@@ -830,33 +930,35 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         }
     }
     
-    func findUser(users: [String], find: String) -> Bool! {
-        
-        if users.count < 1 {
-            print("NOT FIND!")
-            return false
-        }
+    func findUser(users: [String]!, find: String!) -> Bool! {
         
         //리스트 정렬
-        let usersTemp = users.sort()
-        let usersTempMiddleId = usersTemp[usersTemp.count/2].componentsSeparatedByString(",")
+        var usersTemp = users.sort()
+        var usersTempMiddleId:[String]! = []
+        let find = "Optional(\(find))"
         
-        print("usersTempMiddleId:: \(usersTempMiddleId[0])")
-        
-        //가운데 요소와 비교
-        if usersTempMiddleId[0] > find {
-            findUser(Array(usersTemp[0 ..< usersTemp.count/2]), find: find)
-        } else if usersTempMiddleId[0] < find {
-            findUser(Array(usersTemp[usersTemp.count/2 ..< usersTemp.count]), find: find)
-        } else if usersTempMiddleId[0] == find {
-            print("FIND! : \(usersTempMiddleId[0])")
-            if usersTempMiddleId[1] == "1" {
-                return true
-            } else {
-                return false
+        while usersTemp.count > 1 {
+            
+            usersTempMiddleId = usersTemp[usersTemp.count/2].componentsSeparatedByString(",")
+            
+            //가운데 요소와 비교
+            if usersTempMiddleId[0] > find {
+                usersTemp = Array(usersTemp[0 ..< usersTemp.count/2])
+            } else if usersTempMiddleId[0] < find {
+                usersTemp = Array(usersTemp[usersTemp.count/2 ..< usersTemp.count])
+            } else if usersTempMiddleId[0] == find {
+                print("FIND! : \(usersTempMiddleId[0])")
+                if usersTempMiddleId[1] == "1" {
+                    print("ONLINE")
+                    return true
+                } else {
+                    print("OFFLINE")
+                    return false
+                }
             }
         }
         
+        print("OFFLINE")
         return false
     }
     
@@ -889,5 +991,91 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             let svc = segue.destinationViewController as! imageZoomViewController
             svc.newImage = sender!.image
         }
+    }
+    
+    func test(str: String) -> NSMutableAttributedString {
+        let iconsSize = CGRect(x: 0, y: 0, width: 24, height: 24)
+        let attributedString = NSMutableAttributedString(string: "Your ")
+        
+        let loveAttachment = NSTextAttachment()
+        loveAttachment.image = emoticonCollections[0]
+        loveAttachment.bounds = iconsSize
+        attributedString.appendAttributedString(NSAttributedString(attachment: loveAttachment))
+        
+        attributedString.appendAttributedString(NSAttributedString(string: " was holdin'\n"))
+        attributedString.appendAttributedString(NSAttributedString(string: "Ripped "))
+        
+//        let jeansAttachment = NSTextAttachment()
+//        jeansAttachment.image = emojisCollection[1]
+//        jeansAttachment.bounds = iconsSize
+//        attributedString.appendAttributedString(NSAttributedString(attachment: jeansAttachment))
+//        
+//        attributedString.appendAttributedString(NSAttributedString(string: " ,\n"))
+//        attributedString.appendAttributedString(NSAttributedString(string: "skin was showin'\n"))
+//        
+//        let fireAttachment = NSTextAttachment()
+//        fireAttachment.image = emojisCollection[2]
+//        fireAttachment.bounds = iconsSize
+//        attributedString.appendAttributedString(NSAttributedString(attachment: fireAttachment))
+//        
+//        attributedString.appendAttributedString(NSAttributedString(string: " night, wind was "))
+//        
+//        let dashAttachment = NSTextAttachment()
+//        dashAttachment.image = emojisCollection[3]
+//        dashAttachment.bounds = iconsSize
+//        attributedString.appendAttributedString(NSAttributedString(attachment: dashAttachment))
+//        
+//        attributedString.appendAttributedString(NSAttributedString(string: "\nWhere you think\n"))
+//        attributedString.appendAttributedString(NSAttributedString(string: "you're going, "))
+//        
+//        let babyAttachment = NSTextAttachment()
+//        babyAttachment.image = emojisCollection[4]
+//        babyAttachment.bounds = iconsSize  
+//        attributedString.appendAttributedString(NSAttributedString(attachment: babyAttachment))
+//        
+//        attributedString.appendAttributedString(NSAttributedString(string: " ?"))
+        
+        return attributedString
+    }
+    
+    //emoticon
+    
+    @IBAction func selectEmoticon(sender: UIButton) {
+        switch sender.tag {
+        case 100:
+            self.chatInputTextField.text = self.chatInputTextField.text! + "(baby)"
+            break
+        default:
+            break
+        }
+    }
+    
+    //텍스트뷰 길이 조정
+    func textViewDidChange(textView: UITextView) {
+        let currentLine = Int(self.chatInputTextField.contentSize.height / self.chatInputTextField.font!.lineHeight)
+        
+        print(currentLine)
+        
+        if (formerLine != currentLine) {
+            if (currentLine > 1 && currentLine < 4) {
+                
+                let yFlag = (currentLine - formerLine) > 0 ? CGFloat(1) : CGFloat(-1) //줄 ++
+                let toolbar_newY = self.toolbar.frame.origin.y - (yFlag * self.TOOLBAR_FRAME.size.height)
+                
+                let toolbar_newH = (currentLine - formerLine) > 0 ? self.TOOLBAR_FRAME.size.height * CGFloat(currentLine) : self.toolbar.frame.size.height - self.TOOLBAR_FRAME.size.height
+                let toolbarView_newH = (currentLine - formerLine) > 0 ? self.TOOLBARVIEW_FRAME.size.height * CGFloat(currentLine) : self.viewInToolbar.frame.size.height - self.TOOLBARVIEW_FRAME.size.height
+                let toolbarText_newH = (currentLine - formerLine) > 0 ? self.TOOLBARTEXT_FRAME.size.height * CGFloat(currentLine) : self.chatInputTextField.frame.size.height - self.TOOLBARTEXT_FRAME.size.height
+                
+                //텍스트뷰 길이 조정
+                self.toolbar.frame = CGRect(x: self.toolbar.frame.origin.x, y: toolbar_newY, width: self.toolbar.frame.size.width, height: toolbar_newH)
+                self.viewInToolbar.frame = CGRect(x: self.viewInToolbar.frame.origin.x, y: self.viewInToolbar.frame.origin.y, width: self.viewInToolbar.frame.size.width, height: toolbarView_newH)
+                self.chatInputTextField.frame = CGRect(x: self.chatInputTextField.frame.origin.x, y: 0, width: self.chatInputTextField.frame.size.width, height: toolbarText_newH)
+            }
+            
+            let newPosition = self.chatInputTextField.endOfDocument
+            self.chatInputTextField.selectedTextRange =  self.chatInputTextField.textRangeFromPosition(newPosition, toPosition: newPosition)
+        }
+        
+        formerLine = currentLine
     }
 }
