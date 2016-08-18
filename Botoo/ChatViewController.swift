@@ -55,6 +55,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     //emoticon
     private let emoticonCollections = [UIImage(named: "baby.png")]
+    private let emoticonStrings = ["(baby)"]
     @IBOutlet var emo_baby: UIButton!
     
     //toolbar 크기 조정
@@ -762,7 +763,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
                 }
                 
-                cell?.messageBubble.text = replacedMsg
+//                cell?.messageBubble.text = replacedMsg
+                cell?.messageBubble.attributedText = test("안녕 (baby)")
                 cell?.nameLabel.text = name
                 cell?.dateLabel.text = date!
 //                cell?.dateLabel.text = "00:00"
@@ -994,16 +996,48 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func test(str: String) -> NSMutableAttributedString {
+        var attributedString = NSMutableAttributedString(string: str)
+        var searchStartIndex = str.startIndex
+        var searchRange = searchStartIndex..<str.endIndex
+        
         let iconsSize = CGRect(x: 0, y: 0, width: 24, height: 24)
-        let attributedString = NSMutableAttributedString(string: "Your ")
         
-        let loveAttachment = NSTextAttachment()
-        loveAttachment.image = emoticonCollections[0]
-        loveAttachment.bounds = iconsSize
-        attributedString.appendAttributedString(NSAttributedString(attachment: loveAttachment))
+        for i in 0..<emoticonStrings.count {
+            let result = str.rangeOfString(emoticonStrings[i],
+                              options: NSStringCompareOptions.LiteralSearch,
+                              range: searchRange,
+                              locale: nil)
+            
+            if (result != nil) {
+                // 찾은 스트링의 처음과 끝 인덱스
+                let resultStartIndex = result!.startIndex
+                let resultEndIndex = result!.endIndex
+                
+                // 찾은 스트링 전까지 문자열 자르기
+                attributedString = NSMutableAttributedString(string: str[searchStartIndex..<resultStartIndex])
+                
+                // 찾기 시작할 인덱스 = 찾은 스트링의 끝 인덱스
+                searchStartIndex = result!.endIndex
+                
+                // 찾은 스트링 부분에 이미지 붙이기
+                let loveAttachment = NSTextAttachment()
+                loveAttachment.image = emoticonCollections[i]
+                loveAttachment.bounds = iconsSize
+                attributedString.appendAttributedString(NSAttributedString(attachment: loveAttachment))
+            }
         
-        attributedString.appendAttributedString(NSAttributedString(string: " was holdin'\n"))
-        attributedString.appendAttributedString(NSAttributedString(string: "Ripped "))
+        }
+        
+//        let attributedString = NSMutableAttributedString(string: "Your ")
+        
+        
+//        let loveAttachment = NSTextAttachment()
+//        loveAttachment.image = emoticonCollections[0]
+//        loveAttachment.bounds = iconsSize
+//        attributedString.appendAttributedString(NSAttributedString(attachment: loveAttachment))
+        
+//        attributedString.appendAttributedString(NSAttributedString(string: " was holdin'\n"))
+//        attributedString.appendAttributedString(NSAttributedString(string: "Ripped "))
         
 //        let jeansAttachment = NSTextAttachment()
 //        jeansAttachment.image = emojisCollection[1]
@@ -1055,9 +1089,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         let currentLine = Int(self.chatInputTextField.contentSize.height / self.chatInputTextField.font!.lineHeight)
         
         print(currentLine)
-        
+
         if (formerLine != currentLine) {
-            if (currentLine > 1 && currentLine < 4) {
+            if (currentLine >= 1 && currentLine <= 3) {
                 
                 let yFlag = (currentLine - formerLine) > 0 ? CGFloat(1) : CGFloat(-1) //줄 ++
                 let toolbar_newY = self.toolbar.frame.origin.y - (yFlag * self.TOOLBAR_FRAME.size.height)
@@ -1067,9 +1101,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 let toolbarText_newH = (currentLine - formerLine) > 0 ? self.TOOLBARTEXT_FRAME.size.height * CGFloat(currentLine) : self.chatInputTextField.frame.size.height - self.TOOLBARTEXT_FRAME.size.height
                 
                 //텍스트뷰 길이 조정
-                self.toolbar.frame = CGRect(x: self.toolbar.frame.origin.x, y: toolbar_newY, width: self.toolbar.frame.size.width, height: toolbar_newH)
                 self.viewInToolbar.frame = CGRect(x: self.viewInToolbar.frame.origin.x, y: self.viewInToolbar.frame.origin.y, width: self.viewInToolbar.frame.size.width, height: toolbarView_newH)
                 self.chatInputTextField.frame = CGRect(x: self.chatInputTextField.frame.origin.x, y: 0, width: self.chatInputTextField.frame.size.width, height: toolbarText_newH)
+                self.toolbar.frame = CGRect(x: self.toolbar.frame.origin.x, y: toolbar_newY, width: self.toolbar.frame.size.width, height: toolbar_newH)
             }
             
             let newPosition = self.chatInputTextField.endOfDocument
