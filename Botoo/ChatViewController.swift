@@ -1041,6 +1041,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     
                     // 찾은 스트링 전까지 문자열 자르기
                     attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<resultStartIndex]))
+                    searchRangeString = NSMutableAttributedString(string: str[searchStartIndex..<resultStartIndex])
                     
                     // 찾기 시작할 인덱스 = 찾은 스트링의 끝 인덱스
                     searchStartIndex = resultEndIndex
@@ -1061,10 +1062,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 if (searchString == emoticonStrings[emoticonStrings.count-1]) { //아무 이모티콘도 찾지 못했다면
                     attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<str.endIndex]))
                     searchStartIndex = str.endIndex
-                    print(str[searchStartIndex..<str.endIndex])
                 }
-                
-//                searchRangeString = attributedString
             }
 
         }
