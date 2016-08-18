@@ -24,6 +24,11 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     var imagePicker = UIImagePickerController()
     var newMedia = Bool?()
     
+    var tempContact:CNMutableContact = CNMutableContact()
+    var givenName:String?
+    var familyName:String?
+    var phoneNumber:String?
+    
     @IBOutlet var messageTableView: UITableView!
     
     private var SETTING = 0
@@ -52,7 +57,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private let loverId = NSUserDefaults.standardUserDefaults().stringForKey("loverId")!
     private var chatMessages:[[String : AnyObject]] = []
     private var users = [String]()
-    
+
     //emoticon
     private let emoticonStrings = ["(idle)","(idle_fe)"]
     @IBOutlet var emo_idle: UIButton!
@@ -810,8 +815,16 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 }
                 cell?.nameLabel.text = name
                 cell?.contactButton.setTitle("\(givenName) \(familyName)", forState: .Normal)
-                cell?.setData(givenName as! String, fN: familyName as! String, pN: MobNumVar as! String)
 
+                let fake_tempContact:CNMutableContact = CNMutableContact()
+                fake_tempContact.givenName = givenName as! String
+                fake_tempContact.familyName = familyName as! String
+                let phone = CNLabeledValue(label: CNLabelWork, value:CNPhoneNumber(stringValue: MobNumVar as! String))
+                fake_tempContact.phoneNumbers = [phone]
+                
+                tempContact = fake_tempContact
+
+                cell?.contactButton.addTarget(self, action: "contactButtonTapped:", forControlEvents: .TouchUpInside)
                 
                 return cell!
                 
@@ -826,8 +839,16 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 
                 cell?.nameLabel.text = name
                 cell?.contactButton.setTitle("\(givenName) \(familyName)", forState: .Normal)
-                cell?.setData(givenName as! String, fN: familyName as! String, pN: MobNumVar as! String)
                 
+                let fake_tempContact:CNMutableContact = CNMutableContact()
+                fake_tempContact.givenName = givenName as! String
+                fake_tempContact.familyName = familyName as! String
+                let phone = CNLabeledValue(label: CNLabelWork, value:CNPhoneNumber(stringValue: MobNumVar as! String))
+                fake_tempContact.phoneNumbers = [phone]
+                
+                tempContact = fake_tempContact
+                
+                cell?.contactButton.addTarget(self, action: "contactButtonTapped:", forControlEvents: .TouchUpInside)
                 
                 return cell!
             }
@@ -994,6 +1015,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         if (segue.identifier == "picZoomSeg") {
             let svc = segue.destinationViewController as! imageZoomViewController
             svc.newImage = sender!.image
+        } else if (segue.identifier == "contact"){
+            let svc = segue.destinationViewController as! contactDetailViewController
+            svc.contact = tempContact
+
         }
     }
     
@@ -1021,6 +1046,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     
                     // 찾은 스트링 전까지 문자열 자르기
                     attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<resultStartIndex]))
+                    searchRangeString = attributedString
                     
                     // 찾기 시작할 인덱스 = 찾은 스트링의 끝 인덱스
                     searchStartIndex = resultEndIndex
@@ -1041,10 +1067,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 if (searchString == emoticonStrings[emoticonStrings.count-1]) { //아무 이모티콘도 찾지 못했다면
                     attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<str.endIndex]))
                     searchStartIndex = str.endIndex
-                    print(str[searchStartIndex..<str.endIndex])
                 }
-                
-//                searchRangeString = attributedString
             }
 
         }
@@ -1095,4 +1118,18 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         
         formerLine = currentLine
     }
+    
+    func contactButtonTapped(contact:CNContact){
+        
+        self.performSegueWithIdentifier("contact", sender: contact)
+        if let connectingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("contactDetail") {
+            connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+            self.presentViewController(connectingViewController, animated: true, completion: nil)
+        }
+    }
+    
+
+    
+    
+
 }
