@@ -10,7 +10,6 @@ import UIKit
 
 class albumViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    
     @IBOutlet var collectionView: UICollectionView!
     
     var picCollectionList:[String] = []
@@ -30,7 +29,7 @@ class albumViewController: UIViewController, UICollectionViewDelegate, UICollect
             if messageList == [] { return }
             
             var startCount = 0
-            var endCount = startCount+10
+            let endCount = startCount+10
             
             var messageListTemp = messageList
             
@@ -78,8 +77,15 @@ class albumViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath)
-        cell.backgroundColor = UIColor.blackColor()
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! PhotoCollectionViewCell
+        
+        //이미지 디코딩
+        let dataDecoded:NSData = NSData(base64EncodedString: self.picCollectionList[indexPath.row], options: NSDataBase64DecodingOptions(rawValue: 0))!
+        let decodedimage:UIImage = UIImage(data: dataDecoded)!
+        cell.photoImageView.image = decodedimage
+    
+        
+
         return cell
     }
 }
