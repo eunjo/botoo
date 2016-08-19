@@ -26,10 +26,7 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
         ImageForZoom.image = newImage
        self.ImageForZoom.contentMode = UIViewContentMode.ScaleAspectFit
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
-        tap.numberOfTapsRequired = 2
-        view.addGestureRecognizer(tap)
-       
+              
 
     }
     
