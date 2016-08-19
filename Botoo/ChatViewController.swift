@@ -1064,60 +1064,61 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func stringToAttributedString(str: String) -> NSMutableAttributedString {
         
-        let attributedString = NSMutableAttributedString(string: "")
+        let attributedString = NSMutableAttributedString(string: str)
         var searchStartIndex = str.startIndex
-        var searchRange = searchStartIndex..<str.endIndex
-        var searchRangeString = str
+        var searchEndIndex = str.endIndex
+        var searchRange = searchStartIndex..<searchEndIndex
         
-        if str.containsString("(") {
+        if str.containsString("(") && str.containsString(")") {
+            
             var iconsSize = CGRect(x: 0, y: -5, width: 24, height: 24)
             
             while searchStartIndex < str.endIndex {
-                searchRange = searchStartIndex..<str.endIndex
+                // 찾을 범위
+                searchRange = searchStartIndex..<searchEndIndex
                 
                 for searchString in emoticonStrings {
-                    let result = str.rangeOfString(searchString,
+                    let result = attributedString.string.rangeOfString(searchString,
                                                    options: NSStringCompareOptions.LiteralSearch,
                                                    range: searchRange,
                                                    locale: nil)
                     
                     if (result != nil) {
-                        // 찾은 스트링의 처음과 끝 인덱스
+                        // 찾은 스트링의 처음 인덱스
                         let resultStartIndex = result!.startIndex
-                        let resultEndIndex = result!.endIndex
-                        
-                        // 찾은 스트링 전까지 문자열 자르기
-                        attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<resultStartIndex]))
                         
                         // 전체 스트링이 이모티콘 하나인 경우
                         if searchString == str {
                             iconsSize = CGRect(x: 0, y: -5, width: 95, height:95)
                         }
                         
-                        // 찾은 스트링 부분에 이미지 붙이기
+                        // 붙일 이미지 (이모티콘) 생성
                         let attachment = NSTextAttachment()
                         attachment.image = UIImage(named: "\(searchString).png")
                         attachment.bounds = iconsSize
-                        attributedString.appendAttributedString(NSAttributedString(attachment: attachment))
                         
-                        // 찾기 시작할 인덱스 = 찾은 스트링의 끝 인덱스
-                        searchStartIndex = resultEndIndex
+                        // 찾은 스트링을 이미지로 replace
+                        attributedString.replaceCharactersInRange(NSMakeRange(Int("\(resultStartIndex)")!, result!.count), withAttributedString: NSAttributedString(attachment: attachment))
+                        
+                        // 인덱스 수정
+                        searchStartIndex = attributedString.string.startIndex
+                        searchEndIndex = attributedString.string.endIndex
                         
                         break
                     }
                     
-                    if (searchString == emoticonStrings[emoticonStrings.count-1]) { //아무 이모티콘도 찾지 못했다면
-                        attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<str.endIndex]))
+                    if (searchString == emoticonStrings[emoticonStrings.count-1]) { //다 바꿨으면 
                         searchStartIndex = str.endIndex
                     }
                 }
-                
             }
+            
+            return attributedString
+            
         } else {
-            attributedString.appendAttributedString(NSAttributedString(string: str))
+            // (...) 스트링이 없다면 그대로 반환
+            return attributedString
         }
-
-        return attributedString
     }
     
     //emoticon
