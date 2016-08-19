@@ -14,6 +14,7 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
   
     @IBOutlet weak var saveImage: UIButton!
 
+    var isProPic:Bool?
     
     var newImage: UIImage!
     
@@ -26,7 +27,11 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
         ImageForZoom.image = newImage
        self.ImageForZoom.contentMode = UIViewContentMode.ScaleAspectFit
        
-
+        if (isProPic == true){
+            
+            saveImage.hidden = true
+        }
+        
     }
     
 
