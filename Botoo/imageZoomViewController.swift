@@ -25,6 +25,10 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
         // image 보여주기
         ImageForZoom.image = newImage
        self.ImageForZoom.contentMode = UIViewContentMode.ScaleAspectFit
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+        tap.numberOfTapsRequired = 2
+        view.addGestureRecognizer(tap)
        
 
     }
