@@ -188,14 +188,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="fqR-Un-LfN">
-                                <rect key="frame" x="0.0" y="94" width="375" height="480"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="qvj-or-edN" appends="YES" id="Iv8-9n-fOe"/>
-                                </connections>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fXz-17-CD1">
                                 <rect key="frame" x="16" y="20" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -206,6 +198,14 @@
                                     <action selector="closeButtonTapped:" destination="vnq-Hu-44x" eventType="touchUpInside" id="zbx-Z3-Y7j"/>
                                 </connections>
                             </button>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="fqR-Un-LfN">
+                                <rect key="frame" x="0.0" y="118" width="375" height="432"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="qvj-or-edN" appends="YES" id="Iv8-9n-fOe"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1925,12 +1925,7 @@
         <image name="tab_settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
-        <segue reference="oJk-S0-t2O"/>
-=======
         <segue reference="15x-7l-qcG"/>
-        <segue reference="UIt-JZ-bYR"/>
->>>>>>> 5d7b5432526d8dd6a0dd83fc340f2eaec9f1d92c
         <segue reference="x39-vu-HcH"/>
         <segue reference="UIt-JZ-bYR"/>
     </inferredMetricsTieBreakers>
