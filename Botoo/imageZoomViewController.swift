@@ -8,9 +8,11 @@
 
 import UIKit
 
-class imageZoomViewController: UIViewController {
+class imageZoomViewController: UIViewController, UIScrollViewDelegate{
 
     @IBOutlet weak var ImageForZoom: UIImageView!
+  
+
     
     var newImage: UIImage!
     
@@ -22,6 +24,7 @@ class imageZoomViewController: UIViewController {
         // image 보여주기
         ImageForZoom.image = newImage
        self.ImageForZoom.contentMode = UIViewContentMode.ScaleAspectFit
+       
 
     }
 
