@@ -182,23 +182,21 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         
         SocketIOManager.sharedInstance.getChatMessage { (messageInfo) -> Void in
             writeMessage = messageInfo
+            
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.chatMessages.append(messageInfo)
                 self.messageTableView.reloadData()
                 self.scrollToBottom()
-                
-                print("message")
             })
+            
+            //디바이스 파일에 쓰기
+            if writeMessage != nil {
+                FileManager.sharedInstance.writeFile(writeMessage!["type"]! as! String, text: writeMessage!["message"]! as! String, sender: writeMessage!["nickname"] as! String, date: writeMessage!["date"] as! String)
+                
+                print("나쓴다")
+            }
         }
         self.scrollToBottom()
-        
-        //디바이스 파일에 쓰기
-//        if writeMessage != nil {
-//            FileManager.sharedInstance.writeFile(writeMessage!["type"]! as! String, text: writeMessage!["message"]! as! String, sender: writeMessage!["nickname"] as! String, date: writeMessage!["date"] as! String)
-//            
-//            print("나쓴다")
-//        }
-
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -709,18 +707,18 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             chatInputTextField.text = ""
             chatInputTextField.resignFirstResponder()
             
-            /**
-             테이블뷰에 추가
-             //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
-             **/
-            var replacedMsg = message.stringByReplacingOccurrencesOfString("\"", withString: "/0x22")
-            replacedMsg = replacedMsg.stringByReplacingOccurrencesOfString("\\", withString: "/0x5c")
-            replacedMsg = replacedMsg.stringByReplacingOccurrencesOfString("\n", withString: "/0x0a")
-            
-            //메세지 서버에 저장
-            self.saveMessage(replacedMsg, type: "text")
-            
             dispatch_async(dispatch_get_main_queue()) {
+                
+                /**
+                 테이블뷰에 추가
+                 //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
+                 **/
+                var replacedMsg = message.stringByReplacingOccurrencesOfString("\"", withString: "/0x22")
+                replacedMsg = replacedMsg.stringByReplacingOccurrencesOfString("\\", withString: "/0x5c")
+                replacedMsg = replacedMsg.stringByReplacingOccurrencesOfString("\n", withString: "/0x0a")
+                
+                //메세지 서버에 저장
+                self.saveMessage(replacedMsg, type: "text")
                 
                 self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"text\",\"message\":\"\(replacedMsg)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(self.getCurrentDate_client())\"}")!)
                 
@@ -1035,7 +1033,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 usersTemp = Array(usersTemp[usersTemp.count/2 ..< usersTemp.count])
             } else if usersTempMiddleId[0] == find {
                 print("FIND! : \(usersTempMiddleId[0])")
-                if usersTempMiddleId[1] == "1" {
+                if usersTempMiddleId[1] == "Optional(1)" {
                     print("ONLINE")
                     return true
                 } else {

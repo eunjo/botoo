@@ -17,7 +17,9 @@ class FileManager{
     
     static let sharedInstance = FileManager()
     
+    
     var filePath:String
+    var writtenMessage = ["","","",""]
     
     init(){
         
@@ -38,26 +40,31 @@ class FileManager{
 
     func writeFile(type:String, text:String, sender:String, date:String){
         
-        
         let data_array = [type, text, sender, date]
-        let data_NSData = stringArrayToNSData(data_array)
-        let NewLine = "\n"
         
-        var fileHandle = NSFileHandle(forWritingAtPath: filePath)
         
-        if (fileHandle == nil) {
-            initFile()
-            fileHandle = NSFileHandle(forWritingAtPath: filePath)
-        }
-        
-        if (fileHandle != nil) {
-            fileHandle?.seekToEndOfFile()
-            fileHandle?.writeData(data_NSData)
-        }
-        
-        if (fileHandle != nil) {
-            fileHandle?.seekToEndOfFile()
-            fileHandle?.writeData(NewLine.dataUsingEncoding(NSUTF8StringEncoding)!)
+        if "\(writtenMessage)" != "\(data_array)" {
+            let data_NSData = stringArrayToNSData(data_array)
+            let NewLine = "\n"
+            
+            var fileHandle = NSFileHandle(forWritingAtPath: filePath)
+            
+            if (fileHandle == nil) {
+                initFile()
+                fileHandle = NSFileHandle(forWritingAtPath: filePath)
+            }
+            
+            if (fileHandle != nil) {
+                fileHandle?.seekToEndOfFile()
+                fileHandle?.writeData(data_NSData)
+            }
+            
+            if (fileHandle != nil) {
+                fileHandle?.seekToEndOfFile()
+                fileHandle?.writeData(NewLine.dataUsingEncoding(NSUTF8StringEncoding)!)
+            }
+            
+            writtenMessage = data_array
         }
     }
 
