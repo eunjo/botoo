@@ -64,6 +64,14 @@ class FileManager{
                 fileHandle?.writeData(NewLine.dataUsingEncoding(NSUTF8StringEncoding)!)
             }
             
+            
+            // notification 알림
+            let localNotification:UILocalNotification = UILocalNotification()
+            localNotification.alertAction = "Testing notifications on iOS8"
+            localNotification.alertBody = "\(data_array[2]): \(data_array[1])"
+            localNotification.fireDate = NSDate(timeIntervalSinceNow: 0)
+            UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+            
             // 중복 메세지 방지
             writtenMessage = data_array
         }

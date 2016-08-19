@@ -103,7 +103,7 @@ class albumViewController: UIViewController, UICollectionViewDelegate, UICollect
         if (segue.identifier == "detail") {
 
             let svc = segue.destinationViewController as! imageZoomViewController
-            svc.newImage = sender!.photoImageView.image
+            svc.newImage = (sender as! PhotoCollectionViewCell).photoImageView.image
         }
     }
     
