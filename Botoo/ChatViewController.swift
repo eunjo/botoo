@@ -30,6 +30,11 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     var phoneNumber:String?
     var tagIndex = 0
     
+    @IBOutlet weak var plus_video: UIButton!
+    @IBOutlet weak var plus_cam: UIButton!
+    @IBOutlet weak var plus_contact: UIButton!
+    @IBOutlet weak var plus_pic: UIButton!
+    
     @IBOutlet var messageTableView: UITableView!
     
     private var SETTING = 0
@@ -76,6 +81,12 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         super.viewDidLoad()
         imagePicker.delegate = self
         self.chatInputTextField.delegate = self
+        
+        //버튼 동그랗게
+        plus_pic.layer.cornerRadius = 0.5 * plus_pic.bounds.size.width
+        plus_cam.layer.cornerRadius = 0.5 * plus_cam.bounds.size.width
+        plus_contact.layer.cornerRadius = 0.5 * plus_contact.bounds.size.width
+        plus_video.layer.cornerRadius = 0.5 * plus_video.bounds.size.width
         
         //프레임
         self.TOOLBAR_FRAME = self.toolbar.frame
