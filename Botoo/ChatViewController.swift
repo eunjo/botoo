@@ -30,6 +30,11 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     var phoneNumber:String?
     var tagIndex = 0
     
+    @IBOutlet weak var plus_video: UIButton!
+    @IBOutlet weak var plus_cam: UIButton!
+    @IBOutlet weak var plus_contact: UIButton!
+    @IBOutlet weak var plus_pic: UIButton!
+    
     @IBOutlet var messageTableView: UITableView!
     
     private var SETTING = 0
@@ -60,9 +65,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private var users = [String]()
 
     //emoticon
-    private let emoticonStrings = ["(idle)","(idle_fe)"]
-    @IBOutlet var emo_idle: UIButton!
-    @IBOutlet var emo_idle_fe: UIButton!
+    private let emoticonStrings = ["(idle)","(idle_fe)","(orange)"]
     
     //toolbar 크기 조정
     private var TOOLBAR_FRAME = CGRect()
@@ -78,6 +81,14 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         super.viewDidLoad()
         imagePicker.delegate = self
         self.chatInputTextField.delegate = self
+        
+        //버튼 동그랗게
+        plus_pic.layer.cornerRadius = 0.5 * plus_pic.bounds.size.width
+        plus_cam.layer.cornerRadius = 0.5 * plus_cam.bounds.size.width
+        plus_contact.layer.cornerRadius = 0.5 * plus_contact.bounds.size.width
+        plus_video.layer.cornerRadius = 0.5 * plus_video.bounds.size.width
+        
+        //프레임
         self.TOOLBAR_FRAME = self.toolbar.frame
         self.TOOLBARVIEW_FRAME = self.viewInToolbar.frame
         self.TOOLBARTEXT_FRAME = self.chatInputTextField.frame
@@ -167,12 +178,21 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     override func viewDidAppear(animated: Bool) {
+        var writeMessage:[String : AnyObject]?
+        
         SocketIOManager.sharedInstance.getChatMessage { (messageInfo) -> Void in
+            writeMessage = messageInfo
+            
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.chatMessages.append(messageInfo)
                 self.messageTableView.reloadData()
                 self.scrollToBottom()
             })
+            
+            //디바이스 파일에 쓰기
+            if writeMessage != nil {
+                FileManager.sharedInstance.writeFile(writeMessage!["type"]! as! String, text: writeMessage!["message"]! as! String, sender: writeMessage!["nickname"] as! String, date: writeMessage!["date"] as! String)
+            }
         }
         self.scrollToBottom()
     }
@@ -181,14 +201,15 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         //유저 소켓 연결 끊기
         exitSocket()
         
-        //스레드 돌려 돌려~~ ㅠㅠ
+        //대화 내용을 삭제했는지 확인
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             if !removeChats.isRemove {
-                FileManager.sharedInstance.initFile()
+//                FileManager.sharedInstance.initFile()
+                
                 // write file
-                for messageInfo in self.chatMessages {
-                    FileManager.sharedInstance.writeFile(messageInfo["type"]! as! String, text: messageInfo["message"]! as! String, sender: messageInfo["nickname"] as! String, date: messageInfo["date"] as! String)
-                }
+//                for messageInfo in self.chatMessages {
+//                    FileManager.sharedInstance.writeFile(messageInfo["type"]! as! String, text: messageInfo["message"]! as! String, sender: messageInfo["nickname"] as! String, date: messageInfo["date"] as! String)
+//                }
             } else {
                 removeChats.isRemove = false
             }
@@ -366,6 +387,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 //                self.toolbarBottomConstraint.constant += changeInHeight
                 
                 self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, -changeInHeight)
+                self.messageTableView.transform = CGAffineTransformTranslate(self.messageTableView.transform, 0, -changeInHeight)
                 
                 //툴바가 아래로 내려갈 때 && 작성 중이 아닐 때 (작성이 완료된 경우)
                 if !show && self.chatInputTextField.text == ""{
@@ -502,6 +524,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 
                 if !(self.plusIsOpen && self.emoIsOpen) {
                     self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, containerHeight)
+                    self.messageTableView.transform = CGAffineTransformTranslate(self.messageTableView.transform, 0, containerHeight)
                 }
             }
             }, completion: { finish in
@@ -546,6 +569,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                         //갭 제거하기
                         self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0,
                             isUp ? -gap : gap)
+                        self.messageTableView.transform = CGAffineTransformTranslate(self.messageTableView.transform, 0, isUp ? -gap : gap)
+                        
                         self.view.layoutIfNeeded()
                 }
             )
@@ -673,7 +698,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 
     // 전송 버튼
     @IBAction func sendButtonTapped(sender: AnyObject) {
-        if chatInputTextField.text!.characters.count > 0 {
+        if chatInputTextField.text!.characters.count > 0 && chatInputTextField.text != " " {
             let message = chatInputTextField.text!
             SocketIOManager.sharedInstance.sendMessage("text", message: message, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
             
@@ -681,27 +706,28 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             chatInputTextField.resignFirstResponder()
             
             dispatch_async(dispatch_get_main_queue()) {
+                
                 /**
-                    테이블뷰에 추가
-                    //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
-                **/
+                 테이블뷰에 추가
+                 //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
+                 **/
                 var replacedMsg = message.stringByReplacingOccurrencesOfString("\"", withString: "/0x22")
                 replacedMsg = replacedMsg.stringByReplacingOccurrencesOfString("\\", withString: "/0x5c")
                 replacedMsg = replacedMsg.stringByReplacingOccurrencesOfString("\n", withString: "/0x0a")
                 
-                self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"text\",\"message\":\"\(replacedMsg)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(self.getCurrentDate_client())\"}")!)
-                
                 //메세지 서버에 저장
                 self.saveMessage(replacedMsg, type: "text")
+                
+                self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"text\",\"message\":\"\(replacedMsg)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(self.getCurrentDate_client())\"}")!)
                 
                 self.messageTableView.reloadData()
                 self.scrollToBottom()
             }
             
-            UIView.animateWithDuration(0.1, animations: { () -> Void in
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
                 
                 //툴바가 아래로 내려갈 때 && 작성 중이 아닐 때 (작성이 완료된 경우)
-                if self.chatInputTextField.text == ""{
+                if self.chatInputTextField.text == "" {
                     //툴바 사이즈 변경되어 있을 경우
                     //더 내려야 할 높이
                     let extra = self.toolbar.frame.size.height - self.TOOLBAR_FRAME.size.height
@@ -712,7 +738,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     self.chatInputTextField.frame.size = self.TOOLBARTEXT_FRAME.size
                     self.toolbar.frame.size = self.TOOLBAR_FRAME.size
                 }
-                
             })
         }
     }
@@ -731,21 +756,26 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func saveMessage(message: String, type: String) {
+        
+        let messageInfo = [
+            "senderId": self.userId as String,
+            "receiverId": self.loverId as String,
+            "message": message,
+            "type": type,
+            "date": getCurrentDate_client(),
+            "nickname": self.userName as String
+        ]
+        
+        //디바이스 파일에 쓰기
+        FileManager.sharedInstance.writeFile(messageInfo["type"]!, text: messageInfo["message"]!, sender: messageInfo["nickname"]!, date: messageInfo["date"]!)
+        
+        //서버에 메세지 저장
         if !self.findUser(self.users, find: self.loverId) {
-            
-            let messageInfo = [
-                "senderId": self.userId as String,
-                "receiverId": self.loverId as String,
-                "message": message,
-                "type": type
-            ]
-            
             ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
                 
             })
         }
     }
-    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.chatMessages.count
@@ -763,6 +793,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             replacedMsg = replacedMsg!.stringByReplacingOccurrencesOfString("/0x5c", withString: "\\")
             replacedMsg = replacedMsg!.stringByReplacingOccurrencesOfString("/0x0a", withString: "\n")
             
+            let attributedString = stringToAttributedString(replacedMsg!)
+            
             if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
                 var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
                 
@@ -771,11 +803,16 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
                 }
                 
-                cell?.messageBubble.attributedText = stringToAttributedString(replacedMsg!)
+                cell?.messageBubble.attributedText = attributedString
                 cell?.nameLabel.text = name
                 cell?.dateLabel.text = date!
                 
-                cell?.messageBubble.backgroundColor = bubbleColor
+                if cell?.messageBubble.attributedText?.length == 1 &&
+                    "\(cell?.messageBubble.attributedText?.string.characters)".containsString("Optional(￼)") {
+                    cell?.messageBubble.backgroundColor = UIColor.clearColor()
+                } else {
+                    cell?.messageBubble.backgroundColor = bubbleColor
+                }
 
                 return cell!
                 
@@ -789,11 +826,15 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 
                 cell?.messageBubble.attributedText = stringToAttributedString(replacedMsg!)
                 cell?.nameLabel.text = name
-//                cell?.dateLabel.text = dateToString(date!)
-                cell?.dateLabel.text = "00:00"
+                cell?.dateLabel.text = dateToString(date!)
+//                cell?.dateLabel.text = "00:00"
                 
-                cell?.messageBubble.backgroundColor = bubbleColor
-                
+                if cell?.messageBubble.attributedText?.length == 1 &&
+                    "\(cell?.messageBubble.attributedText?.string.characters)".containsString("Optional(￼)") {
+                    cell?.messageBubble.backgroundColor = UIColor.clearColor()
+                } else {
+                    cell?.messageBubble.backgroundColor = bubbleColor
+                }
                 
                 return cell!
             }
@@ -876,6 +917,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     let dataDecoded:NSData = NSData(base64EncodedString: message!, options: NSDataBase64DecodingOptions(rawValue: 0))!
                     let decodedimage:UIImage = UIImage(data: dataDecoded)!
                     cell?.pic.image = decodedimage
+                    cell?.pic.backgroundColor = UIColor.clearColor()
                     
                     //이미지 확대
                     let tap_2 = UITapGestureRecognizer(target:self, action: #selector(ChatViewController.picTapped(_:)))
@@ -903,6 +945,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     let dataDecoded:NSData = NSData(base64EncodedString: message!, options: NSDataBase64DecodingOptions(rawValue: 0))!
                     let decodedimage:UIImage = UIImage(data: dataDecoded)!
                     cell?.pic.image = decodedimage
+                    cell?.pic.backgroundColor = UIColor.clearColor()
                     
                     //이미지 확대
                     let tap_2 = UITapGestureRecognizer(target:self, action: #selector(ChatViewController.picTapped(_:)))
@@ -927,27 +970,35 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     
     func dateToString(dateString: String) -> String {
+        
         var date = dateString
-        date.replaceRange(date.startIndex.advancedBy(24)..<date.startIndex.advancedBy(24 + 15), with: "")
+        var dateToString = "00:00"
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeZone = NSTimeZone(name: "KST")
-        dateFormatter.dateFormat = "EEE MMM dd yyyy HH:mm:ss"
-        let Date = dateFormatter.dateFromString(date)
-        
-        print(date)
-        
-        // 날짜 년 월 일 로 포맷변환
-        let cal = NSCalendar(calendarIdentifier:NSCalendarIdentifierGregorian)!
-        let comp = cal.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate:Date!)
-        let new_minute:String
-        
-        if (comp.minute < 10){
-            new_minute = "0\(comp.minute)"
+        if date.characters.count > 10 {
+            date.replaceRange(date.startIndex.advancedBy(24)..<date.startIndex.advancedBy(24 + 15), with: "")
+            dateToString = date[date.startIndex.advancedBy(16)..<date.startIndex.advancedBy(21)]
         } else {
-            new_minute = String(comp.minute)
+            dateToString = date[date.startIndex..<date.startIndex.advancedBy(5)]
         }
-        let dateToString:String = "\(comp.hour):\(new_minute)"
+        
+//        let dateFormatter = NSDateFormatter()
+//        dateFormatter.timeZone = NSTimeZone(name: "KST")
+//        dateFormatter.dateFormat = "EEE MMM dd yyyy HH:mm:ss"
+//        let Date = dateFormatter.dateFromString(date)
+//        
+//        print(date)
+//        
+//        // 날짜 년 월 일 로 포맷변환
+//        let cal = NSCalendar(calendarIdentifier:NSCalendarIdentifierGregorian)!
+//        let comp = cal.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate:Date!)
+//        let new_minute:String
+//        
+//        if (comp.minute < 10){
+//            new_minute = "0\(comp.minute)"
+//        } else {
+//            new_minute = String(comp.minute)
+//        }
+//        let dateToString:String = "\(comp.hour):\(new_minute)"
         
         return dateToString
     }
@@ -980,7 +1031,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 usersTemp = Array(usersTemp[usersTemp.count/2 ..< usersTemp.count])
             } else if usersTempMiddleId[0] == find {
                 print("FIND! : \(usersTempMiddleId[0])")
-                if usersTempMiddleId[1] == "1" {
+                if usersTempMiddleId[1] == "Optional(1)" {
                     print("ONLINE")
                     return true
                 } else {
@@ -1030,56 +1081,62 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func stringToAttributedString(str: String) -> NSMutableAttributedString {
-        let attributedString = NSMutableAttributedString(string: "")
+        
+        let attributedString = NSMutableAttributedString(string: str)
         var searchStartIndex = str.startIndex
-        var searchRange = searchStartIndex..<str.endIndex
-        var searchRangeString = NSMutableAttributedString(string: str)
+        var searchEndIndex = str.endIndex
+        var searchRange = searchStartIndex..<searchEndIndex
         
-        var iconsSize = CGRect(x: 0, y: -5, width: 24, height: 24)
-        
-        while searchStartIndex < str.endIndex {
-            searchRange = searchStartIndex..<str.endIndex
+        if str.containsString("(") && str.containsString(")") {
             
-            for searchString in emoticonStrings {
-                let result = str.rangeOfString(searchString,
-                                               options: NSStringCompareOptions.LiteralSearch,
-                                               range: searchRange,
-                                               locale: nil)
+            var iconsSize = CGRect(x: 0, y: -5, width: 24, height: 24)
+            
+            while searchStartIndex < str.endIndex {
+                // 찾을 범위
+                searchRange = searchStartIndex..<searchEndIndex
                 
-                if (result != nil) {
-                    // 찾은 스트링의 처음과 끝 인덱스
-                    let resultStartIndex = result!.startIndex
-                    let resultEndIndex = result!.endIndex
+                for searchString in emoticonStrings {
+                    let result = attributedString.string.rangeOfString(searchString,
+                                                   options: NSStringCompareOptions.LiteralSearch,
+                                                   range: searchRange,
+                                                   locale: nil)
                     
-                    // 찾은 스트링 전까지 문자열 자르기
-                    attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<resultStartIndex]))
-                    searchRangeString = attributedString
-                    
-                    // 찾기 시작할 인덱스 = 찾은 스트링의 끝 인덱스
-                    searchStartIndex = resultEndIndex
-                    
-                    if searchString == str {
-                        iconsSize = CGRect(x: 0, y: -5, width: 95, height:95)
+                    if (result != nil) {
+                        // 찾은 스트링의 처음 인덱스
+                        let resultStartIndex = result!.startIndex
+                        
+                        // 전체 스트링이 이모티콘 하나인 경우
+                        if searchString == str {
+                            iconsSize = CGRect(x: 0, y: -5, width: 95, height:95)
+                        }
+                        
+                        // 붙일 이미지 (이모티콘) 생성
+                        let attachment = NSTextAttachment()
+                        attachment.image = UIImage(named: "\(searchString).png")
+                        attachment.bounds = iconsSize
+                        
+                        // 찾은 스트링을 이미지로 replace
+                        attributedString.replaceCharactersInRange(NSMakeRange(Int("\(resultStartIndex)")!, result!.count), withAttributedString: NSAttributedString(attachment: attachment))
+                        
+                        // 인덱스 수정
+                        searchStartIndex = attributedString.string.startIndex
+                        searchEndIndex = attributedString.string.endIndex
+                        
+                        break
                     }
                     
-                    // 찾은 스트링 부분에 이미지 붙이기
-                    let attachment = NSTextAttachment()
-                    attachment.image = UIImage(named: "\(searchString).png")
-                    attachment.bounds = iconsSize
-                    attributedString.appendAttributedString(NSAttributedString(attachment: attachment))
-                    
-                    break
-                }
-                
-                if (searchString == emoticonStrings[emoticonStrings.count-1]) { //아무 이모티콘도 찾지 못했다면
-                    attributedString.appendAttributedString(NSAttributedString(string: str[searchStartIndex..<str.endIndex]))
-                    searchStartIndex = str.endIndex
+                    if (searchString == emoticonStrings[emoticonStrings.count-1]) { //다 바꿨으면 
+                        searchStartIndex = str.endIndex
+                    }
                 }
             }
-
+            
+            return attributedString
+            
+        } else {
+            // (...) 스트링이 없다면 그대로 반환
+            return attributedString
         }
-
-        return attributedString
     }
     
     //emoticon
@@ -1092,6 +1149,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         case 101:
             self.chatInputTextField.text = self.chatInputTextField.text! + "(idle_fe)"
             break
+        case 102:
+            self.chatInputTextField.text = self.chatInputTextField.text! + "(orange)"
+            break
         default:
             break
         }
@@ -1100,11 +1160,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     //텍스트뷰 길이 조정
     func textViewDidChange(textView: UITextView) {
         let currentLine = Int(self.chatInputTextField.contentSize.height / self.chatInputTextField.font!.lineHeight)
-        
-        print(currentLine)
-
+    
         if (formerLine != currentLine) {
-            if (currentLine >= 1 && currentLine <= 3) {
+            if (currentLine > 1 && currentLine <= 3) {
                 
                 let yFlag = (currentLine - formerLine) > 0 ? CGFloat(1) : CGFloat(-1) //줄 ++
                 let toolbar_newY = self.toolbar.frame.origin.y - (yFlag * self.TOOLBAR_FRAME.size.height)
@@ -1135,9 +1193,5 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             self.presentViewController(connectingViewController, animated: true, completion: nil)
         }
     }
-    
-
-    
-    
 
 }

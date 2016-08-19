@@ -17,7 +17,8 @@ class ChatPicTabelViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+        self.pic.contentMode = UIViewContentMode.ScaleAspectFit
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

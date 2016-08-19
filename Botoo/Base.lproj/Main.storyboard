@@ -221,7 +221,7 @@
                     </connections>
                 </pinchGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-276.5" y="-665.5"/>
+            <point key="canvasLocation" x="2106.5" y="1977.5"/>
         </scene>
         <!--Connect Scene View Controller-->
         <scene sceneID="oV2-Qh-FG7">
@@ -560,6 +560,14 @@
                                                     <action selector="selectEmoticon:" destination="iws-kV-VAm" eventType="touchDown" id="CSH-5o-PIs"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="E7G-oT-1Iz">
+                                                <rect key="frame" x="183" y="17" width="50" height="53"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="(orange).png"/>
+                                                <connections>
+                                                    <action selector="selectEmoticon:" destination="iws-kV-VAm" eventType="touchDown" id="gPb-Fh-70Z"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.98823529409999999" green="0.89411764709999997" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
@@ -592,11 +600,13 @@
                     <connections>
                         <outlet property="chatInputTextField" destination="xCq-d3-mWn" id="3un-7a-Ylu"/>
                         <outlet property="drawerContainer" destination="J3h-k7-gJ4" id="MKg-PE-Srq"/>
-                        <outlet property="emo_idle" destination="5mI-E9-CiV" id="GEN-To-CKt"/>
-                        <outlet property="emo_idle_fe" destination="3oC-bZ-Ng8" id="Jcw-mB-Xse"/>
                         <outlet property="emoticonView" destination="UkL-Tn-e3y" id="ifA-NE-uQs"/>
                         <outlet property="messageTableView" destination="G8Y-0M-6SP" id="puW-uA-FLz"/>
                         <outlet property="plusView" destination="yI5-H9-ytG" id="7nZ-nc-juN"/>
+                        <outlet property="plus_cam" destination="GTo-de-S3V" id="h5N-c9-a7V"/>
+                        <outlet property="plus_contact" destination="ZR0-8z-unj" id="4pC-Pj-nPF"/>
+                        <outlet property="plus_pic" destination="ruY-g5-7cy" id="cAy-hw-kP9"/>
+                        <outlet property="plus_video" destination="Jr4-gl-dqb" id="I4e-NU-eIx"/>
                         <outlet property="toolbar" destination="92Y-Q6-G81" id="jop-l6-OoA"/>
                         <outlet property="toolbarDrawer" destination="F1l-Va-gN6" id="IQ4-Ts-lkb"/>
                         <outlet property="viewInToolbar" destination="nWO-Qg-OEG" id="d1z-Bt-5gd"/>
@@ -1677,7 +1687,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="hLM-lV-3do">
-                                <rect key="frame" x="2" y="0.0" width="372" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="OjF-6a-gbb">
@@ -1695,13 +1705,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="5hX-ZG-jqF" userLabel="Photo Image View">
-                                                    <rect key="frame" x="0.0" y="8" width="124" height="116"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <size key="customSize" width="124" height="124"/>
                                         <connections>
                                             <outlet property="photoImageView" destination="5hX-ZG-jqF" id="bzb-KA-y2G"/>
                                         </connections>
@@ -1714,11 +1725,12 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="collectionView" destination="hLM-lV-3do" id="bem-eI-qJe"/>
+                        <segue destination="vnq-Hu-44x" kind="modal" identifier="detail" id="15x-7l-qcG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V4Z-Oq-YtN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1163.5" y="832.5"/>
+            <point key="canvasLocation" x="1262.5" y="2203.5"/>
         </scene>
         <!--Contact Detail View Controller-->
         <scene sceneID="vRj-3L-Euy">
@@ -1901,6 +1913,7 @@
     <resources>
         <image name="(idle).png" width="100" height="100"/>
         <image name="(idle_fe).png" width="100" height="100"/>
+        <image name="(orange).png" width="96" height="109"/>
         <image name="chatBGdefault.png" width="750" height="1334"/>
         <image name="default_female" width="60" height="60"/>
         <image name="dolphin_only.png" width="120" height="120"/>
@@ -1912,7 +1925,12 @@
         <image name="tab_settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+<<<<<<< HEAD
         <segue reference="oJk-S0-t2O"/>
+=======
+        <segue reference="15x-7l-qcG"/>
+        <segue reference="UIt-JZ-bYR"/>
+>>>>>>> 5d7b5432526d8dd6a0dd83fc340f2eaec9f1d92c
         <segue reference="x39-vu-HcH"/>
         <segue reference="UIt-JZ-bYR"/>
     </inferredMetricsTieBreakers>

@@ -15,6 +15,8 @@ class contactDetailViewController: UIViewController {
     var contact:CNMutableContact?
     
     var gNforStore:String?
+    var fNforStore:String?
+    var pNforStore:String?
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var phoneNum: UILabel!
@@ -34,7 +36,9 @@ class contactDetailViewController: UIViewController {
             name.text = "\(gN) \(fN)"
             phoneNum.text = "\(pN)"
             
-            
+            gNforStore = gN
+            fNforStore = fN
+            pNforStore = pN
             
         }
     }
@@ -51,9 +55,41 @@ class contactDetailViewController: UIViewController {
     }
     
     @IBAction func addButtonTapped(sender: AnyObject) {
-    
-        print(contact?.givenName)
+        
+        let myAlert = UIAlertController(title:"\(gNforStore!) \(fNforStore!)", message: "연락처를 저장하시겠습니까?", preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title:"확인", style:UIAlertActionStyle.Default, handler: {
+            
+                action in
+            
+            self.OK(self.gNforStore!, fN: self.fNforStore!, pN: self.pNforStore!)
+        })
+        
+        myAlert.addAction(okAction)
+        myAlert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        self.presentViewController(myAlert, animated: true, completion: nil)
 
+
+    }
+    
+    func OK(gN:String, fN:String, pN:String){
+        
+        let store = CNContactStore()
+        let contact:CNMutableContact = CNMutableContact()
+        contact.givenName = gN
+        contact.familyName = fN
+        let phone = CNLabeledValue(label: CNLabelWork, value:CNPhoneNumber(stringValue: pN as! String))
+        contact.phoneNumbers = [phone]
+        
+        let request = CNSaveRequest()
+        request.addContact(contact, toContainerWithIdentifier: nil)
+        
+        do{
+            try store.executeSaveRequest(request)
+            print("Successfully added the contact")
+        } catch let err{
+            print("Failed to save the contact. \(err)")
+        }
+        
     }
     /*
     // MARK: - Navigation

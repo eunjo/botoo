@@ -17,7 +17,9 @@ class FileManager{
     
     static let sharedInstance = FileManager()
     
+    
     var filePath:String
+    var writtenMessage = ["","","",""]
     
     init(){
         
@@ -38,26 +40,40 @@ class FileManager{
 
     func writeFile(type:String, text:String, sender:String, date:String){
         
-        
         let data_array = [type, text, sender, date]
-        let data_NSData = stringArrayToNSData(data_array)
-        let NewLine = "\n"
         
-        var fileHandle = NSFileHandle(forWritingAtPath: filePath)
-        
-        if (fileHandle == nil) {
-            initFile()
-            fileHandle = NSFileHandle(forWritingAtPath: filePath)
-        }
-        
-        if (fileHandle != nil) {
-            fileHandle?.seekToEndOfFile()
-            fileHandle?.writeData(data_NSData)
-        }
-        
-        if (fileHandle != nil) {
-            fileHandle?.seekToEndOfFile()
-            fileHandle?.writeData(NewLine.dataUsingEncoding(NSUTF8StringEncoding)!)
+        // 중복 메세지 방지
+        if "\(writtenMessage)" != "\(data_array)" {
+            let data_NSData = stringArrayToNSData(data_array)
+            let NewLine = "\n"
+            
+            var fileHandle = NSFileHandle(forWritingAtPath: filePath)
+            
+            if (fileHandle == nil) {
+                initFile()
+                fileHandle = NSFileHandle(forWritingAtPath: filePath)
+            }
+            
+            if (fileHandle != nil) {
+                fileHandle?.seekToEndOfFile()
+                fileHandle?.writeData(data_NSData)
+            }
+            
+            if (fileHandle != nil) {
+                fileHandle?.seekToEndOfFile()
+                fileHandle?.writeData(NewLine.dataUsingEncoding(NSUTF8StringEncoding)!)
+            }
+            
+            
+            // notification 알림
+//            let localNotification:UILocalNotification = UILocalNotification()
+//            localNotification.alertAction = "Testing notifications on iOS8"
+//            localNotification.alertBody = "\(data_array[2]): \(data_array[1])"
+//            localNotification.fireDate = NSDate(timeIntervalSinceNow: 0)
+//            UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+            
+            // 중복 메세지 방지
+            writtenMessage = data_array
         }
     }
 
