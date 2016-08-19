@@ -42,7 +42,7 @@ class FileManager{
         
         let data_array = [type, text, sender, date]
         
-        
+        // 중복 메세지 방지
         if "\(writtenMessage)" != "\(data_array)" {
             let data_NSData = stringArrayToNSData(data_array)
             let NewLine = "\n"
@@ -64,6 +64,7 @@ class FileManager{
                 fileHandle?.writeData(NewLine.dataUsingEncoding(NSUTF8StringEncoding)!)
             }
             
+            // 중복 메세지 방지
             writtenMessage = data_array
         }
     }

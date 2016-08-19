@@ -182,7 +182,13 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             if writeMessage != nil {
                 FileManager.sharedInstance.writeFile(writeMessage!["type"]! as! String, text: writeMessage!["message"]! as! String, sender: writeMessage!["nickname"] as! String, date: writeMessage!["date"] as! String)
                 
-                print("나쓴다")
+                
+                // notification 알림
+                let localNotification:UILocalNotification = UILocalNotification()
+                localNotification.alertAction = "Testing notifications on iOS8"
+                localNotification.alertBody = "\(writeMessage!["nickname"] as! String): \(writeMessage!["message"]! as! String)"
+                localNotification.fireDate = NSDate(timeIntervalSinceNow: 30)
+                UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
             }
         }
         self.scrollToBottom()

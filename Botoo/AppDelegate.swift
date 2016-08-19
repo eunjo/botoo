@@ -14,12 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-                registerForPushNotifications(application)
         // Override point for customization after application launch.
-        
-        
-        
-        application.applicationIconBadgeNumber = 7
+        application.applicationIconBadgeNumber = 1
         
         return true
         
@@ -49,14 +45,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         SocketIOManager.sharedInstance.closeConnection()
     }
-    
-    func registerForPushNotifications(application: UIApplication) {
-        let notificationSettings = UIUserNotificationSettings(
-            forTypes: [.Badge, .Sound, .Alert], categories: nil)
-        application.registerUserNotificationSettings(notificationSettings)
-    }
-    
-    
-    
 }
 
