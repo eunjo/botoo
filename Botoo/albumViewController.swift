@@ -94,7 +94,31 @@ class albumViewController: UIViewController, UICollectionViewDelegate, UICollect
         let dataDecoded:NSData = NSData(base64EncodedString: self.picCollectionList[indexPath.row], options: NSDataBase64DecodingOptions(rawValue: 0))!
         let decodedimage:UIImage = UIImage(data: dataDecoded)!
         cell.photoImageView.image = decodedimage
-    
+        
         return cell
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if (segue.identifier == "detail") {
+
+            let svc = segue.destinationViewController as! imageZoomViewController
+            svc.newImage = sender!.photoImageView.image
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        if let cell = collectionView.cellForItemAtIndexPath(indexPath) {
+            
+            self.performSegueWithIdentifier("detail", sender: cell)
+            if let connectingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("imageZoomViewController") {
+                connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
+                self.presentViewController(connectingViewController, animated: true, completion: nil)
+            }
+        }
+    }
+    
+
+    
 }
