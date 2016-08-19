@@ -560,6 +560,14 @@
                                                     <action selector="selectEmoticon:" destination="iws-kV-VAm" eventType="touchDown" id="CSH-5o-PIs"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="E7G-oT-1Iz">
+                                                <rect key="frame" x="183" y="17" width="50" height="53"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="(orange).png"/>
+                                                <connections>
+                                                    <action selector="selectEmoticon:" destination="iws-kV-VAm" eventType="touchDown" id="gPb-Fh-70Z"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.98823529409999999" green="0.89411764709999997" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
@@ -592,8 +600,6 @@
                     <connections>
                         <outlet property="chatInputTextField" destination="xCq-d3-mWn" id="3un-7a-Ylu"/>
                         <outlet property="drawerContainer" destination="J3h-k7-gJ4" id="MKg-PE-Srq"/>
-                        <outlet property="emo_idle" destination="5mI-E9-CiV" id="GEN-To-CKt"/>
-                        <outlet property="emo_idle_fe" destination="3oC-bZ-Ng8" id="Jcw-mB-Xse"/>
                         <outlet property="emoticonView" destination="UkL-Tn-e3y" id="ifA-NE-uQs"/>
                         <outlet property="messageTableView" destination="G8Y-0M-6SP" id="puW-uA-FLz"/>
                         <outlet property="plusView" destination="yI5-H9-ytG" id="7nZ-nc-juN"/>
@@ -1902,6 +1908,7 @@
     <resources>
         <image name="(idle).png" width="100" height="100"/>
         <image name="(idle_fe).png" width="100" height="100"/>
+        <image name="(orange).png" width="96" height="109"/>
         <image name="chatBGdefault.png" width="750" height="1334"/>
         <image name="default_female" width="60" height="60"/>
         <image name="dolphin_only.png" width="120" height="120"/>

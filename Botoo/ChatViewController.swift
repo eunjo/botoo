@@ -60,9 +60,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private var users = [String]()
 
     //emoticon
-    private let emoticonStrings = ["(idle)","(idle_fe)"]
-    @IBOutlet var emo_idle: UIButton!
-    @IBOutlet var emo_idle_fe: UIButton!
+    private let emoticonStrings = ["(idle)","(idle_fe)","(orange)"]
     
     //toolbar 크기 조정
     private var TOOLBAR_FRAME = CGRect()
@@ -78,6 +76,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         super.viewDidLoad()
         imagePicker.delegate = self
         self.chatInputTextField.delegate = self
+        
+        //프레임
         self.TOOLBAR_FRAME = self.toolbar.frame
         self.TOOLBARVIEW_FRAME = self.viewInToolbar.frame
         self.TOOLBARTEXT_FRAME = self.chatInputTextField.frame
@@ -726,7 +726,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     self.chatInputTextField.frame.size = self.TOOLBARTEXT_FRAME.size
                     self.toolbar.frame.size = self.TOOLBAR_FRAME.size
                 }
-                
             })
         }
     }
@@ -816,8 +815,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 
                 cell?.messageBubble.attributedText = stringToAttributedString(replacedMsg!)
                 cell?.nameLabel.text = name
-//                cell?.dateLabel.text = dateToString(date!)
-                cell?.dateLabel.text = "00:00"
+                cell?.dateLabel.text = dateToString(date!)
+//                cell?.dateLabel.text = "00:00"
                 
                 if cell?.messageBubble.attributedText?.length == 1 &&
                     "\(cell?.messageBubble.attributedText?.string.characters)".containsString("Optional(￼)") {
@@ -963,24 +962,28 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         var date = dateString
         date.replaceRange(date.startIndex.advancedBy(24)..<date.startIndex.advancedBy(24 + 15), with: "")
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeZone = NSTimeZone(name: "KST")
-        dateFormatter.dateFormat = "EEE MMM dd yyyy HH:mm:ss"
-        let Date = dateFormatter.dateFromString(date)
+        let dateToString = date[date.startIndex.advancedBy(16)..<date.startIndex.advancedBy(21)]
         
-        print(date)
         
-        // 날짜 년 월 일 로 포맷변환
-        let cal = NSCalendar(calendarIdentifier:NSCalendarIdentifierGregorian)!
-        let comp = cal.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate:Date!)
-        let new_minute:String
         
-        if (comp.minute < 10){
-            new_minute = "0\(comp.minute)"
-        } else {
-            new_minute = String(comp.minute)
-        }
-        let dateToString:String = "\(comp.hour):\(new_minute)"
+//        let dateFormatter = NSDateFormatter()
+//        dateFormatter.timeZone = NSTimeZone(name: "KST")
+//        dateFormatter.dateFormat = "EEE MMM dd yyyy HH:mm:ss"
+//        let Date = dateFormatter.dateFromString(date)
+//        
+//        print(date)
+//        
+//        // 날짜 년 월 일 로 포맷변환
+//        let cal = NSCalendar(calendarIdentifier:NSCalendarIdentifierGregorian)!
+//        let comp = cal.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate:Date!)
+//        let new_minute:String
+//        
+//        if (comp.minute < 10){
+//            new_minute = "0\(comp.minute)"
+//        } else {
+//            new_minute = String(comp.minute)
+//        }
+//        let dateToString:String = "\(comp.hour):\(new_minute)"
         
         return dateToString
     }
@@ -1130,6 +1133,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             break
         case 101:
             self.chatInputTextField.text = self.chatInputTextField.text! + "(idle_fe)"
+            break
+        case 102:
+            self.chatInputTextField.text = self.chatInputTextField.text! + "(orange)"
             break
         default:
             break
