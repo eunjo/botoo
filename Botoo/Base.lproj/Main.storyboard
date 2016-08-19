@@ -221,7 +221,7 @@
                     </connections>
                 </pinchGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-276.5" y="-665.5"/>
+            <point key="canvasLocation" x="2106.5" y="1977.5"/>
         </scene>
         <!--Connect Scene View Controller-->
         <scene sceneID="oV2-Qh-FG7">
@@ -642,7 +642,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="LetterTableViewCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LetterTableViewCell" rowHeight="76" id="0ft-ez-xaG" customClass="letterTableViewCell" customModule="Botoo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="76"/>
+                                        <rect key="frame" x="0.0" y="92" width="375" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0ft-ez-xaG" id="kfJ-nv-fUf">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="75.5"/>
@@ -723,7 +723,7 @@
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingTableViewCell" textLabel="7gA-zU-nBT" detailTextLabel="NlJ-ks-wRc" rowHeight="44" style="IBUITableViewCellStyleValue1" id="3Ea-Su-OIm">
-                                        <rect key="frame" x="0.0" y="28" width="383" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="383" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Ea-Su-OIm" id="VBk-Q5-fTI">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="43.5"/>
@@ -1725,11 +1725,12 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="collectionView" destination="hLM-lV-3do" id="bem-eI-qJe"/>
+                        <segue destination="vnq-Hu-44x" kind="modal" identifier="detail" id="15x-7l-qcG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V4Z-Oq-YtN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1163.5" y="832.5"/>
+            <point key="canvasLocation" x="1262.5" y="2203.5"/>
         </scene>
         <!--Contact Detail View Controller-->
         <scene sceneID="vRj-3L-Euy">
@@ -1924,8 +1925,8 @@
         <image name="tab_settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="x39-vu-HcH"/>
+        <segue reference="15x-7l-qcG"/>
         <segue reference="UIt-JZ-bYR"/>
-        <segue reference="oJk-S0-t2O"/>
+        <segue reference="x39-vu-HcH"/>
     </inferredMetricsTieBreakers>
 </document>
