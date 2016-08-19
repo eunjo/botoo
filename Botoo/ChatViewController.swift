@@ -770,49 +770,49 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         FileManager.sharedInstance.writeFile(messageInfo["type"]!, text: messageInfo["message"]!, sender: messageInfo["nickname"]!, date: messageInfo["date"]!)
         
         
-        var userListTemp = [String]()
-        var userIndex = -1
-        
-        SocketIOManager.sharedInstance.getUserList({ (userList) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                if userList != nil {
-                    
-                    for data in userList {
-                        userListTemp.append("\(data["clientId"]),\(data["isConnected"])")
-                    }
-                    
-                    for user in userListTemp {
-                        if user.containsString(self.loverId) {
-                            userIndex = userListTemp.indexOf(user)!
-                            break
-                        }
-                    }
-                    
-                    if userIndex != -1 {
-                        let userConnectionInfo = userListTemp[userIndex].componentsSeparatedByString(",")
-                        if userConnectionInfo[1] != "Optional(1)" {
-                            ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
-                                
-                            })
-                        }
-                    } else {
-                        ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
-                            
-                        })
-                    }
-                }
-            })
-        })
+//        var userListTemp = [String]()
+//        var userIndex = -1
+//        
+//        SocketIOManager.sharedInstance.getUserList({ (userList) -> Void in
+//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                if userList != nil {
+//                    
+//                    for data in userList {
+//                        userListTemp.append("\(data["clientId"]),\(data["isConnected"])")
+//                    }
+//                    
+//                    for user in userListTemp {
+//                        if user.containsString(self.loverId) {
+//                            userIndex = userListTemp.indexOf(user)!
+//                            break
+//                        }
+//                    }
+//                    
+//                    if userIndex != -1 {
+//                        let userConnectionInfo = userListTemp[userIndex].componentsSeparatedByString(",")
+//                        if userConnectionInfo[1] != "Optional(1)" {
+//                            ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
+//                                
+//                            })
+//                        }
+//                    } else {
+//                        ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
+//                            
+//                        })
+//                    }
+//                }
+//            })
+//        })
 
         
         
         
         //서버에 메세지 저장
-//        if !self.findUser(self.users, find: self.loverId) {
-//            ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
-//                
-//            })
-//        }
+        if !self.findUser(self.users, find: self.loverId) {
+            ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
+                
+            })
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -1052,47 +1052,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func findUser(users: [String]!, find: String!) -> Bool! {
-        
-//        var userListTemp = [String]()
-//        var userIndex = -1
-//        
-//        SocketIOManager.sharedInstance.getUserList({ (userList) -> Void in
-//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                if userList != nil {
-//                    
-//                    for data in userList {
-//                        userListTemp.append("\(data["clientId"]),\(data["isConnected"])")
-//                    }
-//                    
-//                    for user in userListTemp {
-//                        if user.containsString(find) {
-//                            userIndex = userListTemp.indexOf(user)!
-//                            break
-//                        }
-//                    }
-//                    
-//                    if userIndex != -1 {
-//                        let userConnectionInfo = userListTemp[userIndex].componentsSeparatedByString(",")
-//                        if userConnectionInfo[1] == "Optional(1)" {
-//                            
-//                        } else {
-//                            ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
-//                                
-//                            })
-//                        }
-//                    } else {
-//                        ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
-//                            
-//                        })
-//                    }
-//                }
-//            })
-//        })
-        
-        
-        
-        
-        
         
         //리스트 정렬
         var usersTemp = users.sort()
