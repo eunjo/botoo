@@ -175,14 +175,18 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 self.chatMessages.append(messageInfo)
                 self.messageTableView.reloadData()
                 self.scrollToBottom()
+                
+                print("message")
             })
         }
         self.scrollToBottom()
         
         //디바이스 파일에 쓰기
-        if writeMessage != nil {
-            FileManager.sharedInstance.writeFile(writeMessage!["type"]! as! String, text: writeMessage!["message"]! as! String, sender: writeMessage!["nickname"] as! String, date: writeMessage!["date"] as! String)
-        }
+//        if writeMessage != nil {
+//            FileManager.sharedInstance.writeFile(writeMessage!["type"]! as! String, text: writeMessage!["message"]! as! String, sender: writeMessage!["nickname"] as! String, date: writeMessage!["date"] as! String)
+//            
+//            print("나쓴다")
+//        }
 
     }
     
@@ -694,19 +698,20 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             chatInputTextField.text = ""
             chatInputTextField.resignFirstResponder()
             
+            /**
+             테이블뷰에 추가
+             //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
+             **/
+            var replacedMsg = message.stringByReplacingOccurrencesOfString("\"", withString: "/0x22")
+            replacedMsg = replacedMsg.stringByReplacingOccurrencesOfString("\\", withString: "/0x5c")
+            replacedMsg = replacedMsg.stringByReplacingOccurrencesOfString("\n", withString: "/0x0a")
+            
+            //메세지 서버에 저장
+            self.saveMessage(replacedMsg, type: "text")
+            
             dispatch_async(dispatch_get_main_queue()) {
-                /**
-                    테이블뷰에 추가
-                    //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
-                **/
-                var replacedMsg = message.stringByReplacingOccurrencesOfString("\"", withString: "/0x22")
-                replacedMsg = replacedMsg.stringByReplacingOccurrencesOfString("\\", withString: "/0x5c")
-                replacedMsg = replacedMsg.stringByReplacingOccurrencesOfString("\n", withString: "/0x0a")
                 
                 self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"text\",\"message\":\"\(replacedMsg)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(self.getCurrentDate_client())\"}")!)
-                
-                //메세지 서버에 저장
-                self.saveMessage(replacedMsg, type: "text")
                 
                 self.messageTableView.reloadData()
                 self.scrollToBottom()
@@ -764,7 +769,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             })
         }
     }
-    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.chatMessages.count
@@ -969,8 +973,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         } else {
             dateToString = date[date.startIndex..<date.startIndex.advancedBy(5)]
         }
-        
-        
         
 //        let dateFormatter = NSDateFormatter()
 //        dateFormatter.timeZone = NSTimeZone(name: "KST")
