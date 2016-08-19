@@ -206,12 +206,21 @@
                                     <action selector="closeButtonTapped:" destination="vnq-Hu-44x" eventType="touchUpInside" id="zbx-Z3-Y7j"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" id="BSV-Yd-8G3">
+                                <rect key="frame" x="329" y="621" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="vnq-Hu-44x" eventType="touchUpInside" id="twH-sT-8lD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="ImageForZoom" destination="fqR-Un-LfN" id="aIC-7J-mYe"/>
+                        <outlet property="saveImage" destination="BSV-Yd-8G3" id="ZZD-rb-MBX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SSO-PQ-Ymg" userLabel="First Responder" sceneMemberID="firstResponder"/>
