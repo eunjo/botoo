@@ -1925,11 +1925,11 @@
         <image name="tab_settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
+
         <segue reference="15x-7l-qcG"/>
-=======
+
         <segue reference="jZk-yp-nUi"/>
->>>>>>> d4436c808a534ddc681cc7cd91ee9c9efed42c06
+
         <segue reference="x39-vu-HcH"/>
         <segue reference="UIt-JZ-bYR"/>
     </inferredMetricsTieBreakers>
