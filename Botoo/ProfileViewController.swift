@@ -67,6 +67,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 }
             })
         }
+        initProfile()
     }
     
     func initProfile() {
