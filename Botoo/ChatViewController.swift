@@ -959,7 +959,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     
     func dateToString(dateString: String) -> String {
-        FileManager.sharedInstance.initFile()
         
         var date = dateString
         var dateToString = "00:00"
