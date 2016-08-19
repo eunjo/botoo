@@ -56,6 +56,13 @@ class SocketIOManager: NSObject {
         }
     }
     
+    func getUserList(completionHandler: (userList: [[String: AnyObject]]!) -> Void) {
+        //유저 리스트 반환
+        socket.on("userList") { ( dataArray, ack) -> Void in
+            completionHandler(userList: dataArray[0] as! [[String : AnyObject]])
+        }
+    }
+    
     // 유저 연결 끊기 Offline
     func exitChatWithNickname(nickname: String, completionHandler: () -> Void) {
         socket.emit("exitUser", nickname)
