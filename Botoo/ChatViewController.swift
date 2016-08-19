@@ -959,10 +959,17 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     
     func dateToString(dateString: String) -> String {
-        var date = dateString
-        date.replaceRange(date.startIndex.advancedBy(24)..<date.startIndex.advancedBy(24 + 15), with: "")
+        FileManager.sharedInstance.initFile()
         
-        let dateToString = date[date.startIndex.advancedBy(16)..<date.startIndex.advancedBy(21)]
+        var date = dateString
+        var dateToString = "00:00"
+        
+        if date.characters.count > 10 {
+            date.replaceRange(date.startIndex.advancedBy(24)..<date.startIndex.advancedBy(24 + 15), with: "")
+            dateToString = date[date.startIndex.advancedBy(16)..<date.startIndex.advancedBy(21)]
+        } else {
+            dateToString = date[date.startIndex..<date.startIndex.advancedBy(5)]
+        }
         
         
         
