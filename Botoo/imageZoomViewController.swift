@@ -28,6 +28,7 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
        
 
     }
+    
 
     @IBAction func closeButtonTapped(sender: AnyObject) {
         
