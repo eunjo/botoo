@@ -12,6 +12,7 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
 
     @IBOutlet weak var ImageForZoom: UIImageView!
   
+    @IBOutlet weak var saveImage: UIButton!
 
     
     var newImage: UIImage!
@@ -38,5 +39,16 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
         
         self.ImageForZoom.transform = CGAffineTransformScale(self.ImageForZoom.transform, sender.scale, sender.scale)
         sender.scale = 1.0
+    }
+    
+    @IBAction func saveButtonTapped(sender: AnyObject) {
+        
+        UIImageWriteToSavedPhotosAlbum(ImageForZoom.image!, nil, nil, nil);
+        
+        let myAlert = UIAlertController(title:"알림", message: "사진이 저장되었습니다.", preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title:"확인", style:UIAlertActionStyle.Default, handler:nil)
+        
+        myAlert.addAction(okAction)
+        self.presentViewController(myAlert, animated: true, completion: nil)
     }
 }

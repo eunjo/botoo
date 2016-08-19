@@ -81,10 +81,12 @@ class HomeViewController: UIViewController {
         if (segue.identifier == "myPicZoom") {
             let svc = segue.destinationViewController as! imageZoomViewController
             svc.newImage = myProPic.image
+            svc.saveImage.enabled = false
         }
         else if (segue.identifier == "loverPicZoom"){
             let svc = segue.destinationViewController as! imageZoomViewController
             svc.newImage = loverProPic.image
+            svc.saveImage.enabled = false
         }
     }
     
