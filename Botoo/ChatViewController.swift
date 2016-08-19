@@ -790,9 +790,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     
                     if userIndex != -1 {
                         let userConnectionInfo = userListTemp[userIndex].componentsSeparatedByString(",")
-                        if userConnectionInfo[1] == "Optional(1)" {
-                            
-                        } else {
+                        if userConnectionInfo[1] != "Optional(1)" {
                             ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
                                 
                             })
