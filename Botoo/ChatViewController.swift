@@ -56,7 +56,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private var bottomDrawerHeight = 0.0
     private var currentKeyboardHeight: CGFloat?
     
-    private let userLover = NSUserDefaults.standardUserDefaults().stringForKey("userLover")!
+    private let userLover = NSUserDefaults.standardUserDefaults().stringForKey("loverName")!
     private let userName = NSUserDefaults.standardUserDefaults().stringForKey("userName")!
     private var userSocketId = ""
     private let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
