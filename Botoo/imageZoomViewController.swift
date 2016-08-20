@@ -28,10 +28,7 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
         
         // image 보여주기
         ImageForZoom.image = newImage
-        //ImageScrollView.
-       //self.ImageForZoom.contentMode = UIViewContentMode.ScaleAspectFit
-
-              
+                     
 
 
        
