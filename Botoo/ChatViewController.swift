@@ -626,7 +626,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                  테이블뷰에 추가
                  //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
                  **/
-                self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"pic\",\"message\":\"\(base64String)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(self.getCurrentDate_client())\"}")!)
+                self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"pic\",\"message\":\"\(base64String)\",\"nickname\":\"\(self.userEmail)\",\"date\":\"\(self.getCurrentDate_client())\"}")!)
                 self.messageTableView.reloadData()
                 
                 //메세지 서버에 저장
@@ -678,7 +678,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         let MobNumVar = (contact.phoneNumbers[0].value as! CNPhoneNumber).valueForKey("digits") as! String
         let ContactString = "{\'givenName\':\'\(contact.givenName)\',\'familyName\':\'\(contact.familyName)\',\'MobNumVar\':\'\(MobNumVar)\'}"
         
-        SocketIOManager.sharedInstance.sendMessage("contact", message: ContactString, withNickname: self.userEmail, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
+        SocketIOManager.sharedInstance.sendMessage("contact", message: ContactString, withNickname: self.userEmail, to: NSUserDefaults.standardUserDefaults().stringForKey("userlover")!)
         
         
         dispatch_async(dispatch_get_main_queue()) {
