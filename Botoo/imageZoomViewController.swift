@@ -53,7 +53,7 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
         
         return scrollImageView
     }
-    
+
     
     @IBAction func closeButtonTapped(sender: AnyObject) {
         
