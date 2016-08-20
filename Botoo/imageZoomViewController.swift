@@ -11,25 +11,31 @@ import UIKit
 
 class imageZoomViewController: UIViewController, UIScrollViewDelegate{
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var ImageForZoom: UIImageView!
-    
-    @IBOutlet weak var ImageScrollView: UIScrollView!
     
     @IBOutlet weak var saveImage: UIButton!
     
     var isProPic:Bool?
     
     var newImage: UIImage!
+    var scrollImageView:UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        ImageForZoom.hidden = true
         
         // image 보여주기
         ImageForZoom.image = newImage
         
+        //ImageScrollView.
+        scrollImageView = UIImageView(frame: ImageForZoom.bounds)
+        scrollImageView!.image = newImage
         
+        scrollView!.addSubview(scrollImageView!)
+
         
         
         if (isProPic == true){
@@ -37,6 +43,11 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
             saveImage.hidden = true
         }
         
+    }
+    
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        
+        return scrollImageView
     }
     
     

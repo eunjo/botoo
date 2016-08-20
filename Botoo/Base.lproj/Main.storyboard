@@ -224,8 +224,8 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="ImageForZoom" destination="fqR-Un-LfN" id="aIC-7J-mYe"/>
-                        <outlet property="ImageScrollView" destination="Yq8-Ue-fVv" id="Dqw-7v-8CX"/>
                         <outlet property="saveImage" destination="BSV-Yd-8G3" id="ZZD-rb-MBX"/>
+                        <outlet property="scrollView" destination="Yq8-Ue-fVv" id="cad-9v-w5P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SSO-PQ-Ymg" userLabel="First Responder" sceneMemberID="firstResponder"/>
