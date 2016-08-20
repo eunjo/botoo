@@ -12,14 +12,13 @@ import UIKit
 class imageZoomViewController: UIViewController, UIScrollViewDelegate{
 
     @IBOutlet weak var ImageForZoom: UIImageView!
-
-    @IBOutlet weak var ImageScrollView: UIScrollView!
   
     @IBOutlet weak var saveImage: UIButton!
 
     var isProPic:Bool?
     
     var newImage: UIImage!
+    var scrollView:UIScrollView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +27,17 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
         
         // image 보여주기
         ImageForZoom.image = newImage
-                     
+        //ImageScrollView.
+       //self.ImageForZoom.contentMode = UIViewContentMode.ScaleAspectFit
+        
+        scrollView = UIScrollView(frame: view.bounds)
+        scrollView!.backgroundColor = UIColor.blackColor()
+        scrollView!.contentSize = newImage.size
+        scrollView!.autoresizingMask = [UIViewAutoresizing.FlexibleWidth , UIViewAutoresizing.FlexibleHeight]
+        
+        scrollView!.addSubview(ImageForZoom)
+        view.addSubview(scrollView!)
+              
 
 
        
