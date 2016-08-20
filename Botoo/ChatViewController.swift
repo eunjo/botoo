@@ -56,6 +56,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private var bottomDrawerHeight = 0.0
     private var currentKeyboardHeight: CGFloat?
     
+    private let userLover = NSUserDefaults.standardUserDefaults().stringForKey("userLover")!
     private let userName = NSUserDefaults.standardUserDefaults().stringForKey("userName")!
     private var userSocketId = ""
     private let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
@@ -863,7 +864,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 }
                 
                 cell?.messageBubble.attributedText = stringToAttributedString(replacedMsg!)
-                cell?.nameLabel.text = self.userName
+                cell?.nameLabel.text = self.userLover
                 cell?.dateLabel.text = dateToString(date!)
 //                cell?.dateLabel.text = "00:00"
                 
@@ -920,7 +921,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCellL") as? ChatContactTableViewCellL
                 }
                 
-                cell?.nameLabel.text = self.userName
+                cell?.nameLabel.text = self.userLover
                 cell?.contactButton.setTitle("\(givenName) \(familyName)", forState: .Normal)
                 
                 let fake_tempContact:CNMutableContact = CNMutableContact()
@@ -974,7 +975,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatPicTabelViewCellm") as? ChatPicTabelViewCellm
                 }
                 
-                cell?.name.text = self.userName
+                cell?.name.text = self.userLover
 //                cell?.date.text = dateToString(date!)
                 cell?.date.text = "00:00"
                 
