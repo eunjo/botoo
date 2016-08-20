@@ -32,7 +32,7 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
         
         scrollView = UIScrollView(frame: view.bounds)
         scrollView!.backgroundColor = UIColor.blackColor()
-        scrollView!.contentSize = newImage.size
+        scrollView!.contentSize = ImageForZoom.bounds.size
         scrollView!.autoresizingMask = [UIViewAutoresizing.FlexibleWidth , UIViewAutoresizing.FlexibleHeight]
         
         scrollView!.addSubview(ImageForZoom)
