@@ -78,7 +78,7 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
     func scrollViewDoubleTapped(recognizer: UITapGestureRecognizer) {
         
         if (isZoomed == false){
-        // 1
+                    // 1
         let pointInView = recognizer.locationInView(scrollImageView)
         
         // 2

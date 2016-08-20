@@ -37,13 +37,7 @@ class chatDrawerViewController: UIViewController {
     @IBOutlet weak var albumCollectionView: UIView!
 
     func onClickAlbum(sender: UITapGestureRecognizer){
-        
-        /*
-        if let connectingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("albumViewController") {
-            connectingViewController.modalTransitionStyle = UIModalTransitionStyle.CoverVertical
-            self.presentViewController(connectingViewController, animated: true, completion: nil)
-        }
-        */
+
         
         let viewController: UIViewController?
         

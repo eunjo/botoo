@@ -84,10 +84,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         self.chatInputTextField.delegate = self
         
         //버튼 동그랗게
-        plus_pic.layer.cornerRadius = 0.5 * plus_pic.bounds.size.width
-        plus_cam.layer.cornerRadius = 0.5 * plus_cam.bounds.size.width
-        plus_contact.layer.cornerRadius = 0.5 * plus_contact.bounds.size.width
-        plus_video.layer.cornerRadius = 0.5 * plus_video.bounds.size.width
+        plus_pic.layer.cornerRadius = plus_pic.frame.size.width / 2
+        plus_cam.layer.cornerRadius = plus_cam.frame.size.width / 2
+        plus_contact.layer.cornerRadius = plus_contact.frame.size.width / 2
+        plus_video.layer.cornerRadius = plus_video.frame.size.width / 2
         
         //프레임
         self.TOOLBAR_FRAME = self.toolbar.frame
@@ -156,7 +156,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                         self.chatMessages.append(result!)
                     }
                 }
-                
                 self.messageTableView.reloadData()
                
                 //self.scrollToBottom()
@@ -713,7 +712,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             chatInputTextField.resignFirstResponder()
             
             dispatch_async(dispatch_get_main_queue()) {
-                
                 /**
                  테이블뷰에 추가
                  //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
@@ -777,49 +775,49 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         FileManager.sharedInstance.writeFile(messageInfo["type"]!, text: messageInfo["message"]!, sender: messageInfo["nickname"]!, date: messageInfo["date"]!)
         
         
-//        var userListTemp = [String]()
-//        var userIndex = -1
-//        
-//        SocketIOManager.sharedInstance.getUserList({ (userList) -> Void in
-//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                if userList != nil {
-//                    
-//                    for data in userList {
-//                        userListTemp.append("\(data["clientId"]),\(data["isConnected"])")
-//                    }
-//                    
-//                    for user in userListTemp {
-//                        if user.containsString(self.loverId) {
-//                            userIndex = userListTemp.indexOf(user)!
-//                            break
-//                        }
-//                    }
-//                    
-//                    if userIndex != -1 {
-//                        let userConnectionInfo = userListTemp[userIndex].componentsSeparatedByString(",")
-//                        if userConnectionInfo[1] != "Optional(1)" {
-//                            ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
-//                                
-//                            })
-//                        }
-//                    } else {
-//                        ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
-//                            
-//                        })
-//                    }
-//                }
-//            })
-//        })
-
+        var userListTemp = [String]()
+        var userIndex = -1
         
-        
+        SocketIOManager.sharedInstance.getUserList({ (userList) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if userList != nil {
+                    
+                    for data in userList {
+                        userListTemp.append("\(data["clientId"]),\(data["isConnected"])")
+                    }
+                    
+                    for user in userListTemp {
+                        if user.containsString(self.loverId) {
+                            userIndex = userListTemp.indexOf(user)!
+                            print("FIND : index is \(userIndex)")
+                            break
+                        }
+                    }
+                    
+                    if userIndex != -1 {
+                        let userConnectionInfo = userListTemp[userIndex].componentsSeparatedByString(",")
+                        if userConnectionInfo[1] != "Optional(1)" {
+                            print("FIND : index is \(userIndex): OFFLINE")
+                            ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
+                                
+                            })
+                        }
+                    } else {
+                        print("OFFLINE")
+                        ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
+                            
+                        })
+                    }
+                }
+            })
+        })
         
         //서버에 메세지 저장
-        if !self.findUser(self.users, find: self.loverId) {
-            ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
-                
-            })
-        }
+//        if !self.findUser(self.users, find: self.loverId) {
+//            ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
+//                
+//            })
+//        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -982,8 +980,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 }
                 
                 cell?.name.text = self.userLover
-//                cell?.date.text = dateToString(date!)
-                cell?.date.text = "00:00"
+                cell?.date.text = dateToString(date!)
+//                cell?.date.text = "00:00"
                 
                 dispatch_async(dispatch_get_main_queue()) {
                     //이미지 디코딩
@@ -1076,9 +1074,14 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         var usersTempMiddleId:[String]! = []
         let find = "Optional(\(find))"
         
-        while usersTemp.count > 1 {
+        
+        while usersTemp.count > 0 {
             
-            usersTempMiddleId = usersTemp[usersTemp.count/2].componentsSeparatedByString(",")
+            if usersTemp.count > 1 {
+                usersTempMiddleId = usersTemp[usersTemp.count/2].componentsSeparatedByString(",")
+            } else if usersTemp.count == 1 {
+                usersTempMiddleId = usersTemp[0].componentsSeparatedByString(",")
+            }
             
             //가운데 요소와 비교
             if usersTempMiddleId[0] > find {
@@ -1094,6 +1097,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     print("OFFLINE")
                     return false
                 }
+            }
+            
+            if usersTemp.count <= 1 {
+                    break
             }
         }
         
