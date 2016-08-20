@@ -38,6 +38,12 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
         scrollImageView = UIImageView(frame: ImageForZoom.bounds)
         scrollImageView!.image = newImage
         
+        //double tap
+        var doubleTapRecognizer = UITapGestureRecognizer(target: self, action: "scrollViewDoubleTapped:")
+        doubleTapRecognizer.numberOfTapsRequired = 2
+        doubleTapRecognizer.numberOfTouchesRequired = 1
+        scrollView.addGestureRecognizer(doubleTapRecognizer)
+        
         scrollView!.addSubview(scrollImageView!)
 
         
@@ -52,6 +58,27 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         
         return scrollImageView
+    }
+    
+    func scrollViewDoubleTapped(recognizer: UITapGestureRecognizer) {
+        // 1
+        let pointInView = recognizer.locationInView(scrollImageView)
+        
+        // 2
+        var newZoomScale = scrollView.zoomScale * 1.5
+        newZoomScale = min(newZoomScale, scrollView.maximumZoomScale)
+        
+        // 3
+        let scrollViewSize = scrollView.bounds.size
+        let w = scrollViewSize.width / newZoomScale
+        let h = scrollViewSize.height / newZoomScale
+        let x = pointInView.x - (w / 2.0)
+        let y = pointInView.y - (h / 2.0)
+        
+        let rectToZoomTo = CGRectMake(x, y, w, h);
+        
+        // 4
+        scrollView.zoomToRect(rectToZoomTo, animated: true)
     }
 
     
