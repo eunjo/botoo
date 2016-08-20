@@ -618,7 +618,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             let Imagedata = UIImageJPEGRepresentation(resiziedImage, 0.5)
             let base64String = Imagedata!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
             
-            SocketIOManager.sharedInstance.sendMessage("pic", message: base64String, withNickname: self.userEmail, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
+            SocketIOManager.sharedInstance.sendMessage("pic", message: base64String, withNickname: self.userEmail, to: NSUserDefaults.standardUserDefaults().stringForKey("userLover")!)
             
             dispatch_async(dispatch_get_main_queue()) {
                 
@@ -678,7 +678,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         let MobNumVar = (contact.phoneNumbers[0].value as! CNPhoneNumber).valueForKey("digits") as! String
         let ContactString = "{\'givenName\':\'\(contact.givenName)\',\'familyName\':\'\(contact.familyName)\',\'MobNumVar\':\'\(MobNumVar)\'}"
         
-        SocketIOManager.sharedInstance.sendMessage("contact", message: ContactString, withNickname: self.userEmail, to: NSUserDefaults.standardUserDefaults().stringForKey("userlover")!)
+        SocketIOManager.sharedInstance.sendMessage("contact", message: ContactString, withNickname: self.userEmail, to: NSUserDefaults.standardUserDefaults().stringForKey("userLover")!)
         
         
         dispatch_async(dispatch_get_main_queue()) {
@@ -701,7 +701,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     @IBAction func sendButtonTapped(sender: AnyObject) {
         if chatInputTextField.text!.characters.count > 0 && chatInputTextField.text != " " {
             let message = chatInputTextField.text!
-            SocketIOManager.sharedInstance.sendMessage("text", message: message, withNickname: self.userEmail, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
+            SocketIOManager.sharedInstance.sendMessage("text", message: message, withNickname: self.userEmail, to: NSUserDefaults.standardUserDefaults().stringForKey("userLover")!)
             
             chatInputTextField.text = ""
             chatInputTextField.resignFirstResponder()
