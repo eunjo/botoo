@@ -84,10 +84,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         self.chatInputTextField.delegate = self
         
         //버튼 동그랗게
-        plus_pic.layer.cornerRadius = 0.5 * plus_pic.bounds.size.width
-        plus_cam.layer.cornerRadius = 0.5 * plus_cam.bounds.size.width
-        plus_contact.layer.cornerRadius = 0.5 * plus_contact.bounds.size.width
-        plus_video.layer.cornerRadius = 0.5 * plus_video.bounds.size.width
+        plus_pic.layer.cornerRadius = plus_pic.frame.size.width / 2
+        plus_cam.layer.cornerRadius = plus_cam.frame.size.width / 2
+        plus_contact.layer.cornerRadius = plus_contact.frame.size.width / 2
+        plus_video.layer.cornerRadius = plus_video.frame.size.width / 2
         
         //프레임
         self.TOOLBAR_FRAME = self.toolbar.frame

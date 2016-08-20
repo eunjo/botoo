@@ -14,15 +14,24 @@ class albumViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     var picCollectionList:[String] = []
     var loadCount = 10
+    var cellHeight = CGFloat(0.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        
         //한 번에 불러올 개수
-        let cellHeight = self.view.frame.size.width / CGFloat(3.0) //width == height
+        cellHeight = self.view.frame.size.width / CGFloat(3.0) //width == height
         loadCount = Int(self.view.frame.size.height / cellHeight) * 3 //한 화면에 보여지는 줄 * 한 줄 당 개수
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top:0, left:0, bottom: 0, right: 0)
+        layout.itemSize = CGSize(width:cellHeight, height:cellHeight)
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        collectionView.collectionViewLayout = layout
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -83,12 +92,13 @@ class albumViewController: UIViewController, UICollectionViewDelegate, UICollect
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! PhotoCollectionViewCell
         
-        let cellSize = self.view.frame.size.width / CGFloat(3.0)
-        cell.frame.size.height = cellSize
-        cell.frame.size.width = cellSize
+//        cell.frame.size.height = cellSize
+//        cell.frame.size.width = cellSize
         
-//        cell.photoImageView.frame.size.height = cellSize
-//        cell.photoImageView.frame.size.width = cellSize
+        cell.layer.borderWidth = 0.0
+        
+        cell.photoImageView.frame.size.height = cellHeight
+        cell.photoImageView.frame.size.width = cellHeight
         
         //이미지 디코딩
         let dataDecoded:NSData = NSData(base64EncodedString: self.picCollectionList[indexPath.row], options: NSDataBase64DecodingOptions(rawValue: 0))!
