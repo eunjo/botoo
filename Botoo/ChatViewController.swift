@@ -219,7 +219,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func initSocket() {
         // 유저 네임 서버로 보내기
-        SocketIOManager.sharedInstance.connectToServerWithNickname(self.userId, nickname: self.userName, completionHandler: { (userList) -> Void in
+        SocketIOManager.sharedInstance.connectToServerWithNickname(self.userId, nickname: self.userEmail, completionHandler: { (userList) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if userList != nil {
                     self.users.removeAll()
@@ -237,7 +237,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func exitSocket() {
-        SocketIOManager.sharedInstance.exitChatWithNickname(self.userName) { () -> Void in
+        SocketIOManager.sharedInstance.exitChatWithNickname(self.userEmail) { () -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 print("채팅을 나갑니다.")
             })
@@ -617,7 +617,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             let Imagedata = UIImageJPEGRepresentation(resiziedImage, 0.5)
             let base64String = Imagedata!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
             
-            SocketIOManager.sharedInstance.sendMessage("pic", message: base64String, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
+            SocketIOManager.sharedInstance.sendMessage("pic", message: base64String, withNickname: self.userEmail, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
             
             dispatch_async(dispatch_get_main_queue()) {
                 
@@ -677,7 +677,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         let MobNumVar = (contact.phoneNumbers[0].value as! CNPhoneNumber).valueForKey("digits") as! String
         let ContactString = "{\'givenName\':\'\(contact.givenName)\',\'familyName\':\'\(contact.familyName)\',\'MobNumVar\':\'\(MobNumVar)\'}"
         
-        SocketIOManager.sharedInstance.sendMessage("contact", message: ContactString, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
+        SocketIOManager.sharedInstance.sendMessage("contact", message: ContactString, withNickname: self.userEmail, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
         
         
         dispatch_async(dispatch_get_main_queue()) {
@@ -685,7 +685,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
              테이블뷰에 추가
              //내가 보낸 메세지는 소켓을 거치지 않고 클라이언트에서 처리
              **/
-            self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"contact\",\"message\":\"\(ContactString)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(self.getCurrentDate_client())\"}")!)
+            self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"contact\",\"message\":\"\(ContactString)\",\"nickname\":\"\(self.userEmail)\",\"date\":\"\(self.getCurrentDate_client())\"}")!)
             
             //메세지 서버에 저장
             self.saveMessage(ContactString, type: "contact")
@@ -700,7 +700,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     @IBAction func sendButtonTapped(sender: AnyObject) {
         if chatInputTextField.text!.characters.count > 0 && chatInputTextField.text != " " {
             let message = chatInputTextField.text!
-            SocketIOManager.sharedInstance.sendMessage("text", message: message, withNickname: self.userName, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
+            SocketIOManager.sharedInstance.sendMessage("text", message: message, withNickname: self.userEmail, to: NSUserDefaults.standardUserDefaults().stringForKey("loverName")!)
             
             chatInputTextField.text = ""
             chatInputTextField.resignFirstResponder()
@@ -718,7 +718,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 //메세지 서버에 저장
                 self.saveMessage(replacedMsg, type: "text")
                 
-                self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"text\",\"message\":\"\(replacedMsg)\",\"nickname\":\"\(self.userName)\",\"date\":\"\(self.getCurrentDate_client())\"}")!)
+                self.chatMessages.append(self.convertStringToDictionary("{\"type\":\"text\",\"message\":\"\(replacedMsg)\",\"nickname\":\"\(self.userEmail)\",\"date\":\"\(self.getCurrentDate_client())\"}")!)
                 
                 self.messageTableView.reloadData()
                 self.scrollToBottom()
@@ -763,7 +763,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             "message": message,
             "type": type,
             "date": getCurrentDate_client(),
-            "nickname": self.userName as String
+            "nickname": self.userEmail as String
         ]
         
         //디바이스 파일에 쓰기
@@ -833,7 +833,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             
             let attributedString = stringToAttributedString(replacedMsg!)
             
-            if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
+            if self.chatMessages[indexPath.row]["nickname"] as? String == userEmail { // 내가 보낸 메세지
                 var cell = tableView.dequeueReusableCellWithIdentifier("ChatTableViewCellm") as? ChatTableViewCellm
                 
                 if cell == nil {
@@ -842,7 +842,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 }
                 
                 cell?.messageBubble.attributedText = attributedString
-                cell?.nameLabel.text = name
+                cell?.nameLabel.text = self.userName
                 cell?.dateLabel.text = date!
                 
                 if cell?.messageBubble.attributedText?.length == 1 &&
@@ -863,7 +863,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 }
                 
                 cell?.messageBubble.attributedText = stringToAttributedString(replacedMsg!)
-                cell?.nameLabel.text = name
+                cell?.nameLabel.text = self.userName
                 cell?.dateLabel.text = dateToString(date!)
 //                cell?.dateLabel.text = "00:00"
                 
@@ -886,7 +886,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             let familyName = messageDic!["familyName"]!
             let MobNumVar = messageDic!["MobNumVar"]!
             
-            if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
+            if self.chatMessages[indexPath.row]["nickname"] as? String == userEmail { // 내가 보낸 메세지
             
                 var cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCell") as? ChatContactTableViewCell
                 
@@ -894,7 +894,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     tableView.registerNib(UINib(nibName: "UIChatContactCell", bundle: nil), forCellReuseIdentifier: "ChatContactTableViewCell")
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCell") as? ChatContactTableViewCell
                 }
-                cell?.nameLabel.text = name
+                cell?.nameLabel.text = self.userName
                 cell?.contactButton.setTitle("\(givenName) \(familyName)", forState: .Normal)
 
                 let fake_tempContact:CNMutableContact = CNMutableContact()
@@ -920,7 +920,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatContactTableViewCellL") as? ChatContactTableViewCellL
                 }
                 
-                cell?.nameLabel.text = name
+                cell?.nameLabel.text = self.userName
                 cell?.contactButton.setTitle("\(givenName) \(familyName)", forState: .Normal)
                 
                 let fake_tempContact:CNMutableContact = CNMutableContact()
@@ -939,7 +939,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 return cell!
             }
         case "pic":
-            if self.chatMessages[indexPath.row]["nickname"] as? String == userName { // 내가 보낸 메세지
+            if self.chatMessages[indexPath.row]["nickname"] as? String == userEmail { // 내가 보낸 메세지
                 var cell = tableView.dequeueReusableCellWithIdentifier("ChatPicTabelViewCell") as? ChatPicTabelViewCell
                 
                 if cell == nil {
@@ -947,7 +947,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatPicTabelViewCell") as? ChatPicTabelViewCell
                 }
                 
-                cell?.name.text = name
+                cell?.name.text = self.userName
                 cell?.date.text = date!
                 
                 dispatch_async(dispatch_get_main_queue()) {
@@ -974,7 +974,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     cell = tableView.dequeueReusableCellWithIdentifier("ChatPicTabelViewCellm") as? ChatPicTabelViewCellm
                 }
                 
-                cell?.name.text = name
+                cell?.name.text = self.userName
 //                cell?.date.text = dateToString(date!)
                 cell?.date.text = "00:00"
                 
