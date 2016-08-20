@@ -17,6 +17,7 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
     @IBOutlet weak var saveImage: UIButton!
     
     var isProPic:Bool?
+    var isZoomed:Bool = false
     
     var newImage: UIImage!
     var scrollImageView:UIImageView?
@@ -35,7 +36,21 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
         scrollView.maximumZoomScale = 5.0
         scrollView.minimumZoomScale = 0.5
         scrollView.delegate = self
-        scrollImageView = UIImageView(frame: ImageForZoom.bounds)
+
+        var rate:CGFloat = 1
+        var yposition:CGFloat = 0
+        
+        // sizing
+        if (newImage != nil){
+            var width = newImage.size.width
+            var height = newImage.size.height
+            rate = height/width
+            
+            yposition = (ImageForZoom.bounds.height - (ImageForZoom.bounds.width*rate))/2
+            
+        }
+        
+        scrollImageView = UIImageView(frame: CGRect(x:0, y: yposition, width: ImageForZoom.bounds.width, height: ImageForZoom.bounds.width*rate))
         scrollImageView!.image = newImage
         
         //double tap
@@ -61,6 +76,8 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
     }
     
     func scrollViewDoubleTapped(recognizer: UITapGestureRecognizer) {
+        
+        if (isZoomed == false){
         // 1
         let pointInView = recognizer.locationInView(scrollImageView)
         
@@ -79,6 +96,33 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
         
         // 4
         scrollView.zoomToRect(rectToZoomTo, animated: true)
+            
+        isZoomed = true
+            
+        } else {
+            
+            // 1
+            let pointInView = recognizer.locationInView(scrollImageView)
+            
+            // 2
+            var newZoomScale = scrollView.zoomScale / 1.5
+            newZoomScale = min(newZoomScale, scrollView.maximumZoomScale)
+            
+            // 3
+            let scrollViewSize = scrollView.bounds.size
+            let w = scrollViewSize.width / newZoomScale
+            let h = scrollViewSize.height / newZoomScale
+            let x = pointInView.x - (w / 2.0)
+            let y = pointInView.y - (h / 2.0)
+            
+            let rectToZoomTo = CGRectMake(x, y, w, h);
+            
+            // 4
+            scrollView.zoomToRect(rectToZoomTo, animated: true)
+            
+            isZoomed = false
+
+        }
     }
 
     
