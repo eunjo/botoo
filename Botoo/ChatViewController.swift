@@ -108,6 +108,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         
         currentKeyboardHeight = 0.0
         
+        //TableView.transform = CGAffineTransformMake(1, 0, 0, -1, 0, 0)
+        
         //키보드에 대한 노티피케이션 생성
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
@@ -123,6 +125,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         
         messageTableView.estimatedRowHeight = 60.0
         messageTableView.rowHeight = UITableViewAutomaticDimension
+        //messageTableView.transform = CGAffineTransformMakeScale(1, -1)
+        
         
         let messageTableViewTapped = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.messageTableViewTapped))
         messageTableView.userInteractionEnabled = true
@@ -154,6 +158,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 }
                 
                 self.messageTableView.reloadData()
+               
+                //self.scrollToBottom()
             }
         })
     }
@@ -1042,6 +1048,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         return dateToString
     }
     
+    
+        
+    
     func scrollToBottom() {
         let delay = 0.1 * Double(NSEC_PER_SEC)
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
@@ -1051,10 +1060,13 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         let numberOfRows = self.messageTableView.numberOfRowsInSection(numberOfSections-1)
         
         if numberOfRows > 0 {
-            let indexPath = NSIndexPath(forRow: numberOfRows-1, inSection: (numberOfSections-1))
-            self.messageTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
+            let indexPath = NSIndexPath(forRow: self.messageTableView.numberOfRowsInSection(0)-1,
+                inSection: self.messageTableView.numberOfSections-1)//forRow: numberOfRows-1, inSection: (numberOfSections-1))
+            
+            self.messageTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Middle, animated:false)
+           
         }
-    })
+    })//numberOfRowsInSection(0)-1  //numberOfSections-1
     }
     
     func findUser(users: [String]!, find: String!) -> Bool! {
