@@ -206,27 +206,20 @@
                                     <action selector="saveButtonTapped:" destination="vnq-Hu-44x" eventType="touchUpInside" id="twH-sT-8lD"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="0Yt-QJ-KoK">
-                                <rect key="frame" x="0.0" y="91" width="375" height="452"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="fqR-Un-LfN">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="452"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <gestureRecognizers/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="qvj-or-edN" appends="YES" id="Iv8-9n-fOe"/>
-                                        </connections>
-                                    </imageView>
-                                </subviews>
-                            </scrollView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="fqR-Un-LfN">
+                                <rect key="frame" x="0.0" y="108" width="375" height="452"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="qvj-or-edN" appends="YES" id="Iv8-9n-fOe"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="ImageForZoom" destination="fqR-Un-LfN" id="aIC-7J-mYe"/>
-                        <outlet property="ImageScrollView" destination="0Yt-QJ-KoK" id="7Vk-Mi-cwL"/>
                         <outlet property="saveImage" destination="BSV-Yd-8G3" id="ZZD-rb-MBX"/>
                     </connections>
                 </viewController>
