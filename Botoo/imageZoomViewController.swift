@@ -26,12 +26,16 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
         // image 보여주기
         ImageForZoom.image = newImage
        self.ImageForZoom.contentMode = UIViewContentMode.ScaleAspectFit
+
+              
+
+
        
         if (isProPic == true){
             
             saveImage.hidden = true
         }
-        
+
     }
     
 
