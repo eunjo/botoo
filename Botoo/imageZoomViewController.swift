@@ -11,6 +11,7 @@ import UIKit
 
 class imageZoomViewController: UIViewController, UIScrollViewDelegate{
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var ImageForZoom: UIImageView!
   
     @IBOutlet weak var saveImage: UIButton!
@@ -18,36 +19,39 @@ class imageZoomViewController: UIViewController, UIScrollViewDelegate{
     var isProPic:Bool?
     
     var newImage: UIImage!
-    var scrollView:UIScrollView?
+    
+    var scrollImageView:UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         // Do any additional setup after loading the view.
+        ImageForZoom.hidden = true
         
         // image 보여주기
         ImageForZoom.image = newImage
-        //ImageScrollView.
-       //self.ImageForZoom.contentMode = UIViewContentMode.ScaleAspectFit
+        ImageForZoom.contentMode = UIViewContentMode.ScaleAspectFit
         
-        scrollView = UIScrollView(frame: view.bounds)
-        scrollView!.backgroundColor = UIColor.blackColor()
-        scrollView!.contentSize = newImage.size
-        scrollView!.autoresizingMask = [UIViewAutoresizing.FlexibleWidth , UIViewAutoresizing.FlexibleHeight]
+        //ImageScrollView
+        scrollImageView = UIImageView(frame: ImageForZoom.bounds)
+        scrollImageView!.image = newImage
+        scrollView.addSubview(scrollImageView!)
         
-        scrollView!.addSubview(ImageForZoom)
-        view.addSubview(scrollView!)
-              
-
-
-       
+        //1
+        scrollView.maximumZoomScale = 5.0
+        scrollView.minimumZoomScale = 0.5
+        scrollView.contentOffset = CGPoint(x: 0, y: 0)
+        scrollView.delegate = self
+        
         if (isProPic == true){
             
             saveImage.hidden = true
         }
 
     }
-    
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return scrollImageView
+    }
 
     @IBAction func closeButtonTapped(sender: AnyObject) {
         

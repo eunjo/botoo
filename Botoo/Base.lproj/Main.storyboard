@@ -188,6 +188,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="WId-fd-itf">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </scrollView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="fqR-Un-LfN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="qvj-or-edN" appends="YES" id="Iv8-9n-fOe"/>
+                                </connections>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" id="BSV-Yd-8G3">
+                                <rect key="frame" x="333" y="28" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="vnq-Hu-44x" eventType="touchUpInside" id="twH-sT-8lD"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fXz-17-CD1">
                                 <rect key="frame" x="16" y="20" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -198,22 +218,6 @@
                                     <action selector="closeButtonTapped:" destination="vnq-Hu-44x" eventType="touchUpInside" id="zbx-Z3-Y7j"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" id="BSV-Yd-8G3">
-                                <rect key="frame" x="333" y="28" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="saveButtonTapped:" destination="vnq-Hu-44x" eventType="touchUpInside" id="twH-sT-8lD"/>
-                                </connections>
-                            </button>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="fqR-Un-LfN">
-                                <rect key="frame" x="0.0" y="108" width="375" height="452"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="qvj-or-edN" appends="YES" id="Iv8-9n-fOe"/>
-                                </connections>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -221,6 +225,7 @@
                     <connections>
                         <outlet property="ImageForZoom" destination="fqR-Un-LfN" id="aIC-7J-mYe"/>
                         <outlet property="saveImage" destination="BSV-Yd-8G3" id="ZZD-rb-MBX"/>
+                        <outlet property="scrollView" destination="WId-fd-itf" id="fIl-Yr-qon"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SSO-PQ-Ymg" userLabel="First Responder" sceneMemberID="firstResponder"/>
