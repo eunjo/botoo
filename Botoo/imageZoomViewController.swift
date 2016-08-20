@@ -10,50 +10,41 @@ import UIKit
 
 
 class imageZoomViewController: UIViewController, UIScrollViewDelegate{
-
+    
     @IBOutlet weak var ImageForZoom: UIImageView!
-  
+    
+    @IBOutlet weak var ImageScrollView: UIScrollView!
+    
     @IBOutlet weak var saveImage: UIButton!
-
+    
     var isProPic:Bool?
     
     var newImage: UIImage!
-    var scrollView:UIScrollView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         // Do any additional setup after loading the view.
         
         // image 보여주기
         ImageForZoom.image = newImage
-        //ImageScrollView.
-       //self.ImageForZoom.contentMode = UIViewContentMode.ScaleAspectFit
         
-        scrollView = UIScrollView(frame: view.bounds)
-        scrollView!.backgroundColor = UIColor.blackColor()
-        scrollView!.contentSize = ImageForZoom.bounds.size
-        scrollView!.autoresizingMask = [UIViewAutoresizing.FlexibleWidth , UIViewAutoresizing.FlexibleHeight]
         
-        scrollView!.addSubview(ImageForZoom)
-        view.addSubview(scrollView!)
-              
-
-
-       
+        
+        
         if (isProPic == true){
             
             saveImage.hidden = true
         }
-
+        
     }
     
-
+    
     @IBAction func closeButtonTapped(sender: AnyObject) {
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-
+    
     @IBAction func imageZoom(sender: UIPinchGestureRecognizer) {
         
         self.ImageForZoom.transform = CGAffineTransformScale(self.ImageForZoom.transform, sender.scale, sender.scale)
