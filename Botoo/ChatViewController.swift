@@ -695,7 +695,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         }
     }
  
-
     // 전송 버튼
     @IBAction func sendButtonTapped(sender: AnyObject) {
         if chatInputTextField.text!.characters.count > 0 && chatInputTextField.text != " " {

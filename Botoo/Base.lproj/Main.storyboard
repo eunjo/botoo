@@ -529,7 +529,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5mI-E9-CiV">
-                                                <rect key="frame" x="23" y="20" width="50" height="50"/>
+                                                <rect key="frame" x="39" y="39" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="(idle).png"/>
                                                 <connections>
@@ -537,7 +537,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3oC-bZ-Ng8">
-                                                <rect key="frame" x="102" y="20" width="50" height="50"/>
+                                                <rect key="frame" x="122" y="39" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="(idle_fe).png"/>
                                                 <connections>
@@ -545,11 +545,51 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="E7G-oT-1Iz">
-                                                <rect key="frame" x="183" y="17" width="50" height="53"/>
+                                                <rect key="frame" x="203" y="36" width="50" height="53"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="(orange).png"/>
                                                 <connections>
                                                     <action selector="selectEmoticon:" destination="iws-kV-VAm" eventType="touchDown" id="gPb-Fh-70Z"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XxC-9d-O3P">
+                                                <rect key="frame" x="285" y="36" width="50" height="53"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="(orange).png"/>
+                                                <connections>
+                                                    <action selector="selectEmoticon:" destination="iws-kV-VAm" eventType="touchDown" id="QKN-HO-rlI"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="D7i-jo-USt">
+                                                <rect key="frame" x="39" y="129" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="(idle).png"/>
+                                                <connections>
+                                                    <action selector="selectEmoticon:" destination="iws-kV-VAm" eventType="touchDown" id="cse-qN-3nA"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="105" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7ka-B6-Lyy">
+                                                <rect key="frame" x="122" y="129" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="(idle_fe).png"/>
+                                                <connections>
+                                                    <action selector="selectEmoticon:" destination="iws-kV-VAm" eventType="touchDown" id="nsS-dH-1fh"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="106" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Qiw-qm-vQf">
+                                                <rect key="frame" x="203" y="126" width="50" height="53"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="(orange).png"/>
+                                                <connections>
+                                                    <action selector="selectEmoticon:" destination="iws-kV-VAm" eventType="touchDown" id="3YF-gl-zxQ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="107" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lNV-uG-9hU">
+                                                <rect key="frame" x="285" y="126" width="50" height="53"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="(orange).png"/>
+                                                <connections>
+                                                    <action selector="selectEmoticon:" destination="iws-kV-VAm" eventType="touchDown" id="ioQ-oD-Pc2"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -626,7 +666,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="LetterTableViewCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LetterTableViewCell" rowHeight="76" id="0ft-ez-xaG" customClass="letterTableViewCell" customModule="Botoo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="76"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0ft-ez-xaG" id="kfJ-nv-fUf">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
@@ -707,7 +747,7 @@
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingTableViewCell" textLabel="7gA-zU-nBT" detailTextLabel="NlJ-ks-wRc" rowHeight="44" style="IBUITableViewCellStyleValue1" id="3Ea-Su-OIm">
-                                        <rect key="frame" x="0.0" y="92" width="383" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="383" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Ea-Su-OIm" id="VBk-Q5-fTI">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="43"/>
@@ -1909,8 +1949,8 @@
         <image name="tab_settings" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="x39-vu-HcH"/>
+        <segue reference="oJk-S0-t2O"/>
         <segue reference="UIt-JZ-bYR"/>
-        <segue reference="15x-7l-qcG"/>
+        <segue reference="x39-vu-HcH"/>
     </inferredMetricsTieBreakers>
 </document>
