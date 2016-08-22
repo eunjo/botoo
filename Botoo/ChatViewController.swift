@@ -17,6 +17,7 @@ import MobileCoreServices
 import ContactsUI
 import AVFoundation
 
+
 class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CNContactPickerDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
     private let bubbleColor = UIColor(red: 250.0/255, green: 212.0/255, blue: 40.0/255, alpha: 1)
@@ -29,7 +30,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     var familyName:String?
     var phoneNumber:String?
     var tagIndex = 0
-    
+   
     @IBOutlet weak var plus_video: UIButton!
     @IBOutlet weak var plus_cam: UIButton!
     @IBOutlet weak var plus_contact: UIButton!
@@ -116,7 +117,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         
         initSocket()
         getChatMessage()
-        self.scrollToBottom()
+     
         
     }
     
@@ -184,6 +185,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         
        // FileManager.sharedInstance.initFile()
         self.tempContact.insert(CNMutableContact(), atIndex: 0)
+        self.scrollToBottom()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -203,6 +205,12 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 FileManager.sharedInstance.writeFile(writeMessage!["type"]! as! String, text: writeMessage!["message"]! as! String, sender: writeMessage!["nickname"] as! String, date: writeMessage!["date"] as! String)
             }
         }
+        self.messageTableView.reloadData()
+        self.scrollToBottom()
+    }
+    
+    override func viewDidLayoutSubviews(){
+        super.viewDidLayoutSubviews()
         self.scrollToBottom()
     }
     
