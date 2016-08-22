@@ -123,9 +123,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
         
         initSocket()
-
-        getChatMessage()
-
         
 //        getChatMessage()
         self.scrollToBottom()
@@ -732,7 +729,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             SocketIOManager.sharedInstance.sendMessage("text", message: message, withNickname: self.userEmail, to: NSUserDefaults.standardUserDefaults().stringForKey("userLover")!)
             
             chatInputTextField.text = ""
-            chatInputTextField.resignFirstResponder()
+            
+            
+            //키보드 떠 있을경우 내려주는 기능
+//            chatInputTextField.resignFirstResponder()
             
             dispatch_async(dispatch_get_main_queue()) {
                 /**
@@ -758,8 +758,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 if self.chatInputTextField.text == "" {
                     //툴바 사이즈 변경되어 있을 경우
                     //더 내려야 할 높이
-//                    let extra = self.toolbar.frame.size.height - self.TOOLBAR_FRAME.size.height
-//                    self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, extra)
+                    let extra = self.toolbar.frame.size.height - self.TOOLBAR_FRAME.size.height
+                    self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, extra)
                     
                     //툴바 사이즈 복구
                     self.viewInToolbar.frame.size = self.TOOLBARVIEW_FRAME.size
@@ -842,6 +842,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 //        }
 
         
+        //서버에 메세지 저장
+        //서버에서 on/off 확인 후 insert
         ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
             
         })
@@ -853,7 +855,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let message = self.chatMessages[indexPath.row]["message"] as? String
-        let name = self.chatMessages[indexPath.row]["nickname"] as? String
+//        let name = self.chatMessages[indexPath.row]["nickname"] as? String
         let date = self.chatMessages[indexPath.row]["date"] as? String
         let type = self.chatMessages[indexPath.row]["type"] as! String
         
