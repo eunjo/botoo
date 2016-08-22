@@ -661,7 +661,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             imagePicker.allowsEditing = false
             imagePicker.mediaTypes = NSArray(object: kUTTypeImage) as! [String]
             self.presentViewController(imagePicker, animated: true, completion: nil)
-            newMedia = true 
+            newMedia = true
         }
     }
     
@@ -734,8 +734,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 if self.chatInputTextField.text == "" {
                     //툴바 사이즈 변경되어 있을 경우
                     //더 내려야 할 높이
-                    let extra = self.toolbar.frame.size.height - self.TOOLBAR_FRAME.size.height
-                    self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, extra)
+//                    let extra = self.toolbar.frame.size.height - self.TOOLBAR_FRAME.size.height
+//                    self.toolbar.transform = CGAffineTransformTranslate(self.toolbar.transform, 0, extra)
                     
                     //툴바 사이즈 복구
                     self.viewInToolbar.frame.size = self.TOOLBARVIEW_FRAME.size
