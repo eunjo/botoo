@@ -34,13 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        print("offline")
-        
-        if userId != nil {
-            MemberConstruct().setOnline(userId!, isOnline: false, completionHandler: { (json, error) -> Void in
-                // user online
-            })
-        }
     }
 
     // app 활성화시 connect
@@ -54,6 +47,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // app 비활성화시 disconnect
     func applicationDidEnterBackground(application: UIApplication) {
         SocketIOManager.sharedInstance.closeConnection()
+        print("offline")
+        
+        if userId != nil {
+            MemberConstruct().setOnline(userId!, isOnline: false, completionHandler: { (json, error) -> Void in
+                // user online
+            })
+        }
     }
 }
 
