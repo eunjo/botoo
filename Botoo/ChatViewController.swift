@@ -60,7 +60,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private let userName = NSUserDefaults.standardUserDefaults().stringForKey("userName")!
     private var userSocketId = ""
     private let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
-    private let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")!
+    private let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")
     private let loverId = NSUserDefaults.standardUserDefaults().stringForKey("loverId")!
     private var chatMessages:[[String : AnyObject]] = []
     private var users = [String]()
@@ -82,6 +82,13 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         super.viewDidLoad()
         imagePicker.delegate = self
         self.chatInputTextField.delegate = self
+        
+        if userId != nil {
+            MemberConstruct().setOnline(userId!, isOnline: true, completionHandler: { (json, error) -> Void in
+                // user online
+                print("online")
+            })
+        }
         
         //버튼 동그랗게
         plus_pic.layer.cornerRadius = plus_pic.frame.size.width / 2
@@ -115,7 +122,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
         
         initSocket()
-        getChatMessage()
+//        getChatMessage()
         
     }
     
@@ -135,7 +142,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func getChatMessage() {
         
-        ChatConstruct().getMessage(loverId, userId: userId, completionHandler: { (json, error) -> Void in
+        ChatConstruct().getMessage(loverId, userId: userId!, completionHandler: { (json, error) -> Void in
             if json != nil && json.count != 0 {
                 let JsonData = json as! [[String: AnyObject]]
                 
@@ -157,8 +164,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     }
                 }
                 self.messageTableView.reloadData()
-               
-                //self.scrollToBottom()
+                self.scrollToBottom()
             }
         })
     }
@@ -178,6 +184,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     override func viewWillAppear(animated: Bool) {
         // 배경 초기화
         initBackGround()
+        
+        getChatMessage()
         
        // FileManager.sharedInstance.initFile()
         self.tempContact.insert(CNMutableContact(), atIndex: 0)
@@ -225,7 +233,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func initSocket() {
         // 유저 네임 서버로 보내기
-        SocketIOManager.sharedInstance.connectToServerWithNickname(self.userId, nickname: self.userEmail, completionHandler: { (userList) -> Void in
+        SocketIOManager.sharedInstance.connectToServerWithNickname(self.userId!, nickname: self.userEmail, completionHandler: { (userList) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if userList != nil {
                     self.users.removeAll()
@@ -762,7 +770,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     func saveMessage(message: String, type: String) {
         
         let messageInfo = [
-            "senderId": self.userId as String,
+            "senderId": self.userId! as String,
             "receiverId": self.loverId as String,
             "message": message,
             "type": type,
@@ -773,43 +781,42 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         //디바이스 파일에 쓰기
         FileManager.sharedInstance.writeFile(messageInfo["type"]!, text: messageInfo["message"]!, sender: messageInfo["nickname"]!, date: messageInfo["date"]!)
         
+//        var userListTemp = [String]()
+//        var userIndex = -1
         
-        var userListTemp = [String]()
-        var userIndex = -1
-        
-        SocketIOManager.sharedInstance.getUserList({ (userList) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                if userList != nil {
-                    
-                    for data in userList {
-                        userListTemp.append("\(data["clientId"]),\(data["isConnected"])")
-                    }
-                    
-                    for user in userListTemp {
-                        if user.containsString(self.loverId) {
-                            userIndex = userListTemp.indexOf(user)!
-                            print("FIND : index is \(userIndex)")
-                            break
-                        }
-                    }
-                    
-                    if userIndex != -1 {
-                        let userConnectionInfo = userListTemp[userIndex].componentsSeparatedByString(",")
-                        if userConnectionInfo[1] != "Optional(1)" {
-                            print("FIND : index is \(userIndex): OFFLINE")
-                            ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
-                                
-                            })
-                        }
-                    } else {
-                        print("OFFLINE")
-                        ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
-                            
-                        })
-                    }
-                }
-            })
-        })
+//        SocketIOManager.sharedInstance.getUserList({ (userList) -> Void in
+//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                if userList != nil {
+//                    
+//                    for data in userList {
+//                        userListTemp.append("\(data["clientId"]),\(data["isConnected"])")
+//                    }
+//                    
+//                    for user in userListTemp {
+//                        if user.containsString(self.loverId) {
+//                            userIndex = userListTemp.indexOf(user)!
+//                            print("FIND : index is \(userIndex)")
+//                            break
+//                        }
+//                    }
+//                    
+//                    if userIndex != -1 {
+//                        let userConnectionInfo = userListTemp[userIndex].componentsSeparatedByString(",")
+//                        if userConnectionInfo[1] != "Optional(1)" {
+//                            print("FIND : index is \(userIndex): OFFLINE")
+//                            ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
+//                                
+//                            })
+//                        }
+//                    } else {
+//                        print("OFFLINE")
+//                        ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
+//                            
+//                        })
+//                    }
+//                }
+//            })
+//        })
         
         //서버에 메세지 저장
 //        if !self.findUser(self.users, find: self.loverId) {
@@ -817,6 +824,11 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 //                
 //            })
 //        }
+
+        
+        ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
+            
+        })
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -1067,7 +1079,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func findUser(users: [String]!, find: String!) -> Bool! {
-        
         //리스트 정렬
         var usersTemp = users.sort()
         var usersTempMiddleId:[String]! = []
