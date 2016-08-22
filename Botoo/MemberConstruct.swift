@@ -379,6 +379,31 @@ func updateDate(userID: String, loverID: String, userDate: String, completionHan
         task.resume()
         return task
     }
+    
+    func setOnline(userId: String, isOnline: Bool, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask? {
+        //파라미터를 추가한 URL 생성
+        let postString = "id=\(userId)&isOnline=\(isOnline)"
+        let URL = NSURL(string: "\(urlInfo.setOnline)?\(postString)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)
+        
+        let task = session.dataTaskWithRequest(NSMutableURLRequest(URL: URL!)) {
+            (data, response, error) -> Void in
+            let httpResponse = response as! NSHTTPURLResponse
+            let statusCode = httpResponse.statusCode
+            
+            //statusCode가 200인건 성공적으로 json을 파싱했다는것임.
+            if (statusCode == 200) {
+                do{
+                    completionHandler(NSString(data: data!, encoding: NSUTF8StringEncoding)!, nil)
+                }catch {
+                    print("Error with Json: \(error)")
+                }
+            }
+        }
+        
+        //task 실행
+        task.resume()
+        return task
+    }
 }
 
 

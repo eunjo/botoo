@@ -11,6 +11,7 @@ import Foundation
 public class URLInfo {
     public let WEB_SERVER_IP = "http://ec2-52-42-42-59.us-west-2.compute.amazonaws.com"
     
+    public var setOnline: String
     public var checkEmail: String
     public var register: String
     public var drop: String
@@ -32,6 +33,7 @@ public class URLInfo {
     public var countMessage: String
 
     init() {
+        setOnline = WEB_SERVER_IP + "/member/setOnline"
         acceptAlert = WEB_SERVER_IP + "/member/acceptAlert"
         sendAlert = WEB_SERVER_IP + "/member/sendAlert"
         updateDate = WEB_SERVER_IP + "/member/updateDate"

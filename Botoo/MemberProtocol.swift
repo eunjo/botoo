@@ -10,6 +10,7 @@ import Foundation
 
 protocol MemberProtocol {
     
+    func setOnline(userId: String, isOnline: Bool, completionHandler: (AnyObject!, NSError?) -> Void)-> NSURLSessionTask?
     func checkEmail(userEmail: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
     func register(userInfo: Dictionary<String,String>?, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
     func drop(userId: String, loverEmail: String, completionHandler: (AnyObject!, NSError?) -> Void) -> NSURLSessionTask?
