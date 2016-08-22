@@ -122,7 +122,9 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
         
         initSocket()
+        
 //        getChatMessage()
+        self.scrollToBottom()
         
     }
     
@@ -180,6 +182,8 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         }
         return nil
     }
+    
+  
     
     override func viewWillAppear(animated: Bool) {
         // 배경 초기화
@@ -1071,7 +1075,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         if numberOfRows > 0 {
             let indexPath = NSIndexPath(forRow: self.messageTableView.numberOfRowsInSection(0)-1,
                 inSection: self.messageTableView.numberOfSections-1)//forRow: numberOfRows-1, inSection: (numberOfSections-1))
-            
+            self.messageTableView.reloadData()
             self.messageTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Middle, animated:false)
            
         }

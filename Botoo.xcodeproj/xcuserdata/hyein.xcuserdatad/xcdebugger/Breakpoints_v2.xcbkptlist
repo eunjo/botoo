@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "280"
             endingLineNumber = "280"
-            landmarkName = "initBackGround()"
+            landmarkName = "checkDevice()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -63,7 +63,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "266"
             endingLineNumber = "266"
-            landmarkName = "checkDevice()"
+            landmarkName = "exitSocket()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -79,7 +79,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "344"
             endingLineNumber = "344"
-            landmarkName = "initContainers()"
+            landmarkName = "initBackGround()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -111,7 +111,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "353"
             endingLineNumber = "353"
-            landmarkName = "keyboardWillShow(_:)"
+            landmarkName = "initContainers()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -143,8 +143,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "471"
             endingLineNumber = "471"
-            landmarkName = "openDrawer()"
-            landmarkType = "5">
+            landmarkName = "ChatViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -159,7 +159,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "343"
             endingLineNumber = "343"
-            landmarkName = "initContainers()"
+            landmarkName = "initBackGround()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -175,7 +175,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "342"
             endingLineNumber = "342"
-            landmarkName = "initContainers()"
+            landmarkName = "initBackGround()"
             landmarkType = "5">
             <Locations>
                <Location
@@ -639,7 +639,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "680"
             endingLineNumber = "680"
-            landmarkName = "contactPickerDidCancel(_:)"
+            landmarkName = "onClickPlusCam(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -655,7 +655,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "681"
             endingLineNumber = "681"
-            landmarkName = "contactPickerDidCancel(_:)"
+            landmarkName = "onClickPlusCam(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -703,7 +703,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "828"
             endingLineNumber = "828"
-            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
+            landmarkName = "saveMessage(_:type:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -847,8 +847,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "164"
             endingLineNumber = "164"
-            landmarkName = "ChatViewController"
-            landmarkType = "3">
+            landmarkName = "getChatMessage()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -895,7 +895,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1029"
             endingLineNumber = "1029"
-            landmarkName = "dateToString(_:)"
+            landmarkName = "tableView(_:estimatedHeightForRowAtIndeerxPath:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -911,7 +911,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1030"
             endingLineNumber = "1030"
-            landmarkName = "dateToString(_:)"
+            landmarkName = "tableView(_:estimatedHeightForRowAtIndeerxPath:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1003,7 +1003,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "197"
             endingLineNumber = "197"
-            landmarkName = "viewDidAppear(_:)"
+            landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1019,7 +1019,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "196"
             endingLineNumber = "196"
-            landmarkName = "viewDidAppear(_:)"
+            landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1115,7 +1115,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "371"
             endingLineNumber = "371"
-            landmarkName = "adjustingHeight(_:notification:)"
+            landmarkName = "keyboardWillShow(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1131,7 +1131,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1011"
             endingLineNumber = "1011"
-            landmarkName = "tableView(_:estimatedHeightForRowAtIndeerxPath:)"
+            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1147,8 +1147,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1004"
             endingLineNumber = "1004"
-            landmarkName = "ChatViewController"
-            landmarkType = "3">
+            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
