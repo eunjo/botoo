@@ -66,7 +66,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private var users = [String]()
 
     //emoticon
-    private let emoticonStrings = ["(idle)","(idle_fe)","(orange)"]
+    private let emoticonStrings = ["(idle)","(idle_fe)","(crying)","(furious)","(none)","(heart)","(question)","(smile)","(orange)"]
     
     //toolbar 크기 조정
     private var TOOLBAR_FRAME = CGRect()
@@ -701,7 +701,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         }
     }
  
-
     // 전송 버튼
     @IBAction func sendButtonTapped(sender: AnyObject) {
         if chatInputTextField.text!.characters.count > 0 && chatInputTextField.text != " " {
@@ -1207,13 +1206,31 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     @IBAction func selectEmoticon(sender: UIButton) {
         switch sender.tag {
         case 100:
-            self.chatInputTextField.text = self.chatInputTextField.text! + "(idle)"
+            self.chatInputTextField.text = self.chatInputTextField.text! + "\(emoticonStrings[0])"
             break
         case 101:
-            self.chatInputTextField.text = self.chatInputTextField.text! + "(idle_fe)"
+            self.chatInputTextField.text = self.chatInputTextField.text! + "\(emoticonStrings[1])"
             break
         case 102:
-            self.chatInputTextField.text = self.chatInputTextField.text! + "(orange)"
+            self.chatInputTextField.text = self.chatInputTextField.text! + "\(emoticonStrings[2])"
+            break
+        case 103:
+            self.chatInputTextField.text = self.chatInputTextField.text! + "\(emoticonStrings[3])"
+            break
+        case 104:
+            self.chatInputTextField.text = self.chatInputTextField.text! + "\(emoticonStrings[4])"
+            break
+        case 105:
+            self.chatInputTextField.text = self.chatInputTextField.text! + "\(emoticonStrings[5])"
+            break
+        case 106:
+            self.chatInputTextField.text = self.chatInputTextField.text! + "\(emoticonStrings[6])"
+            break
+        case 107:
+            self.chatInputTextField.text = self.chatInputTextField.text! + "\(emoticonStrings[7])"
+            break
+        case 108:
+            self.chatInputTextField.text = self.chatInputTextField.text! + "\(emoticonStrings[8])"
             break
         default:
             break
