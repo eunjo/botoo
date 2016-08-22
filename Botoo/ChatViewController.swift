@@ -123,14 +123,13 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
         
         initSocket()
-<<<<<<< HEAD
+
         getChatMessage()
-     
-=======
+
         
 //        getChatMessage()
         self.scrollToBottom()
->>>>>>> 4b548ae198a9a6eca6917e6e2072f2f7a86dddc0
+
         
     }
     
