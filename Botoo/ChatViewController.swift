@@ -124,7 +124,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         
         initSocket()
         
-//        getChatMessage()
+        getChatMessage()
         self.scrollToBottom()
 
         
@@ -191,7 +191,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         // 배경 초기화
         initBackGround()
         
-        getChatMessage()
+//        getChatMessage()
         
        // FileManager.sharedInstance.initFile()
         self.tempContact.insert(CNMutableContact(), atIndex: 0)
