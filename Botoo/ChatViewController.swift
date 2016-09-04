@@ -17,6 +17,7 @@ import MobileCoreServices
 import ContactsUI
 import AVFoundation
 
+
 class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CNContactPickerDelegate, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
     private let bubbleColor = UIColor(red: 250.0/255, green: 212.0/255, blue: 40.0/255, alpha: 1)
@@ -29,7 +30,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     var familyName:String?
     var phoneNumber:String?
     var tagIndex = 0
-    
+   
     @IBOutlet weak var plus_video: UIButton!
     @IBOutlet weak var plus_cam: UIButton!
     @IBOutlet weak var plus_contact: UIButton!
@@ -60,13 +61,13 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     private let userName = NSUserDefaults.standardUserDefaults().stringForKey("userName")!
     private var userSocketId = ""
     private let userEmail = NSUserDefaults.standardUserDefaults().stringForKey("userEmail")!
-    private let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")!
+    private let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")
     private let loverId = NSUserDefaults.standardUserDefaults().stringForKey("loverId")!
     private var chatMessages:[[String : AnyObject]] = []
     private var users = [String]()
 
     //emoticon
-    private let emoticonStrings = ["(idle)","(idle_fe)","(orange)"]
+    private let emoticonStrings = ["(idle)","(idle_fe)","(crying)","(furious)","(none)","(heart)","(question)","(smile)","(orange)"]
     
     //toolbar 크기 조정
     private var TOOLBAR_FRAME = CGRect()
@@ -82,6 +83,13 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         super.viewDidLoad()
         imagePicker.delegate = self
         self.chatInputTextField.delegate = self
+        
+        if userId != nil {
+            MemberConstruct().setOnline(userId!, isOnline: true, completionHandler: { (json, error) -> Void in
+                // user online
+                print("online")
+            })
+        }
         
         //버튼 동그랗게
         plus_pic.layer.cornerRadius = plus_pic.frame.size.width / 2
@@ -115,7 +123,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
         
         initSocket()
+        
         getChatMessage()
+        self.scrollToBottom()
+
         
     }
     
@@ -123,7 +134,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         messageTableView.delegate = self
         messageTableView.dataSource = self
         
-        messageTableView.estimatedRowHeight = 60.0
+        messageTableView.estimatedRowHeight = 50.0
         messageTableView.rowHeight = UITableViewAutomaticDimension
         //messageTableView.transform = CGAffineTransformMakeScale(1, -1)
         
@@ -135,7 +146,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func getChatMessage() {
         
-        ChatConstruct().getMessage(loverId, userId: userId, completionHandler: { (json, error) -> Void in
+        ChatConstruct().getMessage(loverId, userId: userId!, completionHandler: { (json, error) -> Void in
             if json != nil && json.count != 0 {
                 let JsonData = json as! [[String: AnyObject]]
                 
@@ -157,8 +168,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                     }
                 }
                 self.messageTableView.reloadData()
-               
-                //self.scrollToBottom()
+                self.scrollToBottom()
             }
         })
     }
@@ -175,12 +185,17 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         return nil
     }
     
+  
+    
     override func viewWillAppear(animated: Bool) {
         // 배경 초기화
         initBackGround()
         
+//        getChatMessage()
+        
        // FileManager.sharedInstance.initFile()
         self.tempContact.insert(CNMutableContact(), atIndex: 0)
+        self.scrollToBottom()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -200,6 +215,12 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
                 FileManager.sharedInstance.writeFile(writeMessage!["type"]! as! String, text: writeMessage!["message"]! as! String, sender: writeMessage!["nickname"] as! String, date: writeMessage!["date"] as! String)
             }
         }
+        self.messageTableView.reloadData()
+        self.scrollToBottom()
+    }
+    
+    override func viewDidLayoutSubviews(){
+        super.viewDidLayoutSubviews()
         self.scrollToBottom()
     }
     
@@ -225,7 +246,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func initSocket() {
         // 유저 네임 서버로 보내기
-        SocketIOManager.sharedInstance.connectToServerWithNickname(self.userId, nickname: self.userEmail, completionHandler: { (userList) -> Void in
+        SocketIOManager.sharedInstance.connectToServerWithNickname(self.userId!, nickname: self.userEmail, completionHandler: { (userList) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if userList != nil {
                     self.users.removeAll()
@@ -661,7 +682,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             imagePicker.allowsEditing = false
             imagePicker.mediaTypes = NSArray(object: kUTTypeImage) as! [String]
             self.presentViewController(imagePicker, animated: true, completion: nil)
-            newMedia = true 
+            newMedia = true
         }
     }
     
@@ -708,7 +729,10 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
             SocketIOManager.sharedInstance.sendMessage("text", message: message, withNickname: self.userEmail, to: NSUserDefaults.standardUserDefaults().stringForKey("userLover")!)
             
             chatInputTextField.text = ""
-            chatInputTextField.resignFirstResponder()
+            
+            
+            //키보드 떠 있을경우 내려주는 기능
+//            chatInputTextField.resignFirstResponder()
             
             dispatch_async(dispatch_get_main_queue()) {
                 /**
@@ -762,7 +786,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     func saveMessage(message: String, type: String) {
         
         let messageInfo = [
-            "senderId": self.userId as String,
+            "senderId": self.userId! as String,
             "receiverId": self.loverId as String,
             "message": message,
             "type": type,
@@ -773,43 +797,42 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         //디바이스 파일에 쓰기
         FileManager.sharedInstance.writeFile(messageInfo["type"]!, text: messageInfo["message"]!, sender: messageInfo["nickname"]!, date: messageInfo["date"]!)
         
+//        var userListTemp = [String]()
+//        var userIndex = -1
         
-        var userListTemp = [String]()
-        var userIndex = -1
-        
-        SocketIOManager.sharedInstance.getUserList({ (userList) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                if userList != nil {
-                    
-                    for data in userList {
-                        userListTemp.append("\(data["clientId"]),\(data["isConnected"])")
-                    }
-                    
-                    for user in userListTemp {
-                        if user.containsString(self.loverId) {
-                            userIndex = userListTemp.indexOf(user)!
-                            print("FIND : index is \(userIndex)")
-                            break
-                        }
-                    }
-                    
-                    if userIndex != -1 {
-                        let userConnectionInfo = userListTemp[userIndex].componentsSeparatedByString(",")
-                        if userConnectionInfo[1] != "Optional(1)" {
-                            print("FIND : index is \(userIndex): OFFLINE")
-                            ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
-                                
-                            })
-                        }
-                    } else {
-                        print("OFFLINE")
-                        ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
-                            
-                        })
-                    }
-                }
-            })
-        })
+//        SocketIOManager.sharedInstance.getUserList({ (userList) -> Void in
+//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                if userList != nil {
+//                    
+//                    for data in userList {
+//                        userListTemp.append("\(data["clientId"]),\(data["isConnected"])")
+//                    }
+//                    
+//                    for user in userListTemp {
+//                        if user.containsString(self.loverId) {
+//                            userIndex = userListTemp.indexOf(user)!
+//                            print("FIND : index is \(userIndex)")
+//                            break
+//                        }
+//                    }
+//                    
+//                    if userIndex != -1 {
+//                        let userConnectionInfo = userListTemp[userIndex].componentsSeparatedByString(",")
+//                        if userConnectionInfo[1] != "Optional(1)" {
+//                            print("FIND : index is \(userIndex): OFFLINE")
+//                            ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
+//                                
+//                            })
+//                        }
+//                    } else {
+//                        print("OFFLINE")
+//                        ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
+//                            
+//                        })
+//                    }
+//                }
+//            })
+//        })
         
         //서버에 메세지 저장
 //        if !self.findUser(self.users, find: self.loverId) {
@@ -817,6 +840,13 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
 //                
 //            })
 //        }
+
+        
+        //서버에 메세지 저장
+        //서버에서 on/off 확인 후 insert
+        ChatConstruct().saveMessage(messageInfo, completionHandler: { (json, error) -> Void in
+            
+        })
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -825,7 +855,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let message = self.chatMessages[indexPath.row]["message"] as? String
-        let name = self.chatMessages[indexPath.row]["nickname"] as? String
+//        let name = self.chatMessages[indexPath.row]["nickname"] as? String
         let date = self.chatMessages[indexPath.row]["date"] as? String
         let type = self.chatMessages[indexPath.row]["type"] as! String
         
@@ -1059,7 +1089,7 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
         if numberOfRows > 0 {
             let indexPath = NSIndexPath(forRow: self.messageTableView.numberOfRowsInSection(0)-1,
                 inSection: self.messageTableView.numberOfSections-1)//forRow: numberOfRows-1, inSection: (numberOfSections-1))
-            
+            self.messageTableView.reloadData()
             self.messageTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Middle, animated:false)
            
         }
@@ -1067,7 +1097,6 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     }
     
     func findUser(users: [String]!, find: String!) -> Bool! {
-        
         //리스트 정렬
         var usersTemp = users.sort()
         var usersTempMiddleId:[String]! = []
@@ -1206,13 +1235,31 @@ class ChatViewController: UIViewController, KeyboardProtocol, UIImagePickerContr
     @IBAction func selectEmoticon(sender: UIButton) {
         switch sender.tag {
         case 100:
-            self.chatInputTextField.text = self.chatInputTextField.text! + "(idle)"
+            self.chatInputTextField.text = self.chatInputTextField.text! + "\(emoticonStrings[0])"
             break
         case 101:
-            self.chatInputTextField.text = self.chatInputTextField.text! + "(idle_fe)"
+            self.chatInputTextField.text = self.chatInputTextField.text! + "\(emoticonStrings[1])"
             break
         case 102:
-            self.chatInputTextField.text = self.chatInputTextField.text! + "(orange)"
+            self.chatInputTextField.text = self.chatInputTextField.text! + "\(emoticonStrings[2])"
+            break
+        case 103:
+            self.chatInputTextField.text = self.chatInputTextField.text! + "\(emoticonStrings[3])"
+            break
+        case 104:
+            self.chatInputTextField.text = self.chatInputTextField.text! + "\(emoticonStrings[4])"
+            break
+        case 105:
+            self.chatInputTextField.text = self.chatInputTextField.text! + "\(emoticonStrings[5])"
+            break
+        case 106:
+            self.chatInputTextField.text = self.chatInputTextField.text! + "\(emoticonStrings[6])"
+            break
+        case 107:
+            self.chatInputTextField.text = self.chatInputTextField.text! + "\(emoticonStrings[7])"
+            break
+        case 108:
+            self.chatInputTextField.text = self.chatInputTextField.text! + "\(emoticonStrings[8])"
             break
         default:
             break
